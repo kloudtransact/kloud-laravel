@@ -1,0 +1,100 @@
+<?php
+namespace App\Helpers;
+
+use App\Helpers\Contracts\HelperContract; 
+use Crypt;
+use Carbon\Carbon; 
+use Mail;
+use Auth;
+use App\User;
+use App\BankAccounts;
+
+class Helper implements HelperContract
+{
+
+          /**
+           * Sends an email(blade view or text) to the recipient
+           * @param String $to
+           * @param String $subject
+           * @param String $data
+           * @param String $view
+           * @param String $image
+           * @param String $type (default = "view")
+           **/
+           function sendEmail($to,$subject,$data,$view,$type="view")
+           {
+                   if($type == "view")
+                   {
+                     Mail::send($view,$data,function($message) use($to,$subject){
+                           $message->from('info@worldlotteryusa.com',"Admin");
+                           $message->to($to);
+                           $message->subject($subject);
+                          if(isset($data["has_attachments"]) && $data["has_attachments"] == "yes")
+                          {
+                          	foreach($data["attachments"] as $a) $message->attach($a);
+                          } 
+						  $message->getSwiftMessage()
+						  ->getHeaders()
+						  ->addTextHeader('x-mailgun-native-send', 'true');
+                     });
+                   }
+
+                   elseif($type == "raw")
+                   {
+                     Mail::raw($view,$data,function($message) use($to,$subject){
+                           $message->from('info@worldlotteryusa.com',"Admin");
+                           $message->to($to);
+                           $message->subject($subject);
+                           if(isset($data["has_attachments"]) && $data["has_attachments"] == "yes")
+                          {
+                          	foreach($data["attachments"] as $a) $message->attach($a);
+                          } 
+                     });
+                   }
+           }    
+
+
+           function createUser($data)
+           {
+           	$ret = User::create(['fname' => $data['fname'], 
+                                                      'lname' => $data['lname'],                                                      
+                                                      'username' => $data['uname'], 
+                                                      'email' => $data['email'], 
+                                                      'role' => $data['role'], 
+                                                      'password' => bcrypt($data['pass']), 
+                                                      ]);
+                                                      
+                return $ret;
+           }
+           function createBankAccount($data)
+           {
+           	$ret = BankAccounts::create(['user_id' => $data['user_id'], 
+                                                      'balance' => $data['balance'],                                                      
+                                                      'initial_balance' => $data['initial_balance'],  
+                                                      'account_number' => $data['account_number'],  
+                                                      'last_deposit' => $data['last_deposit'],  
+                                                      'last_deposit_name' => $data['last_deposit_name'],  
+                                                      ]);
+                                                      
+                return $ret;
+           }		   
+           function getBankDetails($id)
+           {
+           	$ret = [];
+
+           	$bd = BankAccounts::where('user_id',$id)->first();
+               if($bd != null)
+               {
+               	$ret['id'] = $bd->user_id; 
+                   $ret['balance'] = $bd->balance; 
+                   $ret['initial_balance'] = $bd->initial_balance; 
+                   $ret['last_deposit_name'] = $bd->last_deposit_name; 
+                   $ret['last_deposit'] = $bd->last_deposit; 
+                   $ret['account_number'] = $bd->account_number; 
+                   $ret['address'] = $bd->address; 
+               }                                 
+                                                      
+                return $ret;
+           }		   
+}
+?>
