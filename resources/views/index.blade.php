@@ -24,9 +24,9 @@
                  <li class="nav-item active">
                    <a class="nav-link" href="#">All Categories <span class="sr-only">(current)</span></a>
                   </li>
-                  @foreach($c as $key => $value){
+                  @foreach($c as $key => $value)
                    <li class="nav-item">
-				    <?php $u = url('deal').'/'.$key;?>
+				    <?php $u = url('deals').'/'.$key;?>
                     <a class="nav-link" href="{{$u}}">{{$value}}</a>
                   </li>
                   @endforeach
