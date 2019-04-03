@@ -3,52 +3,39 @@
 @section('title',"Enterprise Log in")
 
 @section('content')
-<h1>Enterprise Log in</h1>
-<div class="row">
-    <div class="col-md-12">
-        <section>
-                <h4>Log in to your Enterprise Account</h4>
-                <hr>
-                <form>
-                <div class="text-danger"></div>
-                <div class="form-group">
-                    <label>Enterprise</label>
-                    <select class="form-control">
-                      <option value="none">Select enterprise</option>
-                    </select>
-                    <span class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label>Staff Id</label>
-                    <input type="email" class="form-control" />
-                    <span class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" />
-                    <span class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label">
-                            <input type="checkbox" />
-                            Remember me
-                        </label>
+<div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <div class="checkout_details_area mt-50 clearfix">
+
+                            <div class="cart-title">
+                                <h2>Enterprise Log in</h2>
+                            </div>
+
+                            <form action="#" method="get">
+                                <div class="row">
+                                	<div class="col-12 mb-3">
+                                        <select class="w-100" id="enterprise">
+                                        <option value="ng">Select enterprise</option>
+                                    </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" class="form-control" id="staff_id" value="" placeholder="Staff ID" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input type="password" class="form-control" id="pass" value="" placeholder="Password" required>
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <div class="custom-control custom-checkbox d-block mb-2">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                            <label class="custom-control-label" for="customCheck2">Remember me</label>
+                                        </div>                                   
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a href="#">Coming soon</a>
-                    </p>
-                </div>
-              </form>
-        </section>
-    </div>
 </div>
 @stop

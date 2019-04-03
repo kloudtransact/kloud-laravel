@@ -89,7 +89,9 @@
                         <div class="single-product-wrapper">
                             
                             <!-- Start #clockdiv-->
-                                   	<div id="clockdiv" align="left">
+                                   	<div id="clockdiv">
+                                   	<div class="row">
+                                   	<div class="col-6">
 					<div class="countdown">
 						<span class="days">15</span>
 						<div class="countdown-text">Days</div>
@@ -106,6 +108,10 @@
 						<span class="seconds">13</span>
 						<div class="countdown-text">Seconds</div>
 					</div>
+				</div>
+				<div class="col-3"></div>
+				<div class="col-3">18 bids</div>
+				</div>
 				</div>
 				<!-- End #clockdiv-->
 			
