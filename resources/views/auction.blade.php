@@ -16,7 +16,7 @@
                         @foreach($c as $key => $value)
                         <?php $u = url('auction').'?q='.$key; ?>
 						<li><a class="shop-categories-link" href="{{$u}}">{{$value}}</a></li>
-						}
+						@endforeach
                     </ul>
                 </div>
             </div>
@@ -422,7 +422,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
                                     <div class="cart">
-                                        <a href="{{url('cart')}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                        <a href="{{url('cart')}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="Iimg/core-img/cart.png" alt=""></a>
                                     </div>
                                 </div>
                             </div>

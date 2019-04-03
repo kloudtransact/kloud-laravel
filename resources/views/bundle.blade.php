@@ -16,7 +16,7 @@
                         @foreach($c as $key => $value)
                         <?php $u = url('bundle').'?q='.$key; ?>
 						<li><a class="shop-categories-link" href="{{$u}}">{{$value}}</a></li>
-						}
+						@endforeach
                     </ul>
                 </div>
             </div>

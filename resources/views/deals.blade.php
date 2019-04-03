@@ -16,7 +16,7 @@
                         @foreach($c as $key => $value)
                         <?php $u = url('deals').'?q='.$key; ?>
 						<li><a class="shop-categories-link" href="{{$u}}">{{$value}}</a></li>
-						}
+						@endforeach
                     </ul>
                 </div>
             </div>
@@ -321,5 +321,4 @@
                     </div>
                 </div>
             </div>
-
 @stop
