@@ -1,6 +1,6 @@
 @extends("layout")
 
-@section('title',"About KloudTransact")
+@section('title',"Home")
 
 @section('content')
      <form>
@@ -24,12 +24,12 @@
                  <li class="nav-item active">
                    <a class="nav-link" href="#">All Categories <span class="sr-only">(current)</span></a>
                   </li>
-                  @for($categories as $key => $value){
+                  @foreach($c as $key => $value){
                    <li class="nav-item">
 				    <?php $u = url('deal').'/'.$key;?>
                     <a class="nav-link" href="{{$u}}">{{$value}}</a>
                   </li>
-                  @endfor
+                  @endforeach
                               
                </ul>
              </div>
