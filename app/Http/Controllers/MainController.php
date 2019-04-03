@@ -34,7 +34,7 @@ class MainController extends Controller {
 		}
 		$c = $this->helpers->categories;
 		
-    	return view('index',compact(['user','c','mainClass']));
+    	return view('index',compact(['user','c']));
     }
 
 	/**
@@ -50,9 +50,9 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 		}
-		
-    	//return view('about');
-		return redirect()->intended('/');
+		$c = $this->helpers->categories;
+    	return view('about',compact(['user','c']));
+		//return redirect()->intended('/');
     }	
 
 	/**
@@ -70,12 +70,13 @@ class MainController extends Controller {
 		}
 		
 		$req = $request->all();
+		$category = "";
 		
 		if(isset($req['q']))
 		{
 			$category = $this->helpers->categories[$req['q']];
-			$c = $this->helpers->categories;
 		}       
+		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
 		
     	return view('bundle',compact(['user','category','c','mainClass']));
@@ -96,12 +97,13 @@ class MainController extends Controller {
 		}
 		
 		$req = $request->all();
+		$category = "";
 		
 		if(isset($req['q']))
 		{
 			$category = $this->helpers->categories[$req['q']];
-			$c = $this->helpers->categories;
 		}       
+		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
     	return view('auction',compact(['user','category','c','mainClass']));
     }
@@ -121,12 +123,13 @@ class MainController extends Controller {
 		}
 		
 		$req = $request->all();
+		$category = "";
 		
 		if(isset($req['q']))
 		{
 			$category = $this->helpers->categories[$req['q']];
-			$c = $this->helpers->categories;
 		}       
+		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
     	return view('top-deals',compact(['user','category','c','mainClass']));
     }	/**
@@ -144,12 +147,13 @@ class MainController extends Controller {
 		}
 		
 		$req = $request->all();
+		$category = "";
 		
 		if(isset($req['q']))
 		{
 			$category = $this->helpers->categories[$req['q']];
-			$c = $this->helpers->categories;
 		}       
+		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
     	return view('deals',compact(['user','category','c','mainClass']));
     }	
