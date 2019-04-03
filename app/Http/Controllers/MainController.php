@@ -281,7 +281,8 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 		}
-        return view('enterprise',compact(['user']));
+		$mainClass = "cart-table-area section-padding-100";
+        return view('enterprise',compact(['user','mainClass']));
     }
 
 	/**
