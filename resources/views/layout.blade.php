@@ -107,11 +107,11 @@
         
 		
     <?php
-	  $mc = ($mainClass == null) ? "products-catagories-area clearfix" : $mainClass; 
+	  $mc = (isset($mainClass) && $mainClass != null) ? $mainClass : "products-catagories-area clearfix"; 
 	?>
-	<script>console.log("{{$mainClass}}")</script>
+	<script>console.log("{{$mc}}")</script>
 	    @yield("ShopSideBar")
-    <div class='{{$mainClass}}'>
+    <div class='{{$mc}}'>
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @yield("content")
