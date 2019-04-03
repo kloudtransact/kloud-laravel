@@ -318,31 +318,10 @@ class MainController extends Controller {
         	return redirect()->intended('/');
         }
 		
-		$bankDetails = $this->helpers->getBankDetails($user->id);
-        return view('dashboard',compact(['user','bankDetails']));
+		//$bankDetails = $this->helpers->getBankDetails($user->id);
+        return view('dashboard',compact(['user']));
     }
     
-    /**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getAddAccount()
-    {
-		       $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-		else
-        {
-        	return redirect()->intended('/');
-        }
-		
-		$bankDetails = $this->helpers->getBankDetails($user->id);
-        return view('add-account',compact(['user','bankDetails']));
-    }
     
     /**
 	 * Show the application welcome screen to the user.
