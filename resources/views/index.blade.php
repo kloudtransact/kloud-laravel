@@ -26,7 +26,7 @@
                   </li>
                   @foreach($c as $key => $value)
                    <li class="nav-item">
-				    <?php $u = url('deals').'/'.$key;?>
+				    <?php $u = url('deals').'?q='.$key;?>
                     <a class="nav-link" href="{{$u}}">{{$value}}</a>
                   </li>
                   @endforeach
