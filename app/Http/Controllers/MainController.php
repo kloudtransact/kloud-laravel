@@ -16,7 +16,7 @@ class MainController extends Controller {
     
     public function __construct(HelperContract $h)
     {
-    	$this->helpers = $h;            
+    	$this->helpers = $h;                     
     }
 
 	/**
@@ -30,11 +30,11 @@ class MainController extends Controller {
 		
 		if(Auth::check())
 		{
-			$user = Auth::user();
-			
+			$user = Auth::user();		
 		}
+		$c = $this->helpers->categories;
 		
-    	return view('index',compact(['user']));
+    	return view('index',compact(['user','c','mainClass']));
     }
 
 	/**
@@ -60,7 +60,7 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getServices()
+	public function getBundle(Request $request)
     {
                $user = null;
 		
@@ -68,49 +68,99 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 		}
-    	return view('services',compact(['user']));
+		
+		$req = $request->all();
+		
+		if(isset($req['q']))
+		{
+			$category = $this->helpers->categories[$req['q']];
+			$c = $this->helpers->categories;
+		}       
+		$mainClass = "amado_product_area section-padding-100 clearfix";
+		
+    	return view('bundle',compact(['user','category','c','mainClass']));
+    }
+
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getAuction(Request $request)
+    {
+               $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		
+		$req = $request->all();
+		
+		if(isset($req['q']))
+		{
+			$category = $this->helpers->categories[$req['q']];
+			$c = $this->helpers->categories;
+		}       
+		$mainClass = "amado_product_area section-padding-100 clearfix";
+    	return view('auction',compact(['user','category','c','mainClass']));
+    }
+
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getTopDeals(Request $request)
+    {
+               $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		
+		$req = $request->all();
+		
+		if(isset($req['q']))
+		{
+			$category = $this->helpers->categories[$req['q']];
+			$c = $this->helpers->categories;
+		}       
+		$mainClass = "amado_product_area section-padding-100 clearfix";
+    	return view('top-deals',compact(['user','category','c','mainClass']));
+    }	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getDeals(Request $request)
+    {
+               $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		
+		$req = $request->all();
+		
+		if(isset($req['q']))
+		{
+			$category = $this->helpers->categories[$req['q']];
+			$c = $this->helpers->categories;
+		}       
+		$mainClass = "amado_product_area section-padding-100 clearfix";
+    	return view('deals',compact(['user','category','c','mainClass']));
     }	
 	
+
 	/**
 	 * Show the application welcome screen to the user.
 	 *
 	 * @return Response
 	 */
-	public function getInternational()
-    {
-               $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-		
-    	return redirect()->intended('/');
-    }
-	
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getCorporate()
-    {
-               $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-		
-    	return redirect()->intended('/');
-    }
-	
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getCreditCards()
+	public function getCart()
     {
 		       $user = null;
 		
@@ -118,15 +168,16 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 		}
-    	return redirect()->intended('/');
+		$mainClass = "cart-table-area section-padding-100";
+        return view('cart',compact(['user','mainClass']));
     }
-	
+
 	/**
 	 * Show the application welcome screen to the user.
 	 *
 	 * @return Response
 	 */
-	public function getContact()
+	public function getCheckout()
     {
 		       $user = null;
 		
@@ -134,7 +185,99 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 		}
-        return view('contact',compact(['user']));
+		$mainClass = "cart-table-area section-padding-100";
+        return view('checkout',compact(['user','mainClass']));
+    }
+
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getDeal()
+    {
+		       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		$mainClass = "single-product-area section-padding-100 clearfix";
+        return view('deal',compact(['user','mainClass']));
+    }
+
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getAirtime()
+    {
+		       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+        return view('airtime',compact(['user']));
+    }	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getHotels()
+    {
+		       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+        return view('hotels',compact(['user']));
+    }	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getTravelStart()
+    {
+		       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+        return view('travelstart',compact(['user']));
+    }	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getKloudPay()
+    {
+		       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+        return view('kloudpay',compact(['user']));
+    }
+
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getEnterprise()
+    {
+		       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+        return view('enterprise',compact(['user']));
     }
 
 	/**

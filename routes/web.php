@@ -16,12 +16,19 @@
 Route::get('/', 'MainController@getIndex');
 
 Route::get('about', 'MainController@getAbout');
-Route::get('services', 'MainController@getServices');
-Route::get('credit-cards', 'MainController@getCreditCards');
-Route::get('international-banking', 'MainController@getInternational');
-Route::get('corporate-businesses', 'MainController@getCorporate');
+Route::get('bundle', 'MainController@getBundle');
+Route::get('auction', 'MainController@getAuction');
+Route::get('top-deals', 'MainController@getTopDeals');
+Route::get('deals', 'MainController@getDeals');
+Route::get('cart', 'MainController@getCart');
+Route::get('checkout', 'MainController@getCheckout');
+Route::get('deal', 'MainController@getDeal');
 Route::get('faq', 'MainController@getFAQ');
-Route::get('contact', 'MainController@getContact');
+Route::get('airtime', 'MainController@getAirtime');
+Route::get('hotels', 'MainController@getHotels');
+Route::get('travelstart', 'MainController@getTravelStart');
+Route::get('kloudpay', 'MainController@getKloudPay');
+Route::get('enterprise', 'MainController@getEnterprise');
 
 Route::get('login', 'LoginController@getLogin');
 Route::get('register', 'LoginController@getRegister');
@@ -29,8 +36,6 @@ Route::post('login', 'LoginController@postLogin');
 Route::post('register', 'LoginController@postRegister');
 
 Route::get('dashboard', 'MainController@getDashboard');
-Route::get('add-account', 'MainController@getAddAccount');
-Route::post('add-account', 'MainController@postAddAccount');
 
 Route::get('logout', 'LoginController@getLogout');
 

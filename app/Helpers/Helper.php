@@ -11,6 +11,21 @@ use App\BankAccounts;
 
 class Helper implements HelperContract
 {
+	
+   	public $categories= [
+			                       "phones-tablets" => "Phones & Tablets",
+			                       "tv-electronics" => "TV & Electronics",
+								   "fashion" => "Fashion",
+								   "computers" => "Computers",
+								   "groceries" => "Groceries",
+								   "unique-bundles" => "Unique Bundles",
+								   "health-beauty" => "Health & Beauty",
+								   "home-office" => "Home & Office",
+								   "babies-kids-toys" => "Babies, Kids & Toys",
+								   "games-consoles" => "Games & Consoles",
+								   "watches-sunglasses" => "Watches & Sunglasses",
+								   "others" => "Other Categories"
+			];  
 
           /**
            * Sends an email(blade view or text) to the recipient
