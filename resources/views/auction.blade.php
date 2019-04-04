@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="row" id="auction-section">
-                  @for($i = 0; $i < 6; $ji++)
+                  @for($i = 0; $i < 6; $i++)
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                         <div class="single-product-wrapper">
