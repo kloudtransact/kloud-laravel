@@ -7,7 +7,8 @@ use Carbon\Carbon;
 use Mail;
 use Auth;
 use App\User;
-use App\BankAccounts;
+use App\ShippingDetails;
+use App\Wallet;
 
 class Helper implements HelperContract
 {
@@ -71,28 +72,37 @@ class Helper implements HelperContract
 
            function createUser($data)
            {
-           	$ret = User::create(['fname' => $data['fname'], 
-                                                      'lname' => $data['lname'],                                                      
-                                                      'username' => $data['uname'], 
+           	$ret = User::create(['username' => $data['username'], 
                                                       'email' => $data['email'], 
                                                       'role' => $data['role'], 
+                                                      'status' => $data['status'], 
                                                       'password' => bcrypt($data['pass']), 
                                                       ]);
                                                       
                 return $ret;
            }
-           function createBankAccount($data)
+           function createShippingDetails($data)
            {
-           	$ret = BankAccounts::create(['user_id' => $data['user_id'], 
-                                                      'balance' => $data['balance'],                                                      
-                                                      'initial_balance' => $data['initial_balance'],  
-                                                      'account_number' => $data['account_number'],  
-                                                      'last_deposit' => $data['last_deposit'],  
-                                                      'last_deposit_name' => $data['last_deposit_name'],  
+           	$ret = ShippingDetails::create(['user_id' => $data['user_id'],
+                                                      'fname' => "", 
+                                                      'lname' => "",                                                      
+                                                      'company' => "", 
+                                                      'zipcode' => "", 
+                                                      'phone' => "", 
+                                                      'address' => "", 
+                                                      'city' => "", 
                                                       ]);
                                                       
                 return $ret;
+           }
+           function createWallet($data)
+           {
+           	$ret = BankAccounts::create(['user_id' => $data['user_id'], 
+                                                      'balance' => "0",                                                                                                            
+                                                      ]);                                                     
+                return $ret;
            }		   
+           /**	   
            function getBankDetails($id)
            {
            	$ret = [];
@@ -111,5 +121,6 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }		   
+           **/
 }
 ?>
