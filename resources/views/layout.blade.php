@@ -72,16 +72,30 @@
             <div class="logo">
                <a href="{{url('/')}}"><img src="img/kloudlogo.PNG" alt=""></a>
             </div>
+            <?php
+              $welcomeText = (isset($user) && $user != null) ? $user->username : "Guest";
+            ?>
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
-                    <li class="active"><a href="{{url('/')}}">Home</a></li>
+                    <li class="active"><a href="#">Welcome, {{$welcomeText}}!</a></li>
+                    <li><a href="{{url('/')}}">Home</a></li>
+                    <li><a href="{{url('about')}}">About Us</a></li>
                     <li><a href="{{url('auction')}}">Kloud Auctions</a></li>
                     <li><a href="{{url('top-deals')}}">Top Deals</a></li>
-                    <li><a href="{{url('bundle')}}">Bundle Products</a></li>                   
+                    <li><a href="{{url('bundle')}}">Bundle Products</a></li>    
+                    @if($user != null) 
+                    <li><a href="{{url('dashboard')}}">Dashboard</a></li>                  
+                    <li><a href="{{url('bids')}}">My Bids</a></li>
+                    @if($user->role == "enterprise") 
                     <li><a href="{{url('enterprise')}}">Enterprise</a></li>
+                    @endif
                     <li><a href="{{url('kloudpay')}}">KloudPay</a></li>
-                    <li><a href="{{url('about')}}">About Us</a></li>
+                    <li><a href="{{url('logout')}}">Log out</a></li>
+                    @else
+                    <li><a href="{{url('register')}}">Register</a></li>
+                    <li><a href="{{url('login')}}">Log in</a></li>
+                    @endif                  
                 </ul>
             </nav>
             <!-- Button Group -->

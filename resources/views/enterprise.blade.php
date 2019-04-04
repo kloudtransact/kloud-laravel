@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="checkout_details_area mt-50 clearfix">
-                            <img class="img img-responsive" src="img/ent-login.jpg" alt="KloudTransact - Log in to your Enterprise account.">
+                            <img class="img img-responsive mb-3" src="img/ent-login.jpg" alt="KloudTransact - Log in to your Enterprise account.">
                             <div class="cart-title">
                                 <h2>Log in to your Enterprise account</h2>
                             </div>
