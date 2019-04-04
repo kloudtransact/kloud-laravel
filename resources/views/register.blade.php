@@ -35,7 +35,7 @@
                                     </div>
                                     
                                     <div class="col-12">
-                                        <button type="submit" class="form-control">Submit</button>                                                                           
+                                        <button type="submit" class="form-control amado-btn">Submit</button>                                                                           
                                     </div>
                                 </div>
                             </form>

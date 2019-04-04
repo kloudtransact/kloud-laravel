@@ -29,7 +29,7 @@
                                     </div>
                                     
                                     <div class="col-12">
-                                        <button type="submit" class="form-control">Log in</button>                                                                           
+                                        <button type="submit" class="form-control amado-btn">Log in</button>                                                                           
                                     </div>
                                 </div>
                             </form>
