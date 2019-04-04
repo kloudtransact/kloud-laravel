@@ -8,7 +8,7 @@
                     <div class="col-12 col-lg-8">
                         <div class="checkout_details_area mt-50 clearfix">
                             <img class="img img-responsive mb-3" src="img/login.jpg" alt="KloudTransact - Create an account.">
-                            <div class="cart-title">
+                            <div class="cart-title mb-3">
                                 <h2>Create an account and start BIDDING</h2>
                             </div>
 
@@ -35,7 +35,7 @@
                                     </div>
                                     
                                     <div class="col-12">
-                                        <button type="submit" class="form-control amado-btn">Submit</button>                                                                           
+                                        <button type="submit" class="amado-btn">Submit</button>                                                                           
                                     </div>
                                 </div>
                             </form>

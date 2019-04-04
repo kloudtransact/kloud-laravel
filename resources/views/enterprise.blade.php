@@ -8,7 +8,7 @@
                     <div class="col-12 col-lg-8">
                         <div class="checkout_details_area mt-50 clearfix">
                             <img class="img img-responsive mb-3" src="img/ent-login.jpg" alt="KloudTransact - Log in to your Enterprise account.">
-                            <div class="cart-title">
+                            <div class="cart-title mb-3">
                                 <h2>Log in to your Enterprise account</h2>
                             </div>
 
@@ -34,7 +34,7 @@
                                     </div>
                                     
                                     <div class="col-12">
-                                        <button type="submit" class="form-control amado-btn">Log in</button>                                                                           
+                                        <button type="submit" class="amado-btn">Log in</button>                                                                           
                                     </div>
                                 </div>
                             </form>
