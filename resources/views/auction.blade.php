@@ -41,7 +41,7 @@
 @stop
 
 @section('content')
-<?php $ct = isset($category) ? " - ".$category : ""; ?>
+<?php $ct = (isset($category) && $category != null) ? " - ".$category : ""; ?>
 <div class="container-fluid">
             <h2 class="category-header">Kloud Auctions{{$ct}}</h2>
                 <div class="row">
@@ -136,8 +136,9 @@
                                 </div>
                             </div>
                         </div>
+                        @endfor
                     </div>
-                    @endfor
+                    
  
 
                 <div class="row">
