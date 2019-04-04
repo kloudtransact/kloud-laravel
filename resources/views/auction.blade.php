@@ -93,20 +93,7 @@
                                    	<div class="row">
                                    	<div class="col-6">
 					<div class="countdown d-inline">
-						<span class="days">15</span>
-						<div class="countdown-text">Days</div>
-					</div>
-					<div class="countdown d-inline">
-						<span class="hours">20</span>
-						<div class="countdown-text">Hours</div>
-					</div>
-					<div class="countdown d-inline">
-						<span class="minutes">51</span>
-						<div class="countdown-text">Minutes</div>
-					</div>
-					<div class="countdown d-inline">
-						<span class="seconds">13</span>
-						<div class="countdown-text">Seconds</div>
+						<span class="deadline">15:20:51:13</span>
 					</div>
 				</div>
 				<div class="col-3"></div>
