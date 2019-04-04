@@ -41,8 +41,9 @@
 @stop
 
 @section('content')
+<?php $ct = isset($category) ? " - ".$category : ""; ?>
 <div class="container-fluid">
-            <h2 class="category-header">Kloud Auctions</h2>
+            <h2 class="category-header">Kloud Auctions{{$ct}}</h2>
                 <div class="row">
                     <div class="col-12">
                         <div class="product-topbar d-xl-flex align-items-end justify-content-between">
@@ -82,18 +83,18 @@
                     </div>
                 </div>
 
-                <div class="row">
-                  @for($i = 0; $i < 6; $i++)
+                <div class="row" id="auction-section">
+                  @for($i = 0; $i < 6; $ji++)
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                         <div class="single-product-wrapper">
                             
                             <!-- Start #clockdiv-->
-                                   	<div id="clockdiv">
+                                   	<div class="clockdiv">
                                    	<div class="row">
                                    	<div class="col-6">
 					<div class="countdown d-inline">
-						<span class="deadline">15:20:51:13</span>
+						<span class="deadline">Expiration time</span>
 					</div>
 				</div>
 				<div class="col-3"></div>
@@ -153,4 +154,10 @@
                     </div>
                 </div>
             </div>
+@stop
+
+@section('scripts')
+<script src="lib/raf/requestAnimationFrame.js" ></script>
+<script src="js/countdown..js" ></script>
+<script src="js/countdown-init.js" ></script>
 @stop
