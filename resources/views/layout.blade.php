@@ -154,7 +154,7 @@
                 <div class="col-12 col-lg-4">
                     <div class="single_widget_area">
                         <!-- Logo -->
-                        <div class="footer-logo mr-50" style="background: white; padding: 5px;">
+                        <div class="footer-logo mr-50" style="background: #fbb710; padding: 5px;">
                            <a href="{{url('/')}}"><img src="img/kloudlogo.PNG" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
