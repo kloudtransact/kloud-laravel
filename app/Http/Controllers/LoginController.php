@@ -67,7 +67,7 @@ class LoginController extends Controller {
         
         $validator = Validator::make($req, [
                              'password' => 'required|min:6',
-                             'email' => 'required'
+                             'id' => 'required'
          ]);
          
          if($validator->fails())
@@ -80,13 +80,12 @@ class LoginController extends Controller {
          else
          {
          	//authenticate this login
-            if(Auth::attempt(['email' => $req['email'],'password' => $req['password']]) || Auth::attempt(['username' => $req['email'],'password' => $req['password']]))
+            if(Auth::attempt(['email' => $req['id'],'password' => $req['password']]) || Auth::attempt(['username' => $req['id'],'password' => $req['password']]))
             {
             	//Login successful               
                $user = Auth::user();          
                 #dd($user); 
-               if($user->role == "superadmin"){return redirect()->intended('cobra');}
-               else if($user->role == "admin"){return redirect()->intended('/');}
+               if($user->role == "admin"){return redirect()->intended('/');}
                else{return redirect()->intended('/');}
             }
 			
@@ -105,10 +104,8 @@ class LoginController extends Controller {
         
         $validator = Validator::make($req, [
                              'pass' => 'required|confirmed',
-                             'email' => 'required|email',
-                             'fname' => 'required',
-                             'lname' => 'required',
-                             'uname' => 'required',
+                             'email' => 'required|email',                            
+                             'username' => 'required',
                              #'phone' => 'required|numeric',
                              #'g-recaptcha-response' => 'required',
                            # 'terms' => 'accepted',
@@ -125,13 +122,14 @@ class LoginController extends Controller {
          else
          {
             $req['role'] = "user";    
-            $req['status'] = "pending";           
+            $req['status'] = "ok";           
             
                        #dd($req);            
 
             $user =  $this->helpers->createUser($req); 
 			$req['user_id'] = $user->id;
-         
+            $shippingDetails =  $this->helpers->createShippingDetails($req); 
+            $wallet =  $this->helpers->createWallet($req); 
              //after creating the user, send back to the registration view with a success message
              #$this->helpers->sendEmail($user->email,'Welcome To Disenado!',['name' => $user->fname, 'id' => $user->id],'emails.welcome','view');
              Session::flash("signup-status", "success");
