@@ -7,9 +7,9 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="checkout_details_area mt-50 clearfix">
-
+                            <img class="img img-responsive" src="img/ent-login.jpg" alt="KloudTransact - Log in to your Enterprise account.">
                             <div class="cart-title">
-                                <h2>Enterprise Log in</h2>
+                                <h2>Log in to your Enterprise account</h2>
                             </div>
 
                             <form action="#" method="get">
@@ -20,17 +20,21 @@
                                     </select>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="staff_id" value="" placeholder="Staff ID" required>
+                                        <input type="text" class="form-control" name="staff_id" value="" placeholder="Staff ID" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input type="password" class="form-control" id="pass" value="" placeholder="Password" required>
+                                        <input type="password" class="form-control" name="pass" value="" placeholder="Password" required>
                                     </div>
                                     
-                                    <div class="col-12">
+                                    <div class="col-12 mb-3">
                                         <div class="custom-control custom-checkbox d-block mb-2">
                                             <input type="checkbox" class="custom-control-input" id="customCheck2">
                                             <label class="custom-control-label" for="customCheck2">Remember me</label>
                                         </div>                                   
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <button type="submit" class="form-control">Log in</button>                                                                           
                                     </div>
                                 </div>
                             </form>
