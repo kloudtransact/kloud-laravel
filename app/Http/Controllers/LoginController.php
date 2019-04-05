@@ -80,7 +80,7 @@ class LoginController extends Controller {
          else
          {
          	//authenticate this login
-            if(Auth::attempt(['email' => $req['id'],'password' => $req['password']]) || Auth::attempt(['username' => $req['id'],'password' => $req['password']]))
+            if(Auth::attempt(['email' => $req['id'],'password' => $req['password']]) || Auth::attempt(['phone' => $req['id'],'password' => $req['password']]))
             {
             	//Login successful               
                $user = Auth::user();          
@@ -105,8 +105,7 @@ class LoginController extends Controller {
         $validator = Validator::make($req, [
                              'pass' => 'required|confirmed',
                              'email' => 'required|email',                            
-                             'username' => 'required',
-                             #'phone' => 'required|numeric',
+                             'phone' => 'required|numeric',
                              #'g-recaptcha-response' => 'required',
                            # 'terms' => 'accepted',
          ]);
