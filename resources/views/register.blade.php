@@ -9,16 +9,19 @@
                         <div class="checkout_details_area mt-50 clearfix">
                         	   <div class="card bg-dark text-white">
                         	     <img class="card-img" src="img/login.jpg" alt="KloudTransact - Create an account.">
-                        	     <div class="card-img-overlay" style="color: #fbb710; padding: 5px;">
-                        	       <h5 class="card-title">Create an account</h5>
-                        	       <p class="card-text">Create an account and start BIDDING</p>
+                        	     <div class="card-img-overlay">
+                        	       <h2 class="card-title" style="color: #fbb710 !important; padding: 5px;">Create an account</h2>
+                        	       <p class="card-text" style="color: #fbb710 !important; padding: 5px;">Create an account and start BIDDING</p>
                         	     </div>
                         	   </div>                           
 
                             <form action="#" method="get">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" name="username" value="" placeholder="Desired username" required>
+                                        <input type="text" class="form-control" name="fname" value="" placeholder="First name" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" class="form-control" name="lname" value="" placeholder="Last name" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <input type="email" class="form-control" name="email" value="" placeholder="Valid email address" required>
@@ -29,7 +32,9 @@
                                     <div class="col-md-6 mb-3">
                                         <input type="password" class="form-control" name="pass_confirmation" value="" placeholder="Confirm password" required>
                                     </div>
-                                    
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" class="form-control" name="phone" value="" placeholder="Phone number" required>
+                                    </div>
                                     <div class="col-12 mb-3">
                                         <div class="custom-control custom-checkbox d-block mb-2">
                                             <input type="checkbox" class="custom-control-input" id="customCheck2">

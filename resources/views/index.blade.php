@@ -58,15 +58,15 @@
 <div class="container">
    <div class="row">
      <div class="col-12">
-       <div class="card" style="">
-         <a href="{{url('airtime')}}" class="d-inline mr-3">
-           <img class="card-img-top" src="img/bills.png" alt="Pay Your Bills">
+       <div class="card">
+         <a href="{{url('airtime')}}">
+           <img class="d-inline mr-3" src="img/bills.png" alt="Pay Your Bills">
          </a>
          <a href="{{url('hotels')}}">
-           <img class="card-img-top" src="img/hotel.jpg" alt="Book Your Room Online">
+           <img class="d-inline mr-3" src="img/hotel.jpg" alt="Book Your Room Online">
          </a>
          <a href="{{url('travelstart')}}">
-           <img class="card-img-top" src="img/travel.jpg" alt="Book Your Vacations">
+           <img class="d-inline" src="img/travel.jpg" alt="Book Your Vacations">
          </a>
        </div>
      </div>
@@ -124,187 +124,45 @@
        <br>
 	   <h2 class="category-header">New Arrivals</h2>
 		<!-- Product Catagories Area 2 Start -->
-            <div class="amado-pro-catagory clearfix">
+            <div class="row">
+            @for($i = 0; $i < 6; $i++)
+                    <!-- Single Product Area -->
+                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                <img src="img/product-img/product1.jpg" alt="">
+                                <!-- Hover Thumb -->
+                                <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                            </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/1.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Modern Chair</h4>
+                            <!-- Product Description -->
+                            <div class="product-description d-flex align-items-center justify-content-between">
+                                <!-- Product Meta Data -->
+                                <div class="product-meta-data">
+                                    <div class="line"></div>
+                                    <p class="product-price">&#8358;70,000</p>
+                                    <a href="{{url('deal')}}">
+                                        <h6>Modern Chair</h6>
+                                    </a>
+                                </div>
+                                <!-- Ratings & Cart -->
+                                <div class="ratings-cart text-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="cart">
+                                        <a href="{{url('cart')}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/2.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Minimalistic Plant Pot</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/3.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Modern Chair</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/4.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Night Stand</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/5.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Plant Pot</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/6.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;33,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Small Table</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/7.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;15,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Metallic Chair</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/8.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;15,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Modern Rocking Chair</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/9.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;15,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Home Deco</h4>
-                        </div>
-                    </a>
-                </div>
+                    </div>              
+                    @endfor
             </div>
         <!-- Product Catagories Area 2 End -->
 		<br>
@@ -313,187 +171,45 @@
        </div>
 	   <h2 class="category-header">Best Sellers</h2>
 		<!-- Product Catagories Area 5 Start -->
-            <div class="amado-pro-catagory clearfix">
+            <div class="row">
+            @for($i = 0; $i < 6; $i++)
+                    <!-- Single Product Area -->
+                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                <img src="img/product-img/product1.jpg" alt="">
+                                <!-- Hover Thumb -->
+                                <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                            </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/1.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Modern Chair</h4>
+                            <!-- Product Description -->
+                            <div class="product-description d-flex align-items-center justify-content-between">
+                                <!-- Product Meta Data -->
+                                <div class="product-meta-data">
+                                    <div class="line"></div>
+                                    <p class="product-price">&#8358;70,000</p>
+                                    <a href="{{url('deal')}}">
+                                        <h6>Modern Chair</h6>
+                                    </a>
+                                </div>
+                                <!-- Ratings & Cart -->
+                                <div class="ratings-cart text-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="cart">
+                                        <a href="{{url('cart')}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/2.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Minimalistic Plant Pot</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/3.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Modern Chair</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/4.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Night Stand</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/5.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Plant Pot</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/6.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;33,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Small Table</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/7.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;15,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Metallic Chair</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/8.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;15,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Modern Rocking Chair</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/9.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;15,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Home Deco</h4>
-                        </div>
-                    </a>
-                </div>
+                    </div>              
+                    @endfor
             </div>
         <!-- Product Catagories Area 5 End -->
 		<br>
@@ -502,187 +218,45 @@
        </div>
 	   <h2 class="category-header">Hot Categories</h2>
 		<!-- Product Catagories Area 6 Start -->
-            <div class="amado-pro-catagory clearfix">
+            <div class="row">
+            @for($i = 0; $i < 6; $i++)
+                    <!-- Single Product Area -->
+                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                <img src="img/product-img/product1.jpg" alt="">
+                                <!-- Hover Thumb -->
+                                <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                            </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/1.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Modern Chair</h4>
+                            <!-- Product Description -->
+                            <div class="product-description d-flex align-items-center justify-content-between">
+                                <!-- Product Meta Data -->
+                                <div class="product-meta-data">
+                                    <div class="line"></div>
+                                    <p class="product-price">&#8358;70,000</p>
+                                    <a href="{{url('deal')}}">
+                                        <h6>Modern Chair</h6>
+                                    </a>
+                                </div>
+                                <!-- Ratings & Cart -->
+                                <div class="ratings-cart text-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="cart">
+                                        <a href="{{url('cart')}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/2.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Minimalistic Plant Pot</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/3.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Modern Chair</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/4.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Night Stand</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/5.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;9,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Plant Pot</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/6.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;33,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Small Table</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/7.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;15,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Metallic Chair</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/8.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;15,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Modern Rocking Chair</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="{{url('deal')}}">
-                        <img src="img/bg-img/9.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From &#8358;15,000</p>
-                            <p>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star rating-star"></i>
-                              <i class="fa fa-star-o rating-star"></i>
-                            </p>
-                            <h4>Home Deco</h4>
-                        </div>
-                    </a>
-                </div>
+                    </div>              
+                    @endfor
             </div>
         <!-- Product Catagories Area 6 End -->
         <br>
