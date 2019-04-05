@@ -72,8 +72,10 @@ class Helper implements HelperContract
 
            function createUser($data)
            {
-           	$ret = User::create(['username' => $data['username'], 
+           	$ret = User::create(['fname' => $data['fname'], 
+                                                      'lname' => $data['lname'], 
                                                       'email' => $data['email'], 
+                                                      'phone' => $data['phone'], 
                                                       'role' => $data['role'], 
                                                       'status' => $data['status'], 
                                                       'password' => bcrypt($data['pass']), 
@@ -83,14 +85,12 @@ class Helper implements HelperContract
            }
            function createShippingDetails($data)
            {
-           	$ret = ShippingDetails::create(['user_id' => $data['user_id'],
-                                                      'fname' => "", 
-                                                      'lname' => "",                                                      
+           	$ret = ShippingDetails::create(['user_id' => $data['user_id'],                                                                                                          
                                                       'company' => "", 
-                                                      'zipcode' => "", 
-                                                      'phone' => "", 
+                                                      'zipcode' => "",                                                      
                                                       'address' => "", 
                                                       'city' => "", 
+                                                      'state' => "", 
                                                       ]);
                                                       
                 return $ret;
