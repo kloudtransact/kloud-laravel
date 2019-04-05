@@ -7,10 +7,13 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="checkout_details_area mt-50 clearfix">
-                            <img class="img img-responsive mb-3" src="img/login.jpg" alt="KloudTransact - Create an account.">
-                            <div class="cart-title mb-3">
-                                <h2>Create an account and start BIDDING</h2>
-                            </div>
+                        	   <div class="card bg-dark text-white">
+                        	     <img class="card-img" src="img/login.jpg" alt="KloudTransact - Create an account.">
+                        	     <div class="card-img-overlay" style="color: #fbb710; padding: 5px;">
+                        	       <h5 class="card-title">Create an account</h5>
+                        	       <p class="card-text">Create an account and start BIDDING</p>
+                        	     </div>
+                        	   </div>                           
 
                             <form action="#" method="get">
                                 <div class="row">

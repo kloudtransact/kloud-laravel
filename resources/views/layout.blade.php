@@ -80,17 +80,14 @@
                 <ul>
                     <li class="active"><a href="#">Welcome, {{$welcomeText}}!</a></li>
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li><a href="{{url('about')}}">About Us</a></li>
-                    <li><a href="{{url('auction')}}">Kloud Auctions</a></li>
                     <li><a href="{{url('top-deals')}}">Top Deals</a></li>
-                    <li><a href="{{url('bundle')}}">Bundle Products</a></li>    
+                    <li><a href="{{url('auction')}}">Kloud Auctions</a></li>
+                    <li><a href="{{url('bundle')}}">Bundle Products</a></li>
+                     <li><a href="{{url('kloudpay')}}">KloudPay</a></li>
+                     <li><a href="{{url('enterprise')}}">Enterprise</a></li>
                     @if($user != null) 
                     <li><a href="{{url('dashboard')}}">Dashboard</a></li>                  
-                    <li><a href="{{url('bids')}}">My Bids</a></li>
-                    @if($user->role == "enterprise") 
-                    <li><a href="{{url('enterprise')}}">Enterprise</a></li>
-                    @endif
-                    <li><a href="{{url('kloudpay')}}">KloudPay</a></li>
+                    <li><a href="{{url('bids')}}">My Bids</a></li>                    
                     <li><a href="{{url('logout')}}">Log out</a></li>
                     @else
                     <li><a href="{{url('register')}}">Register</a></li>
@@ -100,15 +97,14 @@
             </nav>
             <!-- Button Group -->
             <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
                 <a href="#" class="btn amado-btn active">New this week</a>
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
                 <a href="{{url('cart')}}" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
-                <a href="{{url('checkout')}}" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Checkout</a>
                 <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
-                <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
+                <a href="{{url('checkout')}}" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Checkout</a>              
+                <a href="{{url('about')}}" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> About Us</a>                                           
             </div>
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">               
@@ -142,8 +138,8 @@
                 <!-- Newsletter Text -->
                 <div class="col-12 col-lg-6 col-xl-7">
                     <div class="newsletter-text mb-100">
-                        <h2>Subscribe for a <span>25% Discount</span></h2>
-                        <p>Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet mi vulputate consectetur. Donec auctor interdum purus, ac finibus massa bibendum nec.</p>
+                        <h2>Subscribe to our <span>newsletter</span></h2>
+                        <p>We will only notify you of new deals, we won't spam your email. </p>
                     </div>
                 </div>
                 <!-- Newsletter Form -->

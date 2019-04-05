@@ -2,43 +2,7 @@
 
 @section('title',"Kloud Auctions")
 
-@section('ShopSideBar')
-<div class="shop_sidebar_area">
 
-            <!-- ##### Single Widget ##### -->
-            <div class="widget catagory mb-50">
-                <!-- Widget Title -->
-                <h6 class="widget-title mb-30">Categories</h6>
-
-                <!--  Catagories  -->
-                <div class="catagories-menu">
-                    <ul>               
-                        @foreach($c as $key => $value)
-                        <?php $u = url('auction').'?q='.$key; ?>
-						<li><a class="shop-categories-link" href="{{$u}}">{{$value}}</a></li>
-						@endforeach
-                    </ul>
-                </div>
-            </div>
-
-            <!-- ##### Single Widget ##### -->
-            <div class="widget price mb-50">
-                <!-- Widget Title -->
-                <h6 class="widget-title mb-30">Price</h6>
-
-                <div class="widget-desc">
-                    <div class="slider-range">
-                        <div data-min="900" data-max="900000" data-unit="&#8358;" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="1000" data-value-max="900000" data-label-result="">
-                            <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                        </div>
-                        <div class="range-price">&#8358;1000 - &#8358;900000</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-@stop
 
 @section('content')
 <?php $ct = (isset($category) && $category != null) ? " - ".$category : ""; ?>
