@@ -13,6 +13,6 @@ class ShippingDetails extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'fname', 'lname', 'company', 'zipcode', 'phone', 'address', 'city'
+        'user_id', 'company', 'zipcode', 'state', 'address', 'city'
     ];
 }
