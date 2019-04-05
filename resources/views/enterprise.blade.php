@@ -7,12 +7,13 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="checkout_details_area mt-50 clearfix">
-                            <img class="img img-responsive mb-3" src="img/ent-login.jpg" alt="KloudTransact - Log in to your Enterprise account.">
-                            <div class="cart-title mb-3">
-                                <h2>Log in to your Enterprise account</h2>
-                            </div>
-
-                            <form action="#" method="get">
+                            <div class="card bg-dark text-white">
+                        	     <img class="card-img" src="img/ent-login.jpg" alt="KloudTransact - Log in to your Enterprise account." style="height: 25% !important;">
+                        	     <div class="card-img-overlay">
+                        	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Enterprise Log in</h1>
+                        	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Log in to your Enterprise account.</h3>
+                        
+                                   <form action="#" method="get">
                                 <div class="row">
                                 	<div class="col-12 mb-3">
                                         <select class="w-100" id="enterprise">
@@ -38,6 +39,9 @@
                                     </div>
                                 </div>
                             </form>
+                        	     </div>
+                        	   </div>   
+                            
                         </div>
                     </div>
                 </div>

@@ -36,7 +36,7 @@
                                     <div class="col-12 mb-3">
                                         <div class="custom-control custom-checkbox d-block mb-2">
                                             <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                            <label class="custom-control-label" for="customCheck2">Send me useful bidding tips and other promotional offers</label>
+                                            <label class="custom-control-label text-white" for="customCheck2">Send me useful bidding tips and other promotional offers</label>
                                         </div>                                   
                                     </div>
                                     
