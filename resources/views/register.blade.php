@@ -8,10 +8,10 @@
                     <div class="col-12 col-lg-8">
                         <div class="checkout_details_area mt-50 clearfix">
                         	   <div class="card bg-dark text-white">
-                        	     <img class="card-img" src="img/login.jpg" alt="KloudTransact - Create an account.">
+                        	     <img class="card-img" src="img/login.jpg" alt="KloudTransact - Create an account." style="height: 25% !important;">
                         	     <div class="card-img-overlay">
-                        	       <h2 class="card-title" style="color: #fbb710 !important; padding: 5px;">Create an account</h2>
-                        	       <p class="card-text" style="color: #fbb710 !important; padding: 5px;">Create an account and start BIDDING</p>
+                        	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Create an account</h1>
+                        	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Create an account and start BIDDING</h3>
                         	     </div>
                         	   </div>                           
 
