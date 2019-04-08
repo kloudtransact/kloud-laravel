@@ -26,7 +26,7 @@
 
 		var start = new Date(yyyy, MM, dd, HH, mm, ss),
 			ts = countdown(null, start, units, max, digits);
-
+           console.log(ts);
 		var deals = pickElements('span.deadline'),
 			//msg = ts.toHTML('strong', empty);
 			msg = ts.days + ":" + ts.hours + ":" + ts.minutes + ":" + ts.seconds;
