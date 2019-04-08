@@ -1076,7 +1076,7 @@ img {
     z-index: 1;
     overflow: hidden; }
     .single-product-wrapper .product-img img {
-      width: 50%;
+      width: 70%;
       -webkit-transition-duration: 500ms;
       transition-duration: 500ms; }
     .single-product-wrapper .product-img .hover-img {
@@ -1085,7 +1085,7 @@ img {
       position: absolute;
       top: 0;
       left: 0;
-      width: 50%;
+      width: 70%;
       z-index: 10;
       opacity: 0;
       visibility: hidden; }
