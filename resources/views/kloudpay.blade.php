@@ -8,11 +8,9 @@
             <h2 class="section-heading mt-1">Add Money to KloudPay</h2>
             <hr class="my-4">
              <div class="checkout_details_area mt-50 clearfix">
-                            <div class="card bg-dark text-white">                        	     
+                            <div class="card">                        	     
                         	     <div class="card-body">
-                        	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Log in</h1>
-                        	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Log in to your account.</h3>
-                        
+                        	       <h3 class="card-title" style="color: #fbb710 !important; padding: 5px;">Add funds to your KloudPay wallet</h3>                     
                                    <form action="#" method="get">
                                 <div class="row">
                                     <div class="col-12 mb-3">
