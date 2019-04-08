@@ -24,7 +24,7 @@
 			mm = 59,
 			ss = 0;
 
-		var start = new Date(yyyy, MM, dd, HH, mm, ss, fff),
+		var start = new Date(yyyy, MM, dd, HH, mm, ss),
 			ts = countdown(null, start, units, max, digits);
 
 		var deals = pickElements('span.deadline'),
