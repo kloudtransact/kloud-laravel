@@ -19,11 +19,10 @@
 
 		var yyyy = 2019,
 			MM = 4,
-			dd = 5,
+			dd = 25,
 			HH = 17,
 			mm = 59,
-			ss = 0,
-			fff = 0;
+			ss = 0;
 
 		var start = new Date(yyyy, MM, dd, HH, mm, ss, fff),
 			ts = countdown(null, start, units, max, digits);
