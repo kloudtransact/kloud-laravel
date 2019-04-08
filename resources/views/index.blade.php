@@ -58,17 +58,17 @@
 <div class="container">
    <div class="row">
      <div class="col-4 col-xs-12">
-         <a href="{{url('airtime')}}" class="d-inline">
+         <a href="{{url('airtime')}}">
            <img class="img img-responsive" src="img/bills.png" alt="Pay Your Bills">
          </a>
       </div>
      <div class="col-4 col-xs-12">
-         <a href="{{url('hotels')}}" class="d-inline">
+         <a href="{{url('hotels')}}">
            <img class="img img-responsive" src="img/hotel.jpg" alt="Book Your Room Online">
          </a>
       </div>
      <div class="col-4 col-xs-12">
-         <a href="{{url('travelstart')}}" class="d-inline">
+         <a href="{{url('travelstart')}}">
            <img class="img img-responsive" src="img/travel.jpg" alt="Book Your Vacations">
          </a>
      </div>
@@ -85,9 +85,11 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
+                            	<center>
                                 <img src="img/product-img/product1.jpg" alt="">
                                 <!-- Hover Thumb -->
                                 <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                                </center>
                             </div>
 
                             <!-- Product Description -->
@@ -133,9 +135,11 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
+                            	<center>
                                 <img src="img/product-img/product1.jpg" alt="">
                                 <!-- Hover Thumb -->
                                 <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                                </center>
                             </div>
 
                             <!-- Product Description -->
@@ -180,9 +184,11 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
+                            	<center>
                                 <img src="img/product-img/product1.jpg" alt="">
                                 <!-- Hover Thumb -->
                                 <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                                </center>
                             </div>
 
                             <!-- Product Description -->
@@ -227,9 +233,11 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
+                            	<center>
                                 <img src="img/product-img/product1.jpg" alt="">
                                 <!-- Hover Thumb -->
                                 <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                                </center>
                             </div>
 
                             <!-- Product Description -->
