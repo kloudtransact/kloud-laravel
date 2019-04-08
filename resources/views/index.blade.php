@@ -57,18 +57,20 @@
 <!-- Start Up sells section -->
 <div class="container">
    <div class="row">
-     <div class="col-12">
-       <div class="card">
+     <div class="col-4">
          <a href="{{url('airtime')}}" class="d-inline mr-3">
            <img class="img img-responsive" src="img/bills.png" alt="Pay Your Bills">
          </a>
+      </div>
+     <div class="col-4">
          <a href="{{url('hotels')}}" class="d-inline mr-3">
            <img class="img img-responsive" src="img/hotel.jpg" alt="Book Your Room Online">
          </a>
+      </div>
+     <div class="col-4">
          <a href="{{url('travelstart')}}" class="d-inline">
            <img class="img img-responsive" src="img/travel.jpg" alt="Book Your Vacations">
          </a>
-       </div>
      </div>
    </div>
 </div>
