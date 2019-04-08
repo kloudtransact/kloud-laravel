@@ -18,7 +18,7 @@
 			digits = 20;
 
 		var yyyy = 2019,
-			MM = 4,
+			MM = 3,
 			dd = 25,
 			HH = 17,
 			mm = 59,
@@ -26,10 +26,10 @@
 
 		var start = new Date(yyyy, MM, dd, HH, mm, ss),
 			ts = countdown(null, start, units, max, digits);
-           console.log(ts);
+           //console.log(ts);
 		var deals = pickElements('span.deadline'),
 			//msg = ts.toHTML('strong', empty);
-			msg = ts.days + ":" + ts.hours + ":" + ts.minutes + ":" + ts.seconds;
+			msg = ts.days + ":" + ts.hours + ":" + ts.minutes + ":" + Math.floor(ts.seconds);
 
 		deals.forEach(function(el) {
          el.innerHTML = msg;
