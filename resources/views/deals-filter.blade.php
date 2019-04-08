@@ -12,7 +12,7 @@
                             <!-- Sorting -->
                             <div class="product-sorting d-flex">
                                 <div class="sort-by-date d-flex align-items-center mr-15">
-                                    <p>Sort by</p>
+                                    <p>Sort by: </p>
                                     <form action="#" method="get">
                                         <select name="select" id="sortBydate">
                                             <option value="date">Date</option>
@@ -21,19 +21,9 @@
                                         </select>
                                     </form>
                                 </div>
+                                
                                 <div class="view-product d-flex align-items-center mr-15">
-                                    <p>View</p>
-                                    <form action="#" method="get">
-                                        <select name="select" id="viewProduct">
-                                            <option value="value">12</option>
-                                            <option value="value">24</option>
-                                            <option value="value">48</option>
-                                            <option value="value">96</option>
-                                        </select>
-                                    </form>
-                                </div>
-                                <div class="view-product d-flex align-items-center mr-15">
-                                    <p>Category</p>
+                                    <p>Category: </p>
                                     <form action="#" method="get">
                                         <select name="select" id="sortCategory">
                                         	@foreach($c as $key => $value)
