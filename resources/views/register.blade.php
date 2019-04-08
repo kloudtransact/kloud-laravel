@@ -13,7 +13,7 @@
                         	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Create an account</h1>
                         	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Create an account and start BIDDING</h3>
                         
-                                   <form action="#" method="get" class="text-white">
+                                   <form action="#" method="get" class="text-white mb-50">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" name="fname" value="" placeholder="First name" required>
