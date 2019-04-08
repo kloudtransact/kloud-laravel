@@ -90,9 +90,11 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
+                            	<center>
                                 <img src="img/product-img/product1.jpg" alt="">
                                 <!-- Hover Thumb -->
                                 <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                                </center>
                             </div>
 
                             <!-- Product Description -->
