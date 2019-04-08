@@ -59,14 +59,14 @@
    <div class="row">
      <div class="col-12">
        <div class="card">
-         <a href="{{url('airtime')}}">
-           <img class="d-inline mr-3" src="img/bills.png" alt="Pay Your Bills">
+         <a href="{{url('airtime')}}" class="d-inline mr-3">
+           <img class="img img-responsive" src="img/bills.png" alt="Pay Your Bills">
          </a>
-         <a href="{{url('hotels')}}">
-           <img class="d-inline mr-3" src="img/hotel.jpg" alt="Book Your Room Online">
+         <a href="{{url('hotels')}}" class="d-inline mr-3">
+           <img class="img img-responsive" src="img/hotel.jpg" alt="Book Your Room Online">
          </a>
-         <a href="{{url('travelstart')}}">
-           <img class="d-inline" src="img/travel.jpg" alt="Book Your Vacations">
+         <a href="{{url('travelstart')}}" class="d-inline">
+           <img class="img img-responsive" src="img/travel.jpg" alt="Book Your Vacations">
          </a>
        </div>
      </div>
@@ -119,7 +119,7 @@
         <!-- Product Catagories Area 1 End -->
        <br>
        <div class="row">
-           <div class="col-12"><img src="img/8.jpg" class="img img-responsive"></div>
+           <div class="col-12"><center><img src="img/8.jpg" class="img img-responsive"></center></div>
        </div>
        <br>
 	   <h2 class="category-header">New Arrivals</h2>
@@ -167,7 +167,7 @@
         <!-- Product Catagories Area 2 End -->
 		<br>
        <div class="row">
-           <div class="col-12"><img src="img/9.jpg" class="img img-responsive"></div>
+           <div class="col-12"><center><img src="img/9.jpg" class="img img-responsive"></center></div>
        </div>
 	   <h2 class="category-header">Best Sellers</h2>
 		<!-- Product Catagories Area 5 Start -->
@@ -214,7 +214,7 @@
         <!-- Product Catagories Area 5 End -->
 		<br>
        <div class="row">
-           <div class="col-12"><img src="img/10.jpg" class="img img-responsive"></div>
+           <div class="col-12"><center><img src="img/10.jpg" class="img img-responsive"></center></div>
        </div>
 	   <h2 class="category-header">Hot Categories</h2>
 		<!-- Product Catagories Area 6 Start -->
