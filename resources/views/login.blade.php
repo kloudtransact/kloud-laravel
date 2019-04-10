@@ -15,6 +15,7 @@
                         
                                    <form action="{{url('login')}}" method="post">
                                    {!!csrf_field()!!}
+                                   <input type="hidden" name="return" value="{{$return}}"/>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" name="id" value="" placeholder="Email or phone number" required>
