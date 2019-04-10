@@ -111,8 +111,8 @@ class LoginController extends Controller {
                              'pass' => 'required|confirmed',
                              'email' => 'required|email',                            
                              'phone' => 'required|numeric',
-                             'fname' => 'required|numeric',
-                             'lname' => 'required|numeric',
+                             'fname' => 'required',
+                             'lname' => 'required',
                              #'g-recaptcha-response' => 'required',
                            # 'terms' => 'accepted',
          ]);
