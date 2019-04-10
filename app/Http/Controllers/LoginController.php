@@ -68,7 +68,7 @@ class LoginController extends Controller {
         //dd($req);
         
         $validator = Validator::make($req, [
-                             'password' => 'required|min:6',
+                             'pass' => 'required|min:6',
                              'id' => 'required'
          ]);
          
@@ -111,6 +111,8 @@ class LoginController extends Controller {
                              'pass' => 'required|confirmed',
                              'email' => 'required|email',                            
                              'phone' => 'required|numeric',
+                             'fname' => 'required|numeric',
+                             'lname' => 'required|numeric',
                              #'g-recaptcha-response' => 'required',
                            # 'terms' => 'accepted',
          ]);
