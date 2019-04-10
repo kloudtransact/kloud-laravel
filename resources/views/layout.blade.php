@@ -73,7 +73,7 @@
                <a href="{{url('/')}}"><img src="img/kloudlogo.PNG" alt=""></a>
             </div>
             <?php
-              $welcomeText = (isset($user) && $user != null) ? $user->username : "Guest";
+              $welcomeText = (isset($user) && $user != null) ? $user->fname: "Guest";
             ?>
             <!-- Amado Nav -->
             <nav class="amado-nav">
