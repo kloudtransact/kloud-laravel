@@ -42,18 +42,19 @@ class LoginController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getLogin()
+	public function getLogin(Request $request)
     {
        $user = null;
-       $return = url()->previous();
-		dd($return); 
+       $req = $request->all();
+       $return = isset($req['return']) ? $req['return'] : '/';
+		
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			return redirect()->intended('/');
+			return redirect()->intended($return);
 		}
 		
-    	return view('login',compact(['user']));
+    	return view('login',compact(['user','return']));
     }
 
 	/**
@@ -81,6 +82,8 @@ class LoginController extends Controller {
          else
          {
          	$remember = true; 
+             $return = isset($req['return']) ? $req['return'] : '/';
+             
          	//authenticate this login
             if(Auth::attempt(['email' => $req['id'],'password' => $req['password'],'status'=> "ok"],$remember) || Auth::attempt(['phone' => $req['id'],'password' => $req['password'],'status'=> "ok"],$remember))
             {
@@ -88,13 +91,13 @@ class LoginController extends Controller {
                $user = Auth::user();          
                 #dd($user); 
                if($user->role == "admin"){return redirect()->intended('/');}
-               else{return redirect()->intended('/');}
+               else{return redirect()->intended($return);}
             }
 			
 			else
 			{
 				Session::flash("login-status","error");
-				return redirect()->intended('/');
+				return redirect()->intended('login');
 			}
          }        
     }
