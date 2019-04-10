@@ -59,17 +59,17 @@
    <div class="row">
      <div class="col-4 col-xs-12">
          <a href="{{url('airtime')}}">
-           <img class="img img-responsive" src="img/bills.png" alt="Pay Your Bills">
+           <img class="img img-responsive img-upsell" src="img/bills.png" alt="Pay Your Bills">
          </a>
       </div>
      <div class="col-4 col-xs-12">
          <a href="{{url('hotels')}}">
-           <img class="img img-responsive" src="img/hotel.jpg" alt="Book Your Room Online">
+           <img class="img img-responsive img-upsell" src="img/hotel.jpg" alt="Book Your Room Online">
          </a>
       </div>
      <div class="col-4 col-xs-12">
          <a href="{{url('travelstart')}}">
-           <img class="img img-responsive" src="img/travel.jpg" alt="Book Your Vacations">
+           <img class="img img-responsive img-upsell" src="img/travel.jpg" alt="Book Your Vacations">
          </a>
      </div>
    </div>
