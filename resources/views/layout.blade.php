@@ -128,8 +128,13 @@
 	<script>console.log("{{$mc}}")</script>
 	    @yield("ShopSideBar")
     <div class='{{$mc}}'>
-        <partial name="_CookieConsentPartial" />
+        <!--------- Cookie consent-------------->
+        	@include('cookie-consent')
         <main role="main" class="pb-3">
+        	<!--------- Input errors -------------->
+                    @if (count($errors) > 0)
+                          @include('input-errors', ['errors'=>$errors])
+                     @endif 
             @yield("content")
         </main>
     </div>
