@@ -85,7 +85,7 @@ class LoginController extends Controller {
              $return = isset($req['return']) ? $req['return'] : '/';
              
          	//authenticate this login
-            if(Auth::attempt(['email' => $req['id'],'password' => $req['password'],'status'=> "ok"],$remember) || Auth::attempt(['phone' => $req['id'],'password' => $req['password'],'status'=> "ok"],$remember))
+            if(Auth::attempt(['email' => $req['id'],'password' => $req['pass'],'status'=> "ok"],$remember) || Auth::attempt(['phone' => $req['id'],'password' => $req['pass'],'status'=> "ok"],$remember))
             {
             	//Login successful               
                $user = Auth::user();          
