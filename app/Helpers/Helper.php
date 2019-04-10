@@ -97,7 +97,7 @@ class Helper implements HelperContract
            }
            function createWallet($data)
            {
-           	$ret = BankAccounts::create(['user_id' => $data['user_id'], 
+           	$ret = Wallet::create(['user_id' => $data['user_id'], 
                                                       'balance' => "0",                                                                                                            
                                                       ]);                                                     
                 return $ret;
