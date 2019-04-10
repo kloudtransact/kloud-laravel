@@ -9,6 +9,7 @@ use Auth;
 use App\User;
 use App\ShippingDetails;
 use App\Wallet;
+use App\Transactions;
 
 class Helper implements HelperContract
 {
