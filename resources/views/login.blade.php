@@ -13,7 +13,8 @@
                         	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Log in</h1>
                         	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Log in to your account.</h3>
                         
-                                   <form action="#" method="get">
+                                   <form action="{{url('login')}}" method="post">
+                                   {!!csrf_field()!!}
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" name="id" value="" placeholder="Email or phone number" required>
@@ -24,7 +25,7 @@
                                     
                                     <div class="col-12 mb-3">
                                         <div class="custom-control custom-checkbox d-block mb-2">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck2" name="remember_token">
                                             <label class="custom-control-label text-white" for="customCheck2">Remember me</label>
                                         </div>                                   
                                     </div>

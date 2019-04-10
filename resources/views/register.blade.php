@@ -13,7 +13,8 @@
                         	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Create an account</h1>
                         	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Create an account and start BIDDING</h3>
                         
-                                   <form action="#" method="get" class="text-white mb-50">
+                                   <form action="{{url('register')}}" method="post" class="text-white mb-50">
+                                   	{!!csrf_field()!!}
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" name="fname" value="" placeholder="First name" required>
@@ -35,7 +36,7 @@
                                     </div>
                                     <div class="col-12 mb-3">
                                         <div class="custom-control custom-checkbox d-block mb-2">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck2" name="remember">
                                             <label class="custom-control-label text-white" for="customCheck2">Send me useful bidding tips and other promotional offers</label>
                                         </div>                                   
                                     </div>

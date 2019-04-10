@@ -87,7 +87,7 @@
                      <li><a href="{{url('enterprise')}}">Enterprise</a></li>
                     @if($user != null) 
                     <li><a href="{{url('dashboard')}}">Dashboard</a></li>                  
-                    <li><a href="{{url('bids')}}">My Bids</a></li>                    
+                    <li><a href="{{url('transactions')}}">Transactions</a></li>                    
                     <li><a href="{{url('logout')}}">Log out</a></li>
                     @else
                     <li><a href="{{url('register')}}">Register</a></li>
@@ -97,7 +97,13 @@
             </nav>
             <!-- Button Group -->
             <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn active">New this week</a>
+            	<?php
+                  $wu = "#"; $wt = "New this week"; 
+                  if($user != null && $user->role == "admin"){
+                  	$wu = url('cobra'); $wt = "Admin center"; 
+                  }
+            	?>
+                <a href="{{$wu}}" class="btn amado-btn active">{{$wt}}</a>
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
