@@ -45,7 +45,8 @@ class LoginController extends Controller {
 	public function getLogin()
     {
        $user = null;
-		
+       $return = url()->previous();
+		dd($return); 
 		if(Auth::check())
 		{
 			$user = Auth::user();
@@ -81,7 +82,7 @@ class LoginController extends Controller {
          {
          	$remember = true; 
          	//authenticate this login
-            if(Auth::attempt(['email' => $req['id'],'password' => $req['password'],'status'=> "ok"]) || Auth::attempt(['phone' => $req['id'],'password' => $req['password'],'status'=> "ok"]),$remember)
+            if(Auth::attempt(['email' => $req['id'],'password' => $req['password'],'status'=> "ok"],$remember) || Auth::attempt(['phone' => $req['id'],'password' => $req['password'],'status'=> "ok"],$remember))
             {
             	//Login successful               
                $user = Auth::user();          

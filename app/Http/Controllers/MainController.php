@@ -172,6 +172,10 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 		}
+		else
+        {    
+        	return redirect()->intended('login');
+        }
 		$mainClass = "cart-table-area section-padding-100";
         return view('cart',compact(['user','mainClass']));
     }
@@ -189,6 +193,11 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 		}
+		else
+        {
+        	return redirect()->intended('login');
+        }
+        
 		$mainClass = "cart-table-area section-padding-100";
         return view('checkout',compact(['user','mainClass']));
     }
@@ -265,6 +274,10 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 		}
+		else
+        {
+        	return redirect()->intended('login');
+        }
         return view('kloudpay',compact(['user']));
     }
 
@@ -316,7 +329,7 @@ class MainController extends Controller {
 		}
 		else
         {
-        	return redirect()->intended('/');
+        	return redirect()->intended('login');
         }
 		
 		//$bf = $this->helpers->getBankDetails($user->id);
@@ -339,7 +352,7 @@ class MainController extends Controller {
 		}
 		else
         {
-        	return redirect()->intended('/');
+        	return redirect()->intended('login');
         }
 		
 		//$transactions = $this->helpers->getTransactions($user->id);
