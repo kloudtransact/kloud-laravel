@@ -79,8 +79,9 @@ class LoginController extends Controller {
          
          else
          {
+         	$remember = true; 
          	//authenticate this login
-            if(Auth::attempt(['email' => $req['id'],'password' => $req['password']]) || Auth::attempt(['phone' => $req['id'],'password' => $req['password']]))
+            if(Auth::attempt(['email' => $req['id'],'password' => $req['password'],'status'=> "ok"]) || Auth::attempt(['phone' => $req['id'],'password' => $req['password'],'status'=> "ok"]),$remember)
             {
             	//Login successful               
                $user = Auth::user();          
@@ -171,9 +172,52 @@ class LoginController extends Controller {
                         return redirect()->back()->withErrors("This user doesn't exist!","errors"); 
                 }
                 
-                $this->helpers->sendEmail($user->email,'Your Username',['username' => $user->username],'emails.username','view');                                                         
-            Session::flash("reset-status","success");           
+                #$this->helpers->sendEmail($user->email,'Your Username',['username' => $user->username],'emails.username','view');                                                         
+            Session::flash("username-status","success");           
             return redirect()->intended('forgot-username');
+
+      }
+                  
+    }    
+    
+    
+    public function getForgotPassword()
+    {
+         return view('forgot_password');
+    }
+    
+    /**
+     * Send username to the given user.
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function postForgotPassword(Request $request)
+    {
+    	$req = $request->all(); 
+        $validator = Validator::make($req, [
+                             'email' => 'required|email'
+                  ]);
+                  
+        if($validator->fails())
+         {
+             $messages = $validator->messages();
+             //dd($messages);
+             
+             return redirect()->back()->withInput()->with('errors',$messages);
+         }
+         
+         else{
+         	$ret = $req['email'];
+
+                $user = User::where('email',$ret)->first();
+
+                if(is_null($user))
+                {
+                        return redirect()->back()->withErrors("This user doesn't exist!","errors"); 
+                }
+                
+                #$this->helpers->sendEmail($user->email,'Reset Your Password',['username' => $user->username],'emails.username','view');                                                         
+            Session::flash("reset-status","success");           
+            return redirect()->intended('forgot-password');
 
       }
                   

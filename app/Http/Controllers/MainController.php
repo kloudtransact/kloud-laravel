@@ -319,8 +319,31 @@ class MainController extends Controller {
         	return redirect()->intended('/');
         }
 		
-		//$bankDetails = $this->helpers->getBankDetails($user->id);
+		//$bf = $this->helpers->getBankDetails($user->id);
         return view('dashboard',compact(['user']));
+    }
+    
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getTransactions()
+    {
+		       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		else
+        {
+        	return redirect()->intended('/');
+        }
+		
+		//$transactions = $this->helpers->getTransactions($user->id);
+        return view('transactions',compact(['user']));
     }
     
     
