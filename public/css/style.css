@@ -21,3 +21,8 @@
     .auction-text{
 		font-size: 0.65em;
     }
+    
+    .img-upsell{
+    	height: 150% !important;
+        width:  150% !important;
+   }
