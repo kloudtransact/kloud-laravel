@@ -71,7 +71,7 @@ class MainController extends Controller {
 		
 		$req = $request->all();
 		$category = "";
-		
+		$bundleProducts = $this->helpers->getDeals("bundle",$req['q']);
 		if(isset($req['q']))
 		{
 			$category = $this->helpers->categories[$req['q']];
