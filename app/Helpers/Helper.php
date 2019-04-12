@@ -10,6 +10,9 @@ use App\User;
 use App\ShippingDetails;
 use App\Wallet;
 use App\Transactions;
+use App\Deals;
+use App\DealData;
+use App\DealImages;
 
 class Helper implements HelperContract
 {
@@ -102,7 +105,42 @@ class Helper implements HelperContract
                                                       'balance' => "0",                                                                                                            
                                                       ]);                                                     
                 return $ret;
-           }		   
+           }		
+           function createDeal($data)
+           {
+           	$sku = "KTK".rand(999,99999)."LD".rand(999,9999);
+           
+           	$ret = Deals::create(['name' => $data['name'],                                                                                                          
+                                                      'sku' => $sku, 
+                                                      'type' => "deal",                                                      
+                                                      'status' => "active", 
+                                                      'rating' => "0", 
+                                                      ]);
+                                                      
+                 $data['sku'] = $ret->sku;                         
+                $dealData = $this->createDealData($data);                                    
+                return $ret;
+           }
+           function createDealData($data)
+           {
+           	$ret = DealData::create(['sku' => $data['sku'],                                                                                                          
+                                                      'description' => $data['description'], 
+                                                      'amount' => $data['amount'],                                                      
+                                                      'in_stock' => "yes", 
+                                                      'rating' => "0", 
+                                                      ]);
+                                                      
+                return $ret;
+           }
+         
+           function createDealImage($data)
+           {
+           	$ret = Deals::create(['sku' => $data['sku'],                                                                                                          
+                                                      'url' => $data['url'], 
+                                                      ]);
+                                                      
+                return $ret;
+           }
            /**	   
            function getBankDetails($id)
            {
