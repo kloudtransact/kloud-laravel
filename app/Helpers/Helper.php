@@ -204,23 +204,7 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }	
-
-          function getDealData($sku)
-           {
-           	$ret = [];
-               $dealData = DealData::where('sku',$sku)->first();
- 
-              if($dealData != null)
-               {
-               	$ret['id'] = $dealData->id; 
-                   $ret['description'] = $dealData->description; 
-                   $ret['amount'] = $dealData->amount; 
-                   $ret['in_stock'] = $dealData->in_stock; 
-                   $ret['min_bid'] = $dealData->min_bid; 
-               }                                 
-                                                      
-                return $ret;
-           }		  
+         
            function getCart($user)
            {
            	$ret = [];
