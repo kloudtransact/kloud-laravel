@@ -9,5 +9,8 @@ Interface HelperContract
         public function createDeal($data);
         public function createDealData($data);
         public function createDealImage($data);
+        public function getDeals($category,$q="");
+        public function getDealData($sku);
+        public function getDealImages($sku);
 }
  ?>
