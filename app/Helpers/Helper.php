@@ -112,7 +112,8 @@ class Helper implements HelperContract
            
            	$ret = Deals::create(['name' => $data['name'],                                                                                                          
                                                       'sku' => $sku, 
-                                                      'type' => "deal",                                                      
+                                                      'type' => "deal",  
+                                                      'category' => $data['category'], 
                                                       'status' => "active", 
                                                       'rating' => "0", 
                                                       ]);
@@ -127,7 +128,7 @@ class Helper implements HelperContract
                                                       'description' => $data['description'], 
                                                       'amount' => $data['amount'],                                                      
                                                       'in_stock' => "yes", 
-                                                      'rating' => "0", 
+                                                      'min_bid' => isset($data['min_bid']) ? $data['min_bid'] : "0";                                                    
                                                       ]);
                                                       
                 return $ret;
@@ -141,25 +142,68 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }
-           /**	   
-           function getBankDetails($id)
+             
+           function getDeals($category,$q="")
            {
            	$ret = [];
-
-           	$bd = BankAccounts::where('user_id',$id)->first();
-               if($bd != null)
+               $deals = null; 
+           	if($q == "") $deals = Deals::where('type',$category)->get();
+               else $deals = Deals::where('type',$category)->where('category',$q)->get();
+ 
+              if($deals != null)
                {
-               	$ret['id'] = $bd->user_id; 
-                   $ret['balance'] = $bd->balance; 
-                   $ret['initial_balance'] = $bd->initial_balance; 
-                   $ret['last_deposit_name'] = $bd->last_deposit_name; 
-                   $ret['last_deposit'] = $bd->last_deposit; 
-                   $ret['account_number'] = $bd->account_number; 
-                   $ret['address'] = $bd->address; 
+               	foreach($deals as $d)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $deals->id; 
+                   	$temp['name'] = $deals->name; 
+                   	$temp['sku'] = $deals->sku; 
+                   	$temp['type'] = $deals->type; 
+                   	$temp['category'] = $deals->category; 
+                   	$temp['status'] = $deals->status; 
+                   	$temp['rating'] = $deals->rating; 
+                       array_push($ret, $temp); 
+                   }
                }                                 
                                                       
                 return $ret;
            }		   
-           **/
+           
+           function getDealData($sku)
+           {
+           	$ret = [];
+               $dealData = DealData::where('sku',$sku)->first();
+ 
+              if($dealData != null)
+               {
+               	$ret['id'] = $dealData->id; 
+                   $ret['description'] = $dealData->description; 
+                   $ret['amount'] = $dealData->amount; 
+                   $ret['in_stock'] = $dealData->in_stock; 
+                   $ret['min_bid'] = $dealData->min_bid; 
+               }                                 
+                                                      
+                return $ret;
+           }		   
+           
+           function getDealImages($sku)
+           {
+           	$ret = [];
+               $img = DealImages::where('sku',$sku)->get();
+ 
+              if($img != null)
+               {
+               	foreach($img as $i)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $img->id; 
+                   	$temp['url'] = $img->url; 
+                       array_push($ret, $temp); 
+                   }
+               }                                 
+                                                      
+                return $ret;
+           }		   
+           
 }
 ?>
