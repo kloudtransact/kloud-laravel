@@ -12,5 +12,10 @@ Interface HelperContract
         public function getDeals($category,$q="");
         public function getDealData($sku);
         public function getDealImages($sku);
+        public function getCart($user);
+        public function getDeal($sku);
+        public function getWallet($user);
+        public function getDashboard($user);
+        public function getTransactions($user);
 }
  ?>
