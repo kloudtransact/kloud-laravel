@@ -13,7 +13,7 @@ class Deals extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'sku', 'type', 'status','rating'
+        'name', 'sku', 'type', 'category', 'status','rating'
     ];
     
 }

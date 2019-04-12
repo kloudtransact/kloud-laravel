@@ -13,7 +13,7 @@ class DealData extends Model
      * @var array
      */
     protected $fillable = [
-        'sku', 'description', 'amount','in_stock'
+        'sku', 'description', 'amount', 'in_stock', 'min_bid'
     ];
     
     #protected $table = 'deal_datas';
