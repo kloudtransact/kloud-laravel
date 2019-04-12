@@ -84,7 +84,7 @@ class MainController extends Controller {
 		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
 		
-    	return view('bundle',compact(['user','category','c','mainClass']));
+    	return view('bundle',compact(['user','bundleProducts','category','c','mainClass']));
     }
 
 	/**
