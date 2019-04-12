@@ -71,11 +71,16 @@ class MainController extends Controller {
 		
 		$req = $request->all();
 		$category = "";
-		$bundleProducts = $this->helpers->getDeals("bundle",$req['q']);
+		$bundleProducts = [];
 		if(isset($req['q']))
 		{
+			$bundleProducts = $this->helpers->getDeals("bundle",$req['q']);
 			$category = $this->helpers->categories[$req['q']];
-		}       
+		} 
+        else
+        {
+        	$bundleProducts = $this->helpers->getDeals("bundle");
+        }     
 		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
 		
