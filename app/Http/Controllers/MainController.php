@@ -103,14 +103,19 @@ class MainController extends Controller {
 		
 		$req = $request->all();
 		$category = "";
-		
+		$auction = [];
 		if(isset($req['q']))
 		{
+			$auction = $this->helpers->getDeals("auction",$req['q']);
 			$category = $this->helpers->categories[$req['q']];
-		}       
+		} 
+        else
+        {
+        	$auction = $this->helpers->getDeals("auction");
+        }     
 		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('auction',compact(['user','category','c','mainClass']));
+    	return view('auction',compact(['user','auction','category','c','mainClass']));
     }
 
 	/**
@@ -129,14 +134,20 @@ class MainController extends Controller {
 		
 		$req = $request->all();
 		$category = "";
+		$topDeals = [];
 		
 		if(isset($req['q']))
 		{
+			$topDeals = $this->helpers->getDeals("top",$req['q']);
 			$category = $this->helpers->categories[$req['q']];
-		}       
+		} 
+        else
+        {
+        	$topDeals = $this->helpers->getDeals("top");
+        }     
 		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('top-deals',compact(['user','category','c','mainClass']));
+    	return view('top-deals',compact(['user','category','topDeals','c','mainClass']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -153,14 +164,20 @@ class MainController extends Controller {
 		
 		$req = $request->all();
 		$category = "";
+		$deals = [];
 		
 		if(isset($req['q']))
 		{
+			$deals = $this->helpers->getDeals("deals",$req['q']);
 			$category = $this->helpers->categories[$req['q']];
-		}       
+		} 
+        else
+        {
+        	$deals = $this->helpers->getDeals("deals");
+        }     
 		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('deals',compact(['user','category','c','mainClass']));
+    	return view('deals',compact(['user','category','deals','c','mainClass']));
     }	
 	
 
@@ -172,17 +189,18 @@ class MainController extends Controller {
 	public function getCart()
     {
 		       $user = null;
-		
+		       $cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			#$cart = $this->helpers->getCart($user);
 		}
 		else
         {    
         	return redirect()->intended('login?return=cart');
         }
 		$mainClass = "cart-table-area section-padding-100";
-        return view('cart',compact(['user','mainClass']));
+        return view('cart',compact(['user','cart','mainClass']));
     }
 
 	/**
@@ -193,10 +211,11 @@ class MainController extends Controller {
 	public function getCheckout()
     {
 		       $user = null;
-		
+		       $cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			#$cart = $this->helpers->getCart($user);
 		}
 		else
         {
@@ -204,7 +223,7 @@ class MainController extends Controller {
         }
         
 		$mainClass = "cart-table-area section-padding-100";
-        return view('checkout',compact(['user','mainClass']));
+        return view('checkout',compact(['user','cart','mainClass']));
     }
 
 	/**
@@ -212,16 +231,19 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getDeal()
+	public function getDeal(Request $request)
     {
 		       $user = null;
+		       $deal = [];
+		       $req = $request->all();
 		
 		if(Auth::check())
 		{
 			$user = Auth::user();
 		}
+		#$deal = $this->helpers->getDeal($req['sku']);
 		$mainClass = "single-product-area section-padding-100 clearfix";
-        return view('deal',compact(['user','mainClass']));
+        return view('deal',compact(['user','deal','mainClass']));
     }
 
 	/**
@@ -274,16 +296,17 @@ class MainController extends Controller {
 	public function getKloudPay()
     {
 		       $user = null;
-		
+		       $wallet = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			#$wallet = $this->helpers->getWallet($user);
 		}
 		else
         {
         	return redirect()->intended('login?return=kloudpay');
         }
-        return view('kloudpay',compact(['user']));
+        return view('kloudpay',compact(['user','wallet']));
     }
 
 	/**
@@ -327,18 +350,20 @@ class MainController extends Controller {
 	public function getDashboard()
     {
 		       $user = null;
+		       $dashboard = [];
 		
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			//$dashboard = $this->helpers->getDashboard($user);
 		}
 		else
         {
         	return redirect()->intended('login?return=dashboard');
         }
 		
-		//$bf = $this->helpers->getBankDetails($user->id);
-        return view('dashboard',compact(['user']));
+		
+        return view('dashboard',compact(['user','dashboard']));
     }
     
     
@@ -350,17 +375,18 @@ class MainController extends Controller {
 	public function getTransactions()
     {
 		       $user = null;
+		       $transactions = [];
 		
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			//$transactions = $this->helpers->getTransactions($user);
 		}
 		else
         {
         	return redirect()->intended('login?return=transactions');
         }
 		
-		//$transactions = $this->helpers->getTransactions($user->id);
         return view('transactions',compact(['user']));
     }
     
