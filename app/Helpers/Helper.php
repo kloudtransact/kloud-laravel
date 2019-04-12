@@ -128,7 +128,7 @@ class Helper implements HelperContract
                                                       'description' => $data['description'], 
                                                       'amount' => $data['amount'],                                                      
                                                       'in_stock' => "yes", 
-                                                      'min_bid' => isset($data['min_bid']) ? $data['min_bid'] : "0";                                                    
+                                                      'min_bid' => isset($data['min_bid']) ? $data['min_bid'] : "0"                                                  
                                                       ]);
                                                       
                 return $ret;
