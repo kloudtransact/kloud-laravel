@@ -134,9 +134,10 @@
         	<!--------- Session notifications-------------->
         	<?php
                $statuses = ["login-status", "register-status", "reset-status"];
+               $val = "";
              ?> 
               @foreach($statuses as $pop)
-                 <?php
+                 <?php                
                  if(Session::has($pop))
                  {
                  	$val = Session::get($pop);
