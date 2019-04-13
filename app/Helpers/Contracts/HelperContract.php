@@ -10,6 +10,7 @@ Interface HelperContract
         public function createDealData($data);
         public function createDealImage($data);
         public function getDeals($category,$q="");
+        public function getDeadline($baseTimeStamp,$offset);
         public function getDealData($sku);
         public function getDealImages($sku);
         public function getCart($user);
