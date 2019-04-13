@@ -116,6 +116,7 @@ class Helper implements HelperContract
                                                       'category' => $data['category'], 
                                                       'status' => "active", 
                                                       'rating' => "0", 
+                                                      'deadline' => "", 
                                                       ]);
                                                       
                  $data['sku'] = $ret->sku;                         
@@ -142,6 +143,29 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }
+           
+           function getDeadline($baseTimeStamp,$offset)
+           {
+           	$offsetArr = explode("_",$offset);
+           	$ret = null; 
+           
+               switch($offsetArr[0])
+               {
+               	case "days":
+                    $ret = $baseTimeStamp->addDays($offsetArr[1]);
+                   break; 
+                   
+                   case "hours":
+                    $ret = $baseTimeStamp->addHours($offsetArr[1]);
+                   break; 
+                   
+                   case "minutes":
+                    $ret = $baseTimeStamp->addMinutes($offsetArr[1]);
+                   break; 
+                   
+               }
+                return $ret;
+           }
              
            function getDeals($category,$q="")
            {
@@ -155,13 +179,15 @@ class Helper implements HelperContract
                	foreach($deals as $d)
                    {
                    	$temp = [];
-                   	$temp['id'] = $deals->id; 
-                   	$temp['name'] = $deals->name; 
-                   	$temp['sku'] = $deals->sku; 
-                   	$temp['type'] = $deals->type; 
-                   	$temp['category'] = $deals->category; 
-                   	$temp['status'] = $deals->status; 
-                   	$temp['rating'] = $deals->rating; 
+                   	$temp['id'] = $d->id; 
+                   	$temp['name'] = $d->name; 
+                   	$temp['sku'] = $d->sku; 
+                   	$temp['type'] = $d->type; 
+                   	$temp['category'] = $d->category; 
+                   	$temp['status'] = $d->status; 
+                   	$temp['rating'] = $d->rating;
+                       $did = $this->getDeadline($d->created_at,$d->deadline);
+                       $temp['deadline'] = ($did == null) ? "" : $did->format("js F, Y h:i A");
                        array_push($ret, $temp); 
                    }
                }                                 
@@ -196,8 +222,8 @@ class Helper implements HelperContract
                	foreach($img as $i)
                    {
                    	$temp = [];
-                   	$temp['id'] = $img->id; 
-                   	$temp['url'] = $img->url; 
+                   	$temp['id'] = $i->id; 
+                   	$temp['url'] = $i->url; 
                        array_push($ret, $temp); 
                    }
                }                                 
