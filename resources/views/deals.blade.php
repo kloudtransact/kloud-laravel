@@ -9,6 +9,7 @@
                 @include('deals-filter')
 
                 <div class="row">
+                 @if(count($deals) > 0)
                    @for($i = 0; $i < 6; $i++)
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
@@ -49,8 +50,11 @@
                         </div>
                     </div>              
                     @endfor
+                  @else
+                  <p class="text-primary">No deals at the moment. Check back later? </p>
+                  @endif
                 </div>
-
+                @if(count($deals) > 0)
                 <div class="row">
                     <div class="col-12">
                         <!-- Pagination -->
@@ -64,5 +68,6 @@
                         </nav>
                     </div>
                 </div>
+                @endif
             </div>
 @stop
