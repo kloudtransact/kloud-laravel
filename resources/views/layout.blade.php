@@ -131,6 +131,18 @@
         <!--------- Cookie consent-------------->
         	@include('cookie-consent')
         <main role="main" class="pb-3">
+        	<!--------- Session notifications-------------->
+        	<?php
+               $statuses = ["login-status", "register-status", "reset-status"];
+              
+              foreach($statuses as $pop){
+                 if(Session::has($pop))
+                 {
+                 	$val = Session::get($pop);
+                 }
+                 include('session-status',['pop' => $pop, 'val' => $val]);
+              }
+            ?>
         	<!--------- Input errors -------------->
                     @if (count($errors) > 0)
                           @include('input-errors', ['errors'=>$errors])
