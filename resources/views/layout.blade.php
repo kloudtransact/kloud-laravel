@@ -143,7 +143,9 @@
                  	$val = Session::get($pop);
                  }
                  ?> 
-                 @include('session-status',['pop' => $pop, 'val' => $val]);
+                 @if($val != "")
+                   @include('session-status',['pop' => $pop, 'val' => $val])
+                 @endif
               @endforeach
         	<!--------- Input errors -------------->
                     @if (count($errors) > 0)
