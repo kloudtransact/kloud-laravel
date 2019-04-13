@@ -134,15 +134,16 @@
         	<!--------- Session notifications-------------->
         	<?php
                $statuses = ["login-status", "register-status", "reset-status"];
-              
-              foreach($statuses as $pop){
+             ?> 
+              @foreach($statuses as $pop)
+                 <?php
                  if(Session::has($pop))
                  {
                  	$val = Session::get($pop);
                  }
-                 include('session-status',['pop' => $pop, 'val' => $val]);
-              }
-            ?>
+                 ?> 
+                 @include('session-status',['pop' => $pop, 'val' => $val]);
+              @endforeach
         	<!--------- Input errors -------------->
                     @if (count($errors) > 0)
                           @include('input-errors', ['errors'=>$errors])
