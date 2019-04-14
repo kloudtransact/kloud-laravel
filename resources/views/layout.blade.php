@@ -133,20 +133,25 @@
         <main role="main" class="pb-3">
         	<!--------- Session notifications-------------->
         	<?php
-               $statuses = ["login-status", "register-status", "reset-status"];
-               $val = "";
+               $pop = ""; $val = "";
+               
+               if(Session::has("login-status"))
+               {
+               	$pop = "login-status"; $val = Session::get("login-status");
+               }
+               if(Session::has("register-status"))
+               {
+               	$pop = "register-status"; $val = Session::get("register-status");
+               }
+               if(Session::has("reset-status"))
+               {
+               	$pop = "reset-status"; $val = Session::get("reset-status");
+               }
              ?> 
-              @foreach($statuses as $pop)
-                 <?php                
-                 if(Session::has($pop))
-                 {
-                 	$val = Session::get($pop);
-                 }
-                 ?> 
-                 @if($val != "")
+
+                 @if($pop != "" && $val != "")
                    @include('session-status',['pop' => $pop, 'val' => $val])
                  @endif
-              @endforeach
         	<!--------- Input errors -------------->
                     @if (count($errors) > 0)
                           @include('input-errors', ['errors'=>$errors])
