@@ -43,7 +43,7 @@
                                         	@if(count($users)  > 0)
                                               <tr>
                                                @foreach($users as $u)
-                                                 <td>{{$u['fname']." ".$u['fname']}}</td>
+                                                 <td>{{$u['fname']." ".$u['lname']}}</td>
                                                  <td>{{$u['phone']}}</td>
                                                  <td>{{$u['email']}}</td>
                                                  <td>{{$u['balance']}}</td>
@@ -54,7 +54,7 @@
                                                  	<?php
                                                        $egg = $u['id']; $au = ""; $at = ""; $clax = "";
                                                        
-                                                       if($u['role'] == "active")
+                                                       if($u['status'] == "ok")
                                                        {
                                                        	$au = url('cobra-suspend-user');
                                                            $at = "Deactivate";
