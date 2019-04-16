@@ -20,7 +20,7 @@ Interface HelperContract
         public function getTransactions($user);
         public function getAuctions($category,$q="");
         public function getAuction($dealID);
-        public function createTransactions($data);
-        public function createAuctions($data);
+        public function createTransaction($data);
+        public function createAuction($data);
 }
  ?>
