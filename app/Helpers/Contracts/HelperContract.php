@@ -9,6 +9,7 @@ Interface HelperContract
         public function createDeal($data);
         public function createDealData($data);
         public function createDealImage($data);
+        public function createWallet($data);
         public function getDeals($category,$q="");
         public function getDeadline($baseTimeStamp,$offset);
         public function getDealData($sku);
