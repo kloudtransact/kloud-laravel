@@ -13,6 +13,7 @@ use App\Transactions;
 use App\Deals;
 use App\DealData;
 use App\DealImages;
+use App\Auctions;
 
 class Helper implements HelperContract
 {
@@ -109,10 +110,11 @@ class Helper implements HelperContract
            function createDeal($data)
            {
            	$sku = "KTK".rand(999,99999)."LD".rand(999,9999);
-           
+               $type = isset($data['type']) ? $data['type'] : "deal";
+               
            	$ret = Deals::create(['name' => $data['name'],                                                                                                          
                                                       'sku' => $sku, 
-                                                      'type' => "deal",  
+                                                      'type' => $type,  
                                                       'category' => $data['category'], 
                                                       'status' => "active", 
                                                       'rating' => "0", 
@@ -137,8 +139,29 @@ class Helper implements HelperContract
          
            function createDealImage($data)
            {
-           	$ret = Deals::create(['sku' => $data['sku'],                                                                                                          
+           	$ret = DealImages::create(['sku' => $data['sku'],                                                                                                          
                                                       'url' => $data['url'], 
+                                                      ]);
+                                                      
+                return $ret;
+           }
+           function createTransaction($data)
+           {
+           	$ret = Transactions::create(['deal_id' => $data['deal_id'],                                                                                                          
+                                                      'type' => $data['type'], 
+                                                      'user_id' => $data['user_id'],
+                                                      'amount' => $data['amount'],
+                                                      ]);
+                                                      
+                return $ret;
+           }
+           function createAuction($data)
+           {
+           	$ret = Auctions::create(['days' => $data['days'],                                                                                                          
+                                                      'hours' => $data['hours'], 
+                                                      'minutes' => $data['minutes'],
+                                                      'status' => $data['status'],
+                                                      'bids' => $data['bids'],
                                                       ]);
                                                       
                 return $ret;
@@ -146,23 +169,24 @@ class Helper implements HelperContract
            
            function getDeadline($baseTimeStamp,$offset)
            {
-           	$offsetArr = explode("_",$offset);
            	$ret = null; 
-           
-               switch($offsetArr[0])
+               if(count($offset) > 0){$ret = baseTimeStamp; }
+               
+               if($ret != null){
+               	
+               if(isset($offset['days']) && $offset['days'] > 0)
                {
-               	case "days":
-                    $ret = $baseTimeStamp->addDays($offsetArr[1]);
-                   break; 
-                   
-                   case "hours":
-                    $ret = $baseTimeStamp->addHours($offsetArr[1]);
-                   break; 
-                   
-                   case "minutes":
-                    $ret = $baseTimeStamp->addMinutes($offsetArr[1]);
-                   break; 
-                   
+                    $ret->addDays($offset['days']);
+               }
+               if(isset($offset['hours']) && $offset['hours'] > 0)
+               {
+                    $ret->addHours($offset['hours']);
+               }
+               if(isset($offset['minutes']) && $offset['minutes'] > 0)
+               {
+                    $ret->addMinutes($offset['minutes']);
+               }
+               
                }
                 return $ret;
            }
@@ -186,8 +210,20 @@ class Helper implements HelperContract
                    	$temp['category'] = $d->category; 
                    	$temp['status'] = $d->status; 
                    	$temp['rating'] = $d->rating;
-                       $did = $this->getDeadline($d->created_at,$d->deadline);
-                       $temp['deadline'] = ($did == null) ? "" : $did->format("js F, Y h:i A");
+                       if($temp['type'] == "auction")
+                       {
+                       	$a = $this->getAuction($d->id);
+                           if(count($a) > 0)
+                           {                         	
+                       	   $offset = ['hours' => $a['hours'],
+                                             'minutes' => $a['minutes'], 
+                                             'days' => $a['days']
+                                            ];
+                       	   $did = $this->getDeadline($d->created_at,$offset);
+                              $temp['deadline'] = ($did == null) ? "" : $did->format("js F, Y h:i A");                          
+                           }
+                      }
+                       
                        array_push($ret, $temp); 
                    }
                }                                 
@@ -266,15 +302,12 @@ class Helper implements HelperContract
            function getWallet($user)
            {
            	$ret = [];
-               $dealData = DealData::where('sku',$sku)->first();
+               $wallet = Wallet::where('user_id',$user->id)->first();
  
-              if($dealData != null)
+              if($wallet != null)
                {
-               	$ret['id'] = $dealData->id; 
-                   $ret['description'] = $dealData->description; 
-                   $ret['amount'] = $dealData->amount; 
-                   $ret['in_stock'] = $dealData->in_stock; 
-                   $ret['min_bid'] = $dealData->min_bid; 
+               	$ret['id'] = $wallet->id; 
+                   $ret['balance'] = $wallet->balance;                  
                }                                 
                                                       
                 return $ret;
@@ -298,19 +331,67 @@ class Helper implements HelperContract
            function getTransactions($user)
            {
            	$ret = [];
-               $dealData = DealData::where('sku',$sku)->first();
+               $transactions = Transactions::where('user_id',$user->id)->get();
  
-              if($dealData != null)
+              if($transactions != null)
                {
-               	$ret['id'] = $dealData->id; 
-                   $ret['description'] = $dealData->description; 
-                   $ret['amount'] = $dealData->amount; 
-                   $ret['in_stock'] = $dealData->in_stock; 
-                   $ret['min_bid'] = $dealData->min_bid; 
+               	foreach($transactions as $t)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $t->id; 
+                       $deal = Deals::where('id',$t->deal_id)->first();
+                   	$temp['deal'] = ($deal == null) ? "" : $deal->name; 
+                       $temp['type'] = $t->type; 
+                       $temp['amount'] = $t->amount; 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }		
+
+           function getAuctions($category,$q="")
+           {
+           	$ret = [];
+               $auctions = null; 
+           	if($q == "") $auctions = Auctions::where('type',$category)->get();
+               else $auctions = Auctions::where('type',$category)->where('category',$q)->get();            
+ 
+              if($auctions != null)
+               {
+               	foreach($auctions as $a)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $a->id; 
+                       $temp['days'] = $a->days; 
+                       $temp['hours'] = $a->hours; 
+                       $temp['minutes'] = $a->minutes; 
+                       $temp['status'] = $a->status; 
+                       $temp['bids'] = $a->bids; 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }	
+
+          function getAuction($dealID)
+           {
+           	$ret = [];
+               $auction = Auctions::where('deal_id',$dealID)->first();
+ 
+              if($auction != null)
+               {
+               	$ret['id'] = $auction->id; 
+                   $ret['days'] = $auction->days; 
+                   $ret['hours'] = $auction->hours; 
+                   $ret['minutes'] = $auction->minutes; 
+                   $ret['status'] = $auction->status; 
+                   $ret['bids'] = $auction->bids; 
                }                                 
                                                       
                 return $ret;
-           }		  	   
+           }			  	   
            
 }
 ?>
