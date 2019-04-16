@@ -350,7 +350,7 @@ class Helper implements HelperContract
                 return $ret;
            }		
            
-           function getTransactions()
+           function adminGetTransactions()
            {
            	$ret = [];
                $transactions = Transactions::all();
@@ -413,7 +413,79 @@ class Helper implements HelperContract
                }                                 
                                                       
                 return $ret;
-           }			  	   
+           }		
+
+          function adminGetUsers()
+           {
+           	$ret = [];
+               $users = User::where('id','>',2)->get();
+ 
+              if($users != null)
+               {
+               	foreach($users as $u)
+                   {
+                   	$temp = [];
+                   	$temp['fname'] = $u->fname; 
+                       $temp['lname'] = $u->lname; 
+                       $wallet = Wallet::where('user_id',$u->id)->first();
+                   	$temp['balance'] = ($wallet == null) ? "NA" : $wallet->balance; 
+                       $temp['phone'] = $u->phone; 
+                       $temp['email'] = $u->email; 
+                       $temp['role'] = $u->role; 
+                       $temp['status'] = $u->status; 
+                       $temp['id'] = $u->id; 
+                       $temp['date'] = $u->created_at->format("jS F, Y"); 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }
+
+          function adminGetDeals()
+           {
+           	$ret = [];
+               #$transactions = Transactions::all();
+               $deals = null; 
+ 
+              if($deals != null)
+               {
+               	foreach($transactions as $t)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $t->id; 
+                       $deal = Deals::where('id',$t->deal_id)->first();
+                   	$temp['deal'] = ($deal == null) ? "" : $deal->name; 
+                       $temp['type'] = $t->type; 
+                       $temp['amount'] = $t->amount; 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }
+
+     function adminGetAuctions()
+           {
+           	$ret = [];
+               #$transactions = Transactions::all();
+               $auctions = null; 
+              if($auctions != null)
+               {
+               	foreach($transactions as $t)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $t->id; 
+                       $deal = Deals::where('id',$t->deal_id)->first();
+                   	$temp['deal'] = ($deal == null) ? "" : $deal->name; 
+                       $temp['type'] = $t->type; 
+                       $temp['amount'] = $t->amount; 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }			  			  			  	   
            
 }
 ?>
