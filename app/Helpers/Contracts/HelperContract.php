@@ -18,5 +18,9 @@ Interface HelperContract
         public function getWallet($user);
         public function getDashboard($user);
         public function getTransactions($user);
+        public function getAuctions($category,$q="");
+        public function getAuction($dealID);
+        public function createTransactions($data);
+        public function createAuctions($data);
 }
  ?>
