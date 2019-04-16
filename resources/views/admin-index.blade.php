@@ -1,6 +1,6 @@
 @extends("layout")
 
-@section('title',"Admin Dashboard")
+@section('title',"Admin Center")
 
 @section('styles')
     <!-- Core Style CSS -->
@@ -81,6 +81,7 @@
                    <h4>Recent Activity </h4>                  
                 </div>
                 <div class="card-body">
+                	<a href="{{url('cobra-transactions')}}" class="btn btn-success btn-block m-b-10" role="button">View more</a>
                 	<div class="table-responsive m-t-40">
                 	   <table id="admin-activity-table" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                 	     <thead>
@@ -91,6 +92,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        	@if(count($transactions)  > 0)
+                                              <tr>
+                                               @foreach($transactions as $t)
+                                                 <td>{{$t['activity']}}</td>
+                                                 <td>{{$t['amount']}}</td>
+                                                 <td>{{$t['date']}}</td>
+                                               @endforeach
+                                              </tr>
+                                            @endif
                                         </tbody>
                        </table>
                     </div>
@@ -99,19 +109,33 @@
           <div class="col-lg-12 mx-auto p-b-10">
             <div class="card">
                 <div class="card-title">
-                   <h4>Deals </h4>                  
+                   <h4>Deals</h4>                  
                 </div>
                 <div class="card-body">
+                	<a href="{{url('cobra-deals')}}" class="btn btn-success btn-block m-b-10" role="button">View more</a>
                 	<div class="table-responsive m-t-40">
                 	   <table id="admin-deals-table" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                 	     <thead>
                                             <tr>
+                                                <th>Image</th>
                                                 <th>Name</th>
+                                                <th>SKU</th>
                                                 <th>Amount</th>
                                                 <th>Type</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        	@if(count($deals)  > 0)
+                                              <tr>
+                                               @foreach($deals as $d)
+                                                 <td>{{$d['image']}}</td>
+                                                 <td>{{$d['name']}}</td>
+                                                 <td>{{$d['sku']}}</td>
+                                                 <td>{{$d['amount']}}</td>
+                                                 <td>{{$d['type']}}</td>
+                                               @endforeach
+                                              </tr>
+                                            @endif
                                         </tbody>
                        </table>
                     </div>
@@ -123,17 +147,30 @@
                    <h4>Auctions </h4>                  
                 </div>
                 <div class="card-body">
+                	<a href="{{url('cobra-auctions')}}" class="btn btn-success btn-block m-b-10" role="button">View more</a>
                 	<div class="table-responsive m-t-40">
                 	   <table id="admin-auctions-table" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                 	     <thead>
                                             <tr>
+                                                <th>Image</th>
                                                 <th>Name</th>
-                                                <th>Amount</th>
+                                                <th>Amount (&#8358;)</th>
                                                 <th>Bids</th>
                                                 <th>Ends</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        	@if(count($auctions)  > 0)
+                                              <tr>
+                                               @foreach($auctions as $a)
+                                                 <td>{{$a['image']}}</td> 
+                                                 <td>{{$a['name']}}</td> 
+                                                 <td>{{$a['amount']}}</td>
+                                                 <td>{{$a['bids']}}</td>
+                                                 <td>{{$a['ends']}}</td>
+                                               @endforeach
+                                              </tr>
+                                            @endif
                                         </tbody>
                        </table>
                     </div>
