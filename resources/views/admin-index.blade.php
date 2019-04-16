@@ -15,10 +15,10 @@
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-usd f-s-40 color-primary"></i></span>
+                                    <span><span class="f-s-40 text-primary">&#8358;</span></span>
                                 </div>
                                 <div class="media-body media-text-right">
-                                    <h2>&#8358;568120</h2>
+                                    <h2>568120</h2>
                                     <p class="m-b-0">Total Revenue</p>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
+                                    <span><i class="fa fa-shopping-cart f-s-40 text-success"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2>1178</h2>
@@ -41,7 +41,7 @@
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-archive f-s-40 color-warning"></i></span>
+                                    <span><i class="fa fa-archive f-s-40 text-warning"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2>25</h2>
@@ -54,7 +54,7 @@
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-user f-s-40 color-danger"></i></span>
+                                    <span><i class="fa fa-user f-s-40 text-danger"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2>87</h2>
