@@ -117,6 +117,30 @@ class AdminController extends Controller {
     	return view('admin-auctions',compact(['user','c','auctions']));
     }
 
+/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getTransactions()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$transactions = $this->helpers->adminGetTransactions();
+    	return view('admin-transactions',compact(['user','c','transactions']));
+    }
+
 	
     /**
 	 * Show the application welcome screen to the user.
