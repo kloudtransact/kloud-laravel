@@ -9,7 +9,7 @@
             <hr class="my-4">
           </div>
 </div>         
- <!-- Start Page Content -->
+ <!-- Start Stats section -->
                 <div class="row">
                     <div class="col-md-3">
                         <div class="card p-30">
@@ -64,4 +64,74 @@
                         </div>
                     </div>
                 </div>
+<!-- End Stats section -->  
+
+<!-- Start Activity  section -->  
+<div class="row">
+          <div class="col-lg-12 mx-auto p-b-10">
+            <div class="card">
+                <div class="card-title">
+                   <h4>Recent Activity </h4>                  
+                </div>
+                <div class="card-body">
+                	<div class="table-responsive m-t-40">
+                	   <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                	     <thead>
+                                            <tr>
+                                                <th>Activity</th>
+                                                <th>Amount</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                       </table>
+                    </div>
+                </div>
+          </div><br>
+          <div class="col-lg-12 mx-auto p-b-10">
+            <div class="card">
+                <div class="card-title">
+                   <h4>Deals </h4>                  
+                </div>
+                <div class="card-body">
+                	<div class="table-responsive m-t-40">
+                	   <table id="admin-deals-table" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                	     <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Amount</th>
+                                                <th>Type</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                       </table>
+                    </div>
+                </div>
+          </div><br>
+          <div class="col-lg-12 mx-auto p-b-10">
+            <div class="card">
+                <div class="card-title">
+                   <h4>Auctions </h4>                  
+                </div>
+                <div class="card-body">
+                	<div class="table-responsive m-t-40">
+                	   <table id="admin-auctions-table" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                	     <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Amount</th>
+                                                <th>Bids</th>
+                                                <th>Ends</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                       </table>
+                    </div>
+                </div>
+          </div>
+</div>     
+<!-- End Activity  section -->          
 @stop
