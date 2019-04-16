@@ -156,6 +156,38 @@
                     @if (count($errors) > 0)
                           @include('input-errors', ['errors'=>$errors])
                      @endif 
+               @if($user != null && $user->role == "admin")
+               <!--Start Inner Admin menu -->
+       <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#"> </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#adminCollapse" aria-controls="adminCollapseContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="pull-right navbar-toggler-icon"></span>
+          </button>
+             <div class="collapse navbar-collapse" id="adminCollapse">
+               <ul class="navbar-nav mr-auto">           
+                 <li class="nav-item active">
+                   <a class="nav-link" href="#">Admin Tasks<span class="sr-only">(current)</span></a>
+                  </li>
+                   <li class="nav-item">
+                    <a class="nav-link" href="{{url(cobra-users)}}">Users</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url(cobra-deals)}}">Deals</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url(cobra-auctions)}}">Auctions</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url(cobra-transactions)}}">Transactions</a>
+                  </li>
+                              
+               </ul>
+             </div>
+           </nav>
+          </div>
+     <!--End Inner Admin menu -->
+               @endif
             @yield("content")
         </main>
     </div>
