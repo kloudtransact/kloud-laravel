@@ -19,10 +19,13 @@ Interface HelperContract
         public function getWallet($user);
         public function getDashboard($user);
         public function getTransactions($user);
-        public function getTransactions();
         public function getAuctions($category,$q="");
         public function getAuction($dealID);
         public function createTransaction($data);
         public function createAuction($data);
+        public function adminGetTransactions();
+        public function adminGetUsers();
+        public function adminGetDeals();
+        public function adminGetAuctions();
 }
  ?>
