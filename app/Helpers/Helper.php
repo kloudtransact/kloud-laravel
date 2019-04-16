@@ -361,10 +361,27 @@ class Helper implements HelperContract
                    {
                    	$temp = [];
                    	$temp['id'] = $t->id; 
-                       $deal = Deals::where('id',$t->deal_id)->first();
-                   	$temp['deal'] = ($deal == null) ? "" : $deal->name; 
                        $temp['type'] = $t->type; 
+                       
+                       $deal = Deals::where('id',$t->deal_id)->first();
+                   	$temp['deal'] = ($deal == null) ? "" : $deal->sku;
+ 
+                       $u = User::where('id',$t->user_id)->first();
+                       $temp['user'] = ($u == null) ? "" : $u->fname." ".$u->lname; 
+                       $activity = "";
+                       
+                       if($temp['type'] == "sale")
+                       {
+                       	$activity = $temp['user']." purchased a deal (SKU: ".$deal->sku.")";
+                       }
+                       else if($temp['type'] == "refund")
+                       {
+                       	$activity = $temp['user']." received a refund";
+                       }                                          	
+                       
+                       $temp['activity'] = $activity; 
                        $temp['amount'] = $t->amount; 
+                       $temp['date'] = $t->created_at->format("jS F, Y"); 
                        array_push($ret, $temp); 
                    }
                }                          
