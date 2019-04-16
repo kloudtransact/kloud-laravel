@@ -349,6 +349,28 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }		
+           
+           function getTransactions()
+           {
+           	$ret = [];
+               $transactions = Transactions::all();
+ 
+              if($transactions != null)
+               {
+               	foreach($transactions as $t)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $t->id; 
+                       $deal = Deals::where('id',$t->deal_id)->first();
+                   	$temp['deal'] = ($deal == null) ? "" : $deal->name; 
+                       $temp['type'] = $t->type; 
+                       $temp['amount'] = $t->amount; 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }		
 
            function getAuctions($category,$q="")
            {
