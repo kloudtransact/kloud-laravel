@@ -39,9 +39,9 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
-		$transactions = $this->helpers->getTransactions();
-		$deals = $this->helpers->getDeals();
-		$auctions = $this->helpers->getAuctions();
+		$transactions = $this->helpers->adminGetTransactions();
+		$deals = $this->helpers->adminGetDeals();
+		$auctions = $this->helpers->adminGetAuctions();
     	return view('admin-index',compact(['user','c','transactions','deals','auctions']));
     }
 
@@ -65,7 +65,7 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
-		$users = $this->helpers->getUsers();
+		$users = $this->helpers->adminGetUsers();
     	return view('admin-users',compact(['users','user','c']));
     }	
     
@@ -89,7 +89,7 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
-		$deals = $this->helpers->getDeals();
+		$deals = $this->helpers->adminGetDeals();
     	return view('admin-deals',compact(['user','c','deals']));
     }
     
@@ -113,7 +113,7 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
-		$auctions = $this->helpers->getAuctions();
+		$auctions = $this->helpers->adminGetAuctions();
     	return view('admin-auctions',compact(['user','c','auctions']));
     }
 
