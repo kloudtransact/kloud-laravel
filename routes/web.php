@@ -36,7 +36,11 @@ Route::post('login', 'LoginController@postLogin');
 Route::post('register', 'LoginController@postRegister');
 
 Route::get('dashboard', 'MainController@getDashboard');
+Route::get('transactions', 'MainController@getTransactions');
 
 Route::get('logout', 'LoginController@getLogout');
+
+/***** Admin routes *****/
+Route::get('cobra', 'AdminController@getIndex');
 
 Route::get('zohoverify/{url}', 'MainController@getZoho');
