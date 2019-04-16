@@ -170,16 +170,16 @@
                    <a class="nav-link" href="#">Admin Tasks<span class="sr-only">(current)</span></a>
                   </li>
                    <li class="nav-item">
-                    <a class="nav-link" href="{{url(cobra-users)}}">Users</a>
+                    <a class="nav-link" href="{{url('cobra-users')}}">Users</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{url(cobra-deals)}}">Deals</a>
+                    <a class="nav-link" href="{{url('cobra-deals')}}">Deals</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{url(cobra-auctions)}}">Auctions</a>
+                    <a class="nav-link" href="{{url('cobra-auctions')}}">Auctions</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{url(cobra-transactions)}}">Transactions</a>
+                    <a class="nav-link" href="{{url('cobra-transactions')}}">Transactions</a>
                   </li>
                               
                </ul>
