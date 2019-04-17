@@ -86,7 +86,7 @@
                                 <!-- Ratings & Review -->
                                 <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
                                     <div class="ratings">
-                                    	@for($s = 0; $s < $deal['rating']; $s++]
+                                    	@for($s = 0; $s < $deal['rating']; $s++)
                                           <i class="fa fa-star" aria-hidden="true"></i>
                                         @endfor
                                     </div>
