@@ -15,8 +15,8 @@
                          $images = $d['images'];
                          shuffle($images);
                          $data = $d['data'];
-                         $dealURL = url("deal")."?sku=".$deal['sku'];
-                         $cartURL = url("cart")."?sku=".$deal['sku']."&qty=1";
+                         $dealURL = url("deal")."?sku=".$d['sku'];
+                         $cartURL = url("cart")."?sku=".$d['sku']."&qty=1";
                       ?>
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
