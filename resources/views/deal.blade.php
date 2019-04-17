@@ -80,7 +80,7 @@
                             <div class="product-meta-data">
                                 <div class="line"></div>
                                 <p class="product-price">&#8358;{{$data['amount']}}</p>
-                                <a href="{{url('deal').'?sku='.$d['sku']}}">
+                                <a href="{{url('deal').'?sku='.$deal['sku']}}">
                                     <h6>{{$deal['name']}}</h6>
                                 </a>
                                 <!-- Ratings & Review -->
