@@ -12,7 +12,7 @@
                         	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Add Deal</h1>
                         	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Add a new deal to the platform</h3>
                         
-                                   <form action="{{url('cobra-add-deal')}}" method="post" class="text-white mb-50">
+                                   <form action="{{url('cobra-add-deal')}}" method="post" class="mb-50">
                                    	{!!csrf_field()!!}
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
@@ -36,7 +36,7 @@
                                         <input type="text" class="form-control" name="amount" value="" placeholder="Price(&#8358;)" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <textarea class="form-control" name="description" value="" placeholder="Brief description" required>
+                                        <textarea class="form-control" name="description" value="" placeholder="Brief description" required></textarea>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" name="images" value="" placeholder="Image URIs (http://website.com/my-image.png or images/my_image.png)" required>
