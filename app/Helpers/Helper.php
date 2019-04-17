@@ -122,7 +122,9 @@ class Helper implements HelperContract
                                                       ]);
                                                       
                  $data['sku'] = $ret->sku;                         
-                $dealData = $this->createDealData($data);                                    
+                $dealData = $this->createDealData($data);
+                $images = explode(",",$data['images']); 
+                foreach($images as $i) $this->createDealImage(['sku' => $data['sku'], 'url' => $i]);
                 return $ret;
            }
            function createDealData($data)
@@ -204,6 +206,8 @@ class Helper implements HelperContract
                    {
                    	$temp = [];
                    	$temp['id'] = $d->id; 
+                       $temp['images'] = $this->getDealImages($d->sku);    
+                       $temp['data'] = $this->getDealData($d->sku);
                    	$temp['name'] = $d->name; 
                    	$temp['sku'] = $d->sku; 
                    	$temp['type'] = $d->type; 
@@ -286,15 +290,20 @@ class Helper implements HelperContract
            function getDeal($sku)
            {
            	$ret = [];
-               $dealData = DealData::where('sku',$sku)->first();
+               $d = Deals::where('sku',$sku)->first();
  
-              if($dealData != null)
+              if($d != null)
                {
-               	$ret['id'] = $dealData->id; 
-                   $ret['description'] = $dealData->description; 
-                   $ret['amount'] = $dealData->amount; 
-                   $ret['in_stock'] = $dealData->in_stock; 
-                   $ret['min_bid'] = $dealData->min_bid; 
+               	$dealData = DealData::where('sku',$d->sku)->first();
+               	$ret['id'] = $d->id; 
+               	$ret['images'] = $this->getDealImages($d->sku);               
+                   $ret['data'] = $this->getDealData($d->sku);               
+               	$ret['name'] = $d->name; 
+               	$ret['sku'] = $d->sku; 
+               	$ret['type'] = $d->type; 
+               	$ret['category'] = $d->category; 
+               	$ret['status'] = $d->status; 
+               	$ret['rating'] = $d->rating;
                }                                 
                                                       
                 return $ret;
@@ -462,22 +471,22 @@ class Helper implements HelperContract
           function adminGetDeals()
            {
            	$ret = [];
-               #$transactions = Transactions::all();
-               $deals = null; 
+           	$deals = Deals::where('id','>','0')->get();
  
               if($deals != null)
                {
-               	foreach($transactions as $t)
+               	foreach($deals as $d)
                    {
                    	$temp = [];
-                   	$temp['id'] = $t->id; 
-                       $deal = Deals::where('id',$t->deal_id)->first();
-                   	$temp['deal'] = ($deal == null) ? "" : $deal->name; 
-                       $temp['type'] = $t->type; 
-                       $temp['amount'] = $t->amount; 
+                   	$temp['id'] = $d->id; 
+                   	$temp['name'] = $d->name; 
+                   	$temp['sku'] = ; 
+                   	$temp['type'] = $d->type; 
+                   	$temp['data'] = $this->getDealData($d->sku); 
+                   	$temp['images'] = $this->getDealImages($d->sku);               
                        array_push($ret, $temp); 
                    }
-               }                          
+               }                                 
                                                       
                 return $ret;
            }
