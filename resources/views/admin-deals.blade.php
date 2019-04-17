@@ -40,8 +40,8 @@
                                         </thead>
                                         <tbody>
                                         	@if(count($deals)  > 0)
-                                              <tr>
                                                @foreach($deals as $d)
+                                                 <tr>                                           
                                                  <?php
                                                    $img = $d['images'][0];
                                                    $data = $d['data'];
@@ -66,8 +66,8 @@
                                                      ?>
                                                  	<a href="{{$au}}" class="btn {{$classs}}" role="button">{{$at}}</a>
                                                  </td>
+                                                 </tr>                                              
                                                @endforeach
-                                              </tr>
                                             @endif
                                         </tbody>
                        </table>

@@ -18,53 +18,40 @@
 </div>         
  <!-- Start Stats section -->
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="card p-30">
-                            <div class="media">
-                                <div class="media-left meida media-middle">
-                                    <span><span class="f-s-40 text-primary">&#8358;</span></span>
-                                </div>
-                                <div class="media-body media-text-right m-l-7">
-                                    <h2>568120</h2>
-                                    <p class="m-b-0">Total Revenue</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
                                     <span><i class="fa fa-shopping-cart f-s-40 text-success"></i></span>
                                 </div>
                                 <div class="media-body media-text-right m-l-7">
-                                    <h2>1178</h2>
+                                    <h2>{{$totalSales}}</h2>
                                     <p class="m-b-0">Sales</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
                                     <span><i class="fa fa-archive f-s-40 text-warning"></i></span>
                                 </div>
                                 <div class="media-body media-text-right m-l-7">
-                                    <h2>25</h2>
+                                    <h2>{{$totalDeals}}</h2>
                                     <p class="m-b-0">Deals</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
                                     <span><i class="fa fa-user f-s-40 text-danger"></i></span>
                                 </div>
                                 <div class="media-body media-text-right m-l-7">
-                                    <h2>87</h2>
+                                    <h2>{{$totalUsers}}</h2>
                                     <p class="m-b-0">Users</p>
                                 </div>
                             </div>
@@ -93,13 +80,13 @@
                                         </thead>
                                         <tbody>
                                         	@if(count($transactions)  > 0)
-                                              <tr>
                                                @foreach($transactions as $t)
+                                                 <tr>                                          
                                                  <td>{{$t['activity']}}</td>
                                                  <td>{{$t['amount']}}</td>
                                                  <td>{{$t['date']}}</td>
+                                                </tr>                                             
                                                @endforeach
-                                              </tr>
                                             @endif
                                         </tbody>
                        </table>
@@ -126,8 +113,8 @@
                                         </thead>
                                         <tbody>
                                         	@if(count($deals)  > 0)
-                                              <tr>
                                                @foreach($deals as $d)
+                                               <tr>                                               
                                                  <?php
                                                   $img = $d['images'][0];
                                                   $dd = $d['data'];
@@ -137,8 +124,8 @@
                                                  <td>{{$d['sku']}}</td>
                                                  <td>{{$dd['amount']}}</td>
                                                  <td>{{$d['type']}}</td>
+                                               </tr>                                                 
                                                @endforeach
-                                              </tr>
                                             @endif
                                         </tbody>
                        </table>
@@ -165,15 +152,15 @@
                                         </thead>
                                         <tbody>
                                         	@if(count($auctions)  > 0)
-                                              <tr>
                                                @foreach($auctions as $a)
+                                               <tr>                                               
                                                  <td>{{$a['image']}}</td> 
                                                  <td>{{$a['name']}}</td> 
                                                  <td>{{$a['amount']}}</td>
                                                  <td>{{$a['bids']}}</td>
                                                  <td>{{$a['ends']}}</td>
+                                               </tr>                                                
                                                @endforeach
-                                              </tr>
                                             @endif
                                         </tbody>
                        </table>

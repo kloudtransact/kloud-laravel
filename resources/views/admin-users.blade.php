@@ -41,8 +41,8 @@
                                         </thead>
                                         <tbody>
                                         	@if(count($users)  > 0)
-                                              <tr>
                                                @foreach($users as $u)
+                                                <tr>                                           
                                                  <td>{{$u['fname']." ".$u['lname']}}</td>
                                                  <td>{{$u['phone']}}</td>
                                                  <td>{{$u['email']}}</td>
@@ -71,8 +71,8 @@
                                                      ?>
                                                  	<a href="{{$au}}" class="btn {{$clax}}" role="button">{{$at}}</a>
                                                  </td>
+                                                 </tr>                                              
                                                @endforeach
-                                              </tr>
                                             @endif
                                         </tbody>
                        </table>
