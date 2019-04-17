@@ -480,7 +480,7 @@ class Helper implements HelperContract
                    	$temp = [];
                    	$temp['id'] = $d->id; 
                    	$temp['name'] = $d->name; 
-                   	$temp['sku'] = ; 
+                   	$temp['sku'] = $d->sku; 
                    	$temp['type'] = $d->type; 
                    	$temp['data'] = $this->getDealData($d->sku); 
                    	$temp['images'] = $this->getDealImages($d->sku);               
