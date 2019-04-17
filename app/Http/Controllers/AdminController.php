@@ -42,9 +42,10 @@ class AdminController extends Controller {
 		$transactions = $this->helpers->adminGetTransactions();
 		$deals = $this->helpers->adminGetDeals();
 		$auctions = $this->helpers->adminGetAuctions();
-		$totalUsers = User::all()->count();
-		$totalSales= 0;
-		$totalDeals = Deals::all()->count();
+		$adminStats = $this->helpers->adminGetStats();
+		$totalUsers = $adminStats['totalUsers'];
+		$totalSales= $adminStats['totalSales'];
+		$totalDeals = $adminStats['totalDeals'];
     	return view('admin-index',compact(['user','c','transactions','deals','auctions','totalSales','totalUsers','totalDeals']));
     }
 
