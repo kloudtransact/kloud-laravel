@@ -97,8 +97,8 @@
                                 <!-- Avaiable -->
                                 <?php
                                   $cl = "In Stock"; $ico = "fa-circle";
-                                  if($data['in_stock'] == "almost") $cl = "Almost Gone"; $ico = "fa-hourglass-half";
-                                  else if($data['in_stock'] == "no") $cl = "Out of Stock"; $ico = "fa-times-circle";
+                                  if($data['in_stock'] == "almost"){ $cl = "Almost Gone"; $ico = "fa-hourglass-half";}
+                                  else if($data['in_stock'] == "no"){ $cl = "Out of Stock"; $ico = "fa-times-circle";}
                                  ?>
                                 <p class="avaibility"><i class="fa {{$ico}}"></i> {{$cl}}</p>
                             </div>
