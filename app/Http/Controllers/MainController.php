@@ -138,12 +138,12 @@ class MainController extends Controller {
 		
 		if(isset($req['q']))
 		{
-			$topDeals = $this->helpers->getDeals("top",$req['q']);
+			$topDeals = $this->helpers->getDeals("deal",$req['q']);
 			$category = $this->helpers->categories[$req['q']];
 		} 
         else
         {
-        	$topDeals = $this->helpers->getDeals("top");
+        	$topDeals = $this->helpers->getDeals("deal");
         }     
 		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
@@ -168,12 +168,12 @@ class MainController extends Controller {
 		
 		if(isset($req['q']))
 		{
-			$deals = $this->helpers->getDeals("deals",$req['q']);
+			$deals = $this->helpers->getDeals("deal",$req['q']);
 			$category = $this->helpers->categories[$req['q']];
 		} 
         else
         {
-        	$deals = $this->helpers->getDeals("deals");
+        	$deals = $this->helpers->getDeals("deal");
         }     
 		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
@@ -241,9 +241,25 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 		}
-		#$deal = $this->helpers->getDeal($req['sku']);
-		$mainClass = "single-product-area section-padding-100 clearfix";
-        return view('deal',compact(['user','deal','mainClass']));
+		
+		$validator = Validator::make($req, [
+                             'sku' => 'required',
+         ]);
+         
+         if($validator->fails())
+         {
+             #$messages = $validator->messages();
+             return redirect()->intended('deals');
+         }
+         
+         else
+         {
+         	$deal = $this->helpers->getDeal($req['sku']);
+             $category = $this->helpers->categories[$deal['category']];
+		     $mainClass = "single-product-area section-padding-100 clearfix";
+             return view('deal',compact(['user','category','deal','mainClass']));
+         }        
+		
     }
 
 	/**

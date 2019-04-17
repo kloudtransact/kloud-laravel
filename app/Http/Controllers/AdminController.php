@@ -116,6 +116,7 @@ class AdminController extends Controller {
 		$auctions = $this->helpers->adminGetAuctions();
     	return view('admin-auctions',compact(['user','c','auctions']));
     }
+    
 
 /**
 	 * Show the application welcome screen to the user.
@@ -141,32 +142,57 @@ class AdminController extends Controller {
     	return view('admin-transactions',compact(['user','c','transactions']));
     }
 
-	
     /**
 	 * Show the application welcome screen to the user.
 	 *
 	 * @return Response
 	 */
-    public function postAddAccount(Request $request)
+	public function getAddDeal()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+    	return view('admin-add-deal',compact(['user','c']));
+    }
+
+
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postAddDeal(Request $request)
     {
     	if(Auth::check())
 		{
 			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
 		}
 		else
         {
-        	return redirect()->intended('/');
+        	return redirect()->intended('login?return=dashboard');
         }
+        
         $req = $request->all();
         //dd($req);
         
         $validator = Validator::make($req, [
-                             'initial_balance' => 'required',
-                             'account_number' => 'required',
-                             'last_deposit_name' => 'required',
-                             'last_deposit' => 'required',
-                             'balance' => 'required',
-                             'address' => 'required'
+                             'name' => 'required',
+                             'type' => 'required',
+                             'category' => 'required',
+                             'description' => 'required',
+                             'amount' => 'required|numeric',
+                             'images' => 'required'
          ]);
          
          if($validator->fails())
@@ -178,10 +204,10 @@ class AdminController extends Controller {
          
          else
          {
-         	$req["user_id"] = $user->id; 
-             $this->helpers->createBankAccount($req);
-	        Session::flash("add-account-status","ok");
-			return redirect()->intended('dashboard');
+         	#$req["user_id"] = $user->id; 
+             $this->helpers->createDeal($req);
+	        Session::flash("add-deal-status","ok");
+			return redirect()->intended('cobra-add-deal');
          }        
     }
 
