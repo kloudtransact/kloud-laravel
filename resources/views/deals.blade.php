@@ -52,7 +52,7 @@
                             </div>
                         </div>
                     </div>              
-                    @endfor
+                    @endforeach
                   @else
                   <p class="text-primary">No deals at the moment. Check back later? </p>
                   @endif

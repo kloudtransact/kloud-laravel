@@ -34,6 +34,7 @@
                                 <div class="product-meta-data">
                                     <div class="line"></div>
                                     <p class="product-price">&#8358;{{$data['amount']}}</p>
+                                    
                                     <a href="{{url('deal').'?sku='.$d['sku']}}">
                                         <h6>{{$d['name']}}</h6>
                                     </a>
@@ -52,7 +53,7 @@
                             </div>
                         </div>
                     </div>              
-                    @endfor
+                    @endforeach
                   @else
                   <p class="text-primary">No deals at the moment. Check back later? </p>
                   @endif
