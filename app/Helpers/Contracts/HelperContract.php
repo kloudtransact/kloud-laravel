@@ -27,5 +27,6 @@ Interface HelperContract
         public function adminGetUsers();
         public function adminGetDeals();
         public function adminGetAuctions();
+        public function adminGetStats();
 }
  ?>
