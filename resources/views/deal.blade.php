@@ -45,7 +45,7 @@
                                       @for($a = 0; $a < count($images); $a++)
                                        <?php
                                          $image = $images[$a];
-                                         $active = ($a == 0) ? "class='active'" : "";
+                                         $active = ($a == 0) ? "active" : "";
                                        ?>
                                     <div class="carousel-item {{$active}}">
                                         <a class="gallery_img" href="{{$image['url']}}">
