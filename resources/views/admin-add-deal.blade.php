@@ -28,8 +28,9 @@
                                     <div class="col-md-6 mb-3">
                                         <select class="form-control" name="category" value="none" required>
                                         	<option value="none">Select deal category</option>
-                                            <option value="deal">Deal</option>
-                                            <option value="bundle">Bundle products</option>
+                                            @foreach($c as $key => $value)
+                                            <option value="{{$key}}">{{$value}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-6 mb-3">
