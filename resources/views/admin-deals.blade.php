@@ -43,10 +43,10 @@
                                               <tr>
                                                @foreach($deals as $d)
                                                  <?php
-                                                   $images = $d['images'];
+                                                   $img = $d['images'][0];
                                                    $data = $d['data'];
                                                  ?>
-                                                 <td>{{$images[0]['url']}}</td>
+                                                 <td><img class="img img-responsive" src="{{$img['url']}}"></td>
                                                  <td>{{$d['name']}}</td>
                                                  <td>{{$d['sku']}}</td>
                                                  <td>{{$data['amount']}}</td>
