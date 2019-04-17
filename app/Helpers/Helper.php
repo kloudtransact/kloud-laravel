@@ -491,7 +491,7 @@ class Helper implements HelperContract
                 return $ret;
            }
 
-     function adminGetAuctions()
+           function adminGetAuctions()
            {
            	$ret = [];
                #$transactions = Transactions::all();
@@ -510,6 +510,15 @@ class Helper implements HelperContract
                    }
                }                          
                                                       
+                return $ret;
+           }		
+
+        function adminGetStats()
+           {
+           	$ret = ['totalUsers' => User::all()->count(),
+                         'totalSales' => 0,
+                         'totalDeals' => Deals::all()->count(),
+                        ];                                                                                 
                 return $ret;
            }			  			  			  	   
            
