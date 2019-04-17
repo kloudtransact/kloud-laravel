@@ -15,6 +15,8 @@
                          $images = $d['images'];
                          shuffle($images);
                          $data = $d['data'];
+                         $dealURL = url("deal")."?sku=".$deal['sku'];
+                         $cartURL = url("cart")."?sku=".$deal['sku']."&qty=1";
                       ?>
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
@@ -34,19 +36,19 @@
                                 <div class="product-meta-data">
                                     <div class="line"></div>
                                     <p class="product-price">&#8358;{{$data['amount']}}</p>
-                                    <a href="{{url('deal').'?sku='.$d['sku']}}">
+                                    <a href="{{$dealURL}}">
                                         <h6>{{$d['name']}}</h6>
                                     </a>
                                 </div>
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
                                     <div class="ratings">
-                                    	@for($s = 0; $s < $d['rating']; $s++]
+                                    	@for($s = 0; $s < $d['rating']; $s++])
                                           <i class="fa fa-star" aria-hidden="true"></i>
                                         @endfor
                                     </div>
                                     <div class="cart">
-                                        <a href="{{url('cart').'?sku='.$d['sku']}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                        <a href="{{$cartURL}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                     </div>
                                 </div>
                             </div>
