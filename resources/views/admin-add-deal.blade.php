@@ -7,10 +7,10 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="checkout_details_area mt-50 clearfix">
-                        	   <div class="card bg-dark text-white">
+                        	   <div class="card">
                         	     <div class="card-body">
-                        	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Create an account</h1>
-                        	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Create an account and start BIDDING</h3>
+                        	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Add Deal</h1>
+                        	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Add a new deal to the platform</h3>
                         
                                    <form action="{{url('cobra-add-deal')}}" method="post" class="text-white mb-50">
                                    	{!!csrf_field()!!}
@@ -19,14 +19,14 @@
                                         <input type="text" class="form-control" name="name" value="" placeholder="Deal name" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <select class="form-control" name="type" required>
+                                        <select class="form-control" name="type" value="none" required>
                                         	<option value="none">Select deal type</option>
                                             <option value="deal">Deal</option>
                                             <option value="bundle">Bundle products</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <select class="form-control" name="category" required>
+                                        <select class="form-control" name="category" value="none" required>
                                         	<option value="none">Select deal category</option>
                                             <option value="deal">Deal</option>
                                             <option value="bundle">Bundle products</option>
