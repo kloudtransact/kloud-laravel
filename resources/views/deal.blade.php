@@ -9,9 +9,9 @@
                     <div class="col-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mt-50">
-                                <li class="breadcrumb-item"><a href="#">Deals</a></li>
-                                <li class="breadcrumb-item"><a href="#">Home & Office</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">white modern chair</li>
+                                <li class="breadcrumb-item"><a href="{{url('deals')}}">Deals</a></li>
+                                <li class="breadcrumb-item"><a href="{{url('deals').'?q='.$deal['category']}}">{{$category}}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{$deal['name']}}</li>
                             </ol>
                         </nav>
                     </div>

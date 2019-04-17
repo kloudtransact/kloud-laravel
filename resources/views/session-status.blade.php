@@ -2,6 +2,7 @@
    $payload = ["login-status" => "There was a problem signing in, please contact support.",
                      "register-status" => "Welcome to KloudTransact! You can now log in to your account.",
                      "reset-status" => "An email has been sent to your address, click the link to reset your password",
+                     "add-deal-status" => "Deal added!",
                    ];
    $class = "alert-warning";              
    if($val == "error") $class = "alert-danger";         

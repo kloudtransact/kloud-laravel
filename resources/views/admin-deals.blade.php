@@ -42,10 +42,14 @@
                                         	@if(count($deals)  > 0)
                                               <tr>
                                                @foreach($deals as $d)
-                                                 <td>{{$d['image']}}</td>
+                                                 <?php
+                                                   $images = $d['images'];
+                                                   $data = $d['data'];
+                                                 ?>
+                                                 <td>{{$images[0]['url']}}</td>
                                                  <td>{{$d['name']}}</td>
                                                  <td>{{$d['sku']}}</td>
-                                                 <td>{{$d['amount']}}</td>
+                                                 <td>{{$data['amount']}}</td>
                                                  <td>{{$d['type']}}</td>
                                                  <td>
                                                  	<?php
