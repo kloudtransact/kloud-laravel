@@ -207,7 +207,7 @@ class AdminController extends Controller {
          	#$req["user_id"] = $user->id; 
              $this->helpers->createDeal($req);
 	        Session::flash("add-deal-status","ok");
-			return redirect()->intended('cobra-add-deal');
+			return redirect()->intended('cobra-deals');
          }        
     }
 
