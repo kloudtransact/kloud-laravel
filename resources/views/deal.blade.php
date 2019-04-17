@@ -47,7 +47,7 @@
                                          $image = $images[$a];
                                          $active = ($a == 0) ? "class='active'" : "";
                                        ?>
-                                    <div class="carousel-item active">
+                                    <div class="carousel-item {{$active}}">
                                         <a class="gallery_img" href="{{$image['url']}}">
                                             <img class="d-block w-100" src="{{$image['url']}}" alt="Slide {{$a + 1}}">
                                         </a>
