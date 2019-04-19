@@ -33,8 +33,12 @@ class MainController extends Controller {
 			$user = Auth::user();		
 		}
 		$c = $this->helpers->categories;
+		$hd = $this->helpers->getHottestDeals();
+		$na = $this->helpers->getNewArrivals();
+		$bs = $this->helpers->getBestSellers();
+		$hc = $this->helpers->getHotCategories();
 		
-    	return view('index',compact(['user','c']));
+    	return view('index',compact(['user','c','hd','na','bs','hc']));
     }
 
 	/**
