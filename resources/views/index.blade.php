@@ -79,16 +79,30 @@
         <h2 class="category-header">Hottest Deals</h2>
         <!-- Product Catagories Area 1 Start -->
             <div class="row">
-            @for($i = 0; $i < 6; $i++)
+            @if(isset($hd) && count($hd) > 0)
+            <?php
+              shuffle($hd);
+              $cc = count($hd);
+              if($cc > 6) $cc = 6;
+            ?>
+            @for($i = 0; $i < $cc; $i++)
+            <?php
+              $d = $hd[$i];
+              $images = $d['images'];
+                         shuffle($images);
+                         $data = $d['data'];
+                         $dealURL = url("deal")."?sku=".$d['sku'];
+                         $cartURL = url("cart")."?sku=".$d['sku']."&qty=1";
+            ?>
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
                             	<center>
-                                <img src="img/product-img/product1.jpg" alt="">
+                                <img src="{{$images[0]['url']}}" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                                <img src="{{$images[1]['url']}}" alt="">
                                 </center>
                             </div>
 
@@ -97,28 +111,27 @@
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
                                     <div class="line"></div>
-                                    <p class="product-price">&#8358;70,000</p>
-                                    <a href="{{url('deal')}}">
-                                        <h6>Modern Chair</h6>
+                                    <p class="product-price">&#8358;{{$data['amount']}}</p>
+                                    <a href="{{$dealURL}}">
+                                        <h6>{{$d['name']}}</h6>
                                     </a>
                                 </div>
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
                                     <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        @for($s = 0; $s < $d['rating']; $s++)
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                        @endfor
                                     </div>
                                     <div class="cart">
-                                        <a href="{{url('cart')}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                        <a href="{{$cartURL}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>              
                     @endfor
+                    @endif
             </div>
         <!-- Product Catagories Area 1 End -->
        <br>
@@ -129,16 +142,30 @@
 	   <h2 class="category-header">New Arrivals</h2>
 		<!-- Product Catagories Area 2 Start -->
             <div class="row">
-            @for($i = 0; $i < 6; $i++)
+            @if(isset($na) && count($na) > 0)
+            <?php
+              shuffle($na);
+              $cc = count($na);
+              if($cc > 6) $cc = 6;
+            ?>
+            @for($i = 0; $i < $cc; $i++)
+            <?php
+              $d = $na[$i];
+              $images = $d['images'];
+                         shuffle($images);
+                         $data = $d['data'];
+                         $dealURL = url("deal")."?sku=".$d['sku'];
+                         $cartURL = url("cart")."?sku=".$d['sku']."&qty=1";
+            ?>
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
                             	<center>
-                                <img src="img/product-img/product1.jpg" alt="">
+                                <img src="{{$images[0]['url']}}" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                                <img src="{{$images[1]['url']}}" alt="">
                                 </center>
                             </div>
 
@@ -147,28 +174,27 @@
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
                                     <div class="line"></div>
-                                    <p class="product-price">&#8358;70,000</p>
-                                    <a href="{{url('deal')}}">
-                                        <h6>Modern Chair</h6>
+                                    <p class="product-price">&#8358;{{$data['amount']}}</p>
+                                    <a href="{{$dealURL}}">
+                                        <h6>{{$d['name']}}</h6>
                                     </a>
                                 </div>
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
                                     <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        @for($s = 0; $s < $d['rating']; $s++)
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                        @endfor
                                     </div>
                                     <div class="cart">
-                                        <a href="{{url('cart')}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                        <a href="{{$cartURL}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>              
                     @endfor
+                    @endif
             </div>
         <!-- Product Catagories Area 2 End -->
 		<br>
@@ -178,16 +204,30 @@
 	   <h2 class="category-header">Best Sellers</h2>
 		<!-- Product Catagories Area 5 Start -->
             <div class="row">
-            @for($i = 0; $i < 6; $i++)
+            @if(isset($bs) && count($bs) > 0)
+            <?php
+              shuffle($bs);
+              $cc = count($bs);
+              if($cc > 6) $cc = 6;
+            ?>
+            @for($i = 0; $i < $cc; $i++)
+            <?php
+              $d = $bs[$i];
+              $images = $d['images'];
+                         shuffle($images);
+                         $data = $d['data'];
+                         $dealURL = url("deal")."?sku=".$d['sku'];
+                         $cartURL = url("cart")."?sku=".$d['sku']."&qty=1";
+            ?>
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
                             	<center>
-                                <img src="img/product-img/product1.jpg" alt="">
+                                <img src="{{$images[0]['url']}}" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                                <img src="{{$images[1]['url']}}" alt="">
                                 </center>
                             </div>
 
@@ -196,28 +236,27 @@
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
                                     <div class="line"></div>
-                                    <p class="product-price">&#8358;70,000</p>
-                                    <a href="{{url('deal')}}">
-                                        <h6>Modern Chair</h6>
+                                    <p class="product-price">&#8358;{{$data['amount']}}</p>
+                                    <a href="{{$dealURL}}">
+                                        <h6>{{$d['name']}}</h6>
                                     </a>
                                 </div>
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
                                     <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        @for($s = 0; $s < $d['rating']; $s++)
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                        @endfor
                                     </div>
                                     <div class="cart">
-                                        <a href="{{url('cart')}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                        <a href="{{$cartURL}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>              
                     @endfor
+                    @endif
             </div>
         <!-- Product Catagories Area 5 End -->
 		<br>
@@ -227,16 +266,30 @@
 	   <h2 class="category-header">Hot Categories</h2>
 		<!-- Product Catagories Area 6 Start -->
             <div class="row">
-            @for($i = 0; $i < 6; $i++)
+            @if(isset($hc) && count($hc) > 0)
+            <?php
+              shuffle($hc);
+              $cc = count($hc);
+              if($cc > 6) $cc = 6;
+            ?>
+            @for($i = 0; $i < $cc; $i++)
+            <?php
+              $d = $hc[$i];
+              $images = $d['images'];
+                         shuffle($images);
+                         $data = $d['data'];
+                         $dealURL = url("deal")."?sku=".$d['sku'];
+                         $cartURL = url("cart")."?sku=".$d['sku']."&qty=1";
+            ?>
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
                             	<center>
-                                <img src="img/product-img/product1.jpg" alt="">
+                                <img src="{{$images[0]['url']}}" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/product2.jpg" alt="">
+                                <img src="{{$images[1]['url']}}" alt="">
                                 </center>
                             </div>
 
@@ -245,28 +298,27 @@
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
                                     <div class="line"></div>
-                                    <p class="product-price">&#8358;70,000</p>
-                                    <a href="{{url('deal')}}">
-                                        <h6>Modern Chair</h6>
+                                    <p class="product-price">&#8358;{{$data['amount']}}</p>
+                                    <a href="{{$dealURL}}">
+                                        <h6>{{$d['name']}}</h6>
                                     </a>
                                 </div>
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
                                     <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        @for($s = 0; $s < $d['rating']; $s++)
+                                          <i class="fa fa-star" aria-hidden="true"></i>
+                                        @endfor
                                     </div>
                                     <div class="cart">
-                                        <a href="{{url('cart')}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                        <a href="{{$cartURL}}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>              
                     @endfor
+                    @endif
             </div>
         <!-- Product Catagories Area 6 End -->
         <br>
