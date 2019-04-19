@@ -524,22 +524,22 @@ class Helper implements HelperContract
 
            function getHottestDeals()
            {
-           	$ret = $this->getDeals();                                                                                 
+           	$ret = $this->getDeals("deal");                                                                                 
                 return $ret;
            }		
            function getNewArrivals()
            {
-           	$ret = $this->getDeals();                                                                                 
+           	$ret = $this->getDeals("deal");                                                                                 
                 return $ret;
            }		
            function getBestSellers()
            {
-           	$ret = $this->getDeals();                                                                                  
+           	$ret = $this->getDeals("deal");                                                                                  
                 return $ret;
            }		
            function getHotCategories()
            {
-           	$ret = $this->getDeals();                                                                                  
+           	$ret = $this->getDeals("deal");                                                                                  
                 return $ret;
            }		  			  	   
            
