@@ -28,5 +28,9 @@ Interface HelperContract
         public function adminGetDeals();
         public function adminGetAuctions();
         public function adminGetStats();
+        public function getHottestDeals();
+        public function getNewArrivals();
+        public function getBestSellers();
+        public function getHotCategories();
 }
  ?>
