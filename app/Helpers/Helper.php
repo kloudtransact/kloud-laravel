@@ -520,7 +520,28 @@ class Helper implements HelperContract
                          'totalDeals' => Deals::all()->count(),
                         ];                                                                                 
                 return $ret;
-           }			  			  			  	   
+           }			  
+
+           function getHottestDeals()
+           {
+           	$ret = $this->getDeals();                                                                                 
+                return $ret;
+           }		
+           function getNewArrivals()
+           {
+           	$ret = $this->getDeals();                                                                                 
+                return $ret;
+           }		
+           function getBestSellers()
+           {
+           	$ret = $this->getDeals();                                                                                  
+                return $ret;
+           }		
+           function getHotCategories()
+           {
+           	$ret = $this->getDeals();                                                                                  
+                return $ret;
+           }		  			  	   
            
 }
 ?>
