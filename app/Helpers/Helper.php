@@ -122,7 +122,9 @@ class Helper implements HelperContract
                                                       ]);
                                                       
                  $data['sku'] = $ret->sku;                         
-                $dealData = $this->createDealData($data);                                    
+                $dealData = $this->createDealData($data);
+                $images = explode(",",$data['images']); 
+                foreach($images as $i) $this->createDealImage(['sku' => $data['sku'], 'url' => $i]);
                 return $ret;
            }
            function createDealData($data)
@@ -204,6 +206,8 @@ class Helper implements HelperContract
                    {
                    	$temp = [];
                    	$temp['id'] = $d->id; 
+                       $temp['images'] = $this->getDealImages($d->sku);    
+                       $temp['data'] = $this->getDealData($d->sku);
                    	$temp['name'] = $d->name; 
                    	$temp['sku'] = $d->sku; 
                    	$temp['type'] = $d->type; 
@@ -286,15 +290,20 @@ class Helper implements HelperContract
            function getDeal($sku)
            {
            	$ret = [];
-               $dealData = DealData::where('sku',$sku)->first();
+               $d = Deals::where('sku',$sku)->first();
  
-              if($dealData != null)
+              if($d != null)
                {
-               	$ret['id'] = $dealData->id; 
-                   $ret['description'] = $dealData->description; 
-                   $ret['amount'] = $dealData->amount; 
-                   $ret['in_stock'] = $dealData->in_stock; 
-                   $ret['min_bid'] = $dealData->min_bid; 
+               	$dealData = DealData::where('sku',$d->sku)->first();
+               	$ret['id'] = $d->id; 
+               	$ret['images'] = $this->getDealImages($d->sku);               
+                   $ret['data'] = $this->getDealData($d->sku);               
+               	$ret['name'] = $d->name; 
+               	$ret['sku'] = $d->sku; 
+               	$ret['type'] = $d->type; 
+               	$ret['category'] = $d->category; 
+               	$ret['status'] = $d->status; 
+               	$ret['rating'] = $d->rating;
                }                                 
                                                       
                 return $ret;
@@ -349,6 +358,45 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }		
+           
+           function adminGetTransactions()
+           {
+           	$ret = [];
+               $transactions = Transactions::all();
+ 
+              if($transactions != null)
+               {
+               	foreach($transactions as $t)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $t->id; 
+                       $temp['type'] = $t->type; 
+                       
+                       $deal = Deals::where('id',$t->deal_id)->first();
+                   	$temp['deal'] = ($deal == null) ? "" : $deal->sku;
+ 
+                       $u = User::where('id',$t->user_id)->first();
+                       $temp['user'] = ($u == null) ? "" : $u->fname." ".$u->lname; 
+                       $activity = "";
+                       
+                       if($temp['type'] == "sale")
+                       {
+                       	$activity = $temp['user']." purchased a deal (SKU: ".$deal->sku.")";
+                       }
+                       else if($temp['type'] == "refund")
+                       {
+                       	$activity = $temp['user']." received a refund";
+                       }                                          	
+                       
+                       $temp['activity'] = $activity; 
+                       $temp['amount'] = $t->amount; 
+                       $temp['date'] = $t->created_at->format("jS F, Y"); 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }		
 
            function getAuctions($category,$q="")
            {
@@ -391,7 +439,109 @@ class Helper implements HelperContract
                }                                 
                                                       
                 return $ret;
-           }			  	   
+           }		
+
+          function adminGetUsers()
+           {
+           	$ret = [];
+               $users = User::where('id','>',2)->get();
+ 
+              if($users != null)
+               {
+               	foreach($users as $u)
+                   {
+                   	$temp = [];
+                   	$temp['fname'] = $u->fname; 
+                       $temp['lname'] = $u->lname; 
+                       $wallet = Wallet::where('user_id',$u->id)->first();
+                   	$temp['balance'] = ($wallet == null) ? "NA" : $wallet->balance; 
+                       $temp['phone'] = $u->phone; 
+                       $temp['email'] = $u->email; 
+                       $temp['role'] = $u->role; 
+                       $temp['status'] = $u->status; 
+                       $temp['id'] = $u->id; 
+                       $temp['date'] = $u->created_at->format("jS F, Y"); 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }
+
+          function adminGetDeals()
+           {
+           	$ret = [];
+           	$deals = Deals::where('id','>','0')->get();
+ 
+              if($deals != null)
+               {
+               	foreach($deals as $d)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $d->id; 
+                   	$temp['name'] = $d->name; 
+                   	$temp['sku'] = $d->sku; 
+                   	$temp['type'] = $d->type; 
+                   	$temp['data'] = $this->getDealData($d->sku); 
+                   	$temp['images'] = $this->getDealImages($d->sku);               
+                       array_push($ret, $temp); 
+                   }
+               }                                 
+                                                      
+                return $ret;
+           }
+
+           function adminGetAuctions()
+           {
+           	$ret = [];
+               #$transactions = Transactions::all();
+               $auctions = null; 
+              if($auctions != null)
+               {
+               	foreach($transactions as $t)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $t->id; 
+                       $deal = Deals::where('id',$t->deal_id)->first();
+                   	$temp['deal'] = ($deal == null) ? "" : $deal->name; 
+                       $temp['type'] = $t->type; 
+                       $temp['amount'] = $t->amount; 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }		
+
+        function adminGetStats()
+           {
+           	$ret = ['totalUsers' => User::all()->count(),
+                         'totalSales' => 0,
+                         'totalDeals' => Deals::all()->count(),
+                        ];                                                                                 
+                return $ret;
+           }			  
+
+           function getHottestDeals()
+           {
+           	$ret = $this->getDeals("deal");                                                                                 
+                return $ret;
+           }		
+           function getNewArrivals()
+           {
+           	$ret = $this->getDeals("deal");                                                                                 
+                return $ret;
+           }		
+           function getBestSellers()
+           {
+           	$ret = $this->getDeals("deal");                                                                                  
+                return $ret;
+           }		
+           function getHotCategories()
+           {
+           	$ret = $this->getDeals("deal");                                                                                  
+                return $ret;
+           }		  			  	   
            
 }
 ?>

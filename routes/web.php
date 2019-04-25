@@ -42,5 +42,16 @@ Route::get('logout', 'LoginController@getLogout');
 
 /***** Admin routes *****/
 Route::get('cobra', 'AdminController@getIndex');
+Route::get('cobra-users', 'AdminController@getUsers');
+Route::get('cobra-activate-user', 'AdminController@getActivateUser');
+Route::get('cobra-suspend-user', 'AdminController@getSuspendUser');
+Route::get('cobra-deals', 'AdminController@getDeals');
+Route::get('cobra-auctions', 'AdminController@getAuctions');
+Route::get('cobra-transactions', 'AdminController@getTransactions');
+Route::get('cobra-add-deal', 'AdminController@getAddDeal');
+Route::post('cobra-add-deal', 'AdminController@postAddDeal');
+Route::get('cobra-add-auction', 'AdminController@getAddAuction');
+Route::post('cobra-add-auction', 'AdminController@postAddAuction');
+Route::get('cobra-end-auction', 'AdminController@getEndAuction');
 
 Route::get('zohoverify/{url}', 'MainController@getZoho');

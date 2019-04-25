@@ -147,6 +147,10 @@
                {
                	$pop = "reset-status"; $val = Session::get("reset-status");
                }
+               if(Session::has("add-deal-status"))
+               {
+               	$pop = "add-deal-status"; $val = Session::get("add-deal-status");
+               }
              ?> 
 
                  @if($pop != "" && $val != "")

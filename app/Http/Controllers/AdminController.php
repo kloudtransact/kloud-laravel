@@ -39,8 +39,14 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
-		
-    	return view('admin-index',compact(['user','c']));
+		$transactions = $this->helpers->adminGetTransactions();
+		$deals = $this->helpers->adminGetDeals();
+		$auctions = $this->helpers->adminGetAuctions();
+		$adminStats = $this->helpers->adminGetStats();
+		$totalUsers = $adminStats['totalUsers'];
+		$totalSales= $adminStats['totalSales'];
+		$totalDeals = $adminStats['totalDeals'];
+    	return view('admin-index',compact(['user','c','transactions','deals','auctions','totalSales','totalUsers','totalDeals']));
     }
 
 	/**
@@ -48,380 +54,149 @@ class AdminController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getAbout()
+	public function getUsers()
     {
-               $user = null;
+       $user = null;
 		
 		if(Auth::check())
 		{
 			$user = Auth::user();
-		}
-		$c = $this->helpers->categories;
-    	return view('about',compact(['user','c']));
-		//return redirect()->intended('/');
-    }	
-
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getBundle(Request $request)
-    {
-               $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-		
-		$req = $request->all();
-		$category = "";
-		$bundleProducts = [];
-		if(isset($req['q']))
-		{
-			$bundleProducts = $this->helpers->getDeals("bundle",$req['q']);
-			$category = $this->helpers->categories[$req['q']];
-		} 
-        else
-        {
-        	$bundleProducts = $this->helpers->getDeals("bundle");
-        }     
-		$c = $this->helpers->categories;
-		$mainClass = "amado_product_area section-padding-100 clearfix";
-		
-    	return view('bundle',compact(['user','bundleProducts','category','c','mainClass']));
-    }
-
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getAuction(Request $request)
-    {
-               $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-		
-		$req = $request->all();
-		$category = "";
-		$auction = [];
-		if(isset($req['q']))
-		{
-			$auction = $this->helpers->getDeals("auction",$req['q']);
-			$category = $this->helpers->categories[$req['q']];
-		} 
-        else
-        {
-        	$auction = $this->helpers->getDeals("auction");
-        }     
-		$c = $this->helpers->categories;
-		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('auction',compact(['user','auction','category','c','mainClass']));
-    }
-
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getTopDeals(Request $request)
-    {
-               $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-		
-		$req = $request->all();
-		$category = "";
-		$topDeals = [];
-		
-		if(isset($req['q']))
-		{
-			$topDeals = $this->helpers->getDeals("top",$req['q']);
-			$category = $this->helpers->categories[$req['q']];
-		} 
-        else
-        {
-        	$topDeals = $this->helpers->getDeals("top");
-        }     
-		$c = $this->helpers->categories;
-		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('top-deals',compact(['user','category','topDeals','c','mainClass']));
-    }	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getDeals(Request $request)
-    {
-               $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-		
-		$req = $request->all();
-		$category = "";
-		$deals = [];
-		
-		if(isset($req['q']))
-		{
-			$deals = $this->helpers->getDeals("deals",$req['q']);
-			$category = $this->helpers->categories[$req['q']];
-		} 
-        else
-        {
-        	$deals = $this->helpers->getDeals("deals");
-        }     
-		$c = $this->helpers->categories;
-		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('deals',compact(['user','category','deals','c','mainClass']));
-    }	
-	
-
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getCart()
-    {
-		       $user = null;
-		       $cart = [];
-		if(Auth::check())
-		{
-			$user = Auth::user();
-			#$cart = $this->helpers->getCart($user);
-		}
-		else
-        {    
-        	return redirect()->intended('login?return=cart');
-        }
-		$mainClass = "cart-table-area section-padding-100";
-        return view('cart',compact(['user','cart','mainClass']));
-    }
-
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getCheckout()
-    {
-		       $user = null;
-		       $cart = [];
-		if(Auth::check())
-		{
-			$user = Auth::user();
-			#$cart = $this->helpers->getCart($user);
-		}
-		else
-        {
-        	return redirect()->intended('login?return=checkout');
-        }
-        
-		$mainClass = "cart-table-area section-padding-100";
-        return view('checkout',compact(['user','cart','mainClass']));
-    }
-
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getDeal(Request $request)
-    {
-		       $user = null;
-		       $deal = [];
-		       $req = $request->all();
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-		#$deal = $this->helpers->getDeal($req['sku']);
-		$mainClass = "single-product-area section-padding-100 clearfix";
-        return view('deal',compact(['user','deal','mainClass']));
-    }
-
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getAirtime()
-    {
-		       $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-        return view('airtime',compact(['user']));
-    }	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getHotels()
-    {
-		       $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-        return view('hotels',compact(['user']));
-    }	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getTravelStart()
-    {
-		       $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-        return view('travelstart',compact(['user']));
-    }	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getKloudPay()
-    {
-		       $user = null;
-		       $wallet = [];
-		if(Auth::check())
-		{
-			$user = Auth::user();
-			#$wallet = $this->helpers->getWallet($user);
-		}
-		else
-        {
-        	return redirect()->intended('login?return=kloudpay');
-        }
-        return view('kloudpay',compact(['user','wallet']));
-    }
-
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getEnterprise()
-    {
-		       $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-		$mainClass = "cart-table-area section-padding-100";
-        return view('enterprise',compact(['user','mainClass']));
-    }
-
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getFAQ()
-    {
-		       $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-		}
-        return view('faq',compact(['user']));
-    }
-    
-    /**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getDashboard()
-    {
-		       $user = null;
-		       $dashboard = [];
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-			//$dashboard = $this->helpers->getDashboard($user);
+            if($user->role != "admin") return redirect()->intended('dashboard');		
 		}
 		else
         {
         	return redirect()->intended('login?return=dashboard');
         }
-		
-		
-        return view('dashboard',compact(['user','dashboard']));
-    }
-    
+        
+		$c = $this->helpers->categories;
+		$users = $this->helpers->adminGetUsers();
+    	return view('admin-users',compact(['users','user','c']));
+    }	
     
     /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getDeals()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$deals = $this->helpers->adminGetDeals();
+    	return view('admin-deals',compact(['user','c','deals']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getAuctions()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$auctions = $this->helpers->adminGetAuctions();
+    	return view('admin-auctions',compact(['user','c','auctions']));
+    }
+    
+
+/**
 	 * Show the application welcome screen to the user.
 	 *
 	 * @return Response
 	 */
 	public function getTransactions()
     {
-		       $user = null;
-		       $transactions = [];
+       $user = null;
 		
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			//$transactions = $this->helpers->getTransactions($user);
+            if($user->role != "admin") return redirect()->intended('dashboard');		
 		}
 		else
         {
-        	return redirect()->intended('login?return=transactions');
+        	return redirect()->intended('login?return=dashboard');
         }
-		
-        return view('transactions',compact(['user']));
+        
+		$c = $this->helpers->categories;
+		$transactions = $this->helpers->adminGetTransactions();
+    	return view('admin-transactions',compact(['user','c','transactions']));
     }
-    
-    
+
     /**
 	 * Show the application welcome screen to the user.
 	 *
 	 * @return Response
 	 */
-    public function postAddAccount(Request $request)
+	public function getAddDeal()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+    	return view('admin-add-deal',compact(['user','c']));
+    }
+
+
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postAddDeal(Request $request)
     {
     	if(Auth::check())
 		{
 			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
 		}
 		else
         {
-        	return redirect()->intended('/');
+        	return redirect()->intended('login?return=dashboard');
         }
+        
         $req = $request->all();
         //dd($req);
         
         $validator = Validator::make($req, [
-                             'initial_balance' => 'required',
-                             'account_number' => 'required',
-                             'last_deposit_name' => 'required',
-                             'last_deposit' => 'required',
-                             'balance' => 'required',
-                             'address' => 'required'
+                             'name' => 'required',
+                             'type' => 'required',
+                             'category' => 'required',
+                             'description' => 'required',
+                             'amount' => 'required|numeric',
+                             'images' => 'required'
          ]);
          
          if($validator->fails())
@@ -433,23 +208,11 @@ class AdminController extends Controller {
          
          else
          {
-         	$req["user_id"] = $user->id; 
-             $this->helpers->createBankAccount($req);
-	        Session::flash("add-account-status","ok");
-			return redirect()->intended('dashboard');
+         	#$req["user_id"] = $user->id; 
+             $this->helpers->createDeal($req);
+	        Session::flash("add-deal-status","ok");
+			return redirect()->intended('cobra-deals');
          }        
     }
-	
-    /**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getZoho()
-    {
-        $ret = "1535561942737";
-    	return $ret;
-    }
-
 
 }

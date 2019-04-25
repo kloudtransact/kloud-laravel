@@ -23,5 +23,14 @@ Interface HelperContract
         public function getAuction($dealID);
         public function createTransaction($data);
         public function createAuction($data);
+        public function adminGetTransactions();
+        public function adminGetUsers();
+        public function adminGetDeals();
+        public function adminGetAuctions();
+        public function adminGetStats();
+        public function getHottestDeals();
+        public function getNewArrivals();
+        public function getBestSellers();
+        public function getHotCategories();
 }
  ?>
