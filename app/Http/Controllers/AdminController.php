@@ -35,7 +35,7 @@ class AdminController extends Controller {
 		}
 		else
         {
-        	return redirect()->intended('login?return=dashboard');
+        	return redirect()->intended('login?return=cobra');
         }
         
 		$c = $this->helpers->categories;
@@ -46,7 +46,7 @@ class AdminController extends Controller {
 		$totalUsers = $adminStats['totalUsers'];
 		$totalSales= $adminStats['totalSales'];
 		$totalDeals = $adminStats['totalDeals'];
-    	return view('admin-index',compact(['user','c','transactions','deals','auctions','totalSales','totalUsers','totalDeals']));
+    	return view('admin.index',compact(['user','c','transactions','deals','auctions','totalSales','totalUsers','totalDeals']));
     }
 
 	/**
@@ -70,7 +70,31 @@ class AdminController extends Controller {
         
 		$c = $this->helpers->categories;
 		$users = $this->helpers->adminGetUsers();
-    	return view('admin-users',compact(['users','user','c']));
+    	return view('admin.users',compact(['users','user','c']));
+    }	
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getUser()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$userr = null; 
+    	return view('admin.user',compact(['userr','user','c']));
     }	
     
     /**
@@ -94,7 +118,7 @@ class AdminController extends Controller {
         
 		$c = $this->helpers->categories;
 		$deals = $this->helpers->adminGetDeals();
-    	return view('admin-deals',compact(['user','c','deals']));
+    	return view('admin.deals',compact(['user','c','deals']));
     }
     
     /**
@@ -102,7 +126,7 @@ class AdminController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getAuctions()
+	public function getDeal()
     {
        $user = null;
 		
@@ -117,35 +141,10 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
-		$auctions = $this->helpers->adminGetAuctions();
-    	return view('admin-auctions',compact(['user','c','auctions']));
+		$deal = null;
+    	return view('admin.deal',compact(['user','c','deal']));
     }
     
-
-/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function getTransactions()
-    {
-       $user = null;
-		
-		if(Auth::check())
-		{
-			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
-		}
-		else
-        {
-        	return redirect()->intended('login?return=dashboard');
-        }
-        
-		$c = $this->helpers->categories;
-		$transactions = $this->helpers->adminGetTransactions();
-    	return view('admin-transactions',compact(['user','c','transactions']));
-    }
-
     /**
 	 * Show the application welcome screen to the user.
 	 *
@@ -166,10 +165,10 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
-    	return view('admin-add-deal',compact(['user','c']));
+		#$deals = $this->helpers->adminGetDeals();
+    	return view('admin.add-deal',compact(['user','c']));
     }
-
-
+    
     /**
 	 * Show the application welcome screen to the user.
 	 *
@@ -214,7 +213,201 @@ class AdminController extends Controller {
 			return redirect()->intended('cobra-deals');
          }        
     }
-	
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getAuctions()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$auctions = $this->helpers->adminGetAuctions();
+    	return view('admin.auctions',compact(['user','c','auctions']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getAuction()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$auction = null;
+    	return view('admin.auction',compact(['user','c','auctions']));
+    }
+    
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getAddAuction()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		
+    	return view('admin.add-auction',compact(['user','c']));
+    }
+    
+
+/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getTransactions()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$transactions = $this->helpers->adminGetTransactions();
+    	return view('admin.transactions',compact(['user','c','transactions']));
+    }
+
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getInvoice()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$invoice = null; 
+    	return view('admin.invoice',compact(['user','c','invoice']));
+    }
+
+
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getOrders()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$orders = null; 
+    	return view('admin.orders',compact(['user','c','orders']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getOrder()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$order = null; 
+    	return view('admin.order',compact(['user','c','order']));
+    }
+
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getRC()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$ratings = null; $comments = null; 
+    	return view('admin.rc',compact(['user','c','ratings','comments']));
+    }
 	
 	/**
 	 * Show the application welcome screen to the user.
