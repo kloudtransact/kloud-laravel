@@ -46,18 +46,35 @@ Route::get('logout', 'LoginController@getLogout');
 
 /***** Admin routes *****/
 Route::get('cobra', 'AdminController@getIndex');
+#Route::post('cobra', 'AdminController@postIndex');
+
 Route::get('cobra-users', 'AdminController@getUsers');
+Route::get('cobra-user', 'AdminController@getUser');
+Route::post('cobra-user', 'AdminController@postUser');
+
 Route::get('cobra-activate-user', 'AdminController@getActivateUser');
 Route::get('cobra-suspend-user', 'AdminController@getSuspendUser');
 
 Route::get('cobra-deals', 'AdminController@getDeals');
-Route::get('cobra-auctions', 'AdminController@getAuctions');
-Route::get('cobra-transactions', 'AdminController@getTransactions');
+Route::get('cobra-deal', 'AdminController@getDeal');
+Route::post('cobra-deal', 'AdminController@postDeal');
+
 Route::get('cobra-add-deal', 'AdminController@getAddDeal');
 Route::post('cobra-add-deal', 'AdminController@postAddDeal');
+
+Route::get('cobra-auctions', 'AdminController@getAuctions');
+Route::get('cobra-auction', 'AdminController@getAuction');
+
 Route::get('cobra-add-auction', 'AdminController@getAddAuction');
 Route::post('cobra-add-auction', 'AdminController@postAddAuction');
 Route::get('cobra-end-auction', 'AdminController@getEndAuction');
+
+Route::get('cobra-transactions', 'AdminController@getTransactions');
+Route::get('cobra-invoice', 'AdminController@getInvoice');
+
+Route::get('cobra-orders', 'AdminController@getOrders');
+Route::get('cobra-order', 'AdminController@getOrder');
+Route::post('cobra-order', 'AdminController@postOrder');
 
 Route::get('cobra-add-coupon', 'AdminController@getAddCoupon');
 Route::post('cobra-add-coupon', 'AdminController@postAddCoupon');
@@ -65,7 +82,11 @@ Route::post('cobra-add-coupon', 'AdminController@postAddCoupon');
 Route::get('cobra-coupon', 'AdminController@getCoupon');
 Route::get('cobra-coupons', 'AdminController@getCoupons');
 
+Route::get('cobra-rc', 'AdminController@getRC');
+Route::get('cobra-rating', 'AdminController@getRating');
+
 Route::get('cobra-comments', 'AdminController@getComments');
 Route::get('cobra-comment', 'AdminController@getComment');
+Route::post('cobra-comment', 'AdminController@postComment');
 
 Route::get('zohoverify/{url}', 'MainController@getZoho');
