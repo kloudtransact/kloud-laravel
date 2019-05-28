@@ -1,7 +1,8 @@
 $(document).ready(function() {
-        $('#admin-activity-table').DataTable();
-        $('#admin-deals-table').DataTable();
-        $('#admin-auctions-table').DataTable();
+	   let tables = ['#admin-activity-table','#admin-deals-table','#admin-auctions-table','#transactions-table','#invoices-table'];
+	   for(var i=0; i<tables.length;i++){
+          $(tables[i]).DataTable();
+        }
     });
     $('#example23').DataTable({
         dom: 'Bfrtip',

@@ -313,7 +313,7 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getKloudPay()
+	public function getWallet()
     {
 		       $user = null;
 		       $wallet = [];
@@ -324,9 +324,72 @@ class MainController extends Controller {
 		}
 		else
         {
-        	return redirect()->intended('login?return=kloudpay');
+        	return redirect()->intended('login?return=wallet');
         }
-        return view('kloudpay',compact(['user','wallet']));
+        return view('wallet',compact(['user','wallet']));
+    }
+	
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getKloudPayDeposit()
+    {
+		       $user = null;
+		       $wallet = [];
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			#$wallet = $this->helpers->getWallet($user);
+		}
+		else
+        {
+        	return redirect()->intended('login?return=deposit');
+        }
+        return view('kloudpay-deposit',compact(['user','wallet']));
+    }
+	
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getInvoices()
+    {
+		       $user = null;
+		       $invoices = [];
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			#$wallet = $this->helpers->getWallet($user);
+		}
+		else
+        {
+        	return redirect()->intended('login?return=invoices');
+        }
+        return view('invoices',compact(['user','invoices']));
+    }
+	
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getInvoice()
+    {
+		       $user = null;
+		       $invoice = [];
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			#$wallet = $this->helpers->getWallet($user);
+		}
+		else
+        {
+        	return redirect()->intended('login?return=invoice');
+        }
+        return view('invoice',compact(['user','invoice']));
     }
 
 	/**

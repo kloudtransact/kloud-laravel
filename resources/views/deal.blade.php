@@ -89,9 +89,19 @@
                                     	@for($s = 0; $s < $deal['rating']; $s++)
                                           <i class="fa fa-star" aria-hidden="true"></i>
                                         @endfor
-                                    </div>
-                                    <div class="review">
-                                        <a href="#">Write A Review</a>
+										@if($rated == "no")
+                                        <br>
+                                        <h6>Rate this product:</h6>
+                                        <select id="rating-select">
+                                        	<option value="none">Select rating</option>
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="1">5</option>
+                                        </select><br>
+                                        <a href="#" class="mt-4 btn btn-primary">Submit</a>
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- Avaiable -->
@@ -128,6 +138,35 @@
                             </form>
 
                         </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-12">  
+                      <form>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Comments</label>
+                          <p class="form-control-plaintext"><span class="text-primary text-italics">@topewer</span> This is a comment <small class="text-muted pull-right"> 22 May, 2019 6:45pm</small></p>
+                          <p class="form-control-plaintext"><span class="text-primary text-italics">@topewer</span> This is a comment <small class="text-muted pull-right"> 22 May, 2019 6:45pm</small></p>
+                          <p class="form-control-plaintext"><span class="text-primary text-italics">@topewer</span> This is a comment <small class="text-muted pull-right"> 22 May, 2019 6:45pm</small></p>
+                          <p class="form-control-plaintext"><span class="text-primary text-italics">@topewer</span> This is a comment <small class="text-muted pull-right"> 22 May, 2019 6:45pm</small></p>
+                          <p class="form-control-plaintext"><span class="text-primary text-italics">@topewer</span> This is a comment <small class="text-muted pull-right"> 22 May, 2019 6:45pm</small></p>
+                        </div>
+                      </div>
+                    </div> 
+					<div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Add comment:</label>
+                          <textarea class="form-control"></textarea>
+                        </div>
+                      </div>
+                    </div>        
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="clearfix"></div>
+                  </form>
                     </div>
                 </div>
             </div>
