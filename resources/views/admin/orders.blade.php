@@ -17,16 +17,13 @@
                     <table class="table" id="ordersTable">
                       <thead class=" text-primary">
                         <th>
-                          ID
+                          S/N
                         </th>
                         <th>
                           User
                         </th>
                         <th>
-                          Deal #
-                        </th>
-                        <th>
-                          Type
+                          Order #
                         </th>
                         <th>
                           Amount
@@ -49,9 +46,7 @@
                           <td>
                             KLO48643655885
                           </td>
-                          <td>
-                            Sale 
-                          </td>
+                          
                           <td class="text-primary">
                            &#8358;25,000
                           </td>
@@ -73,9 +68,7 @@
                           <td>
                             KLO48643655885
                           </td>
-                          <td>
-                            Sale 
-                          </td>
+                          
                           <td class="text-primary">
                            &#8358;25,000
                           </td>
@@ -97,9 +90,7 @@
                           <td>
                             KLO48643655885
                           </td>
-                          <td>
-                            Sale 
-                          </td>
+                          
                           <td class="text-primary">
                            &#8358;25,000
                           </td>
@@ -121,9 +112,7 @@
                           <td>
                             KLO48643655885
                           </td>
-                          <td>
-                            Sale 
-                          </td>
+                          
                           <td class="text-primary">
                            &#8358;25,000
                           </td>
@@ -145,9 +134,7 @@
                           <td>
                             KLO48643655885
                           </td>
-                          <td>
-                            Sale 
-                          </td>
+                          
                           <td class="text-primary">
                            &#8358;25,000
                           </td>
@@ -169,9 +156,7 @@
                           <td>
                             KLO48643655885
                           </td>
-                          <td>
-                            Sale 
-                          </td>
+                          
                           <td class="text-primary">
                            &#8358;25,000
                           </td>

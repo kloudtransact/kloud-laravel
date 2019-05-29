@@ -60,9 +60,9 @@
                   <h6 class="card-category text-gray">Tasks</h6>
                   <h4 class="card-title">Invoices</h4>
                   <p class="card-description">
-                    There are no invoices for this order. 
+                    View invoice for this order. 
                   </p>
-                  <a href="{{url('cobra-invoice')}}" target="_blank" class="btn btn-primary btn-round">Generate Invoice</a>
+                  <a href="{{url('cobra-invoice')}}" target="_blank" class="btn btn-primary btn-round">View Invoice</a>
                 </div>
               </div>
             </div>
