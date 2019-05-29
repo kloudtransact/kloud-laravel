@@ -22,12 +22,9 @@
                 	   <table id="transactions-table" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                 	     <thead>
                                             <tr>
-                                                <th>Image</th>
-                                                <th>Name</th>
-                                                <th>SKU</th>
-                                                <th>Amount (&#8358;)</th>
                                                 <th>Type</th>
-                                                <th>Actions</th>
+                                                <th>Description</th>
+                                                <th>Amount (&#8358;)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
