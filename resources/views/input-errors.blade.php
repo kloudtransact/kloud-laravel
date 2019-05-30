@@ -1,4 +1,6 @@
-                    <div class="alert alert-danger" role="alert">
+ <div class="row">
+                      <div class="col-md-12">
+                   <div class="alert alert-danger" role="alert">
                        <p><strong>Whoops!</strong> There were some problems with your input.</p>
                        <button class="close" data-dismiss="alert">x</button>
                        <div class="clearfix"></div>
@@ -13,3 +15,5 @@
 						   @endforeach
                        </ul>
                      </div>
+                   </div>
+                 </div>
