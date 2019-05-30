@@ -101,6 +101,71 @@ class LoginController extends Controller {
 			}
          }        
     }
+    
+        /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getAdminLogin(Request $request)
+    {
+       $user = null;
+       $req = $request->all();
+       $return = isset($req['return']) ? $req['return'] : '/';
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			return redirect()->intended($return);
+		}
+		
+    	return view('admin.login',compact(['user','return']));
+    }
+
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postAdminLogin(Request $request)
+    {
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'pass' => 'required|min:6',
+                             'id' => 'required'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	$remember = true; 
+             $return = isset($req['return']) ? $req['return'] : '/';
+             
+         	//authenticate this login
+            if(Auth::attempt(['email' => $req['id'],'password' => $req['pass'],'status'=> "ok"],$remember) || Auth::attempt(['phone' => $req['id'],'password' => $req['pass'],'status'=> "ok"],$remember))
+            {
+            	//Login successful               
+               $user = Auth::user();          
+                #dd($user); 
+               if($user->role == "admin"){return redirect()->intended('cobra');}
+               else{return redirect()->intended("dashboard");}
+            }
+			
+			else
+			{
+				Session::flash("login-status","error");
+				return redirect()->intended('admin');
+			}
+         }        
+    }
 	
     public function postRegister(Request $request)
     {
