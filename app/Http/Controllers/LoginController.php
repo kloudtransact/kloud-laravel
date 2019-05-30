@@ -116,6 +116,7 @@ class LoginController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$return = ($user->role == "admin") ? 'cobra': 'dashboard';
 			return redirect()->intended($return);
 		}
 		
