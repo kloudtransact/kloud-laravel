@@ -35,7 +35,7 @@ class AdminController extends Controller {
 		}
 		else
         {
-        	return redirect()->intended('login?return=cobra');
+        	return redirect()->intended('admin?return=cobra');
         }
         
 		$c = $this->helpers->categories;
