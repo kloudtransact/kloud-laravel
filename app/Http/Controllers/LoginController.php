@@ -118,9 +118,9 @@ class LoginController extends Controller {
 			$user = Auth::user();
 			$return = ($user->role == "admin") ? 'cobra': 'dashboard';
 			return redirect()->intended($return);
-		}
-		
-    	return view('admin.login',compact(['user','return']));
+		} else{
+         	return view('admin.login',compact(['user','return']));
+          }
     }
 
 	/**
