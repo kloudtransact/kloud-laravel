@@ -13,8 +13,8 @@
                 </a>
               </li>
               <li>
-                <a href="#">
-                  Components
+                <a href="{{url('cobra-deals')}}">
+                  Deals
                 </a>
               </li>
             </ul>

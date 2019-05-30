@@ -13,18 +13,19 @@
                   <p class="card-category">Log in to access the admin app</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form method="post" action="{{url('admin')}}">
+                  	{!! csrf_field() !!}
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">ID</label>
-                          <input type="text" class="form-control" placeholder="username or email address">
+                          <input type="text" name="id" class="form-control" placeholder="username or email address">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Password</label>
-                          <input type="password" class="form-control" placeholder="Password">
+                          <input type="password" name="pass" class="form-control" placeholder="Password">
                         </div>
                       </div>
                     </div>                    

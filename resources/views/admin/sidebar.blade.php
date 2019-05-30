@@ -11,60 +11,50 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active  ">
-            <a class="nav-link" href="#">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
-            </a>
-          </li>
+          <li class="nav-item dropdown">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">hourglass_empty</i>
+                  <p class="d-lg-none d-md-block">
+                    Auctions
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="{{url('cobra-auctions')}}">View auctions</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{{url('cobra-add-auction')}}">Create new auction</a>
+                </div>
+              </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{url('cobra-users')}}">
               <i class="material-icons">person</i>
-              <p>User Profile</p>
+              <p>Users</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="#">
-              <i class="material-icons">content_paste</i>
-              <p>Table List</p>
+            <a class="nav-link" href="{{url('cobra-transactions')}}">
+              <i class="material-icons">info</i>
+              <p>Transactions</p>
             </a>
           </li>
+          <li class="nav-item dropdown">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">redeem</i>
+                  <p class="d-lg-none d-md-block">
+                    Coupons
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="{{url('cobra-coupons')}}">View coupons</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{{url('cobra-add-coupon')}}">Add a new coupon</a>
+                </div>
+              </li>
           <li class="nav-item ">
-            <a class="nav-link" href=#">
-              <i class="material-icons">library_books</i>
-              <p>Typography</p>
+            <a class="nav-link" href="{{url('cobra-rc')}}">
+              <i class="material-icons">feedback</i>
+              <p>Ratings and Comments</p>
             </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">
-              <i class="material-icons">bubble_chart</i>
-              <p>Icons</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">
-              <i class="material-icons">location_ons</i>
-              <p>Maps</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">
-              <i class="material-icons">notifications</i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">
-              <i class="material-icons">language</i>
-              <p>RTL Support</p>
-            </a>
-          </li>
-          <li class="nav-item active-pro ">
-            <a class="nav-link" href="#">
-              <i class="material-icons">unarchive</i>
-              <p>Upgrade to PRO</p>
-            </a>
-          </li>
+          </li>          
         </ul>
       </div>
     </div>

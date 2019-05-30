@@ -10,7 +10,7 @@
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">store</i>
+                    <i class="material-icons">payment</i>
                   </div>
                   <p class="card-category">Deals</p>
                   <h3 class="card-title">50
@@ -28,7 +28,7 @@
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">payment</i>
+                    <i class="material-icons">store</i>
                   </div>
                   <p class="card-category">Revenue</p>
                   <h3 class="card-title">&#8358;34,000</h3>
