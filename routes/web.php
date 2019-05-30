@@ -45,6 +45,8 @@ Route::get('invoice', 'MainController@getInvoice');
 Route::get('logout', 'LoginController@getLogout');
 
 /***** Admin routes *****/
+Route::get('admin', 'LoginController@getAdminLogin');
+Route::post('admin', 'LoginController@postAdminLogin');
 Route::get('cobra', 'AdminController@getIndex');
 #Route::post('cobra', 'AdminController@postIndex');
 
