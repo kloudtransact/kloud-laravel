@@ -13,6 +13,10 @@
                   <p class="card-category">Log in to access the admin app</p>
                 </div>
                 <div class="card-body">
+                	<!--------- Input errors -------------->
+                    @if (count($errors) > 0)
+                          @include('input-errors', ['errors'=>$errors])
+                     @endif 
                   <form method="post" action="{{url('admin')}}">
                   	{!! csrf_field() !!}
                     <div class="row">
