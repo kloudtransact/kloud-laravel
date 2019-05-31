@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transactions extends Model
+class Comments extends Model
 {
 
     /**
@@ -13,6 +13,7 @@ class Transactions extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'description', 'type', 'amount'
+        'deal_id', 'user_id', 'comment', 'status'
     ];
+    
 }
