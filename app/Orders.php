@@ -17,4 +17,3 @@ class Orders extends Model
     ];
     
 }
-e
