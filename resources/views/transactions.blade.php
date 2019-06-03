@@ -36,7 +36,9 @@
           </div><br>
           
 </div>     
-<!-- End Deals  section -->               
+<!-- End Deals  section -->  
+@include('ad-space')      
+       
 @stop
 
 @section('scripts')
