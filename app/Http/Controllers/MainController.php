@@ -259,9 +259,11 @@ class MainController extends Controller {
          else
          {
          	$deal = $this->helpers->getDeal($req['sku']);
+             $rating = $this->helpers->getRating($deal,$user);
+             $comments = $this->helpers->getComments($deal);
              $category = $this->helpers->categories[$deal['category']];
 		     $mainClass = "single-product-area section-padding-100 clearfix";
-             return view('deal',compact(['user','category','deal','mainClass']));
+             return view('deal',compact(['user','category','deal','rating','comments', 'mainClass']));
          }        
 		
     }
@@ -439,6 +441,7 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 			//$dashboard = $this->helpers->getDashboard($user);
+			$transactions = $this->helpers->getTransactions($user);
 		}
 		else
         {
@@ -446,7 +449,7 @@ class MainController extends Controller {
         }
 		
 		
-        return view('dashboard',compact(['user','dashboard']));
+        return view('dashboard',compact(['user','transactions']));
     }
     
     
@@ -463,14 +466,14 @@ class MainController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			//$transactions = $this->helpers->getTransactions($user);
+			$transactions = $this->helpers->getTransactions($user);
 		}
 		else
         {
         	return redirect()->intended('login?return=transactions');
         }
 		
-        return view('transactions',compact(['user']));
+        return view('transactions',compact(['user','transactions']));
     }
     
     
