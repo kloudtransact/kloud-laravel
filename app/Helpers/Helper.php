@@ -14,6 +14,10 @@ use App\Deals;
 use App\DealData;
 use App\DealImages;
 use App\Auctions;
+use App\Ratings;
+use App\Comments;
+use App\Orders;
+use App\OrderDetails;
 
 class Helper implements HelperContract
 {
@@ -348,10 +352,40 @@ class Helper implements HelperContract
                    {
                    	$temp = [];
                    	$temp['id'] = $t->id; 
-                       $deal = Deals::where('id',$t->deal_id)->first();
-                   	$temp['deal'] = ($deal == null) ? "" : $deal->name; 
-                       $temp['type'] = $t->type; 
                        $temp['amount'] = $t->amount; 
+                       $temp['type'] = $t->type; 
+                       
+                       switch($type)
+                       {
+                       	case 'paid':
+                             $desc = explode(',',$t->description);   
+                             $iu = url('invoice').'?on='.$desc[0]; #invoice url
+                             $pm = ($desc[1] == 'wallet') ? 'KloudPay Wallet' : 'Credit/debit card'; #payment method 
+                             $temp['description'] = 'Paid for order <a href="$iu" target="_blank">'.$desc[0].'</a> via '.$pm; 
+                             $temp['badgeClass'] = 'badge-success'; 
+                           break; 
+                           
+                           case 'refund':
+                             $desc = explode(',',$t->description);   
+                             $iu = url('invoice').'?on='.$desc[0]; #invoice url
+                             $pm = ($desc[1] == 'wallet') ? 'KloudPay Wallet' : 'Credit/debit card'; #payment method 
+                             $temp['description'] = 'Refund for order <a href="$iu" target="_blank">'.$desc[0].'</a> to '.$pm; 
+                             $temp['badgeClass'] = 'badge-danger'; 
+                           break; 
+                           
+                           case 'transfer':
+                             $u = User::where('id',$t->description)->first();
+                             $un = ($u != null) ? $u->username : 'Unknown'; #recipient username
+                             $temp['description'] = "Transferred to ".$un."'s KloudPay Wallet"; 
+                             $temp['badgeClass'] = 'badge-primary'; 
+                           break; 
+                           
+                           case 'deposit':
+                             $temp['description'] = 'Deposited to KloudPay Wallet'; 
+                             $temp['badgeClass'] = 'badge-info'; 
+                           break; 
+                       }
+                       
                        array_push($ret, $temp); 
                    }
                }                          
@@ -370,27 +404,42 @@ class Helper implements HelperContract
                    {
                    	$temp = [];
                    	$temp['id'] = $t->id; 
+                       $u = User::where('id',$t->user_id)->first();
+                       $temp['user'] = ($u != null) ? $u->username : 'Unknown'; 
+                       $temp['amount'] = $t->amount; 
                        $temp['type'] = $t->type; 
                        
-                       $deal = Deals::where('id',$t->deal_id)->first();
-                   	$temp['deal'] = ($deal == null) ? "" : $deal->sku;
- 
-                       $u = User::where('id',$t->user_id)->first();
-                       $temp['user'] = ($u == null) ? "" : $u->fname." ".$u->lname; 
-                       $activity = "";
-                       
-                       if($temp['type'] == "sale")
+                      switch($type)
                        {
-                       	$activity = $temp['user']." purchased a deal (SKU: ".$deal->sku.")";
+                       	case 'paid':
+                             $desc = explode(',',$t->description);   
+                             $iu = url('invoice').'?on='.$desc[0]; #invoice url
+                             $pm = ($desc[1] == 'wallet') ? 'KloudPay Wallet' : 'Credit/debit card'; #payment method 
+                             $temp['description'] = 'Paid for order <a href="$iu" target="_blank">'.$desc[0].'</a> via '.$pm; 
+                             $temp['badgeClass'] = 'badge-success'; 
+                           break; 
+                           
+                           case 'refund':
+                             $desc = explode(',',$t->description);   
+                             $iu = url('invoice').'?on='.$desc[0]; #invoice url
+                             $pm = ($desc[1] == 'wallet') ? 'KloudPay Wallet' : 'Credit/debit card'; #payment method 
+                             $temp['description'] = 'Refund for order <a href="$iu" target="_blank">'.$desc[0].'</a> to '.$pm; 
+                             $temp['badgeClass'] = 'badge-danger'; 
+                           break; 
+                           
+                           case 'transfer':
+                             $u = User::where('id',$t->description)->first();
+                             $un = ($u != null) ? $u->username : 'Unknown'; #recipient username
+                             $temp['description'] = "Transferred to ".$un."'s KloudPay Wallet"; 
+                             $temp['badgeClass'] = 'badge-primary'; 
+                           break; 
+                           
+                           case 'deposit':
+                             $temp['description'] = 'Deposited to KloudPay Wallet'; 
+                             $temp['badgeClass'] = 'badge-info'; 
+                           break; 
                        }
-                       else if($temp['type'] == "refund")
-                       {
-                       	$activity = $temp['user']." received a refund";
-                       }                                          	
                        
-                       $temp['activity'] = $activity; 
-                       $temp['amount'] = $t->amount; 
-                       $temp['date'] = $t->created_at->format("jS F, Y"); 
                        array_push($ret, $temp); 
                    }
                }                          
@@ -540,6 +589,19 @@ class Helper implements HelperContract
            function getHotCategories()
            {
            	$ret = $this->getDeals("deal");                                                                                  
+                return $ret;
+           }
+
+           function getRating($deal,$user)
+           {
+           	$ret = [];
+           	$rating = Ratings::where('sku',$deal->sku)
+                                      ->where('user',$user->id)->first();   
+               
+                if($rating !== null) 
+                {
+                	$ret['rating'] = $rating->stars; 
+                }       
                 return $ret;
            }		  			  	   
            
