@@ -72,26 +72,21 @@
                                                 <th>Amount (&#8358;)</th>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><span class="badge badge-info">DEPOSIT</span></td>
-                        <td>Deposited to KloudPay Wallet</td>
-                        <td>10,000</td>
-                      </tr>
-                      <tr>
-                        <td><span class="badge badge-primary">TRANSFER</span></td>
-                        <td>Transferred to <a href="#">topewer</a>'s KloudPay Wallet</td>
-                        <td>5,000</td>
-                      </tr>
-                      <tr>
-                        <td><span class="badge badge-success">PAID</span></td>
-                        <td>Paid for order <a href="#">KLO456884528</a> via KloudPay Wallet</td>
-                        <td>5,000</td>
-                      </tr>
-                      <tr>
-                        <td><span class="badge badge-danger">REFUND</span></td>
-                        <td>Refund for order <a href="#">KLO456884528</a> to KloudPay Wallet</td>
-                        <td>5,000</td>
-                      </tr>
+                      @if($transactions != null && count($transactions) > 0)
+                       <?php
+                         $tmax = (count($transactions) >= 5) ? 5 : count($transactions); 
+                       ?>
+                                              @for($i = 0; $i < $tmax; $i++)
+                                              <?php
+                                               $t = $transactions[$i]; 
+                                              ?>
+                                                 <tr>
+                                                  <td><span class="badge {{$temp['badgeClass']}} text-uppercase">{{$temp['type']}}</span></td>
+                                                  <td>{{$t['description']}}</td>
+                                                  <td>{{$t['amount']}}</td>
+                                                 </tr>
+                                              @endfor
+                                            @endif
                     </tbody>
                   </table>
                 </div>
