@@ -164,8 +164,8 @@
                             <div class="product-img">
                             	<center>
                                 <img src="{{$images[0]['url']}}" alt="">
-                                <!-- Hover Thumb -->
-                                <img src="{{$images[1]['url']}}" alt="">
+                                <!-- Hover Thumb --
+                                <img src="{{$images[1]['url']}}" alt=""> -->
                                 </center>
                             </div>
 
@@ -226,8 +226,8 @@
                             <div class="product-img">
                             	<center>
                                 <img src="{{$images[0]['url']}}" alt="">
-                                <!-- Hover Thumb -->
-                                <img src="{{$images[1]['url']}}" alt="">
+                                <!-- Hover Thumb --
+                                <img src="{{$images[1]['url']}}" alt=""> -->
                                 </center>
                             </div>
 
@@ -288,8 +288,8 @@
                             <div class="product-img">
                             	<center>
                                 <img src="{{$images[0]['url']}}" alt="">
-                                <!-- Hover Thumb -->
-                                <img src="{{$images[1]['url']}}" alt="">
+                                <!-- Hover Thumb --
+                                <img src="{{$images[1]['url']}}" alt=""> -->
                                 </center>
                             </div>
 
