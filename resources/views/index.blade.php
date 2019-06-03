@@ -328,10 +328,10 @@
      <div class="col-12 col-xs-12">
        <div class="card" style="">
          <div class="card-body">
-            <i class="fa fa-percent fa-2x" aria-hidden="true"></i>
+            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
             <div class="">
             <h5 class="card-title">100% Guarantee</h5>
-            <p class="card-text">100% Guarantee on all deals</p>
+            <p class="card-text">On All Deals!</p>
             </div>
          </div>
        </div>
