@@ -326,12 +326,12 @@
 <div class="container">
    <div class="row">
      <div class="col-12 col-xs-12">
-       <div class="card" style="">
-         <div class="card-body">
-            <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+       <div class="card text-center" style="">
+         <div class="card-body">         
             <div class="">
-            <h5 class="card-title">100% Guarantee</h5>
-            <p class="card-text">On All Deals!</p>
+            <h5 class="card-title"><i class="fa fa-star fa-2x" aria-hidden="true"></i></h5>
+            <p class="card-text">100% Guarantee On All Deals!</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
          </div>
        </div>
