@@ -357,20 +357,20 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getInvoices()
+	public function getOrders()
     {
 		       $user = null;
-		       $invoices = [];
+		       $orders = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			#$wallet = $this->helpers->getWallet($user);
+			$orders = $this->helpers->getOrders($user);
 		}
 		else
         {
-        	return redirect()->intended('login?return=invoices');
+        	return redirect()->intended('login?return=orders');
         }
-        return view('invoices',compact(['user','invoices']));
+        return view('orders',compact(['user','orders']));
     }
 	
 	/**
@@ -378,20 +378,35 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getInvoice()
+	public function getInvoice(Request $request)
     {
 		       $user = null;
 		       $invoice = [];
+		
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			#$wallet = $this->helpers->getWallet($user);
+			$req = $request->all();
+			$validator = Validator::make($req, [
+                             'on' => 'required',
+             ]);
+         
+            if($validator->fails())
+             {
+                #$messages = $validator->messages();
+                return redirect()->intended('orders');
+            }
+            else
+            {
+                $invoice = $this->helpers->getUserInvoice($user,$on);
+                return view('invoice',compact(['user','invoice']));
+            }         
 		}
 		else
         {
-        	return redirect()->intended('login?return=invoice');
+        	return redirect()->intended('login?return=orders');
         }
-        return view('invoice',compact(['user','invoice']));
+        
     }
 
 	/**
