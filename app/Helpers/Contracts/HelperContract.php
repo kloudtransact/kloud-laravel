@@ -9,7 +9,16 @@ Interface HelperContract
         public function createDeal($data);
         public function createDealData($data);
         public function createDealImage($data);
+        public function createAuction($data);
         public function createWallet($data);
+        public function createTransaction($data);
+        public function createOrder($data);
+        public function createOrderDetails($data);
+        public function createRating($data);
+        public function createComment($data);
+        public function createCoupon($data);
+        public function generateSKU();
+        public function generateOrderNumber();
         public function getDeals($category,$q="");
         public function getDeadline($baseTimeStamp,$offset);
         public function getDealData($sku);
@@ -20,9 +29,7 @@ Interface HelperContract
         public function getDashboard($user);
         public function getTransactions($user);
         public function getAuctions($category,$q="");
-        public function getAuction($dealID);
-        public function createTransaction($data);
-        public function createAuction($data);
+        public function getAuction($dealID);        
         public function adminGetTransactions();
         public function adminGetUsers();
         public function adminGetDeals();
@@ -32,5 +39,9 @@ Interface HelperContract
         public function getNewArrivals();
         public function getBestSellers();
         public function getHotCategories();
+        public function getRating($deal,$user);
+        public function getOrders($user);
+        public function getInvoice($on);
+        public function getUserInvoice($user,$on);
 }
  ?>
