@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Mail;
 use Auth;
 use App\User;
+use App\BankAccounts;
 use App\ShippingDetails;
 use App\Wallet;
 use App\Transactions;
@@ -16,6 +17,7 @@ use App\DealImages;
 use App\Auctions;
 use App\Ratings;
 use App\Comments;
+use App\Coupons;
 use App\Orders;
 use App\OrderDetails;
 
@@ -104,6 +106,7 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }
+           
            function createWallet($data)
            {
            	$ret = Wallet::create(['user_id' => $data['user_id'], 
@@ -113,7 +116,7 @@ class Helper implements HelperContract
            }		
            function createDeal($data)
            {
-           	$sku = "KTK".rand(999,99999)."LD".rand(999,9999);
+           	$sku = $this->generateSKU();
                $type = isset($data['type']) ? $data['type'] : "deal";
                
            	$ret = Deals::create(['name' => $data['name'],                                                                                                          
@@ -151,9 +154,21 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }
+           function createAuction($data)
+           {
+           	$ret = Auctions::create(['deal_id' => $data['deal_id'],                                                                                                          
+                                                      'days' => $data['days'], 
+                                                      'hours' => $data['hours'],                                                    
+                                                      'minutes' => $data['minutes'], 
+                                                      'status' => $data['status'], 
+                                                      'bids' => $data['bids'], 
+                                                      ]);
+                                                      
+                return $ret;
+           }
            function createTransaction($data)
            {
-           	$ret = Transactions::create(['deal_id' => $data['deal_id'],                                                                                                          
+           	$ret = Transactions::create(['description' => $data['description'],                                                                                                          
                                                       'type' => $data['type'], 
                                                       'user_id' => $data['user_id'],
                                                       'amount' => $data['amount'],
@@ -172,6 +187,73 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }
+           
+           function createOrder($data)
+           {
+           	$ret = Orders::create(['number' => $this->generateOrderNumber(),                                                                                                          
+                                                      'user_id' => $data['user_id'], 
+                                                      'total' => $data['total'],
+                                                      'status' => $data['status']
+                                                      ]);
+                                                      
+                return $ret;
+           }
+           
+           function createOrderDetails($data)
+           {
+           	$ret = OrderDetails::create(['order_id' => $data['order_id'],                                                                                                          
+                                                      'deal_id' => $data['deal_id'], 
+                                                      'qty' => $data['qty']
+                                                      ]);
+                                                      
+                return $ret;
+           }
+           
+           function createRating($data)
+           {
+           	$ret = Ratings::create(['user_id' => $data['user_id'],                                                                                                          
+                                                      'deal_id' => $data['deal_id'], 
+                                                      'stars' => $data['stars'],
+                                                      'status' => $data['status'],
+                                                      ]);
+                                                      
+                return $ret;
+           }
+           
+           function createComment($data)
+           {
+           	$ret = Comments::create(['user_id' => $data['user_id'],                                                                                                          
+                                                      'deal_id' => $data['deal_id'], 
+                                                      'comment' => $data['comment'],
+                                                      'status' => $data['status'],
+                                                      ]);
+                                                      
+                return $ret;
+           }
+           
+           function createCoupon($data)
+           {
+           	$ret = Coupons::create(['code' => $data['code'],                                                                                                          
+                                                      'discount' => $data['discount'], 
+                                                      'status' => $data['status']
+                                                      ]);
+                                                      
+                return $ret;
+           }  
+
+           function generateSKU()
+           {
+           	$ret = "KTK".rand(999,99999)."LD".rand(999,9999);
+                                                      
+                return $ret;
+           }
+           
+           function generateOrderNumber()
+           {
+           	$ret = rand(1,999)."KLD".rand(29,4999).rand(date("md"),99999);
+                                                      
+                return $ret;
+           }               
            
            function getDeadline($baseTimeStamp,$offset)
            {
@@ -602,6 +684,59 @@ class Helper implements HelperContract
                 {
                 	$ret['rating'] = $rating->stars; 
                 }       
+                return $ret;
+           }	
+
+           function getOrders($user)
+           {
+           	$ret = [];
+           	$orders = Orders::where('user_id',$user->id)->get();   
+               
+                if($orders != null)
+               {
+               	foreach($orders as $o)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $o->id; 
+                   	$temp['number'] = $o->number; 
+                       $temp['status'] = $o->status; 
+                       $temp['amount'] = $o->total; 
+                       array_push($ret, $temp); 
+                   }
+               }       
+                return $ret;
+           }
+
+           function getInvoice($on)
+           {
+           	$ret = [];
+           	$orderDetails = OrderDetails::where('order_id',$on)->get();   
+               
+                if($orderDetails != null)
+               {
+               	foreach($orderDetails as $od)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $o->id; 
+                   	$temp['number'] = $o->number; 
+                       $temp['status'] = $o->status; 
+                       $temp['amount'] = $o->total; 
+                       array_push($ret, $temp); 
+                   }
+               }       
+                return $ret;
+           }
+
+           function getUserInvoice($user, $on)
+           {
+           	$ret = [];
+           	$order = Orders::where('order_id',$on)
+                                   ->where('user_id',$user->id)->first();   
+               
+                if($order != null)
+               {
+               	$ret = $this->getInvoice($on); 
+               }       
                 return $ret;
            }		  			  	   
            
