@@ -39,7 +39,8 @@ Route::get('transactions', 'MainController@getTransactions');
 
 Route::get('wallet', 'MainController@getWallet');
 Route::get('deposit', 'MainController@getKloudPayDeposit');
-Route::get('invoices', 'MainController@getInvoices');
+
+Route::get('orders', 'MainController@getOrders');
 Route::get('invoice', 'MainController@getInvoice');
 
 Route::get('logout', 'LoginController@getLogout');
