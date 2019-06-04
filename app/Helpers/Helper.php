@@ -176,17 +176,6 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }
-           function createAuction($data)
-           {
-           	$ret = Auctions::create(['days' => $data['days'],                                                                                                          
-                                                      'hours' => $data['hours'], 
-                                                      'minutes' => $data['minutes'],
-                                                      'status' => $data['status'],
-                                                      'bids' => $data['bids'],
-                                                      ]);
-                                                      
-                return $ret;
-           }
            
            function createOrder($data)
            {
