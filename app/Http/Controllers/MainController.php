@@ -399,7 +399,12 @@ class MainController extends Controller {
             else
             {
                 $invoice = $this->helpers->getUserInvoice($user,$on);
-                return view('invoice',compact(['user','invoice']));
+                if($invoice == []):
+                  $alert = true; 
+                  $alertClass = "warning";
+                  $alertText = "Invalid order number. Please check the number and try again.";
+                endif; 
+                return view('invoice',compact(['user','invoice','alert', 'alertClass','AlertText']));
             }         
 		}
 		else
