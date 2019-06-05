@@ -21,6 +21,7 @@
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -30,6 +31,7 @@
                                      $deal = $c['deal'];
                                      $data = $deal['data'];
                                      $cartImages = $deal['images'];
+                                     $removeURL = url('remove-from-cart').'?asf='.$deal['id'];
                                     ?>
                                     <tr>
                                         <td class="cart_product_img">
@@ -50,6 +52,9 @@
                                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td class="price">
+                                            <a href="{{$removeURL}}" class="btn amado-btn">Remove</a>
                                         </td>
                                     </tr>
                                     @endforeach
