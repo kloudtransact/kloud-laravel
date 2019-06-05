@@ -425,7 +425,7 @@ class Helper implements HelperContract
               if($user != null)
                {
                     	$cc = Carts::where('user_id', $user->id)
-                                       ->where('deal_id', $asf)->first();
+                                       ->where('sku', $asf)->first();
                    
                         if($cc != null)
                         {
