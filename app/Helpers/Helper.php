@@ -366,9 +366,9 @@ class Helper implements HelperContract
                	foreach($cart as $c) 
                     {
                     	$temp = [];
-               	     $temp['id'] = $cart->id; 
-                        $temp['deal'] = $this->getDeal(cart->sku);
-                        $temp['qty'] = $cart->qty; 
+               	     $temp['id'] = $c->id; 
+                        $temp['deal'] = $this->getDeal($c->sku);
+                        $temp['qty'] = $c->qty; 
                         array_push($ret, $temp); 
                    }
                }                                 
