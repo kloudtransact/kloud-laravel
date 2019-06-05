@@ -319,7 +319,7 @@ class MainController extends Controller {
         //dd($req);
         
         $validator = Validator::make($req, [
-                             'asf' => 'required|numeric'
+                             'asf' => 'required'
          ]);
          
          if($validator->fails())
