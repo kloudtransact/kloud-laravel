@@ -688,6 +688,29 @@ class Helper implements HelperContract
                 }       
                 return $ret;
            }	
+           
+           function getComments($deal)
+           {
+           	$ret = [];
+           	$comments = Comments::where('deal_id',$deal['id'])->get();   
+               
+                if($comments !== null) 
+                {
+                   foreach($comments as $c)
+                   {
+                   	if($c->status =="approved")
+                       {
+                   	   $temp = [];
+                      	$temp['id'] = $c->id; 
+                          $user = User::where('id',$c->user_id)->first();
+                      	$temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
+                          $temp['comment'] = $c->comment; 
+                          array_push($ret, $temp); 
+                       }
+                   }
+                }       
+                return $ret;
+           }	
 
            function getOrders($user)
            {
