@@ -418,6 +418,25 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }	
+           function removeFromCart($user, $asf)
+           {
+           	#$ret = ["subtotal" => 0, "delivery" => 0, "total" => 0];
+              
+              if($user != null)
+               {
+                    	$cc = Carts::where('user_id', $user->id)
+                                       ->where('deal_id', $asf)->first();
+                   
+                        if($cc != null)
+                        {
+                        	$cc->delete();
+                        }
+                   
+                   return "ok";
+               }                                 
+                                                      
+                return $ret;
+           }	
            function getDeal($sku)
            {
            	$ret = [];
