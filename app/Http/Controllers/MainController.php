@@ -484,13 +484,14 @@ class MainController extends Controller {
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
 			$wallet = $this->helpers->getWallet($user);
+			$transactions = $this->helpers->getTransactions($user);
 		}
 		
 		else
         {
         	return redirect()->intended('login?return=wallet');
         }
-        return view('wallet',compact(['user','cart','wallet']));
+        return view('wallet',compact(['user','cart','wallet','transactions']));
     }
 	
 	/**
