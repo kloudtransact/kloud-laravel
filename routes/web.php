@@ -24,6 +24,7 @@ Route::get('deals', 'MainController@getDeals');
 Route::get('cart', 'MainController@getCart');
 Route::get('add-to-cart', 'MainController@getAddToCart');
 Route::post('update-cart', 'MainController@postUpdateCart');
+Route::get('remove-from-cart', 'MainController@getRemoveFromCart');
 Route::get('checkout', 'MainController@getCheckout');
 
 Route::get('deal', 'MainController@getDeal');
@@ -41,6 +42,7 @@ Route::post('register', 'LoginController@postRegister');
 Route::get('dashboard', 'MainController@getDashboard');
 Route::get('transactions', 'MainController@getTransactions');
 
+Route::get('kloudpay', 'MainController@getKloudPay');
 Route::get('wallet', 'MainController@getWallet');
 Route::get('deposit', 'MainController@getKloudPayDeposit');
 
