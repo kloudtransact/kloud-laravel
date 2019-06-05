@@ -680,7 +680,7 @@ class Helper implements HelperContract
            {
            	$ret = [];
            	$rating = Ratings::where('deal_id',$deal['id'])
-                                      ->where('user',$user->id)->first();   
+                                      ->where('user_id',$user->id)->first();   
                
                 if($rating !== null) 
                 {
