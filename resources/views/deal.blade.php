@@ -89,7 +89,7 @@
                                     	@for($s = 0; $s < $deal['rating']; $s++)
                                           <i class="fa fa-star" aria-hidden="true"></i>
                                         @endfor
-										@if(!$rated)
+										@if(count($rating) < 1)
                                         <br>
                                         <h6>Rate this product:</h6>
                                         <select id="rating-select">
