@@ -197,7 +197,7 @@ class MainController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			#$cart = $this->helpers->getCart($user);
+			$cart = $this->helpers->getCart($user);
 		}
 		else
         {    
@@ -205,6 +205,45 @@ class MainController extends Controller {
         }
 		$mainClass = "cart-table-area section-padding-100";
         return view('cart',compact(['user','cart','mainClass']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function getAddToCart(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		else
+        {
+        	return redirect()->intended('/');
+        }
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'qty' => 'required|numeric',
+                             'sku' => 'required'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	$req["user_id"] = $user->id; 
+             $this->helpers->addToCart($req);
+	        Session::flash("add-to-cart-status","ok");
+			return redirect()->intended('cart');
+         }        
     }
 
 	/**
