@@ -298,6 +298,45 @@ class MainController extends Controller {
 			return redirect()->intended('cart');
          }        
     }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function getRemoveFromCart(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
+		}
+		else
+        {
+        	return redirect()->intended('/');
+        }
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'asf' => 'required|numeric'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	$asf = $req["asf"]; 
+             $this->helpers->removeFromCart($user, $asf);
+	        Session::flash("remove-cart-status","ok");
+			return redirect()->intended('cart');
+         }        
+    }
 
 	/**
 	 * Show the application welcome screen to the user.
@@ -410,7 +449,27 @@ class MainController extends Controller {
 			$cart = $this->helpers->getCart($user);
 		}
         return view('travelstart',compact(['user','cart']));
-    }	/**
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getKloudPay()
+    {
+		       $user = null;
+		
+		$cart = [];
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
+		}
+        return view('kloudpay',compact(['user','cart']));
+    }
+    
+	/**
 	 * Show the application welcome screen to the user.
 	 *
 	 * @return Response
@@ -424,7 +483,7 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
-			#$wallet = $this->helpers->getWallet($user);
+			$wallet = $this->helpers->getWallet($user);
 		}
 		
 		else
@@ -448,7 +507,7 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
-			#$wallet = $this->helpers->getWallet($user);
+			$wallet = $this->helpers->getWallet($user);
 		}
 		else
         {
