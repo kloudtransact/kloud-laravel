@@ -404,7 +404,7 @@ class Helper implements HelperContract
                {
                	for($c = 0; $c < count($quantities); $c++) 
                     {
-                    	$ccc = $carts[$c];
+                    	$ccc = $cart[$c];
                     	$cc = Carts::where('id', $ccc['id'])->first();
                    
                         if($cc != null)
