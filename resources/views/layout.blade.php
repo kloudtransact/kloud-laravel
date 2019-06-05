@@ -102,12 +102,13 @@
                   if($user != null && $user->role == "admin"){
                   	$wu = url('cobra'); $wt = "Admin center"; 
                   }
+                  $cc = (isset($cart)) ? 0 : count($cart);
             	?>
                 <a href="{{$wu}}" class="btn amado-btn active">{{$wt}}</a>
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="{{url('cart')}}" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+                <a href="{{url('cart')}}" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>({{$cc}})</span></a>
                 <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="{{url('checkout')}}" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Checkout</a>              
                 <a href="{{url('about')}}" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> About Us</a>                                           
@@ -208,7 +209,7 @@
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Licensed under CC BY 3.0. --
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Colorlib</a>
 -- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-&copy; 2019 - <a href="{{url('/')}}">KLOUD</a> - <a href="{{url('faq')}}">FAQ</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="{{url('/')}}">KloudTransact</a> - <a href="{{url('faq')}}">FAQ</a> | Site powered by <a href="#" target="_blank">Disenado NG</a>
 </p>
 
                     </div>
