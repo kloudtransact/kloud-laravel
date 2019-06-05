@@ -210,13 +210,14 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
+			$cartTotals = $this->helpers->getCartTotals($cart);
 		}
 		else
         {    
         	return redirect()->intended('login?return=cart');
         }
 		$mainClass = "cart-table-area section-padding-100";
-        return view('cart',compact(['user','cart','mainClass']));
+        return view('cart',compact(['user','cart','cartTotals','mainClass']));
     }
     
     /**
