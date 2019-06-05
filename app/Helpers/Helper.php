@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Mail;
 use Auth;
 use App\User;
-use App\BankAccounts;
+use App\Carts;
 use App\ShippingDetails;
 use App\Wallet;
 use App\Transactions;
@@ -103,6 +103,16 @@ class Helper implements HelperContract
                                                       'city' => "", 
                                                       'state' => "", 
                                                       ]);
+                                                      
+                return $ret;
+           }
+           
+           function addToCart($data)
+           {
+           	$ret = Carts::create(['user_id' => $data['user_id'],
+                                          'sku' => $data['sku'],  
+                                          'qty' => $data['qty'],                                                                          
+                                         ]);
                                                       
                 return $ret;
            }
@@ -349,15 +359,18 @@ class Helper implements HelperContract
            function getCart($user)
            {
            	$ret = [];
-               $dealData = DealData::where('sku',$sku)->first();
+               $cart = Carts::where('user_id',$user->id)->get();
  
-              if($dealData != null)
+              if($cart != null)
                {
-               	$ret['id'] = $dealData->id; 
-                   $ret['description'] = $dealData->description; 
-                   $ret['amount'] = $dealData->amount; 
-                   $ret['in_stock'] = $dealData->in_stock; 
-                   $ret['min_bid'] = $dealData->min_bid; 
+               	foreach($cart as $c) 
+                    {
+                    	$temp = [];
+               	     $temp['id'] = $cart->id; 
+                        $temp['deal'] = $this->getDeal(cart->sku);
+                        $temp['qty'] = $cart->qty; 
+                        array_push($ret, $temp); 
+                   }
                }                                 
                                                       
                 return $ret;
