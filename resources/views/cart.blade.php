@@ -30,7 +30,7 @@
                                     ?>
                                     <tr>
                                         <td class="cart_product_img">
-                                            <a href="#"><img src="{{$cartImages[0]}}" alt="{{$deal['name']}}">{{$deal['name']}}</a>
+                                            <a href="#"><img src="{{$cartImages[0]['url']}}" alt="{{$deal['name']}}">{{$deal['name']}}</a>
                                         </td>
                                         <td class="cart_product_desc">
                                             <h5>{{$deal['name']}}</h5>
