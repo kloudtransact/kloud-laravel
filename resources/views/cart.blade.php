@@ -31,7 +31,7 @@
                                      $deal = $c['deal'];
                                      $data = $deal['data'];
                                      $cartImages = $deal['images'];
-                                     $removeURL = url('remove-from-cart').'?asf='.$deal['sku];
+                                     $removeURL = url('remove-from-cart').'?asf='.$deal['sku'];
                                     ?>
                                     <tr>
                                         <td class="cart_product_img">
