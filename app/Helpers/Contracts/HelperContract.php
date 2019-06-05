@@ -27,6 +27,7 @@ Interface HelperContract
         public function getCart($user);
         public function getCartTotals($cart);
         public function updateCart($cart, $quantities);
+        public function removeFromCart($user, $asf);
         public function getDeal($sku);
         public function getWallet($user);
         public function getDashboard($user);
