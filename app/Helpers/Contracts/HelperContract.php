@@ -41,6 +41,7 @@ Interface HelperContract
         public function getBestSellers();
         public function getHotCategories();
         public function getRating($deal,$user);
+        public function getComments($deal);
         public function getOrders($user);
         public function getInvoice($on);
         public function getUserInvoice($user,$on);
