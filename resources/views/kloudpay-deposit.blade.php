@@ -12,15 +12,16 @@
                         	     <div class="card-body">
                         	       <h3 class="card-title" style="color: #fbb710 !important; padding: 5px;">Add funds to your KloudPay wallet</h3>                     
                                    <form action="#" method="get">
+                                   	
                                 <div class="row">
                                     <div class="col-12 mb-3">
-                                        <p class="form-control-plaintext"><i class="fa fa-briefcase"></i> KloudPay: &#8358;0.00</p><br>
+                                        <p class="form-control-plaintext"><i class="fa fa-briefcase"></i> KloudPay: &#8358;{{$wallet['balance']}}</p><br>
                                         <input type="number" class="form-control" name="amount" value="" placeholder="Enter amount" required><br>
                                         <p class="form-control-plaintext">Powered by <img class="img img-responsive" src="img/ps.jpg"/></p>
                                     </div>
 
                                     <div class="col-12">
-                                        <button type="submit" class="amado-btn">Add to KloudPay</button>                                                                           
+                                        <button type="submit" class="amado-btn">Make a deposit</button>                                                                           
                                     </div>
                                 </div>
                             </form>

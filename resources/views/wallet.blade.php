@@ -3,14 +3,14 @@
 @section('title',"My KloudPay Wallet")
 
 @section('content')
-div class="row">
+<div class="row">
           <div class="col-lg-12 mt-2 mx-auto text-center">
             <h2 class="section-heading mt-1">KloudPay Wallet</h2>
             <hr class="my-4">
              <div class="checkout_details_area mt-50 clearfix">
                             <div class="card">                        	     
                         	     <div class="card-body">
-                        	       <h3 class="card-title" style="color: #fbb710 !important; padding: 5px;"><i class="fa fa-briefcase"></i> Balance: &#8358;2,500.00</h3>                     
+                        	       <h3 class="card-title" style="color: #fbb710 !important; padding: 5px;"><i class="fa fa-briefcase"></i> Balance: &#8358;{{number_format($wallet['balance'],2)}}</h3>                     
                                    <form action="#" method="get">
                                 <div class="row">
                                 	<div class="col-12">
@@ -26,16 +26,21 @@ div class="row">
                 	   <table id="transactions-table" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                 	     <thead>
                                             <tr>
-                                                <th>Image</th>
-                                                <th>Name</th>
-                                                <th>SKU</th>
-                                                <th>Amount (&#8358;)</th>
                                                 <th>Type</th>
-                                                <th>Actions</th>
+                                                <th>Description</th>
+                                                <th>Amount (&#8358;)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        	
+                                          @if($transactions != null && count($transactions) > 0)
+                                              @foreach($transactions as $t)
+                                                 <tr>
+                                                  <td><span class="badge {{$t['badgeClass']}} text-uppercase">{{$t['type']}}</span></td>
+                                                  <td>{{$t['description']}}</td>
+                                                  <td>{{number_format($t['amount'],2)}}</td>
+                                                 </tr>
+                                              @endforeach
+                                            @endif	
                                         </tbody>
                        </table>
                     </div>
