@@ -95,10 +95,10 @@
                                         <select id="rating-select">
                                         	<option value="none">Select rating</option>
                                             <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
-                                            <option value="1">5</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
                                         </select><br>
                                         <a href="#" class="mt-4 btn btn-primary">Submit</a>
                                         @endif
@@ -118,21 +118,27 @@
                             </div>
 
                             <!-- Add to Cart Form -->
-                            <form class="cart clearfix" method="get">
+                            <form class="cart clearfix">
                                 <div class="cart-btn d-flex mb-50">
                                     <p>Qty</p>
                                     <div class="quantity">
                                         <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
+                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="qty" value="1">
                                         <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
                                     </div>
                                 </div>
                                 <?php
-                                  $bidURL = url("bid")."?sku=".$deal['sku'];
+                                  $bidURL = url("add-to-cart")."?sku=".$deal['sku']."&qty=";
+                                  $bidText = "Add to cart";
+                                  if($deal['type'] == "auction")
+                                  {
+                                    $bidURL = url("bid")."?sku=".$deal['sku']."&m=";
+                                    $bidText = "Place bid";
+                                 }
                                   $watchURL = url("watch")."?sku=".$deal['sku'];
                                   $buyURL = url("buy")."?sku=".$deal['sku']."&qty=";
                                  ?>
-                                <button id="" name="addtocart" value="5" onclick="window.location = '{{$bidURL}}';return false;" class="btn amado-btn">Place bid</button>
+                                <button id="" name="addtocart" value="5" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) window.location = '{{$bidURL}}' + qty;return false;" class="btn amado-btn">{{$bidText}}</button>
                                 <button id="" name="addtocart" value="5" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) window.location = '{{$buyURL}}' + qty;return false;" class="btn amado-btn active">Buy it now</button>
                                 <button id="" name="addtocart" value="5" onclick="window.location = '{{$watchURL}}';return false;" class="btn amado-btn">Watch</button>
                             </form>
