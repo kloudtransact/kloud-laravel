@@ -399,20 +399,21 @@ class Helper implements HelperContract
 	       function updateCart($cart, $quantities)
            {
            	#$ret = ["subtotal" => 0, "delivery" => 0, "total" => 0];
-              dd($quantities);
+              
               if($cart != null && count($cart) > 0)
                {
-               	foreach($cart as $c) 
+               	for($c = 0; $c < count($quantities); $c++) 
                     {
-                    	$deal = $c['deal'];
-                       $amount = $deal['data']['amount'];
-               	     $qty = $c['qty']; 
-               
-                        $ret['subtotal'] += ($amount * $qty);
+                    	$ccc = $carts[$c];
+                    	$cc = Carts::where('id', $ccc['id'])->first();
+                   
+                        if($cc != null)
+                        {
+                        	$cc->update(['qty' => $quantities[$c] ]);
+                        }
                    }
                    
-                   $ret['delivery'] = 5000;
-                   $ret['total'] = $ret['subtotal'] + $ret['delivery'];
+                   return "ok";
                }                                 
                                                       
                 return $ret;
