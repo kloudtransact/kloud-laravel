@@ -25,7 +25,7 @@
                                     @foreach($cart as $c) 
                                     <?php
                                      $deal = $c['deal'];
-                                     $data = $c['data'];
+                                     $data = $deal['data'];
                                      $cartImages = $deal['images'];
                                     ?>
                                     <tr>
