@@ -102,7 +102,7 @@
                   if($user != null && $user->role == "admin"){
                   	$wu = url('cobra'); $wt = "Admin center"; 
                   }
-                  $cc = (isset($cart)) ? 0 : count($cart);
+                  $cc = (isset($cart)) ? count($cart) : 0;
             	?>
                 <a href="{{$wu}}" class="btn amado-btn active">{{$wt}}</a>
             </div>

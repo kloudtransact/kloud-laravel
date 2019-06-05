@@ -5,7 +5,10 @@
 @section('content')
 <div class="container-fluid">
                 <div class="row">
+                	
                     <div class="col-12 col-lg-8">
+                    	<form action="{{url('update-cart')}}" method="post">
+                	      {!! csrf_field() !!}
                         <div class="cart-title mt-50">
                             <h2>Shopping Cart</h2>
                         </div>
@@ -36,7 +39,7 @@
                                             <h5>{{$deal['name']}}</h5>
                                         </td>
                                         <td class="price">
-                                            <span>&#8358;{{$data['amount']}}</span>
+                                            <span>&#8358;{{number_format($data['amount'],2)}}</span>
                                         </td>
                                         <td class="qty">
                                             <div class="qty-btn d-flex">
@@ -52,17 +55,28 @@
                                     @endforeach
                                     @endif
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <center><button type="submit" class="btn amado-btn">Update cart</button></center>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
-                        
+                     </form> 
                     </div>
+                    
                     <div class="col-12 col-lg-4">
                         <div class="cart-summary">
                             <h5>Cart Total</h5>
+                            <?php
+                                     $subtotal = $cartTotals['subtotal'];
+                                     $delivery = $cartTotals['delivery'];
+                                     $total = $cartTotals['total'];
+                                    ?>
                             <ul class="summary-table">
-                                <li><span>subtotal:</span> <span>&#8358;80,000</span></li>
-                                <li><span>delivery:</span> <span>&#8358;5000</span></li>
-                                <li><span>total:</span> <span>&#8358;82,000</span></li>
+                                <li><span>subtotal:</span> <span>&#8358;{{number_format($subtotal,2)}}</span></li>
+                                <li><span>delivery:</span> <span>&#8358;{{number_format($delivery,2)}}</span></li>
+                                <li><span>total:</span> <span>&#8358;{{number_format($total,2)}}</span></li>
                             </ul>
                             <div class="cart-btn mt-100">
                                 <a href="{{url('checkout')}}" class="btn amado-btn w-100">Checkout</a>
