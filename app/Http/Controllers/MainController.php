@@ -27,18 +27,20 @@ class MainController extends Controller {
 	public function getIndex()
     {
        $user = null;
-		
+		$cart = [];
 		if(Auth::check())
 		{
-			$user = Auth::user();		
+			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 		}
+		
 		$c = $this->helpers->categories;
 		$hd = $this->helpers->getHottestDeals();
 		$na = $this->helpers->getNewArrivals();
 		$bs = $this->helpers->getBestSellers();
 		$hc = $this->helpers->getHotCategories();
 		
-    	return view('index',compact(['user','c','hd','na','bs','hc']));
+    	return view('index',compact(['user','cart','c','hd','na','bs','hc']));
     }
 
 	/**
@@ -50,12 +52,14 @@ class MainController extends Controller {
     {
                $user = null;
 		
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 		}
 		$c = $this->helpers->categories;
-    	return view('about',compact(['user','c']));
+    	return view('about',compact(['user','cart', 'c']));
 		//return redirect()->intended('/');
     }	
 
@@ -68,9 +72,11 @@ class MainController extends Controller {
     {
                $user = null;
 		
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 		}
 		
 		$req = $request->all();
@@ -88,7 +94,7 @@ class MainController extends Controller {
 		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
 		
-    	return view('bundle',compact(['user','bundleProducts','category','c','mainClass']));
+    	return view('bundle',compact(['user','cart','bundleProducts','category','c','mainClass']));
     }
 
 	/**
@@ -100,9 +106,11 @@ class MainController extends Controller {
     {
                $user = null;
 		
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 		}
 		
 		$req = $request->all();
@@ -119,7 +127,7 @@ class MainController extends Controller {
         }     
 		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('auction',compact(['user','auction','category','c','mainClass']));
+    	return view('auction',compact(['user','cart','auction','category','c','mainClass']));
     }
 
 	/**
@@ -131,9 +139,11 @@ class MainController extends Controller {
     {
                $user = null;
 		
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 		}
 		
 		$req = $request->all();
@@ -151,7 +161,7 @@ class MainController extends Controller {
         }     
 		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('top-deals',compact(['user','category','topDeals','c','mainClass']));
+    	return view('top-deals',compact(['user','cart','category','topDeals','c','mainClass']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -161,9 +171,11 @@ class MainController extends Controller {
     {
                $user = null;
 		
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 		}
 		
 		$req = $request->all();
@@ -181,7 +193,7 @@ class MainController extends Controller {
         }     
 		$c = $this->helpers->categories;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('deals',compact(['user','category','deals','c','mainClass']));
+    	return view('deals',compact(['user','cart','category','deals','c','mainClass']));
     }	
 	
 
@@ -192,8 +204,8 @@ class MainController extends Controller {
 	 */
 	public function getCart()
     {
-		       $user = null;
-		       $cart = [];
+      $user = null;
+	  $cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
@@ -258,7 +270,7 @@ class MainController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			#$cart = $this->helpers->getCart($user);
+			$cart = $this->helpers->getCart($user);
 		}
 		else
         {
@@ -280,9 +292,11 @@ class MainController extends Controller {
 		       $deal = [];
 		       $req = $request->all();
 		
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 		}
 		
 		$validator = Validator::make($req, [
@@ -302,7 +316,7 @@ class MainController extends Controller {
              $comments = $this->helpers->getComments($deal);
              $category = $this->helpers->categories[$deal['category']];
 		     $mainClass = "single-product-area section-padding-100 clearfix";
-             return view('deal',compact(['user','category','deal','rating','comments', 'mainClass']));
+             return view('deal',compact(['user','cart','category','deal','rating','comments', 'mainClass']));
          }        
 		
     }
@@ -316,11 +330,13 @@ class MainController extends Controller {
     {
 		       $user = null;
 		
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 		}
-        return view('airtime',compact(['user']));
+        return view('airtime',compact(['user','cart']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -330,11 +346,13 @@ class MainController extends Controller {
     {
 		       $user = null;
 		
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 		}
-        return view('hotels',compact(['user']));
+        return view('hotels',compact(['user','cart']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -344,11 +362,13 @@ class MainController extends Controller {
     {
 		       $user = null;
 		
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 		}
-        return view('travelstart',compact(['user']));
+        return view('travelstart',compact(['user','cart']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -358,16 +378,19 @@ class MainController extends Controller {
     {
 		       $user = null;
 		       $wallet = [];
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 			#$wallet = $this->helpers->getWallet($user);
 		}
+		
 		else
         {
         	return redirect()->intended('login?return=wallet');
         }
-        return view('wallet',compact(['user','wallet']));
+        return view('wallet',compact(['user','cart','wallet']));
     }
 	
 	/**
@@ -379,16 +402,18 @@ class MainController extends Controller {
     {
 		       $user = null;
 		       $wallet = [];
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 			#$wallet = $this->helpers->getWallet($user);
 		}
 		else
         {
         	return redirect()->intended('login?return=deposit');
         }
-        return view('kloudpay-deposit',compact(['user','wallet']));
+        return view('kloudpay-deposit',compact(['user','cart','wallet']));
     }
 	
 	/**
@@ -400,16 +425,18 @@ class MainController extends Controller {
     {
 		       $user = null;
 		       $orders = [];
+		       $cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
 			$orders = $this->helpers->getOrders($user);
+			$cart = $this->helpers->getCart($user);
 		}
 		else
         {
         	return redirect()->intended('login?return=orders');
         }
-        return view('orders',compact(['user','orders']));
+        return view('orders',compact(['user','cart','orders']));
     }
 	
 	/**
@@ -479,11 +506,13 @@ class MainController extends Controller {
     {
 		       $user = null;
 		
+		$cart = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
 		}
-        return view('faq',compact(['user']));
+        return view('faq',compact(['user','cart']));
     }
     
     /**
@@ -495,12 +524,14 @@ class MainController extends Controller {
     {
 		       $user = null;
 		       $dashboard = [];
+		       $cart = [];
 		
 		if(Auth::check())
 		{
 			$user = Auth::user();
 			//$dashboard = $this->helpers->getDashboard($user);
 			$transactions = $this->helpers->getTransactions($user);
+			$cart = $this->helpers->getCart($user);
 		}
 		else
         {
@@ -508,7 +539,7 @@ class MainController extends Controller {
         }
 		
 		
-        return view('dashboard',compact(['user','transactions']));
+        return view('dashboard',compact(['user','cart','transactions']));
     }
     
     
@@ -521,18 +552,20 @@ class MainController extends Controller {
     {
 		       $user = null;
 		       $transactions = [];
+		       $cart = [];
 		
 		if(Auth::check())
 		{
 			$user = Auth::user();
 			$transactions = $this->helpers->getTransactions($user);
+			$cart = $this->helpers->getCart($user);
 		}
 		else
         {
         	return redirect()->intended('login?return=transactions');
         }
 		
-        return view('transactions',compact(['user','transactions']));
+        return view('transactions',compact(['user','cart','transactions']));
     }
     
     
