@@ -23,6 +23,7 @@ Route::get('deals', 'MainController@getDeals');
 
 Route::get('cart', 'MainController@getCart');
 Route::get('add-to-cart', 'MainController@getAddToCart');
+Route::post('update-cart', 'MainController@postUpdateCart');
 Route::get('checkout', 'MainController@getCheckout');
 
 Route::get('deal', 'MainController@getDeal');
