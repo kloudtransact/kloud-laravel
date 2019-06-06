@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-body">
                 	<div class="table-responsive m-t-5">
-                	   <table id="transactions-table" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                	   <table id="" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                 	     <thead>
                                             <tr>
                                                 <th>Type</th>
