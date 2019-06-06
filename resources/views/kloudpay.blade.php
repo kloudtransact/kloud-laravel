@@ -43,7 +43,7 @@
             </div>
             </div>
             <br>
-            	<center><a href="{{url('wallet')}}" class="amado-btn">Go to your KloudPay Wallet</button></center>
+            	<center><a href="{{url('wallet')}}" class="amado-btn">Go to your KloudPay Wallet</a></center>
           </div>
         </div>
 @stop
