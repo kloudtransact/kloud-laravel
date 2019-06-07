@@ -457,7 +457,28 @@ class Helper implements HelperContract
                }                                 
                                                       
                 return $ret;
-           }		  
+           }	
+           function getUser($email)
+           {
+           	$ret = [];
+               $u = User::where('email',$email)->first();
+ 
+              if($u != null)
+               {
+                   	$temp['fname'] = $u->fname; 
+                       $temp['lname'] = $u->lname; 
+                       $temp['wallet'] = $this->getWallet($u);
+                       $temp['phone'] = $u->phone; 
+                       $temp['email'] = $u->email; 
+                       $temp['role'] = $u->role; 
+                       $temp['status'] = $u->status; 
+                       $temp['id'] = $u->id; 
+                       $temp['date'] = $u->created_at->format("jS F, Y"); 
+                       $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }	  
            function getWallet($user)
            {
            	$ret = [];
@@ -827,5 +848,60 @@ class Helper implements HelperContract
                 return $ret;
            }		  			  	   
            
+           function fundWallet($data)
+           {
+           	$account = User::where('email',$data['email'])->first();
+               
+               if($account != null)
+               {
+               	$wallet = Wallet::where('user_id',$account->id)->first();
+                   $formerBalance = $wallet->balance; 
+                   $newBalance = 0;
+                   
+                   switch($data['type'])
+                   {
+                   	case "add":
+                         $newBalance = $formerBalance + $data['amount'];
+                       break; 
+                       
+                       case "remove":
+                         $newBalance = $formerBalance - $data['amount'];
+                       break; 
+                       
+                       default:
+                         $newBalance = $formerBalance;
+                       break; 
+                  }
+                  
+                  $wallet->update(['balance' => $newBalance]);
+              }
+          
+                return "ok";
+           }		
+           
+           function transferFunds($user, $data)
+           {
+           	$receiver = User::where('email',$data['email'])->first();
+               
+               if($receiver != null)
+               {
+               	//debit the giver
+               	$userData = ['email' => $user->email,
+                                     'type' => 'remove',
+                                     'amount' => $data['amount']
+                                    ];
+                                    
+                   //credit the receiver
+                   $receiverData = ['email' => $receiver->email,
+                                     'type' => 'add',
+                                     'amount' => $data['amount']
+                                    ];
+                                    
+               	$this->fundWallet($userData);
+                   $this->fundWallet($receiverData);
+              }
+          
+                return "ok";
+           }		
 }
 ?>
