@@ -402,7 +402,7 @@ class MainController extends Controller {
          
          else
          {
-             $this->helpers->checkout($user,$data);
+             $this->helpers->checkout($user,$req);
 	        Session::flash("checkout-status","ok");
 			return redirect()->intended('orders');
          }        
