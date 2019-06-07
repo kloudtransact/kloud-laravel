@@ -479,6 +479,25 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }	  
+           function getShippingDetails($user)
+           {
+           	$ret = [];
+               $sd = ShippingDetails::where('user_id',$user->id)->first();
+ 
+              if($sd != null)
+               {
+                   	$temp['company'] = $sd->company; 
+                       $temp['address'] = $sd->address; 
+                       $temp['city'] = $sd->city;
+                       $temp['state'] = $sd->state; 
+                       $temp['zipcode'] = $sd->zipcode; 
+                       $temp['id'] = $sd->id; 
+                       $temp['date'] = $sd->created_at->format("jS F, Y"); 
+                       $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }	  
            function getWallet($user)
            {
            	$ret = [];
@@ -881,6 +900,32 @@ class Helper implements HelperContract
            
            function transferFunds($user, $data)
            {
+           	$receiver = User::where('email',$data['email'])->first();
+               
+               if($receiver != null)
+               {
+               	//debit the giver
+               	$userData = ['email' => $user->email,
+                                     'type' => 'remove',
+                                     'amount' => $data['amount']
+                                    ];
+                                    
+                   //credit the receiver
+                   $receiverData = ['email' => $receiver->email,
+                                     'type' => 'add',
+                                     'amount' => $data['amount']
+                                    ];
+                                    
+               	$this->fundWallet($userData);
+                   $this->fundWallet($receiverData);
+              }
+          
+                return "ok";
+           }		
+           
+           function checkout($user, $data)
+           {
+           	dd($data);
            	$receiver = User::where('email',$data['email'])->first();
                
                if($receiver != null)
