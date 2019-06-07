@@ -52,6 +52,6 @@ Interface HelperContract
         public function getUserInvoice($user,$on);
         public function fundWallet($data);
         public function transferFunds($user, $data);
-        public function checkout($user, $data);;
+        public function checkout($user, $data);
 }
  ?>
