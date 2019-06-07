@@ -45,6 +45,8 @@ Route::get('transactions', 'MainController@getTransactions');
 Route::get('kloudpay', 'MainController@getKloudPay');
 Route::get('wallet', 'MainController@getWallet');
 Route::get('deposit', 'MainController@getKloudPayDeposit');
+Route::get('kloudpay-transfer', 'MainController@getKloudPayTransfer');
+Route::post('kloudpay-transfer', 'MainController@postKloudPayTransfer');
 
 Route::get('orders', 'MainController@getOrders');
 Route::get('invoice', 'MainController@getInvoice');
@@ -84,6 +86,9 @@ Route::get('cobra-invoice', 'AdminController@getInvoice');
 Route::get('cobra-orders', 'AdminController@getOrders');
 Route::get('cobra-order', 'AdminController@getOrder');
 Route::post('cobra-order', 'AdminController@postOrder');
+
+Route::get('cobra-fund-wallet', 'AdminController@getFundWallet');
+Route::post('cobra-fund-wallet', 'AdminController@postFundWallet');
 
 Route::get('cobra-add-coupon', 'AdminController@getAddCoupon');
 Route::post('cobra-add-coupon', 'AdminController@postAddCoupon');
