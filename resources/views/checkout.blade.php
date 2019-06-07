@@ -40,7 +40,7 @@
                                         <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{$sd['city']}}" data-default="{{$sd['city']}}">
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="zipCode" name="zipcode" placeholder="Zip Code" value="{{$sd['zipcode']}}" data-default="{{$sd['zipcode']}}">
+                                        <input type="text" class="form-control" id="zipCode" name="zip" placeholder="Zip Code" value="{{$sd['zipcode']}}" data-default="{{$sd['zipcode']}}">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <input type="number" class="form-control" id="phone_number" name="phone" min="0" placeholder="Phone No" value="{{$user->phone}}" data-default="{{$user->phone}}">
@@ -85,7 +85,7 @@
                                 </div>
                                 <!-- Debit/credit card -->
                                 <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="radio" name="type" class="custom-control-input" id="card" value ="card" checked>
+                                    <input type="radio" name="type" class="custom-control-input" id="card" value="card">
                                     <label class="custom-control-label" for="cod">Pay with debit/credit card</label>
                                 </div>
                                 <!-- Cash -->
