@@ -29,6 +29,7 @@ Interface HelperContract
         public function updateCart($cart, $quantities);
         public function removeFromCart($user, $asf);
         public function getDeal($sku);
+        public function getUser($email);
         public function getWallet($user);
         public function getDashboard($user);
         public function getTransactions($user);
@@ -48,5 +49,7 @@ Interface HelperContract
         public function getOrders($user);
         public function getInvoice($on);
         public function getUserInvoice($user,$on);
+        public function fundWallet($data);
+        public function transferFunds($user, $data);
 }
  ?>
