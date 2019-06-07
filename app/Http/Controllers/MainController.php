@@ -383,13 +383,14 @@ class MainController extends Controller {
         //dd($req);
         
         $validator = Validator::make($req, [
-                             'fname' => 'required',
-                             'lname' => 'required',
-                             'email' => 'required|email',
-                             'address' => 'required',
-                             'city' => 'required',
-                             'zip' => 'required',
-                             'phone' => 'required',
+                             'fname' => 'required|filled',
+                             'lname' => 'required|filled',
+                             'email' => 'required|email|filled',
+                             'address' => 'required|filled',
+                             'city' => 'required|filled',
+                             'zip' => 'required|filled',
+                             'phone' => 'required|filled',
+                             'terms' => 'required|accepted',
          ]);
          
          if($validator->fails())
