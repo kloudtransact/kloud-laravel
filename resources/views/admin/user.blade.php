@@ -13,43 +13,49 @@
                   <p class="card-category">View information about this user</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form method="post" action="{{url('cobra-user')}}">
+                    {!! csrf_field() !!}
+                    
+                    <?php
+                      $fund_url = url('cobra-fund-wallet').'?email='.$account['email'];
+                      $balance = $account['wallet']['balance'];
+                    ?>
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">First Name</label>
-                          <input type="text" class="form-control" value="King">
+                          <input type="text" class="form-control" value="{{$account['fname']}}">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control" value="Perry">
+                          <input type="text" class="form-control" value="{{$account['lname']}}">
                         </div>
                       </div>
                     </div>
-                    <div class="row mt-5">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control" value="topewer" disabled>
-                        </div>
-                      </div>
+                    <div class="row mt-5">                  
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email</label>
-                          <input type="email" class="form-control" value="kingperry@yahoo.com">
+                          <input type="email" class="form-control" value="{{$account['email']}}">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Phone Number</label>
-                          <input type="text" class="form-control" value="08124665299">
+                          <input type="text" class="form-control" value="{{$account['phone']}}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Account Balance</label>
+                          <input type="text" class="form-control" value="{{number_format($balance,2)}}" disabled>
                         </div>
                       </div>
                     </div>   
                     <div class="row mt-5">
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Role</label>
                           <select class="form-control">
@@ -60,7 +66,7 @@
                           </select>
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Status</label>
                           <select class="form-control">
@@ -89,9 +95,14 @@
                   <h6 class="card-category text-gray">Tasks</h6>
                   <h4 class="card-title">User Management</h4>
                   <p class="card-description">
-                    Delete this user. 
+                    Fund this user's wallet. 
                   </p>
-                  <a href="#" class="btn btn-primary btn-round">Delete User</a>
+                  
+                  <a href="{{$fund_url}}" class="btn btn-primary btn-round">Fund Wallet</a><br>
+                  <p class="card-description">
+                    Suspend this user. 
+                  </p>
+                  <a href="{{$suspend_url}}" class="btn btn-primary btn-round">Suspend User</a>
                 </div>
               </div>
             </div>
