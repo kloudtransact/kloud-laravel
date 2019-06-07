@@ -351,6 +351,8 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
+			$sd = $this->helpers->getShippingDetails($user);
+			$cartTotals = $this->helpers->getCartTotals($cart);
 		}
 		else
         {
@@ -358,7 +360,51 @@ class MainController extends Controller {
         }
         
 		$mainClass = "cart-table-area section-padding-100";
-        return view('checkout',compact(['user','cart','mainClass']));
+        return view('checkout',compact(['user','cart','cartTotals','sd','mainClass']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postCheckout(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
+		}
+		else
+        {
+        	return redirect()->intended('/');
+        }
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'fname' => 'required',
+                             'lname' => 'required',
+                             'email' => 'required|email',
+                             'address' => 'required',
+                             'city' => 'required',
+                             'zip' => 'required',
+                             'phone' => 'required',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+             $this->helpers->checkout($user,$data);
+	        Session::flash("checkout-status","ok");
+			return redirect()->intended('orders');
+         }        
     }
 
 	/**
