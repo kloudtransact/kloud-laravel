@@ -55,8 +55,8 @@
                                             <label class="custom-control-label" for="customCheck2">I <a href="#">accept terms and conditions</a></label>
                                         </div>
                                         <div class="custom-control custom-checkbox d-block">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                            <label class="custom-control-label" for="customCheck3">Ship to a different address</label>
+                                            <input type="checkbox" class="custom-control-input" name="ssa" id="customCheck3">
+                                            <label class="custom-control-label" for="customCheck3">Save this address</label>
                                         </div>
                                     </div>
                                 </div>
