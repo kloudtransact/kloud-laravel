@@ -78,23 +78,28 @@ class AdminController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getUser()
+	public function getUser(Request $request)
     {
        $user = null;
+       $account = null; 
 		
 		if(Auth::check())
 		{
 			$user = Auth::user();
             if($user->role != "admin") return redirect()->intended('dashboard');		
+            $req = $request->all();
+           //dd($req);
+          $em = (isset($req['email'])) ? $req['email'] : null; 
+           
+         $c = $this->helpers->categories;
+		$account = $this->helpers->getUser($em); 
+    	return view('admin.user',compact(['account','user','c']));
 		}
 		else
         {
         	return redirect()->intended('login?return=dashboard');
         }
         
-		$c = $this->helpers->categories;
-		$userr = null; 
-    	return view('admin.user',compact(['userr','user','c']));
     }	
     
     /**
@@ -211,6 +216,75 @@ class AdminController extends Controller {
              $this->helpers->createDeal($req);
 	        Session::flash("add-deal-status","ok");
 			return redirect()->intended('cobra-deals');
+         }        
+    }
+    
+     /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getFundWallet(Request $request)
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');	
+
+            $req = $request->all();
+            $em = (isset($req['email'])) ? $req['email'] : ""; 
+		    $c = $this->helpers->categories;
+		   
+       	return view('admin.fund-wallet',compact(['user','c','em']));	
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postFundWallet(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'email' => 'required',
+                             'type' => 'required',
+                             'amount' => 'required|numeric'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	#$req["user_id"] = $user->id; 
+             $this->helpers->fundWallet($req);
+	        Session::flash("fund-wallet-status","ok");
+			return redirect()->intended('cobra-users');
          }        
     }
     

@@ -516,6 +516,67 @@ class MainController extends Controller {
         }
         return view('kloudpay-deposit',compact(['user','cart','wallet']));
     }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getKloudPayTransfer()
+    {
+		       $user = null;
+		       $wallet = [];
+		$cart = [];
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
+			$wallet = $this->helpers->getWallet($user);
+		}
+		else
+        {
+        	return redirect()->intended('login?return=deposit');
+        }
+        return view('kloudpay-transfer',compact(['user','cart','wallet']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postKloudPayTransfer(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		else
+        {
+        	return redirect()->intended('/');
+        }
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'email' => 'required',
+                             'amount' => 'required'                          
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+             $this->helpers->transferFunds($user, $req);
+	        Session::flash("kloudpay-transfer-status","ok");
+			return redirect()->intended('kloudpay');
+         }        
+    }
 	
 	/**
 	 * Show the application welcome screen to the user.
