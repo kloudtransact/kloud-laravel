@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-fluid">
-	<form action="{{url('checkout')}}" method="post">
+	<form action="" id="checkout-form" method="post">
 		{!! csrf_field() !!}
                 <div class="row">
                     <div class="col-12 col-lg-8">
@@ -71,26 +71,36 @@
                                      $subtotal = $cartTotals['subtotal'];
                                      $delivery = $cartTotals['delivery'];
                                      $total = $cartTotals['total'];
+                                     $md = $cartTotals['metadata'];
                                     ?>
                                 <li><span>subtotal:</span> <span class="mr-5 checkout-price">&#8358;{{number_format($subtotal,2)}}</span></li>
                                 <li><span>delivery:</span> <span class="mr-5 checkout-price">&#8358;{{number_format($delivery,2)}}</span></li>
                                 <li><span>total:</span> <span class="mr-5 checkout-price">&#8358;{{number_format($total,2)}}</span></li>
                             </ul>
+                            
+                            <!-- payment form -->
+                            	<input type="hidden" name="email" value="{{$user->email}}"> {{-- required --}}
+                            	<input type="hidden" name="orderID" value="{{$orderNumber}}">
+                            	<input type="hidden" name="amount" value="{{$total * 100}}"> {{-- required in kobo --}}
+                            	<input type="hidden" name="metadata" value="{{ json_encode($md) }}" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
+                            	<input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
+                           	 <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"> {{-- required --}}
+                            <!-- End payment form -->
 
                             <div class="payment-method">
                                 <!-- KloudPay -->
                                 <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="radio" name="type" class="custom-control-input" id="cod" value="cod" checked>
+                                    <input type="radio" name="type" class="custom-control-input" id="cod" value="cod">
                                     <label class="custom-control-label" for="cod">Pay with KloudPay</label>
                                 </div>
                                 <!-- Debit/credit card -->
                                 <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="radio" name="type" class="custom-control-input" id="card" value="card">
+                                    <input type="radio" name="type" data-url="{{url('checkout')}}" class="custom-control-input" id="card" value="card">
                                     <label class="custom-control-label" for="cod">Pay with debit/credit card</label>
                                 </div>
                                 <!-- Cash -->
                                 <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="radio" class="custom-control-input" id="paypal" disabled>
+                                    <input type="radio" data-url="{{url('pay')}}" class="custom-control-input" id="paypal" disabled>
                                     <label class="custom-control-label" for="paypal">Cash on Delivery</label>
                                 </div>
                             </div>
