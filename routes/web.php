@@ -29,6 +29,9 @@ Route::get('remove-from-cart', 'MainController@getRemoveFromCart');
 Route::get('checkout', 'MainController@getCheckout');
 Route::post('checkout', 'MainController@postCheckout');
 
+Route::get('payment/callback', 'PaymentController@getPaymentCallback');
+Route::post('pay', 'PaymentController@postRedirectToGateway');
+
 Route::get('deal', 'MainController@getDeal');
 Route::get('faq', 'MainController@getFAQ');
 Route::get('airtime', 'MainController@getAirtime');
