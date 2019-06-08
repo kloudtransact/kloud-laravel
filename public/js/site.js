@@ -8,6 +8,12 @@ $('.shop-categories-linkk').click(function(e){
 	console.log("Category: " + c);
 });
 
+$("input[name='type']").click(function(e){
+	e.preventDefault();
+	let paymentURL = $("input[name='type']:checked").attr('data-url');
+	$('#checkout-form').attr('action',paymentURL);
+});
+
 let x = getCookie('kloudtransact_gdpr');
 if (x) {
     $('#cookieConsent').hide();
