@@ -381,7 +381,8 @@ class Helper implements HelperContract
           function getCartTotals($cart)
            {
            	$ret = ["subtotal" => 0, "delivery" => 0, "total" => 0, "md" => []];
-               $md = "";
+               $md = ['order-id' => $this->helpers->generateOrderNumber("checkout"),
+                         ];
                
               if($cart != null && count($cart) > 0)
                {           	
@@ -395,6 +396,7 @@ class Helper implements HelperContract
                         $ret['subtotal'] += ($amount * $qty);
                    }
                    
+                   $md["items"] = $md;
                    $ret["md"] = $md;
                    $ret['delivery'] = 5000;
                    $ret['total'] = $ret['subtotal'] + $ret['delivery'];
@@ -921,7 +923,8 @@ class Helper implements HelperContract
            
            function transferFunds($user, $data)
            {
-           	$receiver = User::where('phone',$data['phone'])->first();
+           	$receiver = User::where('phone',$data['phone'])
+                                     ->orWhere('email',$data['phone'])->first();
                
                if($receiver != null)
                {
