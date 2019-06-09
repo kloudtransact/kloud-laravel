@@ -918,7 +918,7 @@ class Helper implements HelperContract
            
            function transferFunds($user, $data)
            {
-           	$receiver = User::where('email',$data['email'])->first();
+           	$receiver = User::where('phone',$data['phone'])->first();
                
                if($receiver != null)
                {
