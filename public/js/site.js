@@ -8,10 +8,14 @@ $('.shop-categories-linkk').click(function(e){
 	console.log("Category: " + c);
 });
 
-$("input[name='type']").click(function(e){
+$("#cod").click(function(e){
 	e.preventDefault();
-	let paymentURL = $("input[name='type']:checked").attr('data-url');
-	$('#checkout-form').attr('action',paymentURL);
+	setPaymentAction("cod");
+});
+
+$("#card").click(function(e){
+	e.preventDefault();
+	setPaymentAction("card");
 });
 
 let x = getCookie('kloudtransact_gdpr');
@@ -44,4 +48,17 @@ function getCookie(name) {
 }
 function eraseCookie(name) {   
     document.cookie = name+'=; Max-Age=-99999999;';  
+}
+function setPaymentAction(type){
+	let paymentURL = "";
+	
+	if(type == "cod"){
+		paymentURL = $("#cod-action").val();  
+   }
+   else if(type == "card"){
+		paymentURL = $("#card-action").val();  
+   }
+   
+   $('#checkout-form').attr('action',paymentURL);
+   $('#checkout-form').submit();
 }
