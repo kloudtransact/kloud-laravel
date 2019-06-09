@@ -389,7 +389,7 @@ class MainController extends Controller {
                              'email' => 'required|email|filled',
                              'address' => 'required|filled',
                              'city' => 'required|filled',
-                             'state' => 'required|filled',
+                             'state' => 'required|not_in:none',
                              'zip' => 'required|filled',
                              'phone' => 'required|filled',
                              'terms' => 'required|accepted',
