@@ -333,7 +333,7 @@ class MainController extends Controller {
          {
          	$asf = $req["asf"]; 
              $this->helpers->removeFromCart($user, $asf);
-	        Session::flash("remove-cart-status","ok");
+	        $request->session()->flash("remove-cart-status","ok");
 			return redirect()->intended('cart');
          }        
     }
