@@ -59,7 +59,7 @@ function setPaymentAction(type){
 		paymentURL = $("#card-action").val();  
    }
    
-   alert(paymentURL);
+   //alert(paymentURL);
    $('#checkout-form').attr('action',paymentURL);
    $('#checkout-form').submit();
 }
