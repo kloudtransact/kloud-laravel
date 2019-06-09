@@ -15,6 +15,7 @@
                                 <div class="row">
                                 	<div class="col-12">
                                         <a href="{{url('deposit')}}" class="amado-btn">Make a Deposit</a>
+                                        <a href="#" class="amado-btn">Make a Withdrawal</a>
                                          <a href="{{url('kloudpay-transfer')}}" class="amado-btn">Transfer Funds to Others</a>                                 
                                     </div>
                                     <div class="col-12 mt-5 mb-3">

@@ -16,7 +16,7 @@
                                    	{!! csrf_field() !!}
                                 <div class="row">
                                     <div class="col-6 mb-3">
-                                        <p class="form-control-plaintext"><i class="fa fa-phone"></i> Recipient phone number:</p><br>
+                                        <p class="form-control-plaintext"><i class="fa fa-phone"></i> Recipient email or phone number:</p><br>
                                         <input type="number" class="form-control" name="phone" value="" placeholder="Enter recipient phone number" required><br>
                                     </div>
                                     <div class="col-6 mb-3">

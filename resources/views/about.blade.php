@@ -28,8 +28,7 @@
             <p>We are highly customer-centric and are committed towards finding innovative ways of improving our customers' shopping experience with us;</p>
             <p>Give us some feedback on <a href="mailto:support@kloudtransact.com">support@kloudtransact.com</a></p>
             <p>For any press related questions, kindly send us an email at <a href="mailto:contact@kloudtransact.com">contact@kloudtransact.com</a></p>
-            <p><i class="fa fa-map mr-3"></i>Galadimawa, Abuja Nigeria</p>
-            <p><i class="fa fa-phone mr-3"></i><a href="#">0812 234 5678</a></p>
+            <p><i class="fa fa-map mr-3"></i> Nigeria</p>
             <p><i class="fa fa-facebook"></i><a href="#" class="mr-3">kloudtransact</a> <i class="fa fa-twitter"></i><a href="#" class="mr-3">kloudtransact</a> <i class="fa fa-instagram"></i><a href="#" class="mr-3">kloudtransact</a></p>
             <br>
           </div>
