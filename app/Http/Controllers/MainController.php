@@ -353,7 +353,7 @@ class MainController extends Controller {
 			$cart = $this->helpers->getCart($user);
 			$sd = $this->helpers->getShippingDetails($user);
 			$cartTotals = $this->helpers->getCartTotals($cart);
-			$orderNumber = $this->helpers->generateOrderNumber();
+			$orderNumber = $this->helpers->generateOrderNumber("checkout");
 		}
 		else
         {
