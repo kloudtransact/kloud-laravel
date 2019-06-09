@@ -389,6 +389,7 @@ class MainController extends Controller {
                              'email' => 'required|email|filled',
                              'address' => 'required|filled',
                              'city' => 'required|filled',
+                             'state' => 'required|filled',
                              'zip' => 'required|filled',
                              'phone' => 'required|filled',
                              'terms' => 'required|accepted',
@@ -607,7 +608,7 @@ class MainController extends Controller {
         //dd($req);
         
         $validator = Validator::make($req, [
-                             'email' => 'required',
+                             'phone' => 'required',
                              'amount' => 'required'                          
          ]);
          
