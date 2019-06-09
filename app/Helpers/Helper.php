@@ -392,7 +392,7 @@ class Helper implements HelperContract
                     	$deal = $c['deal'];
                        $amount = $deal['data']['amount'];
                	     $qty = $c['qty']; 
-                        $md .= $deal['name']." x".$qty."<br>";
+                        $mmd .= $deal['name']." x".$qty."<br>";
                
                         $ret['subtotal'] += ($amount * $qty);
                    }
