@@ -16,8 +16,8 @@
                                    	{!! csrf_field() !!}
                                 <div class="row">
                                     <div class="col-6 mb-3">
-                                        <p class="form-control-plaintext"><i class="fa fa-at"></i> Recipient email address:</p><br>
-                                        <input type="email" class="form-control" name="email" value="" placeholder="Enter recipirnt email" required><br>
+                                        <p class="form-control-plaintext"><i class="fa fa-phone"></i> Recipient phone number:</p><br>
+                                        <input type="number" class="form-control" name="phone" value="" placeholder="Enter recipient phone number" required><br>
                                     </div>
                                     <div class="col-6 mb-3">
                                         <p class="form-control-plaintext"><i class="fa fa-briefcase"></i> Enter amount to transfer:</p><br>
