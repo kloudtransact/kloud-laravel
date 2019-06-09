@@ -8,12 +8,12 @@ $('.shop-categories-linkk').click(function(e){
 	console.log("Category: " + c);
 });
 
-$("#cod-action").click(function(e){
+$("#pay-cod").click(function(e){
 	e.preventDefault();
 	setPaymentAction("cod");
 });
 
-$("#card-action").click(function(e){
+$("#pay-card").click(function(e){
 	e.preventDefault();
 	setPaymentAction("card");
 });
