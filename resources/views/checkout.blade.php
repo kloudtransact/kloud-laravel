@@ -78,6 +78,10 @@
                                 <li><span>total:</span> <span class="mr-5 checkout-price">&#8358;{{number_format($total,2)}}</span></li>
                             </ul>
                             
+                            <input type="hidden" id="cod-action" value="">
+                            	<input type="hidden" id="cod-action" value="{{url('checkout')}}">
+                            	<input type="hidden" id="card-action" value="{{url('pay')}}">
+                            	
                             <!-- payment form -->
                             	<input type="hidden" name="email" value="{{$user->email}}"> {{-- required --}}
                             	<input type="hidden" name="orderID" value="{{$orderNumber}}">
@@ -87,26 +91,11 @@
                            	 <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"> {{-- required --}}
                             <!-- End payment form -->
 
-                            <div class="payment-method">
-                                <!-- KloudPay -->
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="radio" name="type" class="custom-control-input" id="cod" value="cod">
-                                    <label class="custom-control-label" for="cod">Pay with KloudPay</label>
-                                </div>
-                                <!-- Debit/credit card -->
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="radio" name="type" data-url="{{url('checkout')}}" class="custom-control-input" id="card" value="card">
-                                    <label class="custom-control-label" for="cod">Pay with debit/credit card</label>
-                                </div>
-                                <!-- Cash -->
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="radio" data-url="{{url('pay')}}" class="custom-control-input" id="paypal" disabled>
-                                    <label class="custom-control-label" for="paypal">Cash on Delivery</label>
-                                </div>
-                            </div>
-
                             <div class="cart-btn mt-50">
-                                <button type="submit" class="btn amado-btn w-100">Pay Now</button>
+                                <button id="pay-cod" class="btn amado-btn w-100">Pay with KloudPay</button>
+                            </div>
+                            <div class="cart-btn mt-50">
+                                <button id="pay-card" class="btn amado-btn w-100">Pay with Credit card</button>
                             </div>
                         </div>
                     </div>
