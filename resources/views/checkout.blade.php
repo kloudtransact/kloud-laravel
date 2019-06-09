@@ -114,6 +114,7 @@
                                      $delivery = $cartTotals['delivery'];
                                      $total = $cartTotals['total'];
                                      $md = $cartTotals['md'];
+                                     $md['type'] = 'checkout';
                                     ?>
                                 <li><span>subtotal:</span> <span class="mr-5 checkout-price">&#8358;{{number_format($subtotal,2)}}</span></li>
                                 <li><span>delivery:</span> <span class="mr-5 checkout-price">&#8358;{{number_format($delivery,2)}}</span></li>
