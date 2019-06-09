@@ -378,10 +378,10 @@ class Helper implements HelperContract
           function getCartTotals($cart)
            {
            	$ret = ["subtotal" => 0, "delivery" => 0, "total" => 0, "md" => []];
- 
+               $md = "";
+               
               if($cart != null && count($cart) > 0)
-               {
-               	$md = "";
+               {           	
                	foreach($cart as $c) 
                     {
                     	$deal = $c['deal'];
@@ -392,7 +392,7 @@ class Helper implements HelperContract
                         $ret['subtotal'] += ($amount * $qty);
                    }
                    
-                   $ret["md"] = $md
+                   $ret["md"] = $md;
                    $ret['delivery'] = 5000;
                    $ret['total'] = $ret['subtotal'] + $ret['delivery'];
                }                                 
