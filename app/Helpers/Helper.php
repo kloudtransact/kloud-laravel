@@ -928,7 +928,10 @@ class Helper implements HelperContract
            
            function checkout($user, $data)
            {
-           	dd($data);
+               if($data['ssa'] == "on"){
+               	$this->updateShippingDetails($user, $data);
+              }
+              dd($data);
            	$receiver = User::where('email',$data['email'])->first();
                
                if($receiver != null)
