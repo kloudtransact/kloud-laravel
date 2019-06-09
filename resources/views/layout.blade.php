@@ -152,6 +152,10 @@
                {
                	$pop = "add-deal-status"; $val = Session::get("add-deal-status");
                }
+               if(session->has("remove-cart-status"))
+               {
+               	$pop = "remove-cart-status"; $val = session->get("remove-cart-status");
+               }
              ?> 
 
                  @if($pop != "" && $val != "")
