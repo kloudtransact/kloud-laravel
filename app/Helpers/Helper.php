@@ -381,7 +381,7 @@ class Helper implements HelperContract
           function getCartTotals($cart)
            {
            	$ret = ["subtotal" => 0, "delivery" => 0, "total" => 0, "md" => []];
-               $md = ['order-id' => $this->helpers->generateOrderNumber("checkout"),
+               $md = ['order-id' => $this->generateOrderNumber("checkout"),
                          ];
                
               if($cart != null && count($cart) > 0)
