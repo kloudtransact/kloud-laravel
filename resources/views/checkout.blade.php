@@ -34,6 +34,48 @@
                                     </select>
                                     </div>
                                     <div class="col-12 mb-3">
+                                        <select class="w-100" name="state">
+                                        <option value="none">Select state</option>
+                                        <option value="abia">Abia</option>
+                                        <option value="adamawa">Adamawa</option>
+                                        <option value="akwa-ibom">Akwa Ibom</option>
+                                        <option value="anambra">Anambra</option>
+                                        <option value="bauchi">Bauchi</option>
+                                        <option value="bayelsa">Bayelsa</option>
+                                        <option value="benue">Benue</option>
+                                        <option value="borno">Borno</option>
+                                        <option value="cross-river">Cross River</option>
+                                        <option value="delta">Delta</option>
+                                        <option value="ebonyi">Ebonyi</option>
+                                        <option value="enugu">Enugu</option>
+                                        <option value="edo">Edo</option>
+                                        <option value="ekiti">Ekiti</option>
+                                        <option value="gombe">Gombe</option>
+                                        <option value="imo">Imo</option>
+                                        <option value="jigawa">Jigawa</option>
+                                        <option value="kaduna">Kaduna</option>
+                                        <option value="kano">Kano</option>
+                                        <option value="katsina">Katsina</option>
+                                        <option value="kebbi">Kebbi</option>
+                                        <option value="kogi">Kogi</option>
+                                        <option value="kwara">Kwara</option>
+                                        <option value="lagos">Lagos</option>
+                                        <option value="nasarawa">Nasarawa</option>
+                                        <option value="niger">Niger</option>
+                                        <option value="ogun">Ogun</option>
+                                        <option value="ondo">Ondo</option>
+                                        <option value="osun">Osun</option>
+                                        <option value="oyo">Oyo</option>
+                                        <option value="plateau">Plateau</option>
+                                        <option value="rivers">Rivers</option>
+                                        <option value="sokoto">Sokoto</option>
+                                        <option value="taraba">Taraba</option>
+                                        <option value="yobe">Yobe</option>
+                                        <option value="zamfara">Zamfara</option>
+                                        <option value="fct">FCT</option>
+                                    </select>
+                                    </div>
+                                    <div class="col-12 mb-3">
                                         <input type="text" class="form-control mb-3" id="street_address" name="address" placeholder="Address" value="{{$sd['address']}}" data-default="{{$sd['address']}}">
                                     </div>
                                     <div class="col-12 mb-3">
@@ -78,7 +120,6 @@
                                 <li><span>total:</span> <span class="mr-5 checkout-price">&#8358;{{number_format($total,2)}}</span></li>
                             </ul>
                             
-                            <input type="hidden" id="cod-action" value="">
                             	<input type="hidden" id="cod-action" value="{{url('checkout')}}">
                             	<input type="hidden" id="card-action" value="{{url('pay')}}">
                             	
