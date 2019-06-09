@@ -383,6 +383,7 @@ class Helper implements HelperContract
            	$ret = ["subtotal" => 0, "delivery" => 0, "total" => 0, "md" => []];
                $md = ['order-id' => $this->generateOrderNumber("checkout"),
                          ];
+               $mmd = '';
                
               if($cart != null && count($cart) > 0)
                {           	
@@ -396,7 +397,7 @@ class Helper implements HelperContract
                         $ret['subtotal'] += ($amount * $qty);
                    }
                    
-                   $md["items"] = $md;
+                   $md["items"] = $mmd;
                    $ret["md"] = $md;
                    $ret['delivery'] = 5000;
                    $ret['total'] = $ret['subtotal'] + $ret['delivery'];
