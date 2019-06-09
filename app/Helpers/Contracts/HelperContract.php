@@ -19,7 +19,7 @@ Interface HelperContract
         public function createComment($data);
         public function createCoupon($data);
         public function generateSKU();
-        public function generateOrderNumber();
+        public function generateOrderNumber($type);
         public function getDeals($category,$q="");
         public function getDeadline($baseTimeStamp,$offset);
         public function getDealData($sku);
