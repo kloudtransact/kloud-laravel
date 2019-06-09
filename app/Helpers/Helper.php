@@ -501,6 +501,21 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }	  
+           
+           function updateShippingDetails($user, $data)
+           {
+           	$sd = ShippingDetails::where('user_id',$user->id)->first();
+ 
+              if($sd != null)
+               {
+               	   $sd->update(['company' => $data['company'],
+                                          'address' => $data['address'],
+                                          'city' => $data['city'],
+                                          'state' => $data['state'],
+                                          'zipcode' => $data['zipcode']
+                      ]);               
+               }
+           }	
            function getWallet($user)
            {
            	$ret = [];
