@@ -512,7 +512,7 @@ class Helper implements HelperContract
                                           'address' => $data['address'],
                                           'city' => $data['city'],
                                           'state' => $data['state'],
-                                          'zipcode' => $data['zipcode']
+                                          'zipcode' => $data['zip']
                       ]);               
                }
            }	
