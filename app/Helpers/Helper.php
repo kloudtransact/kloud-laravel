@@ -247,9 +247,12 @@ class Helper implements HelperContract
                 return $ret;
            }
            
-           function generateOrderNumber()
+           function generateOrderNumber($type)
            {
-           	$ret = rand(1,999)."KLD".rand(29,4999).rand(date("md"),99999);
+           	$tt = '';
+               if($tt == 'checkout') $tt = 'CKT'; 
+               else if($tt == 'deposit') $tt = 'DPT'; 
+           	$ret = $tt.rand(1,999)."KLD".rand(29,4999).rand(date("md"),99999);
                                                       
                 return $ret;
            }               
