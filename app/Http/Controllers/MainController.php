@@ -354,6 +354,7 @@ class MainController extends Controller {
 			$sd = $this->helpers->getShippingDetails($user);
 			$cartTotals = $this->helpers->getCartTotals($cart);
 			$orderNumber = $this->helpers->generateOrderNumber("checkout");
+			$states = $this->helpers->states;
 		}
 		else
         {
@@ -361,7 +362,7 @@ class MainController extends Controller {
         }
         
 		$mainClass = "cart-table-area section-padding-100";
-        return view('checkout',compact(['user','cart','cartTotals','sd','orderNumber','mainClass']));
+        return view('checkout',compact(['user','cart','cartTotals','sd','orderNumber','states','mainClass']));
     }
     
     /**
