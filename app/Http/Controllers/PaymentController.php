@@ -45,7 +45,7 @@ class PaymentController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getPaymentCallback()
+	public function getPaymentCallback(Request $request)
     {
 		if(Auth::check())
 		{
@@ -58,7 +58,22 @@ class PaymentController extends Controller {
 		
         $paymentDetails = Paystack::getPaymentData();
 
-        dd($paymentDetails);
+        #dd($paymentDetails);       
+        $paymentData = $paymentDetails['data'];
+        
+        //status, reference, metadata(order-id,items,amount,ssa), type
+        if($paymentData['status'] == 'success')
+        {
+        	$stt = $this->helpers->checkout($user,$paymentDetails,"paystack");
+            $request->session()->flash("pay-card-status",$stt);
+			return redirect()->intended('orders');
+        }
+        else
+        {
+        	//Payment failed, redirect to orders
+            $request->session()->flash("pay-card-status","error");
+			return redirect()->intended('checkout');
+        }
     }
     
     

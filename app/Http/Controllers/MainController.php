@@ -404,8 +404,8 @@ class MainController extends Controller {
          
          else
          {
-             $this->helpers->checkout($user,$req);
-	        Session::flash("checkout-status","ok");
+            $stt = $this->helpers->checkout($user,$req,"kloudpay");
+	        $request->session()->flash("pay-kloudpay-status",$stt);
 			return redirect()->intended('orders');
          }        
     }
