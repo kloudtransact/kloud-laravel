@@ -38,6 +38,46 @@ class Helper implements HelperContract
 								   "watches-sunglasses" => "Watches & Sunglasses",
 								   "others" => "Other Categories"
 			];  
+			
+			public $states = [
+			                       'abia' => 'Abia',
+			                       'adamawa' => 'Adamawa',
+			                       'akwa-ibom' => 'Akwa Ibom',
+			                       'anambra' => 'Anambra',
+			                       'bauchi' => 'Bauchi',
+			                       'bayelsa' => 'Bayelsa',
+			                       'benue' => 'Benue',
+			                       'borno' => 'Borno',
+			                       'cross-river' => 'Cross River',
+			                       'delta' => 'Delta',
+			                       'ebonyi' => 'Ebonyi',
+			                       'enugu' => 'Enugu',
+			                       'edo' => 'Edo',
+			                       'ekiti' => 'Ekiti',
+			                       'gombe' => 'Gombe',
+			                       'imo' => 'Imo',
+			                       'jigawa' => 'Jigawa',
+			                       'kaduna' => 'Kaduna',
+			                       'kano' => 'Kano',
+			                       'katsina' => 'Katsina',
+			                       'kebbi' => 'Kebbi',
+			                       'kogi' => 'Kogi',
+			                       'kwara' => 'Kwara',
+			                       'lagos' => 'Lagos',
+			                       'nasarawa' => 'Nasarawa',
+			                       'niger' => 'Niger',
+			                       'ogun' => 'Ogun',
+			                       'ondo' => 'Ondo',
+			                       'osun' => 'Osun',
+			                       'oyo' => 'Oyo',
+			                       'plateau' => 'Plateau',
+			                       'rivers' => 'Rivers',
+			                       'sokoto' => 'Sokoto',
+			                       'taraba' => 'Taraba',
+			                       'yobe' => 'Yobe',
+			                       'zamfara' => 'Zamfara',
+			                       'fct' => 'FCT'  
+			];                                          
 
           /**
            * Sends an email(blade view or text) to the recipient
@@ -948,33 +988,45 @@ class Helper implements HelperContract
                 return "ok";
            }		
            
-           function checkout($user, $data)
+           function checkout($user, $data, $type)
            {
-               if($data['ssa'] == "on"){
+               switch($type){
+               	case "kloudpay":
+                 	$this->payWithKloudPay($user, $data);
+                   break; 
+                   
+                   case "paystack":
+                 	$this->payWithPayStack($user, $data);
+                   break; 
+              }           
+             
+                return "ok";
+           }
+
+ 		  function payWithKloudPay($user, $data)
+           {                     
+              if($data['ssa'] == "on"){
                	$this->updateShippingDetails($user, $data);
               }
+              
               dd($data);
-           	$receiver = User::where('email',$data['email'])->first();
-               
-               if($receiver != null)
-               {
-               	//debit the giver
-               	$userData = ['email' => $user->email,
-                                     'type' => 'remove',
-                                     'amount' => $data['amount']
-                                    ];
-                                    
-                   //credit the receiver
-                   $receiverData = ['email' => $receiver->email,
-                                     'type' => 'add',
-                                     'amount' => $data['amount']
-                                    ];
-                                    
-               	$this->fundWallet($userData);
-                   $this->fundWallet($receiverData);
-              }
-          
+           	
                 return "ok";
-           }		
+           }
+           
+           function payWithPayStack($user, $payStackResponse)
+           { 
+              $md = $payStackResponse['metadata'];
+              $amount = $payStackResponse['amount'];
+              $ref = $payStackResponse['reference'];
+              
+              /*if($md['ssa'] == "on"){
+               	$this->updateShippingDetails($user, $data);
+              }*/
+              
+              dd($payStackResponse);
+           	
+                return "ok";
+           }
 }
 ?>
