@@ -36,43 +36,14 @@
                                     <div class="col-12 mb-3">
                                         <select class="w-100" name="state">
                                         <option value="none">Select state</option>
-                                        <option value="abia">Abia</option>
-                                        <option value="adamawa">Adamawa</option>
-                                        <option value="akwa-ibom">Akwa Ibom</option>
-                                        <option value="anambra">Anambra</option>
-                                        <option value="bauchi">Bauchi</option>
-                                        <option value="bayelsa">Bayelsa</option>
-                                        <option value="benue">Benue</option>
-                                        <option value="borno">Borno</option>
-                                        <option value="cross-river">Cross River</option>
-                                        <option value="delta">Delta</option>
-                                        <option value="ebonyi">Ebonyi</option>
-                                        <option value="enugu">Enugu</option>
-                                        <option value="edo">Edo</option>
-                                        <option value="ekiti">Ekiti</option>
-                                        <option value="gombe">Gombe</option>
-                                        <option value="imo">Imo</option>
-                                        <option value="jigawa">Jigawa</option>
-                                        <option value="kaduna">Kaduna</option>
-                                        <option value="kano">Kano</option>
-                                        <option value="katsina">Katsina</option>
-                                        <option value="kebbi">Kebbi</option>
-                                        <option value="kogi">Kogi</option>
-                                        <option value="kwara">Kwara</option>
-                                        <option value="lagos">Lagos</option>
-                                        <option value="nasarawa">Nasarawa</option>
-                                        <option value="niger">Niger</option>
-                                        <option value="ogun">Ogun</option>
-                                        <option value="ondo">Ondo</option>
-                                        <option value="osun">Osun</option>
-                                        <option value="oyo">Oyo</option>
-                                        <option value="plateau">Plateau</option>
-                                        <option value="rivers">Rivers</option>
-                                        <option value="sokoto">Sokoto</option>
-                                        <option value="taraba">Taraba</option>
-                                        <option value="yobe">Yobe</option>
-                                        <option value="zamfara">Zamfara</option>
-                                        <option value="fct">FCT</option>
+                                        <?php 
+                                          foreach($states as $key => $value){
+                                          	$selectedText = ($key == $sd['state']) ? "selected='selected'" : "";                                           
+                                        ?>
+                                        <option value="<?=$key?>"><?=$value?></option>
+                                        <?php 
+                                          }
+                                        ?>
                                     </select>
                                     </div>
                                     <div class="col-12 mb-3">
@@ -126,11 +97,15 @@
                             	
                             <!-- payment form -->
                             	<input type="hidden" name="email" value="{{$user->email}}"> {{-- required --}}
-                            	<input type="hidden" name="order_id" value="{{$orderNumber}}">
                             	<input type="hidden" name="amount" value="{{$total * 100}}"> {{-- required in kobo --}}
                             	<input type="hidden" name="metadata" value="{{ json_encode($md) }}" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
                             	<input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
                            	 <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"> {{-- required --}}
+                            	<input type="hidden" name="company" value="{{$sd['company']}}">
+                            	<input type="hidden" name="address" value="{{$sd['address']}}">
+                            	<input type="hidden" name="city" value="{{$sd['city']}}">
+                            	<input type="hidden" name="state" value="{{$sd['state']}}">
+                            	<input type="hidden" name="zip" value="{{$sd['zipcode']}}">                           
                             <!-- End payment form -->
 
                             <div class="cart-btn mt-50">
