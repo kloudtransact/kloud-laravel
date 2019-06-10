@@ -154,7 +154,7 @@
                }
                if(session()->has("remove-cart-status"))
                {
-               	$pop = "remove-cart-status"; $val = session->get("remove-cart-status");
+               	$pop = "remove-cart-status"; $val = session()->get("remove-cart-status");
                }
              ?> 
 
