@@ -49,6 +49,7 @@ Interface HelperContract
         public function getRating($deal,$user);
         public function getComments($deal);
         public function getOrders($user);
+        public function addOrder($user,$data);
         public function getInvoice($on);
         public function getUserInvoice($user,$on);
         public function fundWallet($data);
