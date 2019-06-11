@@ -103,7 +103,7 @@
                                                  'address': "{{$sd['address']}}",
                                                  'city': "{{$sd['city']}}",
                                                  'state': "{{$sd['state']}}",
-                                                 'zip': "{{$sd['zipcode']}}",
+                                                 'zip': "{{$sd['zipcode']}}"
                                              };
                              
                              </script>
