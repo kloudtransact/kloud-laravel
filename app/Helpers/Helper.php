@@ -229,10 +229,12 @@ class Helper implements HelperContract
            
            function createOrder($data)
            {
+           	$ref = (isset($data['reference'])) ? $data['reference'] : "none"; 
            	$ret = Orders::create(['number' => $this->generateOrderNumber(),                                                                                                          
                                                       'user_id' => $data['user_id'], 
                                                       'total' => $data['total'],
-                                                      'status' => $data['status']
+                                                      'comment' => $data['comment'],
+                                                      'status' => 'active'
                                                       ]);
                                                       
                 return $ret;
@@ -897,6 +899,34 @@ class Helper implements HelperContract
                }       
                 return $ret;
            }
+           
+           function addOrder($user,$data)
+           {
+           	$cart = $this->getCart($user);
+               
+           	$order = $this->createOrder($data);
+               
+               #create order details
+               foreach($cart as $c)
+               {
+               	$dt = [];
+                   $dt['order_id'] = $order->id; 
+                   $dt['deal_id'] = $c['deal']['id']; 
+                   $dt['qty'] = $c['qty'];
+                   
+                   $order = $this->createOrderDetails($dt);
+                                     
+               }
+               
+               #add transaction 
+                   $tdt = [];
+                   $tdt['type'] = $data['transaction-type'];
+                   $tdt['description'] = ($tdt['type']  == 'paid' || $tdt['type'] == 'refund') ? $order->number.','.$data['transaction-description'] : $data['transaction-description'];                   
+                   $tdt['user_id'] = $user->id;
+                   $tdt['amount'] = $data['total'];
+                   $this->createTransaction($tdt); 
+               
+           }
 
            function getInvoice($on)
            {
@@ -1009,9 +1039,28 @@ class Helper implements HelperContract
                	$this->updateShippingDetails($user, $data);
               }
               
-              dd($data);
-           	
-                return "ok";
+             # dd($data);
+           	$wallet = $this->getWallet($user); 
+               $amount = $data['amount'] / 100;
+               
+               if($wallet['balance'] >= $amount)
+               {
+               	#deduct funds from wallet, create order
+                   //debit the user
+                   $userData = ['email' => $user->email,
+                                     'type' => 'remove',
+                                     'amount' => $amount
+                                    ];
+                   $this->fundWallet($userData);
+                   $data['transaction-type'] = "paid";
+                   $data['transaction-description'] = "wallet";
+                   $this->addOrder($user,$data);
+                   return "ok";
+               }
+               else
+               {
+               	return "error";
+               }                                      	                         
            }
            
            function payWithPayStack($user, $payStackResponse)
@@ -1019,13 +1068,36 @@ class Helper implements HelperContract
               $md = $payStackResponse['metadata'];
               $amount = $payStackResponse['amount'];
               $ref = $payStackResponse['reference'];
+              $type = $payStackResponse['type'];
               
               /*if($md['ssa'] == "on"){
                	$this->updateShippingDetails($user, $data);
               }*/
+              $dt = [];
+              
+              if($type == "checkout"){
+               	$dt['comment'] = $md['comment'];
+                   $dt['reference'] = $ref;
+                   $dt['transaction-type'] = "paid";
+                   $dt['transaction-description'] = "card";
+              }
+              else if($type == "kloudpay"){
+               	//debit the user
+                   $userData = ['email' => $user->email,
+                                     'type' => 'add',
+                                     'amount' => $amount
+                                    ];
+                   $this->fundWallet($userData);
+                   $dt['transaction-type'] = "deposit";
+              }
+              
+              $dt['user_id'] = $user->id;
+              $dt['total'] = $amount;
               
               dd($payStackResponse);
-           	
+              #create order
+
+              $this->addOrder($user,$dt);
                 return "ok";
            }
 }
