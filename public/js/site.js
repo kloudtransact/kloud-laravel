@@ -16,7 +16,7 @@ $("#pay-cod").click(function(e){
 $("#pay-card").click(function(e){
 	e.preventDefault();
 	 mc['comment'] = $('#comment').val();
-	$('#nd').val(JSON.Stringify(mc));
+	$('#nd').val(JSON.stringify(mc));
 	
 	setPaymentAction("card");
 });
