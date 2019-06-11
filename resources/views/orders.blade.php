@@ -36,7 +36,7 @@
                                                 ?>
                                                  <tr>
                                                   <td>{{$o['number']}}</td>
-                                                  <td>{{$o['total'] /100}}</td>
+                                                  <td>{{$o['amount']}}</td>
                                                   <td>{{$o['status']}}</td>
                                                   <td><a class="btn btn-primary" href="{{$url}}" target="_blank">View Invoice</a></td>
                                                  </tr>
