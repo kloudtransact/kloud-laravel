@@ -15,6 +15,7 @@ $("#pay-cod").click(function(e){
 
 $("#pay-card").click(function(e){
 	e.preventDefault();
+	$('#meta-comment').val($('#comment').val());
 	setPaymentAction("card");
 });
 
