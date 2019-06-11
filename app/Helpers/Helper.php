@@ -1035,7 +1035,7 @@ class Helper implements HelperContract
 
  		  function payWithKloudPay($user, $data)
            {                     
-              if($data['ssa'] == "on"){
+              if(isset($data['ssa']) && $data['ssa'] == "on"){
                	$this->updateShippingDetails($user, $data);
               }
               
@@ -1070,9 +1070,7 @@ class Helper implements HelperContract
               $ref = $payStackResponse['reference'];
               $type = $payStackResponse['type'];
               
-              /*if($md['ssa'] == "on"){
-               	$this->updateShippingDetails($user, $data);
-              }*/
+              $this->updateShippingDetails($user, $payStackResponse);
               $dt = [];
               
               if($type == "checkout"){
