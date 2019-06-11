@@ -407,7 +407,11 @@ class MainController extends Controller {
          {
             $stt = $this->helpers->checkout($user,$req,"kloudpay");
 	        $request->session()->flash("pay-kloudpay-status",$stt);
-			return redirect()->intended('orders');
+	       
+            $location = 'orders'; 
+	        if($stt == 'error') $location = 'checkout'; 
+	        
+			return redirect()->intended($location);
          }        
     }
 
