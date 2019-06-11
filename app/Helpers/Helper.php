@@ -230,7 +230,7 @@ class Helper implements HelperContract
            function createOrder($data)
            {
            	$ref = (isset($data['reference'])) ? $data['reference'] : "none"; 
-           	$ret = Orders::create(['number' => $this->generateOrderNumber(),                                                                                                          
+           	$ret = Orders::create(['number' => $this->generateOrderNumber($data['type']),                                                                                                          
                                                       'user_id' => $data['user_id'], 
                                                       'total' => $data['total'],
                                                       'comment' => $data['comment'],
@@ -1091,6 +1091,7 @@ class Helper implements HelperContract
               
               $dt['user_id'] = $user->id;
               $dt['total'] = $amount;
+              $dt['type'] = "checkout";
               
               #dd($payStackResponse);
               #create order
