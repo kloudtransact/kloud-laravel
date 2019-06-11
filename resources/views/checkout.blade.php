@@ -95,17 +95,24 @@
                             	<input type="hidden" id="cod-action" value="{{url('checkout')}}">
                             	<input type="hidden" id="card-action" value="{{url('pay')}}">
                             	
+                             <script>
+                             	let mc = {
+                             	                'type': 'checkout',
+                                                 'comment': '',
+                                                 'company': "{{$sd['company']}}",
+                                                 'address': "{{$sd['address']}}",
+                                                 'city': "{{$sd['city']}}",
+                                                 'state': "{{$sd['state']}}",
+                                                 'zip': "{{$sd['zipcode']}}",
+                                             };
+                             
+                             </script>
                             <!-- payment form -->
                             	<input type="hidden" name="email" value="{{$user->email}}"> {{-- required --}}
                             	<input type="hidden" name="amount" value="{{$total * 100}}"> {{-- required in kobo --}}
-                            	<input type="hidden" name="metadata" value="{{ json_encode($md) }}" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
+                            	<input type="hidden" name="metadata" id="nd" value="" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
                             	<input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
                            	 <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"> {{-- required --}}
-                            	<input type="hidden" name="company" value="{{$sd['company']}}">
-                            	<input type="hidden" name="address" value="{{$sd['address']}}">
-                            	<input type="hidden" name="city" value="{{$sd['city']}}">
-                            	<input type="hidden" name="state" value="{{$sd['state']}}">
-                            	<input type="hidden" name="zip" value="{{$sd['zipcode']}}">  
                                 <input type="hidden" id="meta-comment" value="">  
                             <!-- End payment form -->
 
