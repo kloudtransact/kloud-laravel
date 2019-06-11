@@ -40,7 +40,7 @@
                                           foreach($states as $key => $value){
                                           	$selectedText = ($key == $sd['state']) ? "selected='selected'" : "";                                           
                                         ?>
-                                        <option value="<?=$key?>"><?=$value?></option>
+                                        <option value="<?=$key?>" <?=$selectedText?> ><?=$value?></option>
                                         <?php 
                                           }
                                         ?>
@@ -105,7 +105,8 @@
                             	<input type="hidden" name="address" value="{{$sd['address']}}">
                             	<input type="hidden" name="city" value="{{$sd['city']}}">
                             	<input type="hidden" name="state" value="{{$sd['state']}}">
-                            	<input type="hidden" name="zip" value="{{$sd['zipcode']}}">                           
+                            	<input type="hidden" name="zip" value="{{$sd['zipcode']}}">  
+                                <input type="hidden" id="meta-comment" value="">  
                             <!-- End payment form -->
 
                             <div class="cart-btn mt-50">

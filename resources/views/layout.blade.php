@@ -136,25 +136,33 @@
         	<?php
                $pop = ""; $val = "";
                
-               if(Session::has("login-status"))
+               if(session()->has("login-status"))
                {
-               	$pop = "login-status"; $val = Session::get("login-status");
+               	$pop = "login-status"; $val = session()->get("login-status");
                }
-               if(Session::has("register-status"))
+               if(session()->has("register-status"))
                {
-               	$pop = "register-status"; $val = Session::get("register-status");
+               	$pop = "register-status"; $val = session()->get("register-status");
                }
-               if(Session::has("reset-status"))
+               if(session()->has("reset-status"))
                {
-               	$pop = "reset-status"; $val = Session::get("reset-status");
+               	$pop = "reset-status"; $val = session()->get("reset-status");
                }
-               if(Session::has("add-deal-status"))
+               if(session()->has("add-deal-status"))
                {
-               	$pop = "add-deal-status"; $val = Session::get("add-deal-status");
+               	$pop = "add-deal-status"; $val = session()->get("add-deal-status");
                }
                if(session()->has("remove-cart-status"))
                {
                	$pop = "remove-cart-status"; $val = session()->get("remove-cart-status");
+               }
+               if(session()->has("pay-card-status"))
+               {
+               	$pop = "pay-card-status"; $val = session()->get("pay-card-status");
+               }
+               if(session()->has("pay-kloudpay-status"))
+               {
+               	$pop = "pay-kloudpay-status"; $val = session()->get("pay-kloudpaystatus");
                }
              ?> 
 
