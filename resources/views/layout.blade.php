@@ -162,7 +162,7 @@
                }
                if(session()->has("pay-kloudpay-status"))
                {
-               	$pop = "pay-kloudpay-status"; $val = session()->get("pay-kloudpaystatus");
+               	$pop = "pay-kloudpay-status"; $val = session()->get("pay-kloudpay-status");
                }
              ?> 
 
