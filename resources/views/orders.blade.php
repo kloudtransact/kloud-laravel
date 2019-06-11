@@ -36,8 +36,8 @@
                                                 ?>
                                                  <tr>
                                                   <td>{{$o['number']}}</td>
-                                                  <td>{{$t['total']}}</td>
-                                                  <td>{{$t['status']}}</td>
+                                                  <td>{{$o['total']}}</td>
+                                                  <td>{{$o['status']}}</td>
                                                   <td><a class="btn btn-primary" href="{{$url}}" target="_blank">View Invoice</a></td>
                                                  </tr>
                                               @endforeach

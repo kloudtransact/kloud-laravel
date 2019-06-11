@@ -32,7 +32,7 @@
                                               @foreach($transactions as $t)
                                                  <tr>
                                                   <td><span class="badge {{$t['badgeClass']}} text-uppercase">{{$t['type']}}</span></td>
-                                                  <td>{{$t['description']}}</td>
+                                                  <td>{!! $t['description'] !!}</td>
                                                   <td>{{$t['amount']}}</td>
                                                  </tr>
                                               @endforeach
