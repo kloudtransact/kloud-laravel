@@ -1094,7 +1094,7 @@ class Helper implements HelperContract
               $dt['user_id'] = $user->id;
               $dt['total'] = $amount;
               
-              dd($payStackResponse);
+              #dd($payStackResponse);
               #create order
 
               $this->addOrder($user,$dt);
