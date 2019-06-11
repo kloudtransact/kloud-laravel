@@ -1022,15 +1022,15 @@ class Helper implements HelperContract
            {
                switch($type){
                	case "kloudpay":
-                 	$this->payWithKloudPay($user, $data);
+                 	$ret = $this->payWithKloudPay($user, $data);
                    break; 
                    
                    case "paystack":
-                 	$this->payWithPayStack($user, $data);
+                 	$ret = $this->payWithPayStack($user, $data);
                    break; 
               }           
              
-                return "ok";
+                return $ret;
            }
 
  		  function payWithKloudPay($user, $data)
