@@ -15,7 +15,9 @@ $("#pay-cod").click(function(e){
 
 $("#pay-card").click(function(e){
 	e.preventDefault();
-	$('#meta-comment').val($('#comment').val());
+	 mc['comment'] = $('#comment').val();
+	$('#nd').val(JSON.Stringify(mc));
+	
 	setPaymentAction("card");
 });
 
@@ -23,6 +25,7 @@ let x = getCookie('kloudtransact_gdpr');
 if (x) {
     $('#cookieConsent').hide();
 }
+
 
 
 
