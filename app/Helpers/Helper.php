@@ -233,6 +233,7 @@ class Helper implements HelperContract
            	$ret = Orders::create(['number' => $this->generateOrderNumber($data['type']),                                                                                                          
                                                       'user_id' => $data['user_id'], 
                                                       'total' => $data['total'],
+                                                      'reference' => $ref,
                                                       'comment' => $data['comment'],
                                                       'status' => 'active'
                                                       ]);
@@ -607,7 +608,7 @@ class Helper implements HelperContract
                        $temp['amount'] = $t->amount; 
                        $temp['type'] = $t->type; 
                        
-                       switch($type)
+                       switch($temp['type'])
                        {
                        	case 'paid':
                              $desc = explode(',',$t->description);   
@@ -914,7 +915,7 @@ class Helper implements HelperContract
                    $dt['deal_id'] = $c['deal']['id']; 
                    $dt['qty'] = $c['qty'];
                    
-                   $order = $this->createOrderDetails($dt);
+                   $od = $this->createOrderDetails($dt);
                                      
                }
                
