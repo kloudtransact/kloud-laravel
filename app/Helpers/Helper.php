@@ -1067,7 +1067,7 @@ class Helper implements HelperContract
            function payWithPayStack($user, $payStackResponse)
            { 
               $md = $payStackResponse['metadata'];
-              $amount = $payStackResponse['amount'];
+              $amount = $payStackResponse['amount'] / 100;
               $ref = $payStackResponse['reference'];
               $type = $md['type'];
               
