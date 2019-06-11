@@ -1068,9 +1068,9 @@ class Helper implements HelperContract
               $md = $payStackResponse['metadata'];
               $amount = $payStackResponse['amount'];
               $ref = $payStackResponse['reference'];
-              $type = $payStackResponse['type'];
+              $type = $md['type'];
               
-              $this->updateShippingDetails($user, $payStackResponse);
+              #$this->updateShippingDetails($user, $md);
               $dt = [];
               
               if($type == "checkout"){
