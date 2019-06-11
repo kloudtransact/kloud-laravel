@@ -614,7 +614,7 @@ class Helper implements HelperContract
                              $desc = explode(',',$t->description);   
                              $iu = url('invoice').'?on='.$desc[0]; #invoice url
                              $pm = ($desc[1] == 'wallet') ? 'KloudPay Wallet' : 'Credit/debit card'; #payment method 
-                             $temp['description'] = 'Paid for order <a href="$iu" target="_blank">'.$desc[0].'</a> via '.$pm; 
+                             $temp['description'] = 'Paid for order <a href="'.$iu.'" target="_blank">'.$desc[0].'</a> via '.$pm; 
                              $temp['badgeClass'] = 'badge-success'; 
                            break; 
                            
@@ -622,7 +622,7 @@ class Helper implements HelperContract
                              $desc = explode(',',$t->description);   
                              $iu = url('invoice').'?on='.$desc[0]; #invoice url
                              $pm = ($desc[1] == 'wallet') ? 'KloudPay Wallet' : 'Credit/debit card'; #payment method 
-                             $temp['description'] = 'Refund for order <a href="$iu" target="_blank">'.$desc[0].'</a> to '.$pm; 
+                             $temp['description'] = 'Refund for order <a href="'.$iu.'" target="_blank">'.$desc[0].'</a> to '.$pm; 
                              $temp['badgeClass'] = 'badge-danger'; 
                            break; 
                            
@@ -668,7 +668,7 @@ class Helper implements HelperContract
                              $desc = explode(',',$t->description);   
                              $iu = url('invoice').'?on='.$desc[0]; #invoice url
                              $pm = ($desc[1] == 'wallet') ? 'KloudPay Wallet' : 'Credit/debit card'; #payment method 
-                             $temp['description'] = 'Paid for order <a href="$iu" target="_blank">'.$desc[0].'</a> via '.$pm; 
+                             $temp['description'] = 'Paid for order <a href="'.$iu.'" target="_blank">'.$desc[0].'</a> via '.$pm; 
                              $temp['badgeClass'] = 'badge-success'; 
                            break; 
                            
@@ -676,7 +676,7 @@ class Helper implements HelperContract
                              $desc = explode(',',$t->description);   
                              $iu = url('invoice').'?on='.$desc[0]; #invoice url
                              $pm = ($desc[1] == 'wallet') ? 'KloudPay Wallet' : 'Credit/debit card'; #payment method 
-                             $temp['description'] = 'Refund for order <a href="$iu" target="_blank">'.$desc[0].'</a> to '.$pm; 
+                             $temp['description'] = 'Refund for order <a href="'.$iu.'" target="_blank">'.$desc[0].'</a> to '.$pm; 
                              $temp['badgeClass'] = 'badge-danger'; 
                            break; 
                            
@@ -1071,7 +1071,7 @@ class Helper implements HelperContract
               $ref = $payStackResponse['reference'];
               $type = $md['type'];
               
-              #$this->updateShippingDetails($user, $md);
+              $this->updateShippingDetails($user, $md);
               $dt = [];
               
               if($type == "checkout"){
