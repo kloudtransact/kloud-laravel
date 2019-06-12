@@ -79,7 +79,8 @@
                       <tbody>
                         @foreach($invoice['order-details'] as $od)
                         <?php
-                        $deal = $od['deal'];                      
+                        $deal = $od['deal'];      
+                        $data = $deal['data'];      
                         ?>
                         <tr>
                           <td>
@@ -89,13 +90,13 @@
                             No
                           </td>
                           <td>
-                            &#8358;{{number_format($deal['amount'],2)}}
+                            &#8358;{{number_format($data['amount'],2)}}
                           </td>
                           <td>
                             {{$od['qty']}}
                           </td>
                           <td class="text-primary">
-                           &#8358;{{number_format($deal['amount'] * $od['qty'],2)}}
+                           &#8358;{{number_format($data['amount'] * $od['qty'],2)}}
                           </td>                     
                         </tr>   
                         @endforeach
@@ -113,7 +114,7 @@
                             
                           </td>
                           <td class="text-primary">
-                           &#8358;{{number_format($invoice['totals']['sub-total'],2)}}
+                           &#8358;{{number_format($invoice['totals']['subtotal'],2)}}
                           </td>                     
                         </tr>
                         <tr>
