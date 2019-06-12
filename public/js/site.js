@@ -22,6 +22,14 @@ $("#pay-card").click(function(e){
 	setPaymentAction("card");
 });
 
+$("#deposit-card").click(function(e){
+	e.preventDefault();
+	
+	 $('#meta-amount').val($('#amount').val() * 100);
+	$('#nd').val(JSON.stringify(mc));
+	setPaymentAction("card");
+});
+
 let x = getCookie('kloudtransact_gdpr');
 if (x) {
     $('#cookieConsent').hide();
