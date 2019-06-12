@@ -38,7 +38,7 @@
                                               @foreach($transactions as $t)
                                                  <tr>
                                                   <td><span class="badge {{$t['badgeClass']}} text-uppercase">{{$t['type']}}</span></td>
-                                                  <td>{{$t['description']}}</td>
+                                                  <td>{!! $t['description'] !!}</td>
                                                   <td>{{number_format($t['amount'],2)}}</td>
                                                  </tr>
                                               @endforeach
