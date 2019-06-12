@@ -680,13 +680,16 @@ class MainController extends Controller {
             }
             else
             {
-                $invoice = $this->helpers->getUserInvoice($user,$on);
+                $invoice = $this->helpers->getUserInvoice($user,$req['on']);
+                $alertClass = "success";
+                $sd = $this->helpers->getShippingDetails($user);
+                
                 if($invoice == []):
                   $alert = true; 
                   $alertClass = "warning";
                   $alertText = "Invalid order number. Please check the number and try again.";
                 endif; 
-                return view('invoice',compact(['user','invoice','alert', 'alertClass','AlertText']));
+                return view('invoice',compact(['user','invoice','sd', 'alert', 'alertClass','alertText']));
             }         
 		}
 		else
