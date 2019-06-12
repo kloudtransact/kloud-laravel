@@ -1104,6 +1104,7 @@ class Helper implements HelperContract
                                     ];
                    $this->fundWallet($userData);
                    $dt['transaction-type'] = "deposit";
+                   $dt['transaction-description'] = "";
               }
               
               $dt['user_id'] = $user->id;
