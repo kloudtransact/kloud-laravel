@@ -16,6 +16,7 @@ $("#pay-cod").click(function(e){
 $("#pay-card").click(function(e){
 	e.preventDefault();
 	 mc['comment'] = $('#comment').val();
+	if($('#customCheck3').is(':checked')) mc['ssa'] = "on";
 	$('#nd').val(JSON.stringify(mc));
 	
 	setPaymentAction("card");
