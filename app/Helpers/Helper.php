@@ -1065,6 +1065,7 @@ class Helper implements HelperContract
                    $this->fundWallet($userData);
                    
                    #create order
+                   $data['type'] = 'checkout';
                    $data['total'] = $amount;
                    $data['user_id'] = $user->id;
                    $data['transaction-type'] = "paid";
