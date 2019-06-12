@@ -942,7 +942,7 @@ class Helper implements HelperContract
                	$ret['id'] = $order->id; 
                    	$ret['number'] = $order->number; 
                        $ret['status'] = $order->status; 
-                       $ret['amount'] = $order->amount;                        
+                       $ret['amount'] = $order->total;                        
                        $ret['date'] = $order->created_at->format("jS F, Y"); 
                        $ret['order-details'] = [];
                        
