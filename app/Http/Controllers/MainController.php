@@ -683,6 +683,7 @@ class MainController extends Controller {
                 $invoice = $this->helpers->getUserInvoice($user,$req['on']);
                 $alertClass = "success";
                 $sd = $this->helpers->getShippingDetails($user);
+                $alert = false; 
                 
                 if($invoice == []):
                   $alert = true; 
