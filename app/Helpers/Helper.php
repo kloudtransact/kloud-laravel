@@ -955,7 +955,7 @@ class Helper implements HelperContract
                        array_push($ret['order-details'], $temp); 
                    }
                }      
-                $ret['totals'] = $this->getCartTotals($ret);
+                $ret['totals'] = $this->getCartTotals($ret['order-details']);
                 return $ret;
            }
 
