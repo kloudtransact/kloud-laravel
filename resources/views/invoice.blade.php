@@ -10,30 +10,30 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-@endif
+@else
        <div class="container">
           <div class="row mt-5">
           	<div class="col-md-6">
-          	   <h2>KloudTransact Invoice KINV45952468</h2>
+          	   <h2>KloudTransact Invoice {{$invoice['number']}}</h2>
               </div>
               <div class="col-md-3">
               	
               </div>
               <div class="col-md-3">
               	<h4 class="pull-right">
-              	  <strong>Invoice</strong> KINV45952468<br>
-                    <strong>Invoice Date</strong> 22 May, 2019<br>
-                    <strong>Due Date</strong> 22 May, 2019
+              	  <strong>Invoice</strong> {{$invoice['number']}}<br>
+                    <strong>Invoice Date</strong> {{$invoice['date']}}<br>
+                    <strong>Due Date</strong> {{$invoice['date']}}
                   </h4>
               </div>
           </div>
           <div class="row mt-5">
           	<div class="col-md-5">
           	   <h4 class="pull-left">
-              	  <strong>To</strong> King Perry<br>
-                    <strong>147 Trans Amadi Industrial Layout</strong><br>
-                    <strong>Port-Harcourt</strong><br>
-                    <strong>Rivers State</strong><br>
+              	  <strong>To</strong> {{$user->fname." ".$user->lname}}<br>
+                    <strong>{{$sd['address']}}</strong><br>
+                    <strong>{{$sd['city']}}</strong><br>
+                    <strong>{{$sd['state']}}</strong><br>
                   </h4>
               </div>
               <div class="col-md-3">
@@ -43,8 +43,8 @@
               </div>
               <div class="col-md-4 text-right">
               	<h4 class="pull-right">
-              	  <strong>Status: </strong> <span class="badge badge-<?=$alertClass?>"><?=$alertStatus?></span><br><br>
-                    <strong>Total: </strong><span class="badge badge-secondary">&#8358;47,000.00</span><br>
+              	  <strong>Status: </strong> <span class="badge badge-<?=$alertClass?>"><?=$invoice['status']?></span><br><br>
+                    <strong>Total: </strong><span class="badge badge-secondary">&#8358;{{number_format($invoice['amount'],2)}}</span><br>
                   </h4>
               </div>
           </div><br>
@@ -60,7 +60,7 @@
                     <table class="table">
                       <thead class=" text-primary">
                         <th>
-                          Description
+                          Deal
                         </th>
                         <th>
                           Taxed? 
@@ -77,23 +77,28 @@
                         
                       </thead>
                       <tbody>
+                        @foreach($invoice['order-details'] as $od)
+                        <?php
+                        $deal = $od['deal'];                      
+                        ?>
                         <tr>
                           <td>
-                            <strong>Samsung 40-inch LED TV - Bluetooth WiF,i</strong>
+                            <strong>{{$deal['name']}}</strong>
                           </td>
                           <td>
                             No
                           </td>
                           <td>
-                            &#8358;45,000.00
+                            &#8358;{{number_format($deal['amount'],2)}}
                           </td>
                           <td>
-                            1 
+                            {{$od['qty']}}
                           </td>
                           <td class="text-primary">
-                           &#8358;45,000
+                           &#8358;{{number_format($deal['amount'] * $od['qty'],2)}}
                           </td>                     
-                        </tr>         
+                        </tr>   
+                        @endforeach
                         <tr>
                           <td>
                             
@@ -108,7 +113,7 @@
                             
                           </td>
                           <td class="text-primary">
-                           &#8358;45,000
+                           &#8358;{{number_format($invoice['totals']['sub-total'],2)}}
                           </td>                     
                         </tr>
                         <tr>
@@ -125,7 +130,7 @@
                             
                           </td>
                           <td class="text-primary">
-                           &#8358;2,000
+                           &#8358;{{number_format($invoice['totals']['delivery'],2)}}
                           </td>                     
                         </tr>
                         <tr style="border-top: 2px solid !important;">
@@ -142,7 +147,7 @@
                             
                           </td>
                           <td class="text-primary">
-                           &#8358;47,000
+                           &#8358;{{number_format($invoice['totals']['total'],2)}}
                           </td>                     
                         </tr>
                       </tbody>
@@ -152,10 +157,11 @@
               </div>
             </div>
           </div>
-          <div class="row mt-5">
+          <!-- <div class="row mt-5">
           	<div class="col-md-12">
           	  <a class="btn btn-lg btn-primary" href="{{url('invoices')}}">Go to Invoices</a>
           	</div>
-          </div>
+          </div> -->
         </div>
+@endif
 @stop

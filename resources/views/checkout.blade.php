@@ -65,7 +65,7 @@
                                     <div class="col-12">
                                         <div class="custom-control custom-checkbox d-block mb-2">
                                             <input type="checkbox" class="custom-control-input" id="customCheck2" name="terms">
-                                            <label class="custom-control-label" for="customCheck2">I <a href="#">accept terms and conditions</a></label>
+                                            <label class="custom-control-label" for="customCheck2">I accept <a href="#">terms and conditions</a></label>
                                         </div>
                                         <div class="custom-control custom-checkbox d-block">
                                             <input type="checkbox" class="custom-control-input" name="ssa" id="customCheck3">
@@ -103,7 +103,8 @@
                                                  'address': "{{$sd['address']}}",
                                                  'city': "{{$sd['city']}}",
                                                  'state': "{{$sd['state']}}",
-                                                 'zip': "{{$sd['zipcode']}}"
+                                                 'zip': "{{$sd['zipcode']}}",
+                                                 'ssa': "off"
                                              };
                              
                              </script>
