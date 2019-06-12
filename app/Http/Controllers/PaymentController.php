@@ -60,19 +60,33 @@ class PaymentController extends Controller {
 
         #dd($paymentDetails);       
         $paymentData = $paymentDetails['data'];
+        $successLocation = "";
+        $failureLocation = "";
         
+        switch($paymentData['metadata']['type'])
+        {
+        	case 'checkout':
+              $successLocation = "orders";
+             $failureLocation = "checkout";
+            break; 
+            
+            case 'kloudpay':
+              $successLocation = "transactions";
+             $failureLocation = "deposit";
+            break; 
+       }
         //status, reference, metadata(order-id,items,amount,ssa), type
         if($paymentData['status'] == 'success')
         {
         	$stt = $this->helpers->checkout($user,$paymentData,"paystack");
             $request->session()->flash("pay-card-status",$stt);
-			return redirect()->intended('orders');
+			return redirect()->intended($successLocation);
         }
         else
         {
         	//Payment failed, redirect to orders
             $request->session()->flash("pay-card-status","error");
-			return redirect()->intended('checkout');
+			return redirect()->intended($failureLocation);
         }
     }
     
