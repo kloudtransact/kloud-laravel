@@ -961,7 +961,7 @@ class Helper implements HelperContract
            function getUserInvoice($user, $on)
            {
            	$ret = [];
-           	$order = Orders::where('id',$on)
+           	$order = Orders::where('number',$on)
                                    ->where('user_id',$user->id)->first();   
                
                 if($order != null)
