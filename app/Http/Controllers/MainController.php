@@ -684,7 +684,8 @@ class MainController extends Controller {
                 $alertClass = "success";
                 $sd = $this->helpers->getShippingDetails($user);
                 $alert = false; 
-                
+                $alertText = "";
+                  
                 if($invoice == []):
                   $alert = true; 
                   $alertClass = "warning";
