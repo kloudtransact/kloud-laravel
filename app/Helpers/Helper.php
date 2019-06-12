@@ -1085,7 +1085,7 @@ class Helper implements HelperContract
               $amount = $payStackResponse['amount'] / 100;
               $ref = $payStackResponse['reference'];
               $type = $md['type'];
-              $ssa = $md['ssa'];
+              $ssa = (isset($md['ssa'])) ? $md['ssa'] : 'off';
               
               if($ssa == "on") $this->updateShippingDetails($user, $md);
               $dt = [];
