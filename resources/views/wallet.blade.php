@@ -30,7 +30,7 @@
                                             <tr>
                                                 <th>Type</th>
                                                 <th>Description</th>
-                                                <th>Amount (&#8358;)</th>
+                                                <th>Amount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -39,7 +39,7 @@
                                                  <tr>
                                                   <td><span class="badge {{$t['badgeClass']}} text-uppercase">{{$t['type']}}</span></td>
                                                   <td>{!! $t['description'] !!}</td>
-                                                  <td>{{number_format($t['amount'],2)}}</td>
+                                                  <td>&#8358;{{number_format($t['amount'],2)}}</td>
                                                  </tr>
                                               @endforeach
                                             @endif	

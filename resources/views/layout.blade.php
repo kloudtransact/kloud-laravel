@@ -87,7 +87,8 @@
                      <li><a href="{{url('enterprise')}}">Enterprise</a></li>
                     @if($user != null) 
                     <li><a href="{{url('dashboard')}}">Dashboard</a></li>                  
-                    <li><a href="{{url('transactions')}}">Transactions</a></li>                    
+                    <li><a href="{{url('transactions')}}">Transactions</a></li>
+                    <li><a href="{{url('orders')}}">Orders</a></li>
                     <li><a href="{{url('logout')}}">Log out</a></li>
                     @else
                     <li><a href="{{url('register')}}">Register</a></li>

@@ -23,7 +23,7 @@
                 	     <thead>
                                             <tr>
                                                 <th>Order #</th>
-                                                <th>Total (&#8358;)</th>
+                                                <th>Total</th>
                                                 <th>Status</th>
                                                 <th>Actions</th>
                                             </tr>
@@ -36,7 +36,7 @@
                                                 ?>
                                                  <tr>
                                                   <td>{{$o['number']}}</td>
-                                                  <td>{{$o['amount']}}</td>
+                                                  <td>&#8358;{{number_format($o['amount'],2)}}</td>
                                                   <td>{{$o['status']}}</td>
                                                   <td><a class="btn btn-primary" href="{{$url}}" target="_blank">View Invoice</a></td>
                                                  </tr>
