@@ -492,7 +492,8 @@ class Helper implements HelperContract
            function getDeal($sku)
            {
            	$ret = [];
-               $d = Deals::where('sku',$sku)->first();
+               $d = Deals::where('sku',$sku)
+                             ->orWhere('id',$sku)->first();
  
               if($d != null)
                {
@@ -932,20 +933,28 @@ class Helper implements HelperContract
            function getInvoice($on)
            {
            	$ret = [];
-           	$orderDetails = OrderDetails::where('order_id',$on)->get();   
+           	$order = Orders::where('id',$on)->first();   
+               $orderDetails = OrderDetails::where('order_id',$on)->get();   
                
-                if($orderDetails != null)
+                if($order != null && $orderDetails != null)
                {
+               	$ret['id'] = $order->id; 
+                   	$ret['number'] = $order->number; 
+                       $ret['status'] = $order->status; 
+                       $ret['amount'] = $order->amount;                        
+                       $ret['date'] = $order->created_at->format("jS F, Y"); 
+                       $ret['order-details'] = [];
+                       
                	foreach($orderDetails as $od)
                    {
                    	$temp = [];
-                   	$temp['id'] = $o->id; 
-                   	$temp['number'] = $o->number; 
-                       $temp['status'] = $o->status; 
-                       $temp['amount'] = $o->total; 
-                       array_push($ret, $temp); 
+                   	$temp['id'] = $od->id; 
+                   	$temp['deal'] = $this->getDeal($od->deal_id);
+                        $temp['qty'] = $od->qty; 
+                       array_push($ret['order-details'], $temp); 
                    }
-               }       
+               }      
+                $ret['totals'] = $this->getCartTotals($ret)
                 return $ret;
            }
 
@@ -1053,6 +1062,10 @@ class Helper implements HelperContract
                                      'amount' => $amount
                                     ];
                    $this->fundWallet($userData);
+                   
+                   #create order
+                   $data['total'] = $amount;
+                   $data['user_id'] = $user->id;
                    $data['transaction-type'] = "paid";
                    $data['transaction-description'] = "wallet";
                    $this->addOrder($user,$data);
@@ -1070,8 +1083,9 @@ class Helper implements HelperContract
               $amount = $payStackResponse['amount'] / 100;
               $ref = $payStackResponse['reference'];
               $type = $md['type'];
+              $ssa = $md['ssa'];
               
-              $this->updateShippingDetails($user, $md);
+              if($ssa == "on") $this->updateShippingDetails($user, $md);
               $dt = [];
               
               if($type == "checkout"){
@@ -1081,7 +1095,7 @@ class Helper implements HelperContract
                    $dt['transaction-description'] = "card";
               }
               else if($type == "kloudpay"){
-               	//debit the user
+               	//credit the user
                    $userData = ['email' => $user->email,
                                      'type' => 'add',
                                      'amount' => $amount
