@@ -933,8 +933,9 @@ class Helper implements HelperContract
            function getInvoice($on)
            {
            	$ret = [];
-           	$order = Orders::where('id',$on)->first();   
-               $orderDetails = OrderDetails::where('order_id',$on)->get();   
+           	$order = Orders::where('id',$on)
+                                    ->orWhere('number',$on)->first();   
+               $orderDetails = OrderDetails::where('order_id',$order->id)->get();   
                
                 if($order != null && $orderDetails != null)
                {
