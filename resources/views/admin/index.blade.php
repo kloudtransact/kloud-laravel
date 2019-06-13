@@ -3,6 +3,14 @@
 @section('title',"Dashboard")
 
 @section('content')
+<?php
+$totalUsers = $adminStats['totalUsers'];
+		$totalSales= $adminStats['totalSales'];
+		$totalDeals = $adminStats['totalDeals'];
+		$totalUsersActive = $adminStats['totalUsersActive'];
+		$totalOrders = $adminStats['totalOrders'];
+		$totalOrdersPending = $adminStats['totalOrdersPending'];
+?>
       <div class="content">
         <div class="container-fluid">
           <div class="row">
