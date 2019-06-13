@@ -46,6 +46,9 @@ class AdminController extends Controller {
 		$totalUsers = $adminStats['totalUsers'];
 		$totalSales= $adminStats['totalSales'];
 		$totalDeals = $adminStats['totalDeals'];
+		$totalUsersActive = $adminStats['totalUsersActive'];
+		$totalOrders = $adminStats['totalOrders'];
+		$totalOrdersPending = $adminStats['totalOrdersPending'];
     	return view('admin.index',compact(['user','c','transactions','deals','auctions','totalSales','totalUsers','totalDeals']));
     }
 
