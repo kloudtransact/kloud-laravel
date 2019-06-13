@@ -40,6 +40,7 @@ Interface HelperContract
         public function adminGetTransactions();
         public function adminGetUsers();
         public function adminGetDeals();
+        public function adminGetOrders();
         public function adminGetAuctions();
         public function adminGetStats();
         public function getHottestDeals();
