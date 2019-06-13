@@ -13,7 +13,7 @@
                     <i class="material-icons">payment</i>
                   </div>
                   <p class="card-category">Deals</p>
-                  <h3 class="card-title">50
+                  <h3 class="card-title">{{$totalDeals}}
                   </h3>
                 </div>
                 <div class="card-footer">
@@ -31,7 +31,7 @@
                     <i class="material-icons">store</i>
                   </div>
                   <p class="card-category">Revenue</p>
-                  <h3 class="card-title">&#8358;34,000</h3>
+                  <h3 class="card-title">&#8358;{{number_format($totalSales,2)}}</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -48,7 +48,7 @@
                     <i class="material-icons">receipt</i>
                   </div>
                   <p class="card-category">Orders</p>
-                  <h3 class="card-title">17/50
+                  <h3 class="card-title">{{$totalOrdersPending}}/{{$totalOrders}}
                     <small>PENDING</small></h3>
                 </div>
                 <div class="card-footer">
@@ -66,7 +66,7 @@
                     <i class="fa fa-user"></i>
                   </div>
                   <p class="card-category">Users</p>
-                  <h3 class="card-title">17/50
+                  <h3 class="card-title">{{$totalUsersActive}}/{{$totalUsers}}
                     <small>ACTIVE</small></h3>
                 </div>
                 <div class="card-footer">
