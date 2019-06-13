@@ -818,6 +818,27 @@ class Helper implements HelperContract
                 return $ret;
            }
 
+function adminGetOrder($number)
+           {
+           	$ret = [];
+           	$order = Orders::where('number',$number)->first();
+ 
+              if($order != null)
+               {
+                   	$temp = [];
+                   	$temp['id'] = $o->id; 
+                   	$temp['number'] = $o->number; 
+                       $u = User::where('id',$o->user_id)->first();
+                   	$temp['email'] = ($u != null) ? $o->email : "Uknown"; 
+                   	$temp['total'] = $o->total; 
+                   	$temp['status'] = $o->status; 
+                       $ret = $temp; 
+                   }
+               }                                 
+                                                      
+                return $ret;
+           }
+
            function adminGetAuctions()
            {
            	$ret = [];
