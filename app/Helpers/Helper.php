@@ -820,9 +820,13 @@ class Helper implements HelperContract
         function adminGetStats()
            {
            	$ret = ['totalUsers' => User::all()->count(),
-                         'totalSales' => 0,
+                         'totalSales' => Orders::all()->sum('total'),
                          'totalDeals' => Deals::all()->count(),
-                        ];                                                                                 
+                         'totalOrders' => Orders::all()->count(),
+                         '$totalUsersActive' => Users::where('status','active')->count(),
+                         '$totalOrdersPending' => Deals::where('status','pending')->count(),
+                        ];      
+                                                                                       
                 return $ret;
            }			  
 
