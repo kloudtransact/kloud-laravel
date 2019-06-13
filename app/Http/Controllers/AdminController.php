@@ -430,7 +430,7 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
-		$orders = null; 
+		$orders = $this->helpers->adminGetOrders(); 
     	return view('admin.orders',compact(['user','c','orders']));
     }
     
@@ -439,7 +439,7 @@ class AdminController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getOrder()
+	public function getOrder(Request $request)
     {
        $user = null;
 		
@@ -453,10 +453,63 @@ class AdminController extends Controller {
         	return redirect()->intended('login?return=dashboard');
         }
         
+        $req = $request->all();
+			$validator = Validator::make($req, [
+                             'on' => 'required',
+             ]);
+         
+            if($validator->fails())
+             {
+                #$messages = $validator->messages();
+                return redirect()->intended('cobra-orders');
+            }
 		$c = $this->helpers->categories;
-		$order = null; 
+		$order = $this->helpers->adminGetOrder($req['on']); 
     	return view('admin.order',compact(['user','c','order']));
     }
+    
+        /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postOrder(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'email' => 'required',
+                             'type' => 'required',
+                             'amount' => 'required|numeric'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	#$req["user_id"] = $user->id; 
+             $this->helpers->fundWallet($req);
+	        Session::flash("fund-wallet-status","ok");
+			return redirect()->intended('cobra-users');
+         }        
+    }
+    
 
 	/**
 	 * Show the application welcome screen to the user.
