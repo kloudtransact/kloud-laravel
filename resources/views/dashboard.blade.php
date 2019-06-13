@@ -69,7 +69,7 @@
                     <thead class="text-warning">
                                                 <th>Type</th>
                                                 <th>Description</th>
-                                                <th>Amount (&#8358;)</th>
+                                                <th>Amount</th>
                     </thead>
                     <tbody>
                       @if($transactions != null && count($transactions) > 0)
@@ -81,9 +81,9 @@
                                                $t = $transactions[$i]; 
                                               ?>
                                                  <tr>
-                                                  <td><span class="badge {{$temp['badgeClass']}} text-uppercase">{{$temp['type']}}</span></td>
+                                                  <td><span class="badge {{$t['badgeClass']}} text-uppercase">{{$t['type']}}</span></td>
                                                   <td>{{$t['description']}}</td>
-                                                  <td>{{$t['amount']}}</td>
+                                                  <td>&#8358;{{number_format($t['amount'],2)}}</td>
                                                  </tr>
                                               @endfor
                                             @endif
