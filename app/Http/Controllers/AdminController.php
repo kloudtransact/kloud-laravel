@@ -43,7 +43,9 @@ class AdminController extends Controller {
 		$deals = $this->helpers->adminGetDeals();
 		$auctions = $this->helpers->adminGetAuctions();
 		$adminStats = $this->helpers->adminGetStats();
-    	return view('admin.index',compact(['user','c','transactions','deals','auctions','adminStats']));
+		$adminRecentOrders = $this->helpers->adminGetOrders();
+		$adminRecentTransactions = $this->helpers->adminGetTransactions();
+    	return view('admin.index',compact(['user','c','transactions','deals','auctions','adminStats','adminRecentOrders','adminRecentTransactions']));
     }
 
 	/**
