@@ -660,7 +660,7 @@ class Helper implements HelperContract
                    	$temp = [];
                    	$temp['id'] = $t->id; 
                        $u = User::where('id',$t->user_id)->first();
-                       $temp['user'] = ($u != null) ? $u->username : 'Unknown'; 
+                       $temp['email'] = ($u != null) ? $u->email: 'Unknown'; 
                        $temp['amount'] = $t->amount; 
                        $temp['type'] = $t->type; 
                        
@@ -794,6 +794,29 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }
+           
+           function adminGetOrders()
+           {
+           	$ret = [];
+           	$orders = Orders::where('id','>','0')->get();
+ 
+              if($orders != null)
+               {
+               	foreach($orders as $o)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $o->id; 
+                   	$temp['number'] = $o->number; 
+                       $u = User::where('id',$o->user_id)->first();
+                   	$temp['email'] = ($u != null) ? $o->email : "Uknown"; 
+                   	$temp['total'] = $o->total; 
+                   	$temp['status'] = $o->status; 
+                       array_push($ret, $temp); 
+                   }
+               }                                 
+                                                      
+                return $ret;
+           }
 
            function adminGetAuctions()
            {
@@ -823,7 +846,7 @@ class Helper implements HelperContract
                          'totalSales' => Orders::all()->sum('total'),
                          'totalDeals' => Deals::all()->count(),
                          'totalOrders' => Orders::all()->count(),
-                         'totalUsersActive' => User::where('status','active')->count(),
+                         'totalUsersActive' => User::where('status','ok')->count(),
                          'totalOrdersPending' => Deals::where('status','pending')->count(),
                         ];      
                                                                                        
