@@ -824,7 +824,7 @@ class Helper implements HelperContract
                          'totalDeals' => Deals::all()->count(),
                          'totalOrders' => Orders::all()->count(),
                          'totalUsersActive' => User::where('status','active')->count(),
-                         '$totalOrdersPending' => Deals::where('status','pending')->count(),
+                         'totalOrdersPending' => Deals::where('status','pending')->count(),
                         ];      
                                                                                        
                 return $ret;
