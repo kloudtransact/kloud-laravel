@@ -43,13 +43,7 @@ class AdminController extends Controller {
 		$deals = $this->helpers->adminGetDeals();
 		$auctions = $this->helpers->adminGetAuctions();
 		$adminStats = $this->helpers->adminGetStats();
-		$totalUsers = $adminStats['totalUsers'];
-		$totalSales= $adminStats['totalSales'];
-		$totalDeals = $adminStats['totalDeals'];
-		$totalUsersActive = $adminStats['totalUsersActive'];
-		$totalOrders = $adminStats['totalOrders'];
-		$totalOrdersPending = $adminStats['totalOrdersPending'];
-    	return view('admin.index',compact(['user','c','transactions','deals','auctions','totalSales','totalUsers','totalDeals']));
+    	return view('admin.index',compact(['user','c','transactions','deals','auctions','adminStats']));
     }
 
 	/**
