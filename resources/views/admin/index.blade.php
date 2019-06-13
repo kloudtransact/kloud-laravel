@@ -165,77 +165,29 @@ $totalUsers = $adminStats['totalUsers'];
                         <th>
                     </thead>
                     <tbody>
+                    @if($adminRecentOrders != null && count($adminRecentOrders) > 0)
+                     @foreach($adminRecentOrders as $o)
                       <tr>
                           <td>
-                            1
+                            {{$o['id']}}
                           </td>
                           <td>
-                            topewer
+                            {{$o['email']}}
                           </td>
                           <td>
-                            KLO48643655885
+                            {{$o['number']}}
                           </td>
                           
                           <td class="text-primary">
-                           &#8358;25,000
+                           &#8358;{{number_format($o['total'],2)}}
                           </td>
                           <td class="text-warning">
-                           PENDING 
+                           {{$o['status']}} 
                           </td>
-                        </tr>
-                        <td>
-                            1
-                          </td>
-                          <td>
-                            topewer
-                          </td>
-                          <td>
-                            KLO48643655885
-                          </td>
-                          
-                          <td class="text-primary">
-                           &#8358;25,000
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
+                        
                       </tr>
-                      <tr>
-                        <td>
-                            1
-                          </td>
-                          <td>
-                            topewer
-                          </td>
-                          <td>
-                            KLO48643655885
-                          </td>
-                          
-                          <td class="text-primary">
-                           &#8358;25,000
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                      </tr>
-                      <tr>
-                        <td>
-                            1
-                          </td>
-                          <td>
-                            topewer
-                          </td>
-                          <td>
-                            KLO48643655885
-                          </td>
-                          
-                          <td class="text-primary">
-                           &#8358;25,000
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                      </tr>
+                      @endforeach
+                      @endif
                     </tbody>
                   </table>
                 </div>
@@ -256,30 +208,16 @@ $totalUsers = $adminStats['totalUsers'];
                                                 <th>Amount (&#8358;)</th>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>anibel</td>
-                        <td><span class="badge badge-info">DEPOSIT</span></td>
-                        <td>Deposited to KloudPay Wallet</td>
-                        <td>10,000</td>
-                      </tr>
-                      <tr>
-                        <td>anibel</td>
-                        <td><span class="badge badge-primary">TRANSFER</span></td>
-                        <td>Transferred to <a href="#">topewer</a>'s KloudPay Wallet</td>
-                        <td>5,000</td>
-                      </tr>
-                      <tr>
-                        <td>anibel</td>
-                        <td><span class="badge badge-success">PAID</span></td>
-                        <td>Paid for order <a href="#">KLO456884528</a> via KloudPay Wallet</td>
-                        <td>5,000</td>
-                      </tr>
-                      <tr>
-                        <td>anibel</td>
-                        <td><span class="badge badge-danger">REFUND</span></td>
-                        <td>Refund for order <a href="#">KLO456884528</a> to KloudPay Wallet</td>
-                        <td>5,000</td>
-                      </tr>
+                      	@if($adminRecentTransactions != null && count($adminRecentTransactions) > 0)
+                                              @foreach($adminRecentTransactions as $t)
+                                                 <tr>
+                                                 <td>{!! $t['email'] !!}</td>
+                                                  <td><span class="badge {{$t['badgeClass']}} text-uppercase">{{$t['type']}}</span></td>
+                                                  <td>{!! $t['description'] !!}</td>
+                                                  <td>&#8358;{{number_format($t['amount'],2)}}</td>
+                                                 </tr>
+                                              @endforeach
+                                            @endif
                     </tbody>
                   </table>
                 </div>
