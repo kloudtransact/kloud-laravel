@@ -82,7 +82,7 @@
                                               ?>
                                                  <tr>
                                                   <td><span class="badge {{$t['badgeClass']}} text-uppercase">{{$t['type']}}</span></td>
-                                                  <td>{{$t['description']}}</td>
+                                                  <td>{!! $t['description'] !!}</td>
                                                   <td>&#8358;{{number_format($t['amount'],2)}}</td>
                                                  </tr>
                                               @endfor
