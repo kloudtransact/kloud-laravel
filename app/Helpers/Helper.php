@@ -833,7 +833,7 @@ function adminGetOrder($number)
                    	$temp['total'] = $o->total; 
                    	$temp['status'] = $o->status; 
                        $ret = $temp; 
-                   }
+                   
                }                                 
                                                       
                 return $ret;
