@@ -664,7 +664,7 @@ class Helper implements HelperContract
                        $temp['amount'] = $t->amount; 
                        $temp['type'] = $t->type; 
                        
-                      switch($type)
+                      switch($temp['type'])
                        {
                        	case 'paid':
                              $desc = explode(',',$t->description);   
