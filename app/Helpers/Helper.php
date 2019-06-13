@@ -821,9 +821,9 @@ class Helper implements HelperContract
 function adminGetOrder($number)
            {
            	$ret = [];
-           	$order = Orders::where('number',$number)->first();
+           	$o = Orders::where('number',$number)->first();
  
-              if($order != null)
+              if($o != null)
                {
                    	$temp = [];
                    	$temp['id'] = $o->id; 
