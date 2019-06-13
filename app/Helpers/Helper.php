@@ -823,7 +823,7 @@ class Helper implements HelperContract
                          'totalSales' => Orders::all()->sum('total'),
                          'totalDeals' => Deals::all()->count(),
                          'totalOrders' => Orders::all()->count(),
-                         '$totalUsersActive' => Users::where('status','active')->count(),
+                         '$totalUsersActive' => User::where('status','active')->count(),
                          '$totalOrdersPending' => Deals::where('status','pending')->count(),
                         ];      
                                                                                        
