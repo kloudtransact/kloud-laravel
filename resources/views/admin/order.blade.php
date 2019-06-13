@@ -13,18 +13,22 @@
                   <p class="card-category">Update information about this order</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form action="{{url('cobra-order')}}" method="post">
+                  	{!! csrf_field() !!}
                     <div class="row">
                       <div class="col-md-6">
+                      	<?php
+                              $iu = url('invoice').'?on='.$o['number']; 
+                          ?>
                         <div class="form-group">
                           <label class="bmd-label-floating">Order #</label>
-                          <input type="text" class="form-control" disabled value="KLO48643655885">
+                          <input type="text" class="form-control" disabled value="{{$order['number']}}">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control" value="topewer">
+                          <label class="bmd-label-floating">User</label>
+                          <input type="text" class="form-control" value="{{$order['email']}}">
                         </div>
                       </div>
                     </div>
@@ -32,7 +36,7 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Status</label>
-                          <input type="text" class="form-control" value="Pending" disabled>
+                          <input type="text" class="form-control" value="{{$order['status']}}" disabled>
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -62,7 +66,7 @@
                   <p class="card-description">
                     View invoice for this order. 
                   </p>
-                  <a href="{{url('cobra-invoice')}}" target="_blank" class="btn btn-primary btn-round">View Invoice</a>
+                  <a href="{{$iu}}" target="_blank" class="btn btn-primary btn-round">View Invoice</a>
                 </div>
               </div>
             </div>

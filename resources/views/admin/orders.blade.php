@@ -36,138 +36,34 @@
                         </th>
                       </thead>
                       <tbody>
+                       @if($orders != null && count($orders) > 0)
+                       @foreach($orders as $o)
+                       <?php
+                          $orderURL = url('cobra-order').'?on='.$o['number']; 
+                       ?>
                         <tr>
                           <td>
-                            1
+                            {{$o['id']}}
                           </td>
                           <td>
-                            topewer
+                            {{$o['email']}}
                           </td>
                           <td>
-                            KLO48643655885
+                            {{$o['number']}}
                           </td>
                           
                           <td class="text-primary">
-                           &#8358;25,000
+                           &#8358;{{number_format($o['total'],2)}}
                           </td>
                           <td class="text-warning">
                            PENDING 
                           </td>
                           <td>
-                           <a class="btn btn-primary" href=" {{url('cobra-order')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Approve</a>
+                           <a class="btn btn-primary" href=" {{$orderURL}}">View</a>
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            topewer
-                          </td>
-                          <td>
-                            KLO48643655885
-                          </td>
-                          
-                          <td class="text-primary">
-                           &#8358;25,000
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                          <td>
-                           <a class="btn btn-primary" href=" {{url('cobra-order')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Approve</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            topewer
-                          </td>
-                          <td>
-                            KLO48643655885
-                          </td>
-                          
-                          <td class="text-primary">
-                           &#8358;25,000
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                          <td>
-                           <a class="btn btn-primary" href=" {{url('cobra-order')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Approve</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            topewer
-                          </td>
-                          <td>
-                            KLO48643655885
-                          </td>
-                          
-                          <td class="text-primary">
-                           &#8358;25,000
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                          <td>
-                           <a class="btn btn-primary" href=" {{url('cobra-order')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Approve</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            topewer
-                          </td>
-                          <td>
-                            KLO48643655885
-                          </td>
-                          
-                          <td class="text-primary">
-                           &#8358;25,000
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                          <td>
-                           <a class="btn btn-primary" href=" {{url('cobra-order')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Approve</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            topewer
-                          </td>
-                          <td>
-                            KLO48643655885
-                          </td>
-                          
-                          <td class="text-primary">
-                           &#8358;25,000
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                          <td>
-                           <a class="btn btn-primary" href=" {{url('cobra-order')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Approve</a>
-                          </td>
-                        </tr>
+                        @endforeach
+                        @endif
                       </tbody>
                     </table>
                   </div>
