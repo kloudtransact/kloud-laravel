@@ -18,6 +18,7 @@
                     <div class="row">
                       <div class="col-md-6">
                       	<?php
+                              $o = $order; 
                               $iu = url('invoice').'?on='.$o['number']; 
                           ?>
                         <div class="form-group">
