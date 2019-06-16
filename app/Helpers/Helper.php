@@ -911,7 +911,7 @@ function adminGetOrder($number)
                     	$sum += $r->stars;
                     }
                     
-                	$ret = $sum / $rc; 
+                	if($rc > 0) $ret = $sum / $rc; 
                 }       
                 return $ret;
            }	
