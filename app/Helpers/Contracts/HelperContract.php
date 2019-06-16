@@ -48,7 +48,8 @@ Interface HelperContract
         public function getNewArrivals();
         public function getBestSellers();
         public function getHotCategories();
-        public function getRating($deal,$user);
+        public function getRating($deal);
+        public function getUserRating($deal,$user);
         public function getComments($deal);
         public function getOrders($user);
         public function addOrder($user,$data);
