@@ -787,7 +787,8 @@ class Helper implements HelperContract
                    	$temp['sku'] = $d->sku; 
                    	$temp['type'] = $d->type; 
                    	$temp['data'] = $this->getDealData($d->sku); 
-                   	$temp['images'] = $this->getDealImages($d->sku);               
+                   	$temp['images'] = $this->getDealImages($d->sku);
+                       $temp['rating'] = $this->getRating($d);
                        array_push($ret, $temp); 
                    }
                }                                 
@@ -895,7 +896,19 @@ function adminGetOrder($number)
                 return $ret;
            }
 
-           function getRating($deal,$user)
+           function getRating($deal)
+           {
+           	$ret = [];
+           	$rating = Ratings::where('deal_id',$deal->id)->first();   
+               
+                if($rating !== null) 
+                {
+                	$ret['rating'] = $rating->stars; 
+                }       
+                return $ret;
+           }	
+           
+           function getUserRating($deal,$user)
            {
            	$ret = [];
            	$rating = Ratings::where('deal_id',$deal['id'])
