@@ -42,7 +42,7 @@
                             {{$d['name']}}
                           </td>
                           <td>
-                            @for($u = 0; $u < {{$d['rating']}}; $u++)
+                            @for($u = 0; $u < $d['rating']; $u++)
                             	<i class="material-icons text-primary">star</i>
                             @endfor
                           </td>
