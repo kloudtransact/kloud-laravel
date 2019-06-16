@@ -898,12 +898,20 @@ function adminGetOrder($number)
 
            function getRating($deal)
            {
-           	$ret = [];
-           	$rating = Ratings::where('deal_id',$deal->id)->first();   
+           	$ret = 0;
+           	$ratings = Ratings::where('deal_id',$deal->id)->get();   
                
-                if($rating !== null) 
+                if($ratings !== null) 
                 {
-                	$ret['rating'] = $rating->stars; 
+                	$rc = $ratings->count();
+                    $sum = 0;
+                    
+                    foreach($ratings as $r)
+                    {
+                    	$sum += $r->stars;
+                    }
+                    
+                	$ret = $sum / $rc; 
                 }       
                 return $ret;
            }	
