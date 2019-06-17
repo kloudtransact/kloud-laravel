@@ -18,13 +18,13 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Name</label>
-                          <input type="text" class="form-control" value="Samsung Galaxy S9 Edge">
+                          <input type="text" class="form-control" value="{{$deal['name']}}" required>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">SKU</label>
-                          <input type="text" class="form-control" value="KLO9647808513">
+                          <input type="text" class="form-control" value="{{$deal['sku']}}">
                         </div>
                       </div>
                     </div>
@@ -32,28 +32,30 @@
                       <div class="col-md-7">
                         <div class="form-group">
                           <label class="bmd-label-floating">Category</label>                         
-                          <select class="form-control">
+                          <select class="form-control" name='category' required>
                           	<option value="none">Select category</option>
-                              <option value="home-office" selected="selected">Home & Office</option>
-                              <option value="fashion">Fashion</option>
-                              <option value="Groceries">Groceries</option>
+                              @foreach($categories as $key => $value)
+                              <?php $ss = ($deal['category'] == $key) ? 'selected="selected"' : ''; ?>
+                              <option value="{{$key}}" {{$ss}}>{{$value}}</option>
+                              @endforeach
                           </select>
                         </div><br>
                         <div class="form-group">
                           <label class="bmd-label-floating">Description</label>
-                          <textarea class="form-control">Amazing product, I've been using it for 3 years now without problems</textarea>
+                          <textarea class="form-control">{{$deal['data']['description']}}</textarea>
                         </div>
                       </div>
                       <div class="col-md-5">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Price(&#8358;)</label>
-                          <input type="number" class="form-control" value="45000">
+                          <label class="bmd-label-floating">Price</label>
+                          <input type="number" class="form-control" value="&#8358;{{number_format($deal['data']['amount'],2)}}">
                         </div><br>
                         <div class="form-group">
                           <label class="bmd-label-floating">Images</label>
                           <div class="row">
-                          	<div class="col-md-6"><img class="img img-fluid mx-auto d-block" src="assets/img/kloud/deal.jpg"></div>
-                              <div class="col-md-6"><img class="img img-fluid mx-auto d-block" src="assets/img/kloud/deal.jpg"></div>
+                          	@foreach($images as $img)
+                          	<div class="col-md-6"><img class="img img-fluid mx-auto d-block" src="{{$img['url']}}"></div>
+                              @endforeach                              
                           </div>
                         </div>
                       </div>
@@ -63,7 +65,7 @@
                         <div class="form-group">
                           <label class="bmd-label-floating">Rating</label>
                           <span class="form-control">
-                          	<?php for($u = 0; $u < 4; $u++){ ?>
+                          	<?php for($u = 0; $u < $d['rating']; ; $u++){ ?>
                             	<i class="material-icons text-primary">star</i>
                               <?php } ?>
                           </span>
