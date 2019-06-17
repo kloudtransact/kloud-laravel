@@ -796,6 +796,27 @@ class Helper implements HelperContract
                 return $ret;
            }
            
+          function adminGetDeal($sku)
+           {
+           	$ret = [];
+           	$d = Deals::where('sku',$sku)->first();
+ 
+              if($d != null)
+               {
+                   	$temp = [];
+                   	$temp['id'] = $d->id; 
+                   	$temp['name'] = $d->name; 
+                   	$temp['sku'] = $d->sku; 
+                   	$temp['type'] = $d->type; 
+                   	$temp['data'] = $this->getDealData($d->sku); 
+                   	$temp['images'] = $this->getDealImages($d->sku);
+                       $temp['rating'] = $this->getRating($d);
+                       $ret = $temp;                   
+               }                                 
+                                                      
+                return $ret;
+           }           
+           
            function adminGetOrders()
            {
            	$ret = [];
