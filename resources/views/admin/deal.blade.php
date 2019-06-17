@@ -34,7 +34,7 @@
                           <label class="bmd-label-floating">Category</label>                         
                           <select class="form-control" name='category' required>
                           	<option value="none">Select category</option>
-                              @foreach($categories as $key => $value)
+                              @foreach($c as $key => $value)
                               <?php $ss = ($deal['category'] == $key) ? 'selected="selected"' : ''; ?>
                               <option value="{{$key}}" {{$ss}}>{{$value}}</option>
                               @endforeach
