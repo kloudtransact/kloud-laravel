@@ -50,7 +50,7 @@
                            {{$d['data']['in_stock']}}
                           </td>
                           <td>
-                           <a class="btn btn-success" href="{{url('cobra-deal')}}"> View</a>
+                           <a class="btn btn-success" href="{{url('cobra-deal').'?sku='.$d['sku']}}"> View</a>
                            <a class="btn btn-warning" href="#"> Delete</a>
                           </td>
                         </tr>
