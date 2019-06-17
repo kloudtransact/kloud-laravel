@@ -65,7 +65,7 @@
                         <div class="form-group">
                           <label class="bmd-label-floating">Rating</label>
                           <span class="form-control">
-                          	<?php for($u = 0; $u < $d['rating']; ; $u++){ ?>
+                          	<?php for($u = 0; $u < $d['rating']; $u++){ ?>
                             	<i class="material-icons text-primary">star</i>
                               <?php } ?>
                           </span>
