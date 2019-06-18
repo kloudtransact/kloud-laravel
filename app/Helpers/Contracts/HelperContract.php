@@ -29,6 +29,7 @@ Interface HelperContract
         public function updateCart($cart, $quantities);
         public function removeFromCart($user, $asf);
         public function getDeal($sku);
+        public function updateDeal($data);
         public function getUser($email);
         public function getShippingDetails($user);
         public function updateShippingDetails($user,$data);
@@ -40,6 +41,7 @@ Interface HelperContract
         public function adminGetTransactions();
         public function adminGetUsers();
         public function adminGetDeals();
+        public function adminGetDeal($sku);
         public function adminGetOrders();
         public function adminGetOrder($number);
         public function adminGetAuctions();
