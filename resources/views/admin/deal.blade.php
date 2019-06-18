@@ -13,18 +13,19 @@
                   <p class="card-category">View, edit or remove this deal</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form method='post' action="{{url('cobra-deal')}}">
+                  	{!! csrf_field() !!}
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Name</label>
-                          <input type="text" class="form-control" value="{{$deal['name']}}" required>
+                          <input name='name' type="text" class="form-control" value="{{$deal['name']}}" required>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">SKU</label>
-                          <input type="text" class="form-control" value="{{$deal['sku']}}">
+                          <input name='sku' type="text" class="form-control" value="{{$deal['sku']}}" required>
                         </div>
                       </div>
                     </div>
@@ -42,13 +43,13 @@
                         </div><br>
                         <div class="form-group">
                           <label class="bmd-label-floating">Description</label>
-                          <textarea class="form-control">{{$deal['data']['description']}}</textarea>
+                          <textarea class="form-control" name='description' required>{{$deal['data']['description']}}</textarea>
                         </div>
                       </div>
                       <div class="col-md-5">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Price</label>
-                          <input type="number" class="form-control" value="&#8358;{{number_format($deal['data']['amount'],2)}}">
+                          <label class="bmd-label-floating">Price (&#8358;)</label>
+                          <input name='amount' type="number" class="form-control" value="{{number_format($deal['data']['amount'],2)}}" required>
                         </div><br>
                         <div class="form-group">
                           <label class="bmd-label-floating">Images</label>
@@ -65,7 +66,7 @@
                         <div class="form-group">
                           <label class="bmd-label-floating">Rating</label>
                           <span class="form-control">
-                          	<?php for($u = 0; $u < $d['rating']; $u++){ ?>
+                          	<?php for($u = 0; $u < $deal['rating']; $u++){ ?>
                             	<i class="material-icons text-primary">star</i>
                               <?php } ?>
                           </span>
@@ -74,21 +75,30 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Inventory status</label>
-                          <select class="form-control">
+                          <select class="form-control" name='in_stock' required>
                           	<option value="none">Select inventory status</option>
-                              <option value="in-stock" selected="selected">In Stock</option>
-                              <option value="new">New! </option>
-                              <option value="out-of-stock">Out of Stock</option>
+                              <?php 
+                              $iss = ['yes' => 'In stock','new' => 'New!','no' => 'Out of Stock'];                           
+                              foreach($iss as $key => $value){ 
+                              	$ss = ($deal['data']['in_stock'] == $key) ? 'selected="selected"' : ''; 
+                              ?>
+                              <option value="<?=$key?>" <?=$ss?>><?=$value?></option>
+                              <?php } ?>
                           </select>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Status</label>
-                          <select class="form-control">
+                          <select class="form-control" name='status' required>
                           	<option value="none">Select status</option>
-                              <option value="active" selected="selected">Active</option>
-                              <option value="expired">Expired</option>
+                              <?php 
+                              $suss = ['active' => 'Active','disabled' => 'Disabled'];                           
+                              foreach($suss as $key => $value){ 
+                              	$ss = ($deal['status'] == $key) ? 'selected="selected"' : ''; 
+                              ?>
+                              <option value="<?=$key?>" <?=$ss?>><?=$value?></option>
+                              <?php } ?>
                           </select>
                         </div>
                       </div>
@@ -113,7 +123,8 @@
                   <p class="card-description">
                     Removes this deal from the system. 
                   </p>
-                  <a href="#" class="btn btn-primary btn-round">Delete Deal</a>
+                  <?php $deleteURL = url('cobra-delete-deal').'?sku='.$deal['sku']; ?>
+                  <a href="{{$deleteURL}}" class="btn btn-primary btn-round">Delete Deal</a>
                 </div>
               </div>
             </div>
