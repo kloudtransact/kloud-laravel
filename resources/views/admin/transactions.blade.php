@@ -19,33 +19,20 @@
                         <th>User</th>
                                                 <th>Type</th>
                                                 <th>Description</th>
-                                                <th>Amount (&#8358;)</th>
+                                                <th>Amount</th>
+                                                <td>Date</td>
                       </thead>
                       <tbody>
-                        <tr>
-                        <td>anibel</td>
-                        <td><span class="badge badge-info">DEPOSIT</span></td>
-                        <td>Deposited to KloudPay Wallet</td>
-                        <td>10,000</td>
-                      </tr>
-                      <tr>
-                        <td>anibel</td>
-                        <td><span class="badge badge-primary">TRANSFER</span></td>
-                        <td>Transferred to <a href="#">topewer</a>'s KloudPay Wallet</td>
-                        <td>5,000</td>
-                      </tr>
-                      <tr>
-                        <td>anibel</td>
-                        <td><span class="badge badge-success">PAID</span></td>
-                        <td>Paid for order <a href="#">KLO456884528</a> via KloudPay Wallet</td>
-                        <td>5,000</td>
-                      </tr>
-                      <tr>
-                        <td>anibel</td>
-                        <td><span class="badge badge-danger">REFUND</span></td>
-                        <td>Refund for order <a href="#">KLO456884528</a> to KloudPay Wallet</td>
-                        <td>5,000</td>
-                      </tr>
+                        @if($transactions != null && count($transactions) > 0)
+                                              @foreach($transactions as $t)
+                                                 <tr>
+                                                  <td><span class="badge {{$t['badgeClass']}} text-uppercase">{{$t['type']}}</span></td>
+                                                  <td>{!! $t['description'] !!}</td>
+                                                  <td>&#8358;{{number_format($t['amount'],2)}}</td>
+                                                  <td>{{$t['date']}}</td>
+                                                 </tr>
+                                              @endforeach
+                                            @endif
                       </tbody>
                     </table>
                   </div>
