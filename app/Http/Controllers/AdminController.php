@@ -186,6 +186,53 @@ class AdminController extends Controller {
     	return view('admin.add-deal',compact(['user','c']));
     }
     
+       /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postDeal(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'name' => 'required',
+                             'sku' => 'required',
+                            # 'type' => 'required',
+                             'category' => 'required|not_in:none',
+                             'description' => 'required',
+                             'amount' => 'required|numeric',
+                             'in_stock' => 'required|not_in:none',
+                             'status' => 'required|not_in:none',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	#$req["user_id"] = $user->id; 
+             $this->helpers->updateDeal($req);
+	        Session::flash("cobra-deal-status","ok");
+			return redirect()->intended('cobra-deals');
+         }        
+    }
+    
     /**
 	 * Show the application welcome screen to the user.
 	 *
