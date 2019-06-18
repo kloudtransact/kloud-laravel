@@ -810,6 +810,7 @@ class Helper implements HelperContract
                    	$temp['sku'] = $d->sku; 
                    	$temp['type'] = $d->type; 
                        $temp['category'] = $d->category; 
+                       $temp['status'] = $d->status; 
                    	$temp['data'] = $this->getDealData($d->sku); 
                    	$temp['images'] = $this->getDealImages($d->sku);
                        $temp['rating'] = $this->getRating($d);
@@ -833,6 +834,7 @@ class Helper implements HelperContract
                    	$temp['sku'] = $d->sku; 
                    	$temp['type'] = $d->type; 
                        $temp['category'] = $d->category; 
+                       $temp['status'] = $d->status; 
                    	$temp['data'] = $this->getDealData($d->sku); 
                    	$temp['images'] = $this->getDealImages($d->sku);
                        $temp['rating'] = $this->getRating($d);
