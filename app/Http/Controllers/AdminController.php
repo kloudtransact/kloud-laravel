@@ -106,6 +106,51 @@ class AdminController extends Controller {
 	 *
 	 * @return Response
 	 */
+    public function postUser(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'fname' => 'required',
+                             'lname' => 'required',
+                             'email' => 'required',
+                             'phone' => 'required',
+                             'role' => 'required|not_in:none',
+                             'status' => 'required|not_in:none',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	#$req["user_id"] = $user->id; 
+             $this->helpers->updateUser($req);
+	        session()->flash("cobra-user-status","ok");
+			return redirect()->intended('cobra-users');
+         }        
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
 	public function getDeals()
     {
        $user = null;
