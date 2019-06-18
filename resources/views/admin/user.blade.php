@@ -24,13 +24,13 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">First Name</label>
-                          <input type="text" class="form-control" value="{{$account['fname']}}">
+                          <input type="text" name="fname" class="form-control" value="{{$account['fname']}}" required>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control" value="{{$account['lname']}}">
+                          <input type="text" name="lname" class="form-control" value="{{$account['lname']}}" required>
                         </div>
                       </div>
                     </div>
@@ -38,19 +38,19 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email</label>
-                          <input type="email" class="form-control" value="{{$account['email']}}">
+                          <input type="email" name="email" class="form-control" value="{{$account['email']}}" required>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Phone Number</label>
-                          <input type="text" class="form-control" value="{{$account['phone']}}">
+                          <input type="text" name="phone" class="form-control" value="{{$account['phone']}}">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Account Balance</label>
-                          <input type="text" class="form-control" value="{{number_format($balance,2)}}" disabled>
+                          <input type="text" class="form-control" value="&#8358;{{number_format($balance,2)}}" disabled>
                         </div>
                       </div>
                     </div>   
@@ -58,21 +58,30 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Role</label>
-                          <select class="form-control">
+                          <select class="form-control" name="role">
                           	<option value="none">Select role</option>
-                              <option value="user" selected="selected">User</option>
-                              <option value="admin">Admin</option>
-                              <option value="su">Super Admin</option>
+                              <?php 
+                              $iss = ['user' => 'User','admin' => 'Admin','su' => 'Super Admin'];                           
+                              foreach($iss as $key => $value){ 
+                              	$ss = ($account['role'] == $key) ? 'selected="selected"' : ''; 
+                              ?>
+                               <option value="<?=$key?>" <?=$ss?>><?=$value?></option>
+                              <?php } ?>                             
                           </select>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Status</label>
-                          <select class="form-control">
+                          <select class="form-control" name="status">
                           	<option value="none">Select status</option>
-                              <option value="enabled" selected="selected">Active</option>
-                              <option value="disabled">Suspended</option>
+                              <?php 
+                              $iss = ['enabled' => 'Active','disabled' => 'Suspended'];                           
+                              foreach($iss as $key => $value){ 
+                              	$ss = ($account['status'] == $key) ? 'selected="selected"' : ''; 
+                              ?>
+                               <option value="<?=$key?>" <?=$ss?>><?=$value?></option>
+                              <?php } ?>                             
                           </select>
                         </div>
                       </div>
@@ -99,10 +108,7 @@
                   </p>
                   
                   <a href="{{$fund_url}}" class="btn btn-primary btn-round">Fund Wallet</a><br>
-                  <p class="card-description">
-                    Suspend this user. 
-                  </p>
-                  <a href="{{$suspend_url}}" class="btn btn-primary btn-round">Suspend User</a>
+                 
                 </div>
               </div>
             </div>

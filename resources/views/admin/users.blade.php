@@ -23,9 +23,6 @@
                           Name
                         </th>
                         <th>
-                          Username
-                        </th>
-                        <th>
                           Phone
                         </th>
                         <th>
@@ -42,60 +39,34 @@
                         </th>
                       </thead>
                       <tbody>
+                         @foreach($users as $u)
                         <tr>
                           <td>
-                            1
+                            {{$u['id']}}
                           </td>
                           <td>
-                            King Perry
+                            {{$u['fname']." ".$u['lname']}}
                           </td>
                           <td>
-                            <a href="#">topewer</a>
-                          </td>
-                          <td>
-                            07053216684 
+                            {{$u['phone']}} 
                           </td>
                           <td class="text-primary">
-                           kingperry@yahoo.com
+                           {{$u['email']}}
                           </td>
                           <td class="text-primary">
-                           User
+                           {{$u['role']}}
                           </td>
                           <td class="text-warning">
-                           ACTIVE
+                           {{$u['status']}}
                           </td>
-                          <td>
-                           <a class="btn btn-primary" href="{{url('cobra-user')}}">View</a>
-                           <a class="btn btn-warning" href="#">Disable</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            King Perry
-                          </td>
-                          <td>
-                            <a href="#">topewer</a>
-                          </td>
-                          <td>
-                            07053216684 
-                          </td>
-                          <td class="text-primary">
-                           kingperry@yahoo.com
-                          </td>
-                          <td class="text-primary">
-                           User
-                          </td>
-                          <td class="text-warning">
-                           ACTIVE
-                          </td>
-                          <td>
-                           <a class="btn btn-primary" href="{{url('cobra-user')}}">View</a>
-                           <a class="btn btn-warning" href="#">Disable</a>
+                          <td>     
+                           <?php 
+                             $uu = url('cobra-user').'?email='.$u['email'];
+                           ?>	
+                           <a class="btn btn-primary" href="{{$uu}}">View</a>
                           </td>
                         </tr>
+                        @endforeach                        
                       </tbody>
                     </table>
                   </div>
