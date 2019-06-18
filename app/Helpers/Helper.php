@@ -659,6 +659,7 @@ class Helper implements HelperContract
                    	$temp['id'] = $t->id; 
                        $temp['amount'] = $t->amount; 
                        $temp['type'] = $t->type; 
+                       $temp['date'] = $u->created_at->format("jS F, Y"); 
                        
                        switch($temp['type'])
                        {
@@ -713,6 +714,7 @@ class Helper implements HelperContract
                        $temp['email'] = ($u != null) ? $u->email: 'Unknown'; 
                        $temp['amount'] = $t->amount; 
                        $temp['type'] = $t->type; 
+                       $temp['date'] = $u->created_at->format("jS F, Y"); 
                        
                       switch($temp['type'])
                        {
