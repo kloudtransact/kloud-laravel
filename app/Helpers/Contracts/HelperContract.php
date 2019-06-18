@@ -31,6 +31,7 @@ Interface HelperContract
         public function getDeal($sku);
         public function updateDeal($data);
         public function getUser($email);
+        public function updateUser($data);
         public function getShippingDetails($user);
         public function updateShippingDetails($user,$data);
         public function getWallet($user);
