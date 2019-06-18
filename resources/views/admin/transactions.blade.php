@@ -26,6 +26,7 @@
                         @if($transactions != null && count($transactions) > 0)
                                               @foreach($transactions as $t)
                                                  <tr>
+                                                  <td>{{$t['email']}}</td>
                                                   <td><span class="badge {{$t['badgeClass']}} text-uppercase">{{$t['type']}}</span></td>
                                                   <td>{!! $t['description'] !!}</td>
                                                   <td>&#8358;{{number_format($t['amount'],2)}}</td>
