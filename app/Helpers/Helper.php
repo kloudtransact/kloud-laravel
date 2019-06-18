@@ -556,6 +556,29 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }	  
+           function updateUser($data)
+           {  
+              $ret = 'error'; 
+         
+              if(isset($data['phone']))
+               {
+               	$u = User::where('phone', $data['phone'])->first();
+                   
+                        if($u != null)
+                        {
+                        	$u->update(['fname' => $data['fname'],
+                                              'lname' => $data['lname'],
+                                              'email' => $data['email'],
+                                              'phone' => $data['phone'],
+                                              'role' => $data['role'],
+                                              'status' => $data['status'],
+                                           ]);
+                                           
+                                           $ret = "ok";
+                        }                                    
+               }                                 
+                  return $ret;                               
+           }	
            function getShippingDetails($user)
            {
            	$ret = [];
