@@ -49,7 +49,7 @@
                       <div class="col-md-5">
                         <div class="form-group">
                           <label class="bmd-label-floating">Price (&#8358;)</label>
-                          <input name='amount' type="number" class="form-control" value="{{number_format($deal['data']['amount'],2)}}" required>
+                          <input name='amount' type="number" class="form-control" value="{{$deal['data']['amount']}}" required>
                         </div><br>
                         <div class="form-group">
                           <label class="bmd-label-floating">Images</label>
