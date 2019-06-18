@@ -512,6 +512,29 @@ class Helper implements HelperContract
                                                       
                 return $ret;
            }	
+           function updateDeal($data)
+           {  
+              $ret = 'error'; 
+         
+              if($isset($data['sku']))
+               {
+               	$d = Deals::where('sku', $data['sku'])->first();
+                   
+                        if($d != null)
+                        {
+                        	$d->update(['name' => $data['name'],
+                                              'category' => $data['category'],
+                                              'description' => $data['description'],
+                                              'amount' => $data['amount'],
+                                              'in_stock' => $data['in_stock'],
+                                              'status' => $data['status'],
+                                           ]);
+                                           
+                                           $ret = "ok";
+                        }                                    
+               }                                 
+                  return $ret;                               
+           }	
            function getUser($email)
            {
            	$ret = [];
