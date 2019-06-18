@@ -522,12 +522,16 @@ class Helper implements HelperContract
                    
                         if($d != null)
                         {
+                        	$dd = DealData::where('deal_id', $d->id)->first();
+                        
                         	$d->update(['name' => $data['name'],
                                               'category' => $data['category'],
-                                              'description' => $data['description'],
+                                              'status' => $data['status'],
+                                           ]);
+                                           
+                            $dd->update(['description' => $data['description'],
                                               'amount' => $data['amount'],
                                               'in_stock' => $data['in_stock'],
-                                              'status' => $data['status'],
                                            ]);
                                            
                                            $ret = "ok";
