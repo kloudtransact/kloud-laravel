@@ -53,7 +53,7 @@
                         <div class="form-group">
                           <label class="bmd-label-floating">Images</label>
                           <div class="row">
-                          	@foreach($images as $img)
+                          	@foreach($deal['images'] as $img)
                           	<div class="col-md-6"><img class="img img-fluid mx-auto d-block" src="{{$img['url']}}"></div>
                               @endforeach                              
                           </div>
