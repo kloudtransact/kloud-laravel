@@ -130,7 +130,7 @@ class AdminController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getDeal()
+	public function getDeal(Request $request)
     {
        $user = null;
 		
@@ -145,8 +145,21 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
-		$deal = null;
-    	return view('admin.deal',compact(['user','c','deal']));
+		$req = $request->all();
+           //dd($req);
+        $sku = (isset($req['sku'])) ? $req['sku'] : null; 
+        
+        if($sku == null) 
+        {
+        	session()->flash("cobra-deal-status","error");
+            return redirect()->intended('cobra-deals');
+        }
+        else
+        {
+        	$deal = $this->helpers->adminGetDeal($sku);
+    	    return view('admin.deal',compact(['user','c','deal']));
+        }
+		
     }
     
     /**
@@ -282,7 +295,7 @@ class AdminController extends Controller {
          {
          	#$req["user_id"] = $user->id; 
              $this->helpers->fundWallet($req);
-	        Session::flash("fund-wallet-status","ok");
+	        session()->flash("fund-wallet-status","ok");
 			return redirect()->intended('cobra-users');
          }        
     }
