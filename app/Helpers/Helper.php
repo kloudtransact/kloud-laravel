@@ -516,7 +516,7 @@ class Helper implements HelperContract
            {  
               $ret = 'error'; 
          
-              if($isset($data['sku']))
+              if(isset($data['sku']))
                {
                	$d = Deals::where('sku', $data['sku'])->first();
                    
