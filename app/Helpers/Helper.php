@@ -813,7 +813,7 @@ class Helper implements HelperContract
                        $temp['rating'] = $this->getRating($d);
                        $ret = $temp;                   
                }                                 
-                                                      
+                 dd($ret);                                
                 return $ret;
            }           
            
