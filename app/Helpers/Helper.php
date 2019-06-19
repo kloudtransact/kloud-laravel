@@ -1335,7 +1335,7 @@ function adminGetOrder($number)
                {
                	//We have the user, create the code
                    $code = bcrypt(rand(125,999999)."rst".$u->id);
-               	$u->update(['reset_code' => ,$code]);
+               	$u->update(['reset_code' => $code]);
                }
                
                return $code; 
