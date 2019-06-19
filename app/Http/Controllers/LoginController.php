@@ -444,7 +444,7 @@ class LoginController extends Controller {
              $ret = $req['pass'];
 
             $user = User::where('id',$id)->first();
-            $user->update(['password' => $ret]);
+            $user->update(['password' => bcrypt($ret)]);
                 
             session()->flash("reset-status","ok");  
             $v = ($user->role == "user") ? 'login' : 'admin';         
