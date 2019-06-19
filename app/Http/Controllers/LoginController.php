@@ -255,7 +255,7 @@ class LoginController extends Controller {
     
     public function getForgotPassword()
     {
-         return view('forgot_password');
+         return view('forgot-password');
     }
     
     /**
@@ -266,7 +266,7 @@ class LoginController extends Controller {
     {
     	$req = $request->all(); 
         $validator = Validator::make($req, [
-                             'email' => 'required|email'
+                             'id' => 'required'
                   ]);
                   
         if($validator->fails())
@@ -278,23 +278,153 @@ class LoginController extends Controller {
          }
          
          else{
-         	$ret = $req['email'];
+         	$ret = $req['id'];
 
-                $user = User::where('email',$ret)->first();
+                $user = User::where('email',$ret)
+                                  ->orWhere('phone',$ret)->first();
 
                 if(is_null($user))
                 {
-                        return redirect()->back()->withErrors("This user doesn't exist!","errors"); 
+                        return redirect()->back()->withErrors("No account exists with that email or phone number!","errors"); 
                 }
                 
-                #$this->helpers->sendEmail($user->email,'Reset Your Password',['username' => $user->username],'emails.username','view');                                                         
-            Session::flash("reset-status","success");           
+                $this->helpers->sendEmailSMTP($user->email,'Reset Your Password',['username' => $user->username],'emails.username','view');                                                         
+            session()->flash("forgot-password-status","ok");           
             return redirect()->intended('forgot-password');
 
       }
                   
     }    
     
+    public function getAdminForgotPassword()
+    {
+         return view('admin.forgot-password');
+    }
+    
+    /**
+     * Send username to the given user.
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function postAdminForgotPassword(Request $request)
+    {
+    	$req = $request->all(); 
+        $validator = Validator::make($req, [
+                             'id' => 'required'
+                  ]);
+                  
+        if($validator->fails())
+         {
+             $messages = $validator->messages();
+             //dd($messages);
+             
+             return redirect()->back()->withInput()->with('errors',$messages);
+         }
+         
+         else{
+         	$ret = $req['id'];
+
+                $user = User::where('email',$ret)
+                                  ->orWhere('phone',$ret)->first();
+
+                if(is_null($user) || ($user->role == 'user'))
+                {
+                        return redirect()->back()->withErrors("No admin account exists with that email or phone number!","errors"); 
+                }
+                
+                //get the reset code               
+                //Configure the smtp sender
+                $sender = $this->helpers->emailConfig;
+                $sender['code'] = $this->helpers->getPasswordResetCode($user);
+                $sender['sn'] = 'KloudTransact Support'; 
+                $sender['se'] = 'kloudtransact@gmail.com'; 
+                $sender['em'] = $user->email; 
+                $sender['subject'] = 'Admin: Reset Your Password'; 
+                $sender['link'] = 'www.kloudtransact.com'; 
+                $sender['msg'] = "Here is the link to reset your password: <a href='".$ll."'></a>"; 
+                
+                //Send password reset link
+                $this->helpers->sendEmailSMTP($data,'emails.password','view');                                                         
+            session()->flash("forgot-password-status","ok");           
+            return redirect()->intended('admin.forgot-password');
+
+      }
+                  
+    }    
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getPasswordReset(Request $request)
+    {
+       $user = null;
+       $req = $request->all();
+       $return = isset($req['return']) ? $req['return'] : '/';
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$return = ($user->role == "admin") ? 'cobra': 'dashboard';
+			return redirect()->intended($return);
+		} 
+       else
+        {
+			if(isset($req['code']))
+            {
+            	$user = $this->helpers->verifyPasswordResetCode($code);
+                if($user == null)   
+                { 
+                	return redirect()->back()->withErrors("The code is invalid or has expired. ","errors"); 
+                }
+                $v = ($user->role == "user") ? 'reset' : 'admin.reset';
+            	return view($v,compact(['user','return']));
+            }
+            
+            else
+            {
+            	return redirect()->intended($return);
+            }
+         	
+          }
+    }
+    
+    
+    /**
+     * Send username to the given user.
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function postResetPassword(Request $request)
+    {
+    	$req = $request->all(); 
+        $validator = Validator::make($req, [
+                             'pass' => 'required|min:6|confirmed',
+                             'acsrf' => 'required'
+                  ]);
+                  
+        if($validator->fails())
+         {
+             $messages = $validator->messages();
+             //dd($messages);
+             
+             return redirect()->back()->withInput()->with('errors',$messages);
+         }
+         
+         else{
+         	$id = $req['acsrf'];
+             $ret = $req['pass'];
+
+            $user = User::where('id',$id)->first();
+            $user->update(['password' => $ret]);
+                
+            session()->flash("reset-status","ok");           
+            return redirect()->intended('login');
+
+      }
+                  
+    }    
+
+   
     
     public function getLogout()
     {
