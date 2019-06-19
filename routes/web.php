@@ -43,6 +43,12 @@ Route::get('login', 'LoginController@getLogin');
 Route::get('register', 'LoginController@getRegister');
 Route::post('login', 'LoginController@postLogin');
 Route::post('register', 'LoginController@postRegister');
+Route::get('login', 'LoginController@getLogin');
+
+Route::get('forgot-password', 'LoginController@getForgotPassword');
+Route::post('forgot-password', 'LoginController@postForgotPassword');
+Route::get('reset-password', 'LoginController@getPasswordReset');
+Route::post('reset-password', 'LoginController@postPasswordReset');
 
 Route::get('dashboard', 'MainController@getDashboard');
 Route::get('transactions', 'MainController@getTransactions');
@@ -61,6 +67,10 @@ Route::get('logout', 'LoginController@getLogout');
 /***** Admin routes *****/
 Route::get('admin', 'LoginController@getAdminLogin');
 Route::post('admin', 'LoginController@postAdminLogin');
+
+Route::get('cobra-forgot-password', 'LoginController@getAdminForgotPassword');
+Route::post('cobra-forgot-password', 'LoginController@postAdminForgotPassword');
+
 Route::get('cobra', 'AdminController@getIndex');
 #Route::post('cobra', 'AdminController@postIndex');
 
