@@ -302,7 +302,7 @@ class LoginController extends Controller {
                 //Configure the smtp sender
                 $sender = $this->helpers->emailConfig;              
                 $sender['sn'] = 'KloudTransact Support'; 
-                $sender['se'] = 'kloudtransact@gmail.com'; 
+                #$sender['se'] = 'kloudtransact@gmail.com'; 
                 $sender['em'] = $user->email; 
                 $sender['subject'] = 'Reset Your Password'; 
                 $sender['link'] = 'www.kloudtransact.com'; 
@@ -365,7 +365,7 @@ class LoginController extends Controller {
                 //Configure the smtp sender
                 $sender = $this->helpers->emailConfig;              
                 $sender['sn'] = 'KloudTransact Support'; 
-                $sender['se'] = 'kloudtransact@gmail.com'; 
+               # $sender['se'] = 'kloudtransact@gmail.com'; 
                 $sender['em'] = $user->email; 
                 $sender['subject'] = 'Reset Your Password'; 
                 $sender['link'] = 'www.kloudtransact.com'; 
