@@ -63,6 +63,7 @@ Interface HelperContract
         public function checkout($user, $data, $type);
         public function payWithKloudPay($user, $data);
         public function payWithPayStack($user, $payStackResponse);
+        public function getPasswordResetCode($user);
         public function verifyPasswordResetCode($code);
 }
  ?>
