@@ -374,7 +374,7 @@ class LoginController extends Controller {
                 //Send password reset link
                 $this->helpers->sendEmailSMTP($sender,'emails.password','view');                                                         
             session()->flash("cobra-forgot-password-status","ok");           
-            return redirect()->intended('admin.forgot-password');
+            return redirect()->intended('cobra-forgot-password');
 
       }
                   
