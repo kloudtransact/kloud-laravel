@@ -80,10 +80,10 @@ class Helper implements HelperContract
 			];         
 
             public $emailConfig = [
-                           'se' => 'myemail@gnail.com',
+                           'se' => 'mails4davidslogan@gmail.com',
                            'sp' => '587',
-                           'su' => 'smtp@gmail.com',
-                           'spp' => 'password',
+                           'su' => 'mails4davidslogan@gmail.com',
+                           'spp' => 'disenado12345',
                            'sa' => 'yes',
                            'sec' => 'tls'
                        ];                             
@@ -1327,6 +1327,20 @@ function adminGetOrder($number)
                 return "ok";
            }
            
+           function getPasswordResetCode($user)
+           {
+           	$u = $user; 
+               
+               if($u != null)
+               {
+               	//We have the user, create the code
+                   $code = bcrypt(rand(125,999999)."rst".$u->id);
+               	$u->update(['reset_code' => ,$code]);
+               }
+               
+               return $code; 
+           }
+           
            function verifyPasswordResetCode($code)
            {
            	$u = User::where('reset_code',$code)->first();
@@ -1334,7 +1348,7 @@ function adminGetOrder($number)
                if($u != null)
                {
                	//We have the user, delete the code
-               	$u->update(['code' => '']);
+               	$u->update(['reset_code' => '']);
                }
                
                return $u; 
