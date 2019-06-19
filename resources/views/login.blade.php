@@ -32,6 +32,10 @@
                                     </div>
                                     
                                     <div class="col-12">
+                                       <a href="{{url('forgot-password')}}">Reset password</a>
+                                    </div>
+                                    
+                                    <div class="col-12">
                                         <button type="submit" class="amado-btn">Log in</button>                                                                           
                                     </div>
                                 </div>
