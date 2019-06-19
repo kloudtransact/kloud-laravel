@@ -401,7 +401,7 @@ class LoginController extends Controller {
         {
 			if(isset($req['code']))
             {
-            	$user = $this->helpers->verifyPasswordResetCode($code);
+            	$user = $this->helpers->verifyPasswordResetCode($req['code']);
                 if($user == null)   
                 { 
                 	return redirect()->back()->withErrors("The code is invalid or has expired. ","errors"); 
