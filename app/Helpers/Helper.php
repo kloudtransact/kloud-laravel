@@ -6,6 +6,8 @@ use Crypt;
 use Carbon\Carbon; 
 use Mail;
 use Auth;
+use \Swift_Mailer;
+use \Swift_SmtpTransport;
 use App\User;
 use App\Carts;
 use App\ShippingDetails;
