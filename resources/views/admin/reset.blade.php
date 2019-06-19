@@ -19,7 +19,7 @@
                      @endif 
                   <form method="post" action="{{url('reset')}}">
                   	{!! csrf_field() !!}
-                     <input type="text" name="acsrf" value="{{$user->id}}">
+                     <input type="hidden" name="acsrf" value="{{$user->id}}">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
