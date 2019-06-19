@@ -255,7 +255,14 @@ class LoginController extends Controller {
     
     public function getForgotPassword()
     {
-         return view('forgot-password');
+    	$user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			return redirect()->intended('/');
+		}
+         return view('forgot-password', compact(['user']));
     }
     
     /**
@@ -283,12 +290,25 @@ class LoginController extends Controller {
                 $user = User::where('email',$ret)
                                   ->orWhere('phone',$ret)->first();
 
-                if(is_null($user))
+                if(is_null($user) || ($user->role == 'user'))
                 {
-                        return redirect()->back()->withErrors("No account exists with that email or phone number!","errors"); 
+                        return redirect()->back()->withErrors("No admin account exists with that email or phone number!","errors"); 
                 }
                 
-                $this->helpers->sendEmailSMTP($user->email,'Reset Your Password',['username' => $user->username],'emails.username','view');                                                         
+                //get the reset code 
+                $code = $this->helpers->getPasswordResetCode($user);
+              
+                //Configure the smtp sender
+                $sender = $this->helpers->emailConfig;              
+                $sender['sn'] = 'KloudTransact Support'; 
+                $sender['se'] = 'kloudtransact@gmail.com'; 
+                $sender['em'] = $user->email; 
+                $sender['subject'] = 'Reset Your Password'; 
+                $sender['link'] = 'www.kloudtransact.com'; 
+                $sender['ll'] = url('reset').'?code='.$code; 
+                
+                //Send password reset link
+                $this->helpers->sendEmailSMTP($data,'emails.password','view');                                                         
             session()->flash("forgot-password-status","ok");           
             return redirect()->intended('forgot-password');
 
@@ -298,7 +318,14 @@ class LoginController extends Controller {
     
     public function getAdminForgotPassword()
     {
-         return view('admin.forgot-password');
+    	$user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			return redirect()->intended('/');
+		}
+         return view('admin.forgot-password', compact(['user']));
     }
     
     /**
@@ -331,20 +358,21 @@ class LoginController extends Controller {
                         return redirect()->back()->withErrors("No admin account exists with that email or phone number!","errors"); 
                 }
                 
-                //get the reset code               
+                //get the reset code 
+                $code = $this->helpers->getPasswordResetCode($user);
+              
                 //Configure the smtp sender
-                $sender = $this->helpers->emailConfig;
-                $sender['code'] = $this->helpers->getPasswordResetCode($user);
+                $sender = $this->helpers->emailConfig;              
                 $sender['sn'] = 'KloudTransact Support'; 
                 $sender['se'] = 'kloudtransact@gmail.com'; 
                 $sender['em'] = $user->email; 
-                $sender['subject'] = 'Admin: Reset Your Password'; 
+                $sender['subject'] = 'Reset Your Password'; 
                 $sender['link'] = 'www.kloudtransact.com'; 
-                $sender['msg'] = "Here is the link to reset your password: <a href='".$ll."'></a>"; 
+                $sender['ll'] = url('reset').'?code='.$code; 
                 
                 //Send password reset link
                 $this->helpers->sendEmailSMTP($data,'emails.password','view');                                                         
-            session()->flash("forgot-password-status","ok");           
+            session()->flash("cobra-forgot-password-status","ok");           
             return redirect()->intended('admin.forgot-password');
 
       }
@@ -417,8 +445,9 @@ class LoginController extends Controller {
             $user = User::where('id',$id)->first();
             $user->update(['password' => $ret]);
                 
-            session()->flash("reset-status","ok");           
-            return redirect()->intended('login');
+            session()->flash("reset-status","ok");  
+            $v = ($user->role == "user") ? 'login' : 'admin';         
+            return redirect()->intended($v);
 
       }
                   
