@@ -309,7 +309,7 @@ class LoginController extends Controller {
                 $sender['ll'] = url('reset').'?code='.$code; 
                 
                 //Send password reset link
-                $this->helpers->sendEmailSMTP($data,'emails.password','view');                                                         
+                $this->helpers->sendEmailSMTP($sender,'emails.password','view');                                                         
             session()->flash("forgot-password-status","ok");           
             return redirect()->intended('forgot-password');
 
@@ -372,7 +372,7 @@ class LoginController extends Controller {
                 $sender['ll'] = url('reset').'?code='.$code; 
                 
                 //Send password reset link
-                $this->helpers->sendEmailSMTP($data,'emails.password','view');                                                         
+                $this->helpers->sendEmailSMTP($sender,'emails.password','view');                                                         
             session()->flash("cobra-forgot-password-status","ok");           
             return redirect()->intended('admin.forgot-password');
 
