@@ -82,6 +82,7 @@ class Helper implements HelperContract
 			];         
 
             public $emailConfig = [
+                           'ss' => 'smtp.gmail.com',
                            'se' => 'mails4davidslogan@gmail.com',
                            'sp' => '587',
                            'su' => 'mails4davidslogan@gmail.com',
