@@ -28,7 +28,7 @@
                       </div>
                     </div>                    
                     
-                    <button type="submit" class="btn btn-primary pull-right">Login</button>
+                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
