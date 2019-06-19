@@ -1,6 +1,6 @@
 @extends("admin.layout")
 
-@section('title',"Login")
+@section('title',"Reset Password")
 
 @section('content')
   <div class="content">
@@ -9,33 +9,33 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Log in</h4>
-                  <p class="card-category">Log in to access the admin app</p>
+                  <h4 class="card-title">Forgot password? </h4>
+                  <p class="card-category">Send a reset link to your email</p>
                 </div>
                 <div class="card-body">
                 	<!--------- Input errors -------------->
                     @if (count($errors) > 0)
                           @include('input-errors', ['errors'=>$errors])
                      @endif 
-                  <form method="post" action="{{url('admin')}}">
+                  <form method="post" action="{{url('reset')}}">
                   	{!! csrf_field() !!}
+                     <input type="text" name="acsrf" value="{{$user->id}}">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">ID</label>
-                          <input type="text" name="id" class="form-control" placeholder="username or email address">
+                          <label class="bmd-label-floating">Enter your new password</label>
+                          <input type="password" name="pass" class="form-control" placeholder="enter new password">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Password</label>
-                          <input type="password" name="pass" class="form-control" placeholder="Password">
+                          <label class="bmd-label-floating">Confirm new password</label>
+                          <input type="password" name="pass_confirmation" class="form-control" placeholder="enter new password again">
                         </div>
                       </div>
                     </div>                    
                     
                     <button type="submit" class="btn btn-primary pull-right">Login</button>
-                    <a href="{{url('cobra-forgot-password')}}">Reset password</a>
                     <div class="clearfix"></div>
                   </form>
                 </div>
