@@ -31,8 +31,8 @@
                                         </div>                                   
                                     </div>
                                     
-                                    <div class="col-12">
-                                       <a href="{{url('forgot-password')}}">Reset password</a>
+                                    <div class="col-12 mb-3">
+                                       <a href="{{url('forgot-password')}}" class="text-white">Reset password</a>
                                     </div>
                                     
                                     <div class="col-12">
