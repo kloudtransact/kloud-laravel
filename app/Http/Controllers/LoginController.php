@@ -423,7 +423,7 @@ class LoginController extends Controller {
      * Send username to the given user.
      * @param  \Illuminate\Http\Request  $request
      */
-    public function postResetPassword(Request $request)
+    public function postPasswordReset(Request $request)
     {
     	$req = $request->all(); 
         $validator = Validator::make($req, [
