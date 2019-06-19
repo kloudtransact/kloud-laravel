@@ -47,8 +47,8 @@ Route::get('login', 'LoginController@getLogin');
 
 Route::get('forgot-password', 'LoginController@getForgotPassword');
 Route::post('forgot-password', 'LoginController@postForgotPassword');
-Route::get('reset-password', 'LoginController@getPasswordReset');
-Route::post('reset-password', 'LoginController@postPasswordReset');
+Route::get('reset', 'LoginController@getPasswordReset');
+Route::post('reset', 'LoginController@postPasswordReset');
 
 Route::get('dashboard', 'MainController@getDashboard');
 Route::get('transactions', 'MainController@getTransactions');
