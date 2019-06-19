@@ -77,7 +77,16 @@ class Helper implements HelperContract
 			                       'yobe' => 'Yobe',
 			                       'zamfara' => 'Zamfara',
 			                       'fct' => 'FCT'  
-			];                                          
+			];         
+
+            public $emailConfig = [
+                           'se' => 'myemail@gnail.com',
+                           'sp' => '587',
+                           'su' => 'smtp@gmail.com',
+                           'spp' => 'password',
+                           'sa' => 'yes',
+                           'sec' => 'tls'
+                       ];                             
 
           /**
            * Sends an email(blade view or text) to the recipient
@@ -120,6 +129,57 @@ class Helper implements HelperContract
                    }
            }    
 
+          function sendEmailSMTP($data,$view,$type="view")
+           {
+           	    // Setup a new SmtpTransport instance for new SMTP
+                $transport = "";
+if($data['sec'] != "none") $transport = new Swift_SmtpTransport($data['ss'], $data['sp'], $data['sec']);
+
+else $transport = new Swift_SmtpTransport($data['ss'], $data['sp']);
+
+   if($data['sa'] != "no"){
+                  $transport->setUsername($data['su']);
+                  $transport->setPassword($data['spp']);
+     }
+// Assign a new SmtpTransport to SwiftMailer
+$smtp = new Swift_Mailer($transport);
+
+// Assign it to the Laravel Mailer
+Mail::setSwiftMailer($smtp);
+
+$se = $data['se'];
+$sn = $data['sn'];
+$to = $data['em'];
+$subject = $data['subject'];
+                   if($type == "view")
+                   {
+                     Mail::send($view,$data,function($message) use($to,$subject,$se,$sn){
+                           $message->from($se,$sn);
+                           $message->to($to);
+                           $message->subject($subject);
+                          if(isset($data["has_attachments"]) && $data["has_attachments"] == "yes")
+                          {
+                          	foreach($data["attachments"] as $a) $message->attach($a);
+                          } 
+						  $message->getSwiftMessage()
+						  ->getHeaders()
+						  ->addTextHeader('x-mailgun-native-send', 'true');
+                     });
+                   }
+
+                   elseif($type == "raw")
+                   {
+                     Mail::raw($view,$data,function($message) use($to,$subject,$se,$sn){
+                            $message->from($se,$sn);
+                           $message->to($to);
+                           $message->subject($subject);
+                           if(isset($data["has_attachments"]) && $data["has_attachments"] == "yes")
+                          {
+                          	foreach($data["attachments"] as $a) $message->attach($a);
+                          } 
+                     });
+                   }
+           }    
 
            function createUser($data)
            {
@@ -1265,6 +1325,19 @@ function adminGetOrder($number)
 
               $this->addOrder($user,$dt);
                 return "ok";
+           }
+           
+           function verifyPasswordResetCode($code)
+           {
+           	$u = User::where('reset_code',$code)->first();
+               
+               if($u != null)
+               {
+               	//We have the user, delete the code
+               	$u->update(['code' => '']);
+               }
+               
+               return $u; 
            }
 }
 ?>
