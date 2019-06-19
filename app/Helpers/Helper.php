@@ -722,7 +722,7 @@ $subject = $data['subject'];
                    	$temp['id'] = $t->id; 
                        $temp['amount'] = $t->amount; 
                        $temp['type'] = $t->type; 
-                       $temp['date'] = $u->created_at->format("jS F, Y"); 
+                       $temp['date'] = $t->created_at->format("jS F, Y"); 
                        
                        switch($temp['type'])
                        {
@@ -777,7 +777,7 @@ $subject = $data['subject'];
                        $temp['email'] = ($u != null) ? $u->email: 'Unknown'; 
                        $temp['amount'] = $t->amount; 
                        $temp['type'] = $t->type; 
-                       $temp['date'] = $u->created_at->format("jS F, Y"); 
+                       $temp['date'] = $t->created_at->format("jS F, Y"); 
                        
                       switch($temp['type'])
                        {
