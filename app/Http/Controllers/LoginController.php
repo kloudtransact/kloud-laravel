@@ -97,7 +97,7 @@ class LoginController extends Controller {
 			
 			else
 			{
-				Session::flash("login-status","error");
+				session()->flash("login-status","error");
 				return redirect()->intended('login');
 			}
          }        
@@ -163,7 +163,7 @@ class LoginController extends Controller {
 			
 			else
 			{
-				Session::flash("login-status","error");
+				session()->flash("login-status","error");
 				return redirect()->intended('admin');
 			}
          }        
@@ -205,7 +205,7 @@ class LoginController extends Controller {
             $wallet =  $this->helpers->createWallet($req); 
              //after creating the user, send back to the registration view with a success message
              #$this->helpers->sendEmail($user->email,'Welcome To Disenado!',['name' => $user->fname, 'id' => $user->id],'emails.welcome','view');
-             Session::flash("signup-status", "success");
+             session()->flash("signup-status", "success");
              return redirect()->intended('/');
           }
     }
@@ -246,7 +246,7 @@ class LoginController extends Controller {
                 }
                 
                 #$this->helpers->sendEmail($user->email,'Your Username',['username' => $user->username],'emails.username','view');                                                         
-            Session::flash("username-status","success");           
+            session()->flash("username-status","success");           
             return redirect()->intended('forgot-username');
 
       }
