@@ -1,10 +1,14 @@
   <?php
-   $payload = ["login-status" => "There was a problem signing in, please contact support.",
+   $payload = ["login-status" => "Sign in successful",
                      "cobra-deal-status" => "Deal updated.",
-                     "reset-status" => "An email has been sent to your address, click the link to reset your password",
+                     "cobra-user-status" => "User info updated.",
+                     "forgot-password-status" => "A link to reset your password has been sent to your email.",
+                     "cobra-forgot-password-status" => "A link to reset your password has been sent to your email.",
+                     "reset-status" => "Password updated! You can now login.",
                      "add-deal-status" => "Deal added!",
                      "remove-cart-status" => "Deal removed from cart.",
-                     "pay-card-status" => "Transaction successful! ",
+                     "login-status-error" => "There was a problem signing in, please contact support.",
+                     "cobra-user-status-error" => "There was an error updating info for this user. Please try again.",
                      "cobra-deal-status-error" => "There was an error updating this deal. Please try again.",
                      
                    ];
