@@ -6,35 +6,19 @@
         	<?php
                $pop = ""; $val = "";
                
-               if(session()->has("login-status"))
+               if(isset($signals))
                {
-               	$pop = "login-status"; $val = session()->get("login-status");
-               }
-               if(session()->has("cobra-deal-status"))
-               {
-               	$pop = "cobra-deal-status"; $val = session()->get("cobra-deal-status");
-               }
-               if(session()->has("cobra-user-status"))
-               {
-               	$pop = "cobra-user-status"; $val = session()->get("cobra-user-status");
-               }
-               if(session()->has("cobra-forgot-password-status"))
-               {
-               	$pop = "cobra-forgot-password-status"; $val = session()->get("cobra-forgot-password-status");
-               }
-               if(session()->has("reset-password-status"))
-               {
-               	$pop = "reset-password-status"; $val = session()->get("reset-password-status");
-               }
-               if(session()->has("pay-card-status"))
-               {
-               	$pop = "pay-card-status"; $val = session()->get("pay-card-status");
-               }
-               if(session()->has("pay-kloudpay-status"))
-               {
-               	$pop = "pay-kloudpay-status"; $val = session()->get("pay-kloudpay-status");
-               }
+                  foreach($signals as $s)
+                  {
+                    if(session()->has($s))
+                    {
+                  	$pop = $s; $val = session()->get($s);
+                    }
+                 }
+              }
+              
              ?> 
+
 
                  @if($pop != "" && $val != "")
                    <div class='row'>
