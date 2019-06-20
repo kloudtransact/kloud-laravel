@@ -165,6 +165,18 @@
                {
                	$pop = "pay-kloudpay-status"; $val = session()->get("pay-kloudpay-status");
                }
+               if(session()->has("forgot-password-status"))
+               {
+               	$pop = "forgot-password-status"; $val = session()->get("forgot-password-status");
+               }
+               if(session()->has("reset-password-status"))
+               {
+               	$pop = "reset-password-status"; $val = session()->get("reset-password-status");
+               }
+               if(session()->has("kloudpay-withdraw-status"))
+               {
+               	$pop = "kloudpay-withdraw-status"; $val = session()->get("kloudpay-withdraw-status");
+               }
              ?> 
 
                  @if($pop != "" && $val != "")

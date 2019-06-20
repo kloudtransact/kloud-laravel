@@ -7,10 +7,11 @@
                      "reset-status" => "Password updated! You can now login.",
                      "add-deal-status" => "Deal added!",
                      "remove-cart-status" => "Deal removed from cart.",
+                     "kloudpay-withdraw-status" => "Withdrawal request has been submitted and is pending review";
                      "login-status-error" => "There was a problem signing in, please contact support.",
                      "cobra-user-status-error" => "There was an error updating info for this user. Please try again.",
                      "cobra-deal-status-error" => "There was an error updating this deal. Please try again.",
-                     
+                     "kloudpay-withdraw-status-error" => "Insufficient funds in KloudPay wallet";
                    ];
    $class = "alert-warning";              
    if($val == "error"){
