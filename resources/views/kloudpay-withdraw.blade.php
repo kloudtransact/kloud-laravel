@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         <p class="form-control-plaintext"><i class="fa fa-briefcase"></i> KloudPay: &#8358;{{number_format($wallet['balance'],2)}}</p><br>
-                                        <input type="number" class="form-control" name="orig-amount" id="amount" value="" placeholder="Enter amount" min="5000" max="100000" required><br>
+                                        <input type="number" class="form-control" name="amount" id="amount" value="" placeholder="Enter amount" min="5000" max="100000" required><br>
                                         <p class="form-control-plaintext"><i class="fa fa-money"></i> Withdrawal fee: &#8358;{{number_format($fee,2)}}</p><br>
                                         <p class="form-control-plaintext">Powered by <img class="img img-responsive" src="img/ps.jpg"/></p>
                                     </div>
