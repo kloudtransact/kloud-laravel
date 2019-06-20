@@ -631,6 +631,66 @@ class MainController extends Controller {
 			return redirect()->intended('kloudpay');
          }        
     }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getKloudPayWithdraw()
+    {
+		       $user = null;
+		       $wallet = [];
+		$cart = [];
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
+			$wallet = $this->helpers->getWallet($user);
+		}
+		else
+        {
+        	return redirect()->intended('login?return=deposit');
+        }
+        return view('kloudpay-withdraw',compact(['user','cart','wallet']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postKloudPayWithdraw(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		else
+        {
+        	return redirect()->intended('/');
+        }
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'amount' => 'required'                          
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+             $this->helpers->withdrawFunds($user, $req);
+	        Session::flash("kloudpay-withdraw-status","ok");
+			return redirect()->intended('kloudpay');
+         }        
+    }
 	
 	/**
 	 * Show the application welcome screen to the user.
