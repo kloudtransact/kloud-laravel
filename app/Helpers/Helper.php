@@ -1241,6 +1241,32 @@ function adminGetOrder($number)
                 return "ok";
            }		
            
+           function withdrawFunds($user, $data)
+           {
+           	$receiver = User::where('phone',$data['phone'])
+                                     ->orWhere('email',$data['phone'])->first();
+               
+               if($receiver != null)
+               {
+               	//debit the giver
+               	$userData = ['email' => $user->email,
+                                     'type' => 'remove',
+                                     'amount' => $data['amount']
+                                    ];
+                                    
+                   //credit the receiver
+                   $receiverData = ['email' => $receiver->email,
+                                     'type' => 'add',
+                                     'amount' => $data['amount']
+                                    ];
+                                    
+               	$this->fundWallet($userData);
+                   $this->fundWallet($receiverData);
+              }
+          
+                return "ok";
+           }		
+           
            function checkout($user, $data, $type)
            {
                switch($type){
