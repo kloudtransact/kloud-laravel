@@ -1264,28 +1264,21 @@ function adminGetOrder($number)
            
            function withdrawFunds($user, $data)
            {
-           	$receiver = User::where('phone',$data['phone'])
-                                     ->orWhere('email',$data['phone'])->first();
+           	$ret = 'error'; 
+               $wallet = $this->getWallet($user);
+               $fee = $this->getWithdrawalFee();
                
-               if($receiver != null)
+               if($wallet['balance'] > ($data['amount'] + $fee))
                {
-               	//debit the giver
-               	$userData = ['email' => $user->email,
-                                     'type' => 'remove',
+               	//create request
+               	$this->createWithdrawal(['user_id' => $user->id,
                                      'amount' => $data['amount']
-                                    ];
+                                    ]);
                                     
-                   //credit the receiver
-                   $receiverData = ['email' => $receiver->email,
-                                     'type' => 'add',
-                                     'amount' => $data['amount']
-                                    ];
-                                    
-               	$this->fundWallet($userData);
-                   $this->fundWallet($receiverData);
+                   $ret = 'ok'; 
               }
           
-                return "ok";
+                return $ret;
            }		
            
            function checkout($user, $data, $type)
