@@ -132,51 +132,22 @@
     <div class='{{$mc}}'>
         <!--------- Cookie consent-------------->
         	@include('cookie-consent')
-        <main role="main" class="pb-3">
-        	<!--------- Session notifications-------------->
+        
+        <!--------- Session notifications-------------->
         	<?php
                $pop = ""; $val = "";
                
-               if(session()->has("login-status"))
+               if(isset($signals))
                {
-               	$pop = "login-status"; $val = session()->get("login-status");
-               }
-               if(session()->has("register-status"))
-               {
-               	$pop = "register-status"; $val = session()->get("register-status");
-               }
-               if(session()->has("reset-status"))
-               {
-               	$pop = "reset-status"; $val = session()->get("reset-status");
-               }
-               if(session()->has("add-deal-status"))
-               {
-               	$pop = "add-deal-status"; $val = session()->get("add-deal-status");
-               }
-               if(session()->has("remove-cart-status"))
-               {
-               	$pop = "remove-cart-status"; $val = session()->get("remove-cart-status");
-               }
-               if(session()->has("pay-card-status"))
-               {
-               	$pop = "pay-card-status"; $val = session()->get("pay-card-status");
-               }
-               if(session()->has("pay-kloudpay-status"))
-               {
-               	$pop = "pay-kloudpay-status"; $val = session()->get("pay-kloudpay-status");
-               }
-               if(session()->has("forgot-password-status"))
-               {
-               	$pop = "forgot-password-status"; $val = session()->get("forgot-password-status");
-               }
-               if(session()->has("reset-password-status"))
-               {
-               	$pop = "reset-password-status"; $val = session()->get("reset-password-status");
-               }
-               if(session()->has("kloudpay-withdraw-status"))
-               {
-               	$pop = "kloudpay-withdraw-status"; $val = session()->get("kloudpay-withdraw-status");
-               }
+                  foreach($signals as $s)
+                  {
+                    if(session()->has($s))
+                    {
+                  	$pop = $s; $val = session()->get($s);
+                    }
+                 }
+              }
+              
              ?> 
 
                  @if($pop != "" && $val != "")
@@ -186,7 +157,8 @@
                     @if (count($errors) > 0)
                           @include('input-errors', ['errors'=>$errors])
                      @endif 
-
+                     
+        <main role="main" class="pb-3">
             @yield("content")
         </main>
     </div>
