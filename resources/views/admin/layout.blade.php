@@ -8,8 +8,7 @@
                
                if(isset($signals))
                {
-               	dd($signals);
-                  foreach($signals as $s)
+                  foreach($signals['okays'] as $s)
                   {
                     if(session()->has($s))
                     {
