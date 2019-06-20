@@ -22,6 +22,8 @@ use App\Comments;
 use App\Coupons;
 use App\Orders;
 use App\OrderDetails;
+use App\Settings;
+use App\Withdrawals;
 
 class Helper implements HelperContract
 {
@@ -346,6 +348,25 @@ $subject = $data['subject'];
                                                       
                 return $ret;
            }  
+           
+           function addSettings($data)
+           {
+           	$ret = Comments::create(['item' => $data['item'],                                                                                                          
+                                                      'value' => $data['value'], 
+                                                      ]);
+                                                      
+                return $ret;
+           }
+           
+           function createWithdrawal($data)
+           {
+           	$ret = Withdrawals::create(['user_id' => $data['user_id'],                                                                                                          
+                                                      'amount' => $data['amount'], 
+                                                      'status' => 'pending',
+                                                      ]);
+                                                      
+                return $ret;
+           }
 
            function generateSKU()
            {
@@ -744,7 +765,7 @@ $subject = $data['subject'];
                            
                            case 'transfer':
                              $u = User::where('id',$t->description)->first();
-                             $un = ($u != null) ? $u->username : 'Unknown'; #recipient username
+                             $un = ($u != null) ? $u->fname.' '.$u->lname : 'Unknown'; #recipient username
                              $temp['description'] = "Transferred to ".$un."'s KloudPay Wallet"; 
                              $temp['badgeClass'] = 'badge-primary'; 
                            break; 
@@ -799,7 +820,7 @@ $subject = $data['subject'];
                            
                            case 'transfer':
                              $u = User::where('id',$t->description)->first();
-                             $un = ($u != null) ? $u->username : 'Unknown'; #recipient username
+                             $un = ($u != null) ? $u->fname.' '.$u->lname: 'Unknown'; #recipient username
                              $temp['description'] = "Transferred to ".$un."'s KloudPay Wallet"; 
                              $temp['badgeClass'] = 'badge-primary'; 
                            break; 
@@ -1381,6 +1402,23 @@ function adminGetOrder($number)
                }
                
                return $u; 
+           }
+           
+           function getWithdrawalFee()
+           {
+           	$ret = 100;
+           
+           	//should pull value from Settings model
+              /**
+           	$settings = Settings::where('item','withdrawal_fee')->first();
+               
+               if($settings != null)
+               {
+               	//get the current withdrawal fee
+               	$ret = $settings->value;
+               }
+               **/
+               return $ret; 
            }
 }
 ?>
