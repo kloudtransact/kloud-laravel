@@ -18,6 +18,8 @@ Interface HelperContract
         public function createRating($data);
         public function createComment($data);
         public function createCoupon($data);
+        public function addSettings($data);
+        public function createWithdrawal($data);
         public function generateSKU();
         public function generateOrderNumber($type);
         public function getDeals($category,$q="");
@@ -66,5 +68,6 @@ Interface HelperContract
         public function payWithPayStack($user, $payStackResponse);
         public function getPasswordResetCode($user);
         public function verifyPasswordResetCode($code);
+        public function getWithdrawalFee();
 }
  ?>
