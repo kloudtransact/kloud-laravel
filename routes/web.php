@@ -58,6 +58,8 @@ Route::get('wallet', 'MainController@getWallet');
 Route::get('deposit', 'MainController@getKloudPayDeposit');
 Route::get('kloudpay-transfer', 'MainController@getKloudPayTransfer');
 Route::post('kloudpay-transfer', 'MainController@postKloudPayTransfer');
+Route::get('withdraw, 'MainController@getKloudPayWithdraw');
+Route::post('withdraw', 'MainController@postKloudPayWithdraw');
 
 Route::get('orders', 'MainController@getOrders');
 Route::get('invoice', 'MainController@getInvoice');
