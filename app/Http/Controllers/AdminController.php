@@ -39,13 +39,14 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
 		$transactions = $this->helpers->adminGetTransactions();
 		$deals = $this->helpers->adminGetDeals();
 		$auctions = $this->helpers->adminGetAuctions();
 		$adminStats = $this->helpers->adminGetStats();
 		$adminRecentOrders = $this->helpers->adminGetOrders();
 		$adminRecentTransactions = $this->helpers->adminGetTransactions();
-    	return view('admin.index',compact(['user','c','transactions','deals','auctions','adminStats','adminRecentOrders','adminRecentTransactions']));
+    	return view('admin.index',compact(['user','c','signals','transactions','deals','auctions','adminStats','adminRecentOrders','adminRecentTransactions']));
     }
 
 	/**
@@ -68,8 +69,9 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
 		$users = $this->helpers->adminGetUsers();
-    	return view('admin.users',compact(['users','user','c']));
+    	return view('admin.users',compact(['users','user','c','signals']));
     }	
     
     /**
@@ -91,8 +93,9 @@ class AdminController extends Controller {
           $em = (isset($req['email'])) ? $req['email'] : null; 
            
          $c = $this->helpers->categories;
+         $signals = $this->helpers->signals;
 		$account = $this->helpers->getUser($em); 
-    	return view('admin.user',compact(['account','user','c']));
+    	return view('admin.user',compact(['account','user','c','signals']));
 		}
 		else
         {
@@ -166,8 +169,9 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
 		$deals = $this->helpers->adminGetDeals();
-    	return view('admin.deals',compact(['user','c','deals']));
+    	return view('admin.deals',compact(['user','c','signals','deals']));
     }
     
     /**
@@ -273,7 +277,7 @@ class AdminController extends Controller {
          {
          	#$req["user_id"] = $user->id; 
              $this->helpers->updateDeal($req);
-	        Session::flash("cobra-deal-status","ok");
+	        session()->flash("cobra-deal-status","ok");
 			return redirect()->intended('cobra-deals');
          }        
     }
@@ -318,7 +322,7 @@ class AdminController extends Controller {
          {
          	#$req["user_id"] = $user->id; 
              $this->helpers->createDeal($req);
-	        Session::flash("add-deal-status","ok");
+	        session()->flash("add-deal-status","ok");
 			return redirect()->intended('cobra-deals');
          }        
     }
@@ -412,8 +416,9 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
 		$auctions = $this->helpers->adminGetAuctions();
-    	return view('admin.auctions',compact(['user','c','auctions']));
+    	return view('admin.auctions',compact(['user','c','signals','auctions']));
     }
     
     /**
@@ -535,8 +540,9 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
 		$orders = $this->helpers->adminGetOrders(); 
-    	return view('admin.orders',compact(['user','c','orders']));
+    	return view('admin.orders',compact(['user','c','signals','orders']));
     }
     
     /**
@@ -610,7 +616,7 @@ class AdminController extends Controller {
          {
          	#$req["user_id"] = $user->id; 
              $this->helpers->fundWallet($req);
-	        Session::flash("fund-wallet-status","ok");
+	        session()->flash("fund-wallet-status","ok");
 			return redirect()->intended('cobra-users');
          }        
     }
@@ -636,8 +642,9 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
 		$ratings = null; $comments = null; 
-    	return view('admin.rc',compact(['user','c','ratings','comments']));
+    	return view('admin.rc',compact(['user','c','signals','ratings','comments']));
     }
 	
 	/**
@@ -704,7 +711,8 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
-    	return view('admin.coupons',compact(['user','c']));
+		$signals = $this->helpers->signals;
+    	return view('admin.coupons',compact(['user','c','signals']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -725,7 +733,8 @@ class AdminController extends Controller {
         }
         
 		$c = $this->helpers->categories;
-    	return view('admin.comments',compact(['user','c']));
+		$signals = $this->helpers->signals;
+    	return view('admin.comments',compact(['user','c','signals']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *

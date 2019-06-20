@@ -35,12 +35,13 @@ class MainController extends Controller {
 		}
 		
 		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
 		$hd = $this->helpers->getHottestDeals();
 		$na = $this->helpers->getNewArrivals();
 		$bs = $this->helpers->getBestSellers();
 		$hc = $this->helpers->getHotCategories();
 		
-    	return view('index',compact(['user','cart','c','hd','na','bs','hc']));
+    	return view('index',compact(['user','cart','c','signals','hd','na','bs','hc']));
     }
 
 	/**
@@ -59,7 +60,8 @@ class MainController extends Controller {
 			$cart = $this->helpers->getCart($user);
 		}
 		$c = $this->helpers->categories;
-    	return view('about',compact(['user','cart', 'c']));
+		$signals = $this->helpers->signals;
+    	return view('about',compact(['user','cart', 'c','signals']));
 		//return redirect()->intended('/');
     }	
 
@@ -92,9 +94,10 @@ class MainController extends Controller {
         	$bundleProducts = $this->helpers->getDeals("bundle");
         }     
 		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
 		
-    	return view('bundle',compact(['user','cart','bundleProducts','category','c','mainClass']));
+    	return view('bundle',compact(['user','cart','bundleProducts','category','c','signals','mainClass']));
     }
 
 	/**
@@ -126,8 +129,9 @@ class MainController extends Controller {
         	$auction = $this->helpers->getDeals("auction");
         }     
 		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('auction',compact(['user','cart','auction','category','c','mainClass']));
+    	return view('auction',compact(['user','cart','auction','category','c','signals','mainClass']));
     }
 
 	/**
@@ -160,8 +164,9 @@ class MainController extends Controller {
         	$topDeals = $this->helpers->getDeals("deal");
         }     
 		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('top-deals',compact(['user','cart','category','topDeals','c','mainClass']));
+    	return view('top-deals',compact(['user','cart','category','topDeals','c','signals','mainClass']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -192,8 +197,9 @@ class MainController extends Controller {
         	$deals = $this->helpers->getDeals("deal");
         }     
 		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('deals',compact(['user','cart','category','deals','c','mainClass']));
+    	return view('deals',compact(['user','cart','category','deals','c','signals','mainClass']));
     }	
 	
 
@@ -216,8 +222,9 @@ class MainController extends Controller {
         {    
         	return redirect()->intended('login?return=cart');
         }
+        $signals = $this->helpers->signals;
 		$mainClass = "cart-table-area section-padding-100";
-        return view('cart',compact(['user','cart','cartTotals','mainClass']));
+        return view('cart',compact(['user','cart','cartTotals','signals','mainClass']));
     }
     
     /**
@@ -361,8 +368,9 @@ class MainController extends Controller {
         	return redirect()->intended('login?return=checkout');
         }
         
+        $signals = $this->helpers->signals;
 		$mainClass = "cart-table-area section-padding-100";
-        return view('checkout',compact(['user','cart','cartTotals','sd','orderNumber','states','mainClass']));
+        return view('checkout',compact(['user','cart','signals','cartTotals','sd','orderNumber','states','mainClass']));
     }
     
     /**
@@ -449,8 +457,9 @@ class MainController extends Controller {
              $rating = $this->helpers->getRating($deal,$user);
              $comments = $this->helpers->getComments($deal);
              $category = $this->helpers->categories[$deal['category']];
+             $signals = $this->helpers->signals;
 		     $mainClass = "single-product-area section-padding-100 clearfix";
-             return view('deal',compact(['user','cart','category','deal','rating','comments', 'mainClass']));
+             return view('deal',compact(['user','cart','category','signals','deal','rating','comments', 'mainClass']));
          }        
 		
     }
@@ -520,7 +529,8 @@ class MainController extends Controller {
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
 		}
-        return view('kloudpay',compact(['user','cart']));
+		$signals = $this->helpers->signals;
+        return view('kloudpay',compact(['user','cart','signals']));
     }
     
 	/**
@@ -539,13 +549,14 @@ class MainController extends Controller {
 			$cart = $this->helpers->getCart($user);
 			$wallet = $this->helpers->getWallet($user);
 			$transactions = $this->helpers->getTransactions($user);
+			$signals = $this->helpers->signals;
 		}
 		
 		else
         {
         	return redirect()->intended('login?return=wallet');
         }
-        return view('wallet',compact(['user','cart','wallet','transactions']));
+        return view('wallet',compact(['user','cart','wallet','signals','transactions']));
     }
 	
 	/**
@@ -708,12 +719,13 @@ class MainController extends Controller {
 			$user = Auth::user();
 			$orders = $this->helpers->getOrders($user);
 			$cart = $this->helpers->getCart($user);
+			$signals = $this->helpers->signals;
 		}
 		else
         {
         	return redirect()->intended('login?return=orders');
         }
-        return view('orders',compact(['user','cart','orders']));
+        return view('orders',compact(['user','cart','orders','signals']));
     }
 	
 	/**
@@ -814,6 +826,7 @@ class MainController extends Controller {
 			//$dashboard = $this->helpers->getDashboard($user);
 			$transactions = $this->helpers->getTransactions($user);
 			$cart = $this->helpers->getCart($user);
+			$signals = $this->helpers->signals;
 		}
 		else
         {
@@ -821,7 +834,7 @@ class MainController extends Controller {
         }
 		
 		
-        return view('dashboard',compact(['user','cart','transactions']));
+        return view('dashboard',compact(['user','cart','transactions','signals']));
     }
     
     
