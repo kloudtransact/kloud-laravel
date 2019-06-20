@@ -254,7 +254,7 @@ class MainController extends Controller {
          {
          	$req["user_id"] = $user->id; 
              $this->helpers->addToCart($req);
-	        Session::flash("add-to-cart-status","ok");
+	        session()->flash("add-to-cart-status","ok");
 			return redirect()->intended('cart');
          }        
     }
@@ -294,7 +294,7 @@ class MainController extends Controller {
          {
          	$quantities = $req["quantity"]; 
              $this->helpers->updateCart($cart, $quantities);
-	        Session::flash("update-cart-status","ok");
+	        session()->flash("update-cart-status","ok");
 			return redirect()->intended('cart');
          }        
     }
@@ -627,7 +627,7 @@ class MainController extends Controller {
          else
          {
              $this->helpers->transferFunds($user, $req);
-	        Session::flash("kloudpay-transfer-status","ok");
+	        session()->flash("kloudpay-transfer-status","ok");
 			return redirect()->intended('kloudpay');
          }        
     }
@@ -687,8 +687,8 @@ class MainController extends Controller {
          
          else
          {
-             $this->helpers->withdrawFunds($user, $req);
-	        Session::flash("kloudpay-withdraw-status","ok");
+             $ret = $this->helpers->withdrawFunds($user, $req);
+	        session()->flash("kloudpay-withdraw-status",$ret);
 			return redirect()->intended('kloudpay');
          }        
     }
@@ -889,7 +889,7 @@ class MainController extends Controller {
          {
          	$req["user_id"] = $user->id; 
              $this->helpers->createBankAccount($req);
-	        Session::flash("add-account-status","ok");
+	        session()->flash("add-account-status","ok");
 			return redirect()->intended('dashboard');
          }        
     }
