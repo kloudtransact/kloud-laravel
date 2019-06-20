@@ -647,12 +647,13 @@ class MainController extends Controller {
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
 			$wallet = $this->helpers->getWallet($user);
+			$fee = $this->helpers->getWithdrawalFee();
 		}
 		else
         {
         	return redirect()->intended('login?return=deposit');
         }
-        return view('kloudpay-withdraw',compact(['user','cart','wallet']));
+        return view('kloudpay-withdraw',compact(['user','cart','wallet','fee']));
     }
     
     /**
