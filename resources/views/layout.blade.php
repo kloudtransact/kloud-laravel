@@ -139,11 +139,11 @@
                
                if(isset($signals))
                {
-                  foreach($signals['okays'] as $s)
+                  foreach($signals['okays'] as $key => $value)
                   {
-                    if(session()->has($s))
+                    if(session()->has($key))
                     {
-                  	$pop = $s; $val = session()->get($s);
+                  	$pop = $key; $val = session()->get($key);
                     }
                  }
               }
