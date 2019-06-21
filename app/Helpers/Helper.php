@@ -1517,7 +1517,7 @@ function adminGetOrder($number)
            function approveWithdrawal($data)
            {
            	$ret = "error";
-               $w = Withdrawals::where('id',$data['id'])->first();            
+               $w = Withdrawals::where('id',$data['ff'])->first();            
  
               if($w != null)
                {
