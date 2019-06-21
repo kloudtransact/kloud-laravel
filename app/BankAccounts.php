@@ -13,6 +13,6 @@ class BankAccounts extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'balance', 'initial_balance', 'last_deposit', 'last_deposit_name', 'account_number', 'address'
+        'user_id', 'acname', 'acnum', 'bank'
     ];
 }
