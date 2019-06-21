@@ -107,6 +107,9 @@ Route::post('cobra-order', 'AdminController@postOrder');
 Route::get('cobra-fund-wallet', 'AdminController@getFundWallet');
 Route::post('cobra-fund-wallet', 'AdminController@postFundWallet');
 
+Route::get('cobra-withdrawals', 'AdminController@getWithdrawals');
+Route::get('cobra-approve-withdrawal', 'AdminController@getApproveWithdrawal');
+
 Route::get('cobra-add-coupon', 'AdminController@getAddCoupon');
 Route::post('cobra-add-coupon', 'AdminController@postAddCoupon');
 
