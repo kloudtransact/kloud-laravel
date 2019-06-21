@@ -6,6 +6,7 @@
 <?php
 $totalUsers = $adminStats['totalUsers'];
 		$totalSales= $adminStats['totalSales'];
+		$totalWithdrawals = $adminStats['totalWithdrawals'];
 		$totalDeals = $adminStats['totalDeals'];
 		$totalUsersActive = $adminStats['totalUsersActive'];
 		$totalOrders = $adminStats['totalOrders'];
@@ -38,13 +39,13 @@ $totalUsers = $adminStats['totalUsers'];
                   <div class="card-icon">
                     <i class="material-icons">store</i>
                   </div>
-                  <p class="card-category">Revenue</p>
-                  <h3 class="card-title">&#8358;{{number_format($totalSales,2)}}</h3>
+                  <p class="card-category">Withdrawals Pending</p>
+                  <h3 class="card-title">{{$totalWithdrawals}}</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
                     <i class="material-icons">date_range</i> 
-                    <a href="{{url('cobra-transactions')}}">View all transactions</a>
+                    <a href="{{url('cobra-withdrawals')}}">View all withdrawals</a>
                   </div>
                 </div>
               </div>
