@@ -6,6 +6,7 @@ Interface HelperContract
         public function sendEmail($to,$subject,$data,$view,$type);
         public function createUser($data);
         public function createShippingDetails($data);
+        public function createBankAccount($data);
         public function addToCart($data);
         public function createDeal($data);
         public function createDealData($data);
@@ -35,6 +36,7 @@ Interface HelperContract
         public function getUser($email);
         public function updateUser($data);
         public function getShippingDetails($user);
+        public function getBankAccount($user);
         public function updateShippingDetails($user,$data);
         public function getWallet($user);
         public function getDashboard($user);
@@ -69,5 +71,8 @@ Interface HelperContract
         public function getPasswordResetCode($user);
         public function verifyPasswordResetCode($code);
         public function getWithdrawalFee();
+        public function getWithdrawals();
+        public function getPendingWithdrawals($user);
+        public function approveWithdrawal($data);
 }
  ?>
