@@ -1116,7 +1116,7 @@ function adminGetOrder($number)
            function getRating($deal)
            {
            	$ret = 0;
-           	$ratings = Ratings::where('deal_id',$deal->id)->get();   
+           	$ratings = Ratings::where('deal_id',$deal['id'])->get();   
                
                 if($ratings !== null) 
                 {
