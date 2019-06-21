@@ -11,6 +11,7 @@ use \Swift_SmtpTransport;
 use App\User;
 use App\Carts;
 use App\ShippingDetails;
+use App\BankAccounts;
 use App\Wallet;
 use App\Transactions;
 use App\Deals;
@@ -101,7 +102,8 @@ class Helper implements HelperContract
                      "reset-status" => "Password updated! You can now login.",
                      "add-deal-status" => "Deal added!",
                      "remove-cart-status" => "Deal removed from cart.",
-                     "kloudpay-withdraw-status" => "Withdrawal request has been submitted and is pending review"
+                     "kloudpay-withdraw-status" => "Withdrawal request has been submitted and is pending review",
+                     "cobra-approve-withdrawal-status" => "Withdrawal request approved. Go to PayStack Dashboard to make the transfer",
                      ],
                      'errors'=> ["login-status-error" => "There was a problem signing in, please contact support.",
                      "cobra-user-status-error" => "There was an error updating info for this user. Please try again.",
@@ -222,6 +224,17 @@ $subject = $data['subject'];
                                                       'address' => "", 
                                                       'city' => "", 
                                                       'state' => "", 
+                                                      ]);
+                                                      
+                return $ret;
+           }
+           
+           function createBankAccount($data)
+           {
+           	$ret = BankAccounts::create(['user_id' => $data['user_id'],                                                                                                          
+                                                      'bank' => $data['bank'],
+                                                      'acname' => $data['acname'],                                                     
+                                                      'acnum' => $data['acnum']
                                                       ]);
                                                       
                 return $ret;
@@ -366,7 +379,7 @@ $subject = $data['subject'];
            
            function addSettings($data)
            {
-           	$ret = Comments::create(['item' => $data['item'],                                                                                                          
+           	$ret = Settings::create(['item' => $data['item'],                                                                                                          
                                                       'value' => $data['value'], 
                                                       ]);
                                                       
@@ -702,6 +715,23 @@ $subject = $data['subject'];
                 return $ret;
            }	  
            
+           function getBankAccount($user)
+           {
+           	$ret = [];
+               $b = BankAccounts::where('user_id',$user->id)->first();
+ 
+              if($b != null)
+               {
+                   	$temp['bank'] = $b->bank; 
+                       $temp['acname'] = $b->acname; 
+                       $temp['acnum'] = $b->acnum;
+                       $temp['date'] = $b->created_at->format("jS F, Y"); 
+                       $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }	  
+           
            function updateShippingDetails($user, $data)
            {
            	$sd = ShippingDetails::where('user_id',$user->id)->first();
@@ -789,6 +819,11 @@ $subject = $data['subject'];
                              $temp['description'] = 'Deposited to KloudPay Wallet'; 
                              $temp['badgeClass'] = 'badge-info'; 
                            break; 
+                           
+                           case 'withdraw':
+                             $temp['description'] = 'Withdrew from KloudPay Wallet'; 
+                             $temp['badgeClass'] = 'badge-info'; 
+                           break; 
                        }
                        
                        array_push($ret, $temp); 
@@ -842,6 +877,11 @@ $subject = $data['subject'];
                            
                            case 'deposit':
                              $temp['description'] = 'Deposited to KloudPay Wallet'; 
+                             $temp['badgeClass'] = 'badge-info'; 
+                           break; 
+                           
+                           case 'withdraw':
+                             $temp['description'] = 'Withdrew from KloudPay Wallet'; 
                              $temp['badgeClass'] = 'badge-info'; 
                            break; 
                        }
@@ -1046,6 +1086,7 @@ function adminGetOrder($number)
                          'totalOrders' => Orders::all()->count(),
                          'totalUsersActive' => User::where('status','ok')->count(),
                          'totalOrdersPending' => Deals::where('status','pending')->count(),
+                         'totalWithdrawals' => Withdrawals::where('status','pending')->count(),
                         ];      
                                                                                        
                 return $ret;
@@ -1428,5 +1469,63 @@ function adminGetOrder($number)
                **/
                return $ret; 
            }
+           
+           function getWithdrawals()
+           {
+           	$ret = [];
+               $withdrawals = Withdrawals::all();            
+ 
+              if($withdrawals != null)
+               {
+               	foreach($withdrawals as $w)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $w->id; 
+                       $user = User::where('id',$w->user_id)->first();
+                       $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
+                       $temp['amount'] = $w->amount;                        
+                       $temp['status'] = $w->status; 
+                       $temp['date'] = $w->created_at->format("jS F, Y"); 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }	
+           
+           function getPendingWithdrawals($user)
+           {
+           	$ret = [];
+               $withdrawals = Withdrawals::where('user_id',$user->id)->where('status','pending')->get();            
+ 
+              if($withdrawals != null)
+               {
+               	foreach($withdrawals as $w)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $w->id; 
+                       $temp['amount'] = $w->amount;                        
+                       $temp['status'] = $w->status; 
+                       $temp['date'] = $w->created_at->format("jS F, Y"); 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }	
+           
+           function approveWithdrawal($data)
+           {
+           	$ret = "error";
+               $w = Withdrawals::where('id',$data['id'])->first();            
+ 
+              if($w != null)
+               {
+               	$w->update(['status' => 'approved']);
+                   $ret = 'ok'; 
+               }                          
+                                                      
+                return $ret;
+           }	
 }
 ?>
