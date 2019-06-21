@@ -579,7 +579,7 @@ class AdminController extends Controller {
     	return view('admin.order',compact(['user','c','order']));
     }
     
-        /**
+    /**
 	 * Show the application welcome screen to the user.
 	 *
 	 * @return Response
@@ -735,7 +735,8 @@ class AdminController extends Controller {
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
     	return view('admin.comments',compact(['user','c','signals']));
-    }	/**
+    }
+	/**
 	 * Show the application welcome screen to the user.
 	 *
 	 * @return Response
@@ -757,5 +758,72 @@ class AdminController extends Controller {
 		$c = $this->helpers->categories;
     	return view('admin.comment',compact(['user','c']));
     }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getWithdrawals()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$withdrawals = $this->helpers->getWithdrawals();
+		$signals = $this->helpers->signals;
+    	return view('admin.withdrawals',compact(['user','c','withdrawals','signals']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function getApproveWithdrawal(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+            if($user->role != "admin") return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'ff' => 'required'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	#$req["user_id"] = $user->id; 
+             $ret = $this->helpers->approveWithdrawal($req);
+	        session()->flash("cobra-approve-withdrawal-status",$ret);
+			return redirect()->intended('cobra-withdrawals');
+         }        
+    }
+    
+    
 
 }
