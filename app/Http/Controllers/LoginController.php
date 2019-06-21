@@ -54,8 +54,8 @@ class LoginController extends Controller {
 			$user = Auth::user();
 			return redirect()->intended($return);
 		}
-		
-    	return view('login',compact(['user','return']));
+		$signals = $this->helpers->signals;
+    	return view('login',compact(['user','return','signals']));
     }
 
 	/**
@@ -120,7 +120,8 @@ class LoginController extends Controller {
 			$return = ($user->role == "admin") ? 'cobra': 'dashboard';
 			return redirect()->intended($return);
 		} else{
-         	return view('admin.login',compact(['user','return']));
+			$signals = $this->helpers->signals;
+         	return view('admin.login',compact(['user','return','signals']));
           }
     }
 
@@ -263,7 +264,8 @@ class LoginController extends Controller {
 			$user = Auth::user();
 			return redirect()->intended('/');
 		}
-         return view('forgot-password', compact(['user']));
+		$signals = $this->helpers->signals;
+         return view('forgot-password', compact(['user','signals']));
     }
     
     /**
@@ -326,7 +328,8 @@ class LoginController extends Controller {
 			$user = Auth::user();
 			return redirect()->intended('/');
 		}
-         return view('admin.forgot-password', compact(['user']));
+		$signals = $this->helpers->signals;
+         return view('admin.forgot-password', compact(['user','signals']));
     }
     
     /**
