@@ -100,7 +100,7 @@
             <div class="amado-btn-group mt-30 mb-100">
             	<?php
                   $wu = "#"; $wt = "New this week"; 
-                  if($user != null && $user->role == "admin"){
+                  if($user != null && $user->role != "user"){
                   	$wu = url('cobra'); $wt = "Admin center"; 
                   }
                   $cc = (isset($cart)) ? count($cart) : 0;
