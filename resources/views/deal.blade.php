@@ -89,7 +89,7 @@
                                     	@for($s = 0; $s < $deal['rating']; $s++)
                                           <i class="fa fa-star" aria-hidden="true"></i>
                                         @endfor
-										@if(count($rating) < 1)
+										@if($rating < 1)
                                         <br>
                                         <h6>Rate this product:</h6>
                                         <select id="rating-select">
@@ -100,6 +100,7 @@
                                             <option value="4">4</option>
                                             <option value="5">5</option>
                                         </select><br>
+                                        <input type="hidden" id="rate-url" value="{{url('rate-deal')}}">
                                         <a href="#" class="mt-4 btn btn-primary">Submit</a>
                                         @endif
                                     </div>
