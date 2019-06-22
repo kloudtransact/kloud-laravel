@@ -1535,7 +1535,6 @@ function adminGetOrder($number)
            {
            	$ret = false; 
                if($user->role === "admin" || $user->role === "su") $ret = true; 
-               dd($ret); 
            	return $ret;
            }	
 }
