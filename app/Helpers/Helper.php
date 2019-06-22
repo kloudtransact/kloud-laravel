@@ -1135,13 +1135,13 @@ function adminGetOrder($number)
            
            function getUserRating($deal,$user)
            {
-           	$ret = [];
+           	$ret = 0;
            	$rating = Ratings::where('deal_id',$deal['id'])
                                       ->where('user_id',$user->id)->first();   
                
                 if($rating !== null) 
                 {
-                	$ret['rating'] = $rating->stars; 
+                	$ret = $rating->stars; 
                 }       
                 return $ret;
            }	
