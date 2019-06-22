@@ -74,5 +74,6 @@ Interface HelperContract
         public function getWithdrawals();
         public function getPendingWithdrawals($user);
         public function approveWithdrawal($data);
+        public function isAdmin($user);
 }
  ?>
