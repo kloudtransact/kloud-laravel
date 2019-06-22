@@ -1527,5 +1527,10 @@ function adminGetOrder($number)
                                                       
                 return $ret;
            }	
+           
+           function isAdmin($user)
+           {
+           	return ($user->role == 'admin' || $user->role == 'su');
+           }	
 }
 ?>
