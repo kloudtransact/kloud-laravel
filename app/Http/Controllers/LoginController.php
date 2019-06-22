@@ -158,7 +158,7 @@ class LoginController extends Controller {
             	//Login successful               
                $user = Auth::user();          
                 #dd($user); 
-               if($user->role == "admin"){return redirect()->intended('cobra');}
+               if($this->helpers->isAdmin($user)){return redirect()->intended('cobra');}
                else{return redirect()->intended("dashboard");}
             }
 			

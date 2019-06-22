@@ -454,12 +454,13 @@ class MainController extends Controller {
          else
          {
          	$deal = $this->helpers->getDeal($req['sku']);
-             $rating = $this->helpers->getRating($deal,$user);
+             $rating = $this->helpers->getUserRating($deal,$user);
+             $overallRating = $this->helpers->getRating($deal);
              $comments = $this->helpers->getComments($deal);
              $category = $this->helpers->categories[$deal['category']];
              $signals = $this->helpers->signals;
 		     $mainClass = "single-product-area section-padding-100 clearfix";
-             return view('deal',compact(['user','cart','category','signals','deal','rating','comments', 'mainClass']));
+             return view('deal',compact(['user','cart','category','signals','deal','rating','overallRating','comments', 'mainClass']));
          }        
 		
     }
