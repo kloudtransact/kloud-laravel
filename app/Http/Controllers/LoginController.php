@@ -117,7 +117,9 @@ class LoginController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			$return = ($this->helpers->isAdmin($user)) ? 'cobra': 'dashboard';
+			$return = 'dashboard';
+			if($this->helpers->isAdmin($user)) $return = 'cobra';
+			
 			return redirect()->intended($return);
 		} else{
 			$signals = $this->helpers->signals;
@@ -403,7 +405,8 @@ class LoginController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			$return = ($this->helpers->isAdmin($user)) ? 'cobra': 'dashboard';
+			$return = 'dashboard';
+			if($this->helpers->isAdmin($user)) $return = 'cobra';
 			return redirect()->intended($return);
 		} 
        else
