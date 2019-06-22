@@ -86,13 +86,15 @@
                                 <!-- Ratings & Review -->
                                 <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
                                     <div class="ratings">
-                                    	@for($s = 0; $s < $deal['rating']; $s++)
+                                    	@for($s = 0; $s < $overallRating; $s++)
                                           <i class="fa fa-star" aria-hidden="true"></i>
                                         @endfor
-										@if($rating < 1)
+										@if($user != null && $rating < 1)
                                         <br>
                                         <h6>Rate this product:</h6>
-                                        <select id="rating-select">
+                                        <form action="{{url('rate-deal')}}" method="post">
+                                        	{!! csrf_field() !!}
+                                        <select name="rating-select">
                                         	<option value="none">Select rating</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -100,8 +102,8 @@
                                             <option value="4">4</option>
                                             <option value="5">5</option>
                                         </select><br>
-                                        <input type="hidden" id="rate-url" value="{{url('rate-deal')}}">
-                                        <a href="#" class="mt-4 btn btn-primary">Submit</a>
+                                        <button type="submit" class="mt-4 btn btn-primary">Submit</button>
+                                        </form>
                                         @endif
                                     </div>
                                 </div>
@@ -148,9 +150,23 @@
                     </div>
                 </div>
                 <div class="row mt-5">
-                    <div class="col-12">  
-                      <form>
+                    <div class="col-12">
+                     <form action="{{url('comment-deal')}}" method="post">
+                       {!! csrf_field() !!}
                     <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Add comment:</label>
+                          <textarea name="comment" class="form-control"></textarea>
+                        </div>
+                      </div>
+                    </div>     
+                   </form>
+                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="clearfix"></div>                  
+                    </div>
+                    
+                    <div class="row mt-5">
                       <div class="col-md-12">
                         <div class="form-group">
                           <label class="bmd-label-floating">Comments</label>
@@ -161,20 +177,9 @@
                           <p class="form-control-plaintext"><span class="text-primary text-italics">@topewer</span> This is a comment <small class="text-muted pull-right"> 22 May, 2019 6:45pm</small></p>
                         </div>
                       </div>
-                    </div> 
-					<div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Add comment:</label>
-                          <textarea class="form-control"></textarea>
-                        </div>
-                      </div>
-                    </div>        
+                    </div>    
                     
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <div class="clearfix"></div>
-                  </form>
-                    </div>
+                  
                 </div>
             </div>
 @stop
