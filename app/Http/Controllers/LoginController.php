@@ -86,7 +86,7 @@ class LoginController extends Controller {
              $return = isset($req['return']) ? $req['return'] : '/';
              
          	//authenticate this login
-            if(Auth::attempt(['email' => $req['id'],'password' => $req['pass'],'status'=> "ok"],$remember) || Auth::attempt(['phone' => $req['id'],'password' => $req['pass'],'status'=> "ok"],$remember))
+            if(Auth::attempt(['email' => $req['id'],'password' => $req['pass'],'status'=> "enabled"],$remember) || Auth::attempt(['phone' => $req['id'],'password' => $req['pass'],'status'=> "enabled"],$remember))
             {
             	//Login successful               
                $user = Auth::user();          
@@ -153,7 +153,7 @@ class LoginController extends Controller {
              $return = isset($req['return']) ? $req['return'] : '/';
              
          	//authenticate this login
-            if(Auth::attempt(['email' => $req['id'],'password' => $req['pass'],'status'=> "ok"],$remember) || Auth::attempt(['phone' => $req['id'],'password' => $req['pass'],'status'=> "ok"],$remember))
+            if(Auth::attempt(['email' => $req['id'],'password' => $req['pass'],'status'=> "enabled"],$remember) || Auth::attempt(['phone' => $req['id'],'password' => $req['pass'],'status'=> "enabled"],$remember))
             {
             	//Login successful               
                $user = Auth::user();          
@@ -196,7 +196,7 @@ class LoginController extends Controller {
          else
          {
             $req['role'] = "user";    
-            $req['status'] = "ok";           
+            $req['status'] = "enabled";           
             
                        #dd($req);            
 
@@ -204,6 +204,12 @@ class LoginController extends Controller {
 			$req['user_id'] = $user->id;
             $shippingDetails =  $this->helpers->createShippingDetails($req); 
             $wallet =  $this->helpers->createWallet($req); 
+            $bank =  $this->helpers->createBankAccount(['user_id' => $user->id,
+                                                       'bank' => '',
+                                                      'acname' => '',                                                     
+                                                      'acnum' => ''
+                                                    ]); 
+                                                    
              //after creating the user, send back to the registration view with a success message
              #$this->helpers->sendEmail($user->email,'Welcome To Disenado!',['name' => $user->fname, 'id' => $user->id],'emails.welcome','view');
              session()->flash("signup-status", "success");
