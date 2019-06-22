@@ -31,7 +31,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -61,7 +61,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -87,7 +87,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
             $req = $request->all();
            //dd($req);
           $em = (isset($req['email'])) ? $req['email'] : null; 
@@ -114,7 +114,7 @@ class AdminController extends Controller {
     	if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -161,7 +161,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -186,7 +186,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -223,7 +223,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -245,7 +245,7 @@ class AdminController extends Controller {
     	if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -292,7 +292,7 @@ class AdminController extends Controller {
     	if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -339,7 +339,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');	
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');	
 
             $req = $request->all();
             $em = (isset($req['email'])) ? $req['email'] : ""; 
@@ -364,7 +364,7 @@ class AdminController extends Controller {
     	if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -408,7 +408,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -433,7 +433,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -458,7 +458,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -483,7 +483,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -507,7 +507,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -532,7 +532,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -557,7 +557,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -589,7 +589,7 @@ class AdminController extends Controller {
     	if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -634,7 +634,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -659,7 +659,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -682,7 +682,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -703,7 +703,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -725,7 +725,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -748,7 +748,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -771,7 +771,7 @@ class AdminController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
@@ -794,7 +794,7 @@ class AdminController extends Controller {
     	if(Auth::check())
 		{
 			$user = Auth::user();
-            if($user->role != "admin") return redirect()->intended('dashboard');		
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
 		}
 		else
         {
