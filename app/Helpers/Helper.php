@@ -1533,7 +1533,9 @@ function adminGetOrder($number)
            
            function isAdmin($user)
            {
-           	return ($user->role == 'admin' || $user->role == 'su');
+           	$ret = false; 
+               if($user->role === 'admin' || $user->role === 'su') $ret = true; 
+           	return $ret;
            }	
 }
 ?>
