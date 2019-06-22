@@ -403,7 +403,7 @@ class LoginController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			$return = ($user->role == "admin") ? 'cobra': 'dashboard';
+			$return = ($this->helpers->isAdmin($user)) ? 'cobra': 'dashboard';
 			return redirect()->intended($return);
 		} 
        else
