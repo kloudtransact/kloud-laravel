@@ -778,7 +778,8 @@ $subject = $data['subject'];
            function getTransactions($user)
            {
            	$ret = [];
-               $transactions = Transactions::where('user_id',$user->id)->get();
+               $transactions = Transactions::where('user_id',$user->id)
+			                               ->orderBy('created_at', 'desc')->get();;
  
               if($transactions != null)
                {
@@ -897,8 +898,15 @@ $subject = $data['subject'];
            {
            	$ret = [];
                $auctions = null; 
-           	if($q == "") $auctions = Auctions::where('type',$category)->get();
-               else $auctions = Auctions::where('type',$category)->where('category',$q)->get();            
+           	if($q == ""){
+				$auctions = Auctions::where('type',$category)
+			                         ->orderBy('created_at', 'desc')->get();
+			}
+            else{
+				$auctions = Auctions::where('type',$category)
+				                    ->where('category',$q)
+									->orderBy('created_at', 'desc')->get();
+			}         
  
               if($auctions != null)
                {
@@ -939,7 +947,7 @@ $subject = $data['subject'];
           function adminGetUsers()
            {
            	$ret = [];
-               $users = User::where('id','>',2)->get();
+               $users = User::orderBy('created_at', 'desc')->get();
  
               if($users != null)
                {
@@ -966,7 +974,7 @@ $subject = $data['subject'];
           function adminGetDeals()
            {
            	$ret = [];
-           	$deals = Deals::where('id','>','0')->get();
+           	$deals = Deals::orderBy('created_at', 'desc')->get();
  
               if($deals != null)
                {
@@ -1015,7 +1023,7 @@ $subject = $data['subject'];
            function adminGetOrders()
            {
            	$ret = [];
-           	$orders = Orders::where('id','>','0')->get();
+           	$orders = Orders::orderBy('created_at', 'desc')->get();
  
               if($orders != null)
                {
@@ -1116,7 +1124,8 @@ function adminGetOrder($number)
            function getRating($deal)
            {
            	$ret = 0;
-           	$ratings = Ratings::where('deal_id',$deal['id'])->get();   
+           	$ratings = Ratings::where('deal_id',$deal['id'])
+			                  ->orderBy('created_at', 'desc')->get();
                
                 if($ratings !== null) 
                 {
@@ -1152,7 +1161,8 @@ function adminGetOrder($number)
            function getComments($deal)
            {
            	$ret = [];
-           	$comments = Comments::where('deal_id',$deal['id'])->get();   
+           	$comments = Comments::where('deal_id',$deal['id'])
+			                    ->orderBy('created_at', 'desc')->get(); 
                
                 if($comments !== null) 
                 {
@@ -1175,7 +1185,8 @@ function adminGetOrder($number)
            function getOrders($user)
            {
            	$ret = [];
-           	$orders = Orders::where('user_id',$user->id)->get();   
+           	$orders = Orders::where('user_id',$user->id)
+			                ->orderBy('created_at', 'desc')->get();
                
                 if($orders != null)
                {
@@ -1484,7 +1495,7 @@ function adminGetOrder($number)
            function getWithdrawals()
            {
            	$ret = [];
-               $withdrawals = Withdrawals::all();            
+               $withdrawals = Withdrawals::orderBy('created_at', 'desc')->get();     
  
               if($withdrawals != null)
                {
@@ -1507,7 +1518,9 @@ function adminGetOrder($number)
            function getPendingWithdrawals($user)
            {
            	$ret = [];
-               $withdrawals = Withdrawals::where('user_id',$user->id)->where('status','pending')->get();            
+               $withdrawals = Withdrawals::where('user_id',$user->id)
+			                             ->where('status','pending')
+										 ->orderBy('created_at', 'desc')->get();          
  
               if($withdrawals != null)
                {
