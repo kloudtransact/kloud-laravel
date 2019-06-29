@@ -1200,6 +1200,7 @@ function adminGetOrder($number)
                    	$temp['number'] = $o->number; 
                        $temp['status'] = $o->status; 
                        $temp['amount'] = $o->total; 
+					   $temp['date'] = $t->created_at->format("jS F, Y"); 
                        array_push($ret, $temp); 
                    }
                }       
