@@ -27,7 +27,10 @@
                         </th>  
                         <th>
                           Status
-                        </th>  
+                        </th> 
+						<th>
+                          Date
+                        </th> 
                         <th>
                           Actions
                         </th>

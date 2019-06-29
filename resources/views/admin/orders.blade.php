@@ -23,6 +23,9 @@
                           User
                         </th>
                         <th>
+                          Date
+                        </th>
+						<th>
                           Order #
                         </th>
                         <th>
@@ -47,6 +50,9 @@
                           </td>
                           <td>
                             {{$o['email']}}
+                          </td>
+						  <td>
+                            {{$o['date']}}
                           </td>
                           <td>
                             {{$o['number']}}
