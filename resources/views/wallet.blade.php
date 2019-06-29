@@ -4,9 +4,9 @@
 
 @section('styles')
   <!-- DataTables CSS -->
-  <link href="lib/datatables/buttons.bootstrap.min.css" rel="stylesheet" /> 
-  <link href="lib/datatables/buttons.dataTables.min.css" rel="stylesheet" /> 
-  <link href="lib/datatables/dataTables.bootstrap.min.css" rel="stylesheet" /> 
+  <link href="lib/datatables/css/buttons.bootstrap.min.css" rel="stylesheet" /> 
+  <link href="lib/datatables/css/buttons.dataTables.min.css" rel="stylesheet" /> 
+  <link href="lib/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" /> 
 @stop
 
 @section('content')
