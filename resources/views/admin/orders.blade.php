@@ -62,7 +62,7 @@
                            &#8358;{{number_format($o['total'],2)}}
                           </td>
                           <td class="text-warning">
-                           PENDING 
+						  {{$o['status']}}
                           </td>
                           <td>
                            <a class="btn btn-primary" href=" {{$orderURL}}">View</a>

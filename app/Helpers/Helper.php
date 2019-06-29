@@ -1058,7 +1058,7 @@ function adminGetOrder($number)
                    	$temp['email'] = ($u != null) ? $order->email : "Uknown"; 
                    	$temp['total'] = $order->total; 
                    	$temp['status'] = $order->status; 
-					$temp['date'] = $o->created_at->format("jS F, Y"); 
+					$temp['date'] = $order->created_at->format("jS F, Y"); 
                        $ret = $temp; 
                    
                }                                 
@@ -1200,7 +1200,7 @@ function adminGetOrder($number)
                    	$temp['number'] = $o->number; 
                        $temp['status'] = $o->status; 
                        $temp['amount'] = $o->total; 
-					   $temp['date'] = $t->created_at->format("jS F, Y"); 
+					   $temp['date'] = $o->created_at->format("jS F, Y"); 
                        array_push($ret, $temp); 
                    }
                }       
