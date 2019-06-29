@@ -2,6 +2,13 @@
 
 @section('title',"My Orders")
 
+@section('styles')
+  <!-- DataTables CSS -->
+  <link href="lib/datatables/buttons.bootstrap.min.css" rel="stylesheet" /> 
+  <link href="lib/datatables/buttons.dataTables.min.css" rel="stylesheet" /> 
+  <link href="lib/datatables/dataTables.bootstrap.min.css" rel="stylesheet" /> 
+@stop
+
 @section('content')
 <div class="row">
           <div class="col-lg-12 mx-auto text-center">
