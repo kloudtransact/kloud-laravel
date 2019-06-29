@@ -14,7 +14,7 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table" id="usersTable">
+                    <table class="table kloud-data-table" id="usersTable">
                       <thead class=" text-primary">
                         <th>
                           ID

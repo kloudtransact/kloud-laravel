@@ -1316,6 +1316,14 @@ function adminGetOrder($number)
                                     
                	$this->fundWallet($userData);
                    $this->fundWallet($receiverData);
+				   
+				   #add transaction 
+                   $tdt = [];
+                   $tdt['type'] = "transfer";
+                   $tdt['description'] = $receiver->id;                   
+                   $tdt['user_id'] = $user->id;
+                   $tdt['amount'] = $data['amount'];
+                   $this->createTransaction($tdt); 
               }
           
                 return "ok";

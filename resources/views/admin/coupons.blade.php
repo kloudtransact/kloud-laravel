@@ -15,7 +15,7 @@
                 <div class="card-body">
                 	<a href="{{url('cobra-add-coupon')}}" class="btn btn-primary btn-lg">Add New Coupon</a>
                   <div class="table-responsive">
-                    <table class="table" id="couponsTable">
+                    <table class="table kloud-data-table" id="couponsTable">
                       <thead class=" text-primary">
                         <th>
                           Coupon

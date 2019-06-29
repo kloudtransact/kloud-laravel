@@ -14,7 +14,7 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table" id="couponsTable">
+                    <table class="table kloud-data-table" id="couponsTable">
                       <thead class=" text-primary">
                         <th>
                           User

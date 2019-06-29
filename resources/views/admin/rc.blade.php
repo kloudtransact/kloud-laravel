@@ -14,7 +14,7 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table" id="ratingsTable">
+                    <table class="table kloud-data-table" id="ratingsTable">
                       <thead class=" text-primary">
                         <th>
                           User
@@ -144,7 +144,7 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table" id="commentsTable">
+                    <table class="table kloud-data-table" id="commentsTable">
                       <thead class=" text-primary">
                         <th>
                           Deal
