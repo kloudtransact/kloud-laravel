@@ -342,7 +342,7 @@ class AdminController extends Controller {
             if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');	
 
             $req = $request->all();
-            $em = (isset($req['email'])) ? $req['email'] : ""; 
+            $em = (isset($req['xf'])) ? $req['xf'] : ""; 
 		    $c = $this->helpers->categories;
 		   
        	return view('admin.fund-wallet',compact(['user','c','em']));	
@@ -375,7 +375,7 @@ class AdminController extends Controller {
         //dd($req);
         
         $validator = Validator::make($req, [
-                             'email' => 'required',
+                             'xf' => 'required',
                              'type' => 'required',
                              'amount' => 'required|numeric'
          ]);
@@ -389,7 +389,7 @@ class AdminController extends Controller {
          
          else
          {
-         	#$req["user_id"] = $user->id; 
+         	$req["email"] = $req["xf"]; 
              $this->helpers->fundWallet($req);
 	        session()->flash("fund-wallet-status","ok");
 			return redirect()->intended('cobra-users');

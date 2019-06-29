@@ -19,7 +19,7 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Account E-mail</label>
-                          <input type="text" name="email" class="form-control" >
+                          <input type="text" name="email" class="form-control" value="{{$em}}">
                         </div>
                       </div>
                       <div class="col-md-4">

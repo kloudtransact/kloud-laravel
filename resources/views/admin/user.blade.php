@@ -17,7 +17,7 @@
                     {!! csrf_field() !!}
                     
                     <?php
-                      $fund_url = url('cobra-fund-wallet').'?email='.$account['email'];
+                      $fund_url = url('cobra-fund-wallet').'?xf='.$account['email'];
                       $balance = $account['wallet']['balance'];
                     ?>
                     <div class="row">
