@@ -1033,7 +1033,7 @@ $subject = $data['subject'];
                    	$temp['id'] = $o->id; 
                    	$temp['number'] = $o->number; 
                        $u = User::where('id',$o->user_id)->first();
-                   	$temp['email'] = ($u != null) ? $o->email : "Uknown"; 
+                   	$temp['email'] = ($u != null) ? $u->email : "Uknown"; 
                    	$temp['total'] = $o->total; 
                    	$temp['status'] = $o->status; 
                    	$temp['date'] = $o->created_at->format("jS F, Y"); 
@@ -1055,7 +1055,8 @@ function adminGetOrder($number)
                    	$temp['id'] = $order->id; 
                    	$temp['number'] = $order->number; 
                        $u = User::where('id',$order->user_id)->first();
-                   	$temp['email'] = ($u != null) ? $order->email : "Uknown"; 
+                   	$temp['email'] = "Uknown"; 
+                   	$temp['email'] = ($u != null) ? $u->email : "Uknown"; 
                    	$temp['total'] = $order->total; 
                    	$temp['status'] = $order->status; 
 					$temp['date'] = $order->created_at->format("jS F, Y"); 
