@@ -836,7 +836,7 @@ $subject = $data['subject'];
            function adminGetTransactions()
            {
            	$ret = [];
-               $transactions = Transactions::orderBy('name', 'desc')->get();
+               $transactions = Transactions::orderBy('created_at', 'desc')->get();
  
               if($transactions != null)
                {
