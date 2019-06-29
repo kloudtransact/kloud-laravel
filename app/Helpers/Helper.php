@@ -836,7 +836,7 @@ $subject = $data['subject'];
            function adminGetTransactions()
            {
            	$ret = [];
-               $transactions = Transactions::all();
+               $transactions = Transactions::orderBy('name', 'desc')->get();
  
               if($transactions != null)
                {
@@ -889,7 +889,7 @@ $subject = $data['subject'];
                        array_push($ret, $temp); 
                    }
                }                          
-                                                      
+                                                     
                 return $ret;
            }		
 
