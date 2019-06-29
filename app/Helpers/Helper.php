@@ -1036,6 +1036,7 @@ $subject = $data['subject'];
                    	$temp['email'] = ($u != null) ? $o->email : "Uknown"; 
                    	$temp['total'] = $o->total; 
                    	$temp['status'] = $o->status; 
+                   	$temp['date'] = $o->created_at->format("jS F, Y"); 
                        array_push($ret, $temp); 
                    }
                }                                 
@@ -1057,6 +1058,7 @@ function adminGetOrder($number)
                    	$temp['email'] = ($u != null) ? $order->email : "Uknown"; 
                    	$temp['total'] = $order->total; 
                    	$temp['status'] = $order->status; 
+					$temp['date'] = $o->created_at->format("jS F, Y"); 
                        $ret = $temp; 
                    
                }                                 
@@ -1079,6 +1081,7 @@ function adminGetOrder($number)
                    	$temp['deal'] = ($deal == null) ? "" : $deal->name; 
                        $temp['type'] = $t->type; 
                        $temp['amount'] = $t->amount; 
+                       $temp['date'] = $t->created_at->format("jS F, Y"); 
                        array_push($ret, $temp); 
                    }
                }                          
