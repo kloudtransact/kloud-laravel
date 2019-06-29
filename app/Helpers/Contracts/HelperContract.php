@@ -50,6 +50,8 @@ Interface HelperContract
         public function adminGetOrders();
         public function adminGetOrder($number);
         public function adminGetAuctions();
+        public function adminGetRatings();
+        public function adminGetComments();
         public function adminGetStats();
         public function getHottestDeals();
         public function getNewArrivals();

@@ -17,11 +17,14 @@
                     <table class="table kloud-data-table" id="ratingsTable">
                       <thead class=" text-primary">
                         <th>
-                          User
+                          Deal
                         </th>
                         <th>
                           Rating
-                        </th>  
+                        </th>
+                        <th>
+                          User
+                        </th>						
                         <th>
                           Status
                         </th> 
@@ -33,105 +36,34 @@
                         </th>
                       </thead>
                       <tbody>
+					    @if($ratings != null && count($ratings) > 0)
+                        @foreach($rstings as $r)
+				         <?php
+                          $approveURL = url('cobra-mr').'?ax=jl&id='.$r['id']; 
+                          $rejectURL = url('cobra-mr').'?ax=lj&id='.$r['id']; 
+                         ?>
                         <tr>
                           <td>
-                            soma56
+						  {{$r['deal']}}
                           </td>
                           <td>
-                            @for($u = 0; $u < 3; $u++)
+                            @for($u = 0; $u < $r['rating']; $u++)
                             	<i class="material-icons text-primary">star</i>
                             @endfor
                           </td>
-                          <td class="text-warning">
-                           PENDING
+						  <td>
+						  {{$r['user']}}
+                          </td>
+                          <td class="text-primary">
+                          {{$r['status']}}
                           </td>
                           <td>
-                           <a class="btn btn-warning" href="#">Reject</a>
-                           <a class="btn btn-success" href="#">Approve</a>
+                           <a class="btn btn-warning" href="{{$rejectURL}}">Reject</a>
+                           <a class="btn btn-success" href="$approveURL">Approve</a>
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            gabbydoll
-                          </td>
-                          <td>
-                            @for($u = 0; $u < 3; $u++)
-                            	<i class="material-icons text-primary">star</i>
-                            @endfor
-                          </td>
-                          <td class="text-info">
-                           APPROVED
-                          </td>
-                          <td>
-                           
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            topewer
-                          </td>
-                          <td>
-                            @for($u = 0; $u < 5; $u++)
-                            	<i class="material-icons text-primary">star</i>
-                            @endfor
-                          </td>
-                          <td class="text-warning">
-                           PENDING
-                          </td>
-                          <td>
-                           <a class="btn btn-warning" href="#">Reject</a>
-                           <a class="btn btn-success" href="#">Approve</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            kingdani
-                          </td>
-                          <td>
-                            @for($u = 0; $u < 3; $u++){ ?>
-                            	<i class="material-icons text-primary">star</i>
-                            @endfor
-                          </td>
-                          <td class="text-info">
-                           APPROVED
-                          </td>
-                          <td>
-                           
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            wuraola98
-                          </td>
-                          <td>
-                            @for($u = 0; $u < 3; $u++)
-                            	<i class="material-icons text-primary">star</i>
-                            @endfor
-                          </td>
-                          <td class="text-warning">
-                           PENDING
-                          </td>
-                          <td>
-                           <a class="btn btn-warning" href="#">Reject</a>
-                           <a class="btn btn-success" href="#">Approve</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            fedbed
-                          </td>
-                          <td>
-                            @for($u = 0; $u < 5; $u++)
-                            	<i class="material-icons text-primary">star</i>
-                            @endfor
-                          </td>
-                          <td class="text-info">
-                           APPROVED
-                          </td>
-                          <td>
-                           
-                          </td>
-                        </tr>
+						@endforeach
+                        @endif
                       </tbody>
                     </table>
                   </div><br>
@@ -166,114 +98,27 @@
                         </th>
                       </thead>
                       <tbody>
+					    @if($comments != null && count($comments) > 0)
+                        @foreach($comments as $c)
+				         <?php
+                          $uu = url('cobra-comment').'?id='.$c['id']; 
+                         ?>
                         <tr>
                           <td>
-                            <a href="#">KLO48643655885</a>
+						  {{$c['deal']}}
                           </td>
                           <td>
-                            Amazing product, I've been using) it for 3 years now without problems
+                            {{$c['comment']}}
+                          </td>
+                          <td class="text-primary">
+                          {{$c['status']}}
                           </td>
                           <td>
-                            <a href="#">topewer</a>
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                          <td>
-                           <a class="btn btn-warning" href=" {{url('cobra-comment')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Delete</a>
+                           <a class="btn btn-success" href="$uu">View</a>
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            <a href="#">KLO48643655885</a>
-                          </td>
-                          <td>
-                            Amazing product, I've been using) it for 3 years now without problems
-                          </td>
-                          <td>
-                            <a href="#">topewer</a>
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                          <td>
-                           <a class="btn btn-warning" href=" {{url('cobra-comment')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">KLO48643655885</a>
-                          </td>
-                          <td>
-                            Amazing product, I've been using) it for 3 years now without problems
-                          </td>
-                          <td>
-                            <a href="#">topewer</a>
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                          <td>
-                           <a class="btn btn-warning" href=" {{url('cobra-comment')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">KLO48643655885</a>
-                          </td>
-                          <td>
-                            Amazing product, I've been using) it for 3 years now without problems
-                          </td>
-                          <td>
-                            <a href="#">topewer</a>
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                          <td>
-                           <a class="btn btn-warning" href=" {{url('cobra-comment')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">KLO48643655885</a>
-                          </td>
-                          <td>
-                            Amazing product, I've been using) it for 3 years now without problems
-                          </td>
-                          <td>
-                            <a href="#">topewer</a>
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                          <td>
-                           <a class="btn btn-warning" href=" {{url('cobra-comment')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">KLO48643655885</a>
-                          </td>
-                          <td>
-                            Amazing product, I've been using) it for 3 years now without problems
-                          </td>
-                          <td>
-                            <a href="#">topewer</a>
-                          </td>
-                          <td class="text-warning">
-                           PENDING 
-                          </td>
-                          <td>
-                           <a class="btn btn-warning" href=" {{url('cobra-comment')}}">Edit</a>
-                           <a class="btn btn-success" href="#">Delete</a>
-                          </td>
-                        </tr>
+						@endforeach
+                        @endif					  
                       </tbody>
                     </table>
                   </div><br>

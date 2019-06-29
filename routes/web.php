@@ -118,6 +118,7 @@ Route::get('cobra-coupons', 'AdminController@getCoupons');
 
 Route::get('cobra-rc', 'AdminController@getRC');
 Route::get('cobra-rating', 'AdminController@getRating');
+Route::get('cobra-mr', 'AdminController@getApproveRating');
 
 Route::get('cobra-comments', 'AdminController@getComments');
 Route::get('cobra-comment', 'AdminController@getComment');

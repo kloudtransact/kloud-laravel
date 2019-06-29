@@ -643,7 +643,8 @@ class AdminController extends Controller {
         
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
-		$ratings = null; $comments = null; 
+		$ratings = $this->helpers->adminGetRatings();
+		$comments = $this->helpers->adminGetComments();
     	return view('admin.rc',compact(['user','c','signals','ratings','comments']));
     }
 	
@@ -806,6 +807,47 @@ class AdminController extends Controller {
         
         $validator = Validator::make($req, [
                              'ff' => 'required'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	#$req["user_id"] = $user->id; 
+             $ret = $this->helpers->approveWithdrawal($req);
+	        session()->flash("cobra-approve-withdrawal-status",$ret);
+			return redirect()->intended('cobra-withdrawals');
+         }        
+    }
+
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function getApproveRating(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'ax' => 'required',
+							 'id' => 'required'
          ]);
          
          if($validator->fails())

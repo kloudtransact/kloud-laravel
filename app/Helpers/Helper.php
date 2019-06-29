@@ -1055,7 +1055,6 @@ function adminGetOrder($number)
                    	$temp['id'] = $order->id; 
                    	$temp['number'] = $order->number; 
                        $u = User::where('id',$order->user_id)->first();
-                   	$temp['email'] = "Uknown"; 
                    	$temp['email'] = ($u != null) ? $u->email : "Uknown"; 
                    	$temp['total'] = $order->total; 
                    	$temp['status'] = $order->status; 
@@ -1083,6 +1082,56 @@ function adminGetOrder($number)
                        $temp['type'] = $t->type; 
                        $temp['amount'] = $t->amount; 
                        $temp['date'] = $t->created_at->format("jS F, Y"); 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }	
+
+           function adminGetRatings()
+           {
+           	$ret = [];
+               $ratings = Ratings::orderBy('created_at', 'desc')->get();
+ 
+              if($ratings != null)
+               {
+               	foreach($ratings as $r)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $r->id; 
+                       $deal = Deals::where('id',$r->deal_id)->first();
+                   	$temp['deal'] = ($deal == null) ? "Unknown" : $deal->name; 
+					$u = User::where('id',$r->user_id)->first();
+                   	$temp['user'] = ($u != null) ? $u->email : "Unknown"; 
+                       $temp['rating'] = $r->stars; 
+                       $temp['status'] = $r->status; 
+                       $temp['date'] = $r->created_at->format("jS F, Y"); 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }	
+
+           function adminGetComments()
+           {
+           	$ret = [];
+               $comments = Comments::orderBy('created_at', 'desc')->get();
+ 
+              if($comments != null)
+               {
+               	foreach($comments as $c)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $c->id; 
+                       $deal = Deals::where('id',$c->deal_id)->first();
+                   	$temp['deal'] = ($deal == null) ? "Unknown" : $deal->name; 
+					$u = User::where('id',$c->user_id)->first();
+                   	$temp['user'] = ($u != null) ? $u->email : "Unknown"; 
+                       $temp['comment'] = $c->comment; 
+                       $temp['status'] = $c->status; 
+                       $temp['date'] = $c->created_at->format("jS F, Y"); 
                        array_push($ret, $temp); 
                    }
                }                          
