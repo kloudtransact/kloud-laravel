@@ -816,6 +816,13 @@ $subject = $data['subject'];
                              $temp['badgeClass'] = 'badge-primary'; 
                            break; 
                            
+                           case 'receive-transfer':
+                             $u = User::where('id',$t->description)->first();
+                             $un = ($u != null) ? $u->fname.' '.$u->lname : 'Unknown'; #sender username
+                             $temp['description'] = "Transferred from ".$un."'s KloudPay Wallet"; 
+                             $temp['badgeClass'] = 'badge-success'; 
+                           break; 
+                           
                            case 'deposit':
                              $temp['description'] = 'Deposited to KloudPay Wallet'; 
                              $temp['badgeClass'] = 'badge-info'; 
@@ -874,6 +881,13 @@ $subject = $data['subject'];
                              $un = ($u != null) ? $u->fname.' '.$u->lname: 'Unknown'; #recipient username
                              $temp['description'] = "Transferred to ".$un."'s KloudPay Wallet"; 
                              $temp['badgeClass'] = 'badge-primary'; 
+                           break; 
+                           
+                           case 'receive-transfer':
+                             $u = User::where('id',$t->description)->first();
+                             $un = ($u != null) ? $u->fname.' '.$u->lname : 'Unknown'; #sender username
+                             $temp['description'] = "Transferred from ".$un."'s KloudPay Wallet"; 
+                             $temp['badgeClass'] = 'badge-success'; 
                            break; 
                            
                            case 'deposit':
@@ -1382,11 +1396,19 @@ function adminGetOrder($number)
                	$this->fundWallet($userData);
                    $this->fundWallet($receiverData);
 				   
-				   #add transaction 
+				   #add transaction for sender
                    $tdt = [];
                    $tdt['type'] = "transfer";
                    $tdt['description'] = $receiver->id;                   
                    $tdt['user_id'] = $user->id;
+                   $tdt['amount'] = $data['amount'];
+                   $this->createTransaction($tdt); 
+                   
+                   #add transaction for receiver 
+                   $tdt = [];
+                   $tdt['type'] = "receive-transfer";
+                   $tdt['description'] = $user->id;                   
+                   $tdt['user_id'] = $receiver->id; 
                    $tdt['amount'] = $data['amount'];
                    $this->createTransaction($tdt); 
               }
