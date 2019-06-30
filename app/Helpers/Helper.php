@@ -28,6 +28,7 @@ use App\Withdrawals;
 
 class Helper implements HelperContract
 {
+	   public $transferLimit = 201000;
 	
    	public $categories= [
 			                       "phones-tablets" => "Phones & Tablets",
@@ -103,12 +104,14 @@ class Helper implements HelperContract
                      "add-deal-status" => "Deal added!",
                      "remove-cart-status" => "Deal removed from cart.",
                      "kloudpay-withdraw-status" => "Withdrawal request has been submitted and is pending review",
+                     "kloudpay-transfer-status" => "Transfer successful!",
                      "cobra-approve-withdrawal-status" => "Withdrawal request approved. Go to PayStack Dashboard to make the transfer",
                      ],
                      'errors'=> ["login-status-error" => "There was a problem signing in, please contact support.",
                      "cobra-user-status-error" => "There was an error updating info for this user. Please try again.",
                      "cobra-deal-status-error" => "There was an error updating this deal. Please try again.",
-                     "kloudpay-withdraw-status-error" => "Insufficient funds in KloudPay wallet"]
+                     "kloudpay-withdraw-status-error" => "Insufficient funds in KloudPay wallet",
+                     "kloudpay-transfer-status-error" => "Transfer request denied. This could be because you have insufficient funds or the transfer amount has exceeded our limit of &#8358;200,000.00"]
                    ];
           /**
            * Sends an email(blade view or text) to the recipient
@@ -1376,19 +1379,25 @@ function adminGetOrder($number)
            
            function transferFunds($user, $data)
            {
+           	$ret = "error";
            	$receiver = User::where('phone',$data['phone'])
                                      ->orWhere('email',$data['phone'])->first();
                
                if($receiver != null)
                {
-               	//debit the giver
-               	$userData = ['email' => $user->email,
+               	//check if account balance is enough
+                   $wallet = $this->getWallet($user);
+                   
+                   if($wallet['balance'] > $data['amount'] && $data['amount'] < $this->transferLimit)
+                   {
+               	  //debit the giver
+                 	$userData = ['email' => $user->email,
                                      'type' => 'remove',
                                      'amount' => $data['amount']
                                     ];
                                     
-                   //credit the receiver
-                   $receiverData = ['email' => $receiver->email,
+                     //credit the receiver
+                     $receiverData = ['email' => $receiver->email,
                                      'type' => 'add',
                                      'amount' => $data['amount']
                                     ];
@@ -1411,10 +1420,13 @@ function adminGetOrder($number)
                    $tdt['user_id'] = $receiver->id; 
                    $tdt['amount'] = $data['amount'];
                    $this->createTransaction($tdt); 
-              }
-          
-                return "ok";
+                   
+                   $ret = "ok";
+                 }
+              }            
+               return $ret;
            }		
+           
            
            function withdrawFunds($user, $data)
            {
