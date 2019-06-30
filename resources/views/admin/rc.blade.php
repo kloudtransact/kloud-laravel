@@ -37,7 +37,7 @@
                       </thead>
                       <tbody>
 					    @if($ratings != null && count($ratings) > 0)
-                        @foreach($rstings as $r)
+                        @foreach($ratings as $r)
 				         <?php
                           $approveURL = url('cobra-mr').'?ax=jl&id='.$r['id']; 
                           $rejectURL = url('cobra-mr').'?ax=lj&id='.$r['id']; 
@@ -59,7 +59,7 @@
                           </td>
                           <td>
                            <a class="btn btn-warning" href="{{$rejectURL}}">Reject</a>
-                           <a class="btn btn-success" href="$approveURL">Approve</a>
+                           <a class="btn btn-success" href="{{$approveURL}}">Approve</a>
                           </td>
                         </tr>
 						@endforeach
@@ -114,7 +114,7 @@
                           {{$c['status']}}
                           </td>
                           <td>
-                           <a class="btn btn-success" href="$uu">View</a>
+                           <a class="btn btn-success" href="{{$uu}}">View</a>
                           </td>
                         </tr>
 						@endforeach

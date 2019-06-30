@@ -31,51 +31,27 @@
                         </th>
                       </thead>
                       <tbody>
+                        @if($coupons != null && count($coupons) > 0)
+                        @foreach($coupons as $c)
+				         <?php
+                          $viewURL = url('cobra-coupon').'?&xf='.$c['id']; 
+                         ?>
                         <tr>
                           <td>
-                            WELCOME
+						  {{$c['code']}}
                           </td>
-                          <td>
-                            50%
+						  <td>
+						  {{$c['discount']}}%
                           </td>
                           <td class="text-success">
-                           ACTIVE
+                          {{$r['status']}}
                           </td>
                           <td>
-                           <a class="btn btn-success" href="{{url('cobra-coupon')}}"> View</a>
-                           <a class="btn btn-warning" href="#"> Delete</a>
+                           <a class="btn btn-success" href="{{$viewURL}}">View</a>
                           </td>
                         </tr>
-                        <tr>
-                           <td>
-                            BLACKFRIDAY
-                          </td>
-                          <td>
-                            70%
-                          </td>
-                          <td class="text-warning">
-                           DISABLED
-                          </td>
-                          <td>
-                           <a class="btn btn-success" href="{{url('cobra-coupon')}}"> View</a>
-                           <a class="btn btn-warning" href="#"> Delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                           <td>
-                            EASTERFIESTA
-                          </td>
-                          <td>
-                            20%
-                          </td>
-                          <td class="text-warning">
-                           DISABLED
-                          </td>
-                          <td>
-                           <a class="btn btn-success" href="{{url('cobra-coupon')}}"> View</a>
-                           <a class="btn btn-warning" href="#"> Delete</a>
-                          </td>
-                        </tr>
+						@endforeach
+                        @endif
                       </tbody>
                     </table>
                   </div><br>

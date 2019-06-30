@@ -13,32 +13,45 @@
                   <p class="card-category">View, edit or remove this coupon</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form action="{{url('cobra-coupon')}}" method="post">
+                  	{!! csrf_field() !!}
+                      <input type="hidden" name="xf" value="{{$coupon['id']}}">
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Name</label>
-                          <input type="text" class="form-control" value="BLACKFRIDAY">
+                          <label class="bmd-label-floating">Code</label>
+                          <input type="text" name="code" class="form-control" value="{{$coupon['code']}}">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Discount</label>
-                          <input type="text" class="form-control" value="70%">
+                          <label class="bmd-label-floating">Discount(%)</label>
+                          <input type="text" name="discount" class="form-control" value="{{$coupon['discount']}}">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Status</label>                         
-                          <select class="form-control">
-                          	<option value="none">Select statud</option>
-                              <option value="enable">Active</option>
-                              <option value="disable" selected="selected">Disabled</option>
+                          <select class="form-control" name="status">
+                          	<?php
+                                $ar = ['active' => "Active",'disabled' => "Disabled"];
+                              ?>
+                          	<option value="none">Select status</option>
+                              <?php
+                                foreach($ar as $key => $value){ 
+                                	$snm = ($coupon['status'] == $key) ? "selected='selected'" : "";
+                               ?>
+                              <option value="{{$key}}" {{$snm}}>{{$value}}</option>
+                              <?php
+                                }
+                               ?>
                           </select>
                         </div>
                       </div>
                     </div>                                 
-                    
+                    <?php
+                       $uu = url("cobra-delete-coupon")."?xf=".$coupon['id'];
+                     ?>
                     <button type="submit" class="btn btn-primary pull-right">Update Coupon</button>
                     <div class="clearfix"></div>
                   </form>
@@ -58,7 +71,7 @@
                   <p class="card-description">
                     Delete this coupon. 
                   </p>
-                  <a href="#" class="btn btn-primary btn-round">Delete Coupon</a>
+                  <a href="{{$uu}}" class="btn btn-primary btn-round">Delete Coupon</a>
                 </div>
               </div>
             </div>
