@@ -654,6 +654,28 @@ $subject = $data['subject'];
                }                                 
                   return $ret;                               
            }	
+           
+           function updateCoupon($data)
+           {  
+              $ret = 'error'; 
+         
+              if(isset($data['xf']))
+               {
+               	$c = Coupon::where('id', $data['xf'])->first();
+                   
+                        if($c != null)
+                        {                       
+                        	$c->update(['code' => $data['code'],
+                                              'discount' => $data['discount'],
+                                              'status' => $data['status'],
+                                           ]);
+                                           
+                                           $ret = "ok";
+                        }                                    
+               }                                 
+                  return $ret;                               
+           }	
+           
            function getUser($email)
            {
            	$ret = [];
@@ -1151,6 +1173,47 @@ function adminGetOrder($number)
                        $temp['date'] = $c->created_at->format("jS F, Y"); 
                        array_push($ret, $temp); 
                    }
+               }                          
+                                                      
+                return $ret;
+           }		
+           
+           function adminGetCoupons()
+           {
+           	$ret = [];
+               $coupons = Coupons::orderBy('created_at', 'desc')->get();
+ 
+              if($coupons != null)
+               {
+               	foreach($coupons as $c)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $c->id; 
+                       $temp['code'] = $c->code; 
+                       $temp['discount'] = $c->discount; 
+                       $temp['status'] = $c->status; 
+                       $temp['date'] = $c->created_at->format("jS F, Y"); 
+                       array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }		
+           
+           function adminGetCoupon($id)
+           {
+           	$ret = [];
+               $c = Coupons::where('id', $id)->first();
+ 
+              if($c != null)
+               {               	
+                   	$temp = [];
+                   	$temp['id'] = $c->id; 
+                       $temp['code'] = $c->code; 
+                       $temp['discount'] = $c->discount; 
+                       $temp['status'] = $c->status; 
+                       $temp['date'] = $c->created_at->format("jS F, Y"); 
+                       $ret = $temp;                   
                }                          
                                                       
                 return $ret;
