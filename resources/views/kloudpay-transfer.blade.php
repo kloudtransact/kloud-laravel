@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="col-6 mb-3">
                                         <p class="form-control-plaintext"><i class="fa fa-phone"></i> Recipient email or phone number:</p><br>
-                                        <input type="number" class="form-control" name="phone" value="" placeholder="Enter recipient phone number" required><br>
+                                        <input type="text" class="form-control" name="phone" value="" placeholder="Enter recipient phone number" required><br>
                                     </div>
                                     <div class="col-6 mb-3">
                                         <p class="form-control-plaintext"><i class="fa fa-briefcase"></i> Enter amount to transfer:</p><br>
