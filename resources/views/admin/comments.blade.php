@@ -63,24 +63,6 @@
                         </tr>
 						@endforeach
                         @endif	
-                        <tr>
-                          <td>
-                            topewer
-                          </td>
-                          <td>
-                            <a href="#">A Sample Deal</a>
-                          </td>
-                          <td>
-                            I enjoyed buying thid deal
-                          </td>
-                          <td class="text-warning">
-                           PENDING
-                          </td>
-                          <td>
-                           <a class="btn btn-success" href="{{url('cobra-comment')}}"> View</a>
-                           <a class="btn btn-warning" href="#"> Delete</a>
-                          </td>
-                        </tr>
                       </tbody>
                     </table>
                   </div><br>
