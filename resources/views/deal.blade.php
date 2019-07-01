@@ -162,21 +162,22 @@
                           <textarea name="comment" class="form-control"></textarea>
                         </div>
                       </div>
-                    </div>     
+                    </div>   
+                     <button type="submit" class="btn btn-primary">Submit</button>  
                    </form>
-                     <button type="submit" class="btn btn-primary">Submit</button>
+                    
                     <div class="clearfix"></div>                  
                     </div>
                     
                     <div class="row mt-5">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Comments</label>
-                          <p class="form-control-plaintext"><span class="text-primary text-italics">@topewer</span> This is a comment <small class="text-muted pull-right"> 22 May, 2019 6:45pm</small></p>
-                          <p class="form-control-plaintext"><span class="text-primary text-italics">@topewer</span> This is a comment <small class="text-muted pull-right"> 22 May, 2019 6:45pm</small></p>
-                          <p class="form-control-plaintext"><span class="text-primary text-italics">@topewer</span> This is a comment <small class="text-muted pull-right"> 22 May, 2019 6:45pm</small></p>
-                          <p class="form-control-plaintext"><span class="text-primary text-italics">@topewer</span> This is a comment <small class="text-muted pull-right"> 22 May, 2019 6:45pm</small></p>
-                          <p class="form-control-plaintext"><span class="text-primary text-italics">@topewer</span> This is a comment <small class="text-muted pull-right"> 22 May, 2019 6:45pm</small></p>
+                          <label class="bmd-label-floating text-primary mb-3">Comments</label>
+                          @if($comments != null && count($comments) > 0)
+                          @foreach($comments as $c)
+                          <p class="form-control-plaintext"><span class="text-primary text-italics">@{{$c['user']}}</span> {{$c['comment']}} <small class="text-muted pull-right"> {{$c['date']}}</small></p>
+                          @endforeach
+                        @endif	
                         </div>
                       </div>
                     </div>    
