@@ -378,7 +378,7 @@ $subject = $data['subject'];
            {
            	$ret = Coupons::create(['code' => $data['code'],                                                                                                          
                                                       'discount' => $data['discount'], 
-                                                      'status' => $data['status']
+                                                      'status' => "pending"
                                                       ]);
                                                       
                 return $ret;
