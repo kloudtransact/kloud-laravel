@@ -58,7 +58,7 @@
                       </div>
                     </div>   
                     <?php
-                       $uu = url("cobra-delete-coupon")."?xf=".$coupon['id'];
+                     #  $uu = url("cobra-delete-coupon")."?xf=".$comment['id'];
                      ?>
                     <button type="submit" class="btn btn-primary pull-right">Update Comment</button>
                     <div class="clearfix"></div>
