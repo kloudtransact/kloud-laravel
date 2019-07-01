@@ -56,6 +56,7 @@ Interface HelperContract
         public function adminGetCoupons();
         public function adminGetCoupon($id);
         public function adminGetComments();
+        public function adminGetComment($id);
         public function adminGetStats();
         public function getHottestDeals();
         public function getNewArrivals();
