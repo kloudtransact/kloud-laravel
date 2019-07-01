@@ -33,6 +33,8 @@ Route::get('payment/callback', 'PaymentController@getPaymentCallback');
 Route::post('pay', 'PaymentController@postRedirectToGateway');
 
 Route::get('deal', 'MainController@getDeal');
+Route::post('rate-deal', 'MainController@postRateDeal');
+Route::post('comment', 'MainController@postComment');
 Route::get('faq', 'MainController@getFAQ');
 Route::get('airtime', 'MainController@getAirtime');
 Route::get('hotels', 'MainController@getHotels');
