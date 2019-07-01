@@ -1019,7 +1019,7 @@ class AdminController extends Controller {
          	#$req["user_id"] = $user->id; 
              $ret = $this->helpers->approveRating($req);
 	        session()->flash("cobra-approve-rating-status",$ret);
-			return redirect()->intended('cobra-withdrawals');
+			return redirect()->intended('cobra-rc');
          }        
     }
     
