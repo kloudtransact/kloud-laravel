@@ -464,6 +464,83 @@ class MainController extends Controller {
          }        
 		
     }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postRateDeal(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		else
+        {
+        	return redirect()->intended('/');
+        }
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'xf' => 'required',
+                             'rating' => 'required|numeric',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+             $ret = $this->helpers->rateDeal($user, $req);
+	        session()->flash("rate-deal-status",$ret);
+			return redirect()->intended('deals');
+         }        
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postComment(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		else
+        {
+        	return redirect()->intended('/');
+        }
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'xf' => 'required',
+                             'comment' => 'required',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+             $ret = $this->helpers->commentDeal($user, $req);
+	        session()->flash("comment-deal-status",$ret);
+			return redirect()->intended('deals');
+         }        
+    }
+    
 
 	/**
 	 * Show the application welcome screen to the user.
@@ -638,8 +715,8 @@ class MainController extends Controller {
          
          else
          {
-             $this->helpers->transferFunds($user, $req);
-	        session()->flash("kloudpay-transfer-status","ok");
+             $ret = $this->helpers->transferFunds($user, $req);
+	        session()->flash("kloudpay-transfer-status",$ret);
 			return redirect()->intended('kloudpay');
          }        
     }
