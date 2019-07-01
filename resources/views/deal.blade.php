@@ -175,7 +175,7 @@
                           <label class="bmd-label-floating text-primary mb-3">Comments</label>
                           @if($comments != null && count($comments) > 0)
                           @foreach($comments as $c)
-                          <p class="form-control-plaintext"><span class="text-primary text-italics">@{{$c['user']}}</span> {{$c['comment']}} <small class="text-muted pull-right"> {{$c['date']}}</small></p>
+                          <p class="form-control-plaintext"><span class="text-primary text-italics">{{$c['user']}}</span> {{$c['comment']}} <small class="text-muted pull-right"> {{$c['date']}}</small></p>
                           @endforeach
                         @endif	
                         </div>
