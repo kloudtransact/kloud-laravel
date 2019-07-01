@@ -94,7 +94,8 @@
                                         <h6>Rate this product:</h6>
                                         <form action="{{url('rate-deal')}}" method="post">
                                         	{!! csrf_field() !!}
-                                        <select name="rating-select">
+                                           <input type="hidden" name="xf" value="{{$deal['id']}}">
+                                        <select name="rating">
                                         	<option value="none">Select rating</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -151,8 +152,9 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col-12">
-                     <form action="{{url('comment-deal')}}" method="post">
+                     <form action="{{url('comment')}}" method="post">
                        {!! csrf_field() !!}
+                       <input type="hidden" name="xf" value="{{$deal['id']}}">
                     <div class="row">
                       <div class="col-12">
                         <div class="form-group">
