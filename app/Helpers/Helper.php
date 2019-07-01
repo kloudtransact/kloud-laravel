@@ -98,10 +98,14 @@ class Helper implements HelperContract
              public $signals = ['okays'=> ["login-status" => "Sign in successful",
                      "cobra-deal-status" => "Deal updated.",
                      "cobra-user-status" => "User info updated.",
+                     "cobra-comment-status" => "Comment updated.",
+                     "cobra-coupon-status" => "Coupon updated.",
+                     "cobra-approve-rating-status" => "User rating updated.",
                      "forgot-password-status" => "A link to reset your password has been sent to your email.",
                      "cobra-forgot-password-status" => "A link to reset your password has been sent to your email.",
                      "reset-status" => "Password updated! You can now login.",
                      "add-deal-status" => "Deal added!",
+                     "add-coupon-status" => "Coupon added!",
                      "remove-cart-status" => "Deal removed from cart.",
                      "kloudpay-withdraw-status" => "Withdrawal request has been submitted and is pending review",
                      "kloudpay-transfer-status" => "Transfer successful!",
@@ -661,12 +665,32 @@ $subject = $data['subject'];
          
               if(isset($data['xf']))
                {
-               	$c = Coupon::where('id', $data['xf'])->first();
+               	$c = Coupons::where('id', $data['xf'])->first();
                    
                         if($c != null)
                         {                       
                         	$c->update(['code' => $data['code'],
                                               'discount' => $data['discount'],
+                                              'status' => $data['status'],
+                                           ]);
+                                           
+                                           $ret = "ok";
+                        }                                    
+               }                                 
+                  return $ret;                               
+           }	
+           
+           function updateComment($data)
+           {  
+              $ret = 'error'; 
+         
+              if(isset($data['xf']))
+               {
+               	$c = Comments::where('id', $data['xf'])->first();
+                   
+                        if($c != null)
+                        {                       
+                        	$c->update(['comment' => $data['comment'],
                                               'status' => $data['status'],
                                            ]);
                                            
@@ -1697,6 +1721,23 @@ function adminGetOrder($number)
               if($w != null)
                {
                	$w->update(['status' => 'approved']);
+                   $ret = 'ok'; 
+               }                          
+                                                      
+                return $ret;
+           }	
+           
+           function approveRating($data)
+           {
+           	$ret = "error";
+               $r = Ratings::where('id',$data['id'])->first();            
+ 
+              if($r != null)
+               {
+               	$status = "pending";
+                   if($data['id'] == "jl") $status = "approved";
+                   else if($data['id'] == "lj") $status = "rejected";
+               	$r->update(['status' => $status]);
                    $ret = 'ok'; 
                }                          
                                                       
