@@ -689,7 +689,6 @@ class AdminController extends Controller {
         $validator = Validator::make($req, [
                              'code' => 'required',
                              'discount' => 'required|numeric',
-                             'status' => 'required|not_in:none',
          ]);
          
          if($validator->fails())
