@@ -33,6 +33,7 @@ Interface HelperContract
         public function removeFromCart($user, $asf);
         public function getDeal($sku);
         public function updateDeal($data);
+        public function updateComment($data);
         public function updateCoupon($data);
         public function getUser($email);
         public function updateUser($data);
@@ -79,6 +80,7 @@ Interface HelperContract
         public function getWithdrawals();
         public function getPendingWithdrawals($user);
         public function approveWithdrawal($data);
+        public function approveRating($data);
         public function isAdmin($user);
 }
  ?>
