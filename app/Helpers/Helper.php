@@ -117,6 +117,8 @@ class Helper implements HelperContract
                      "cobra-user-status-error" => "There was an error updating info for this user. Please try again.",
                      "cobra-deal-status-error" => "There was an error updating this deal. Please try again.",
                      "kloudpay-withdraw-status-error" => "Insufficient funds in KloudPay wallet",
+                     "comment-deal-status-error" => "There was an error submitting your comment. Please try again. ",
+                     "rate-deal-status-error" => "There was an error submitting your rating. Please try again. ",
                      "kloudpay-transfer-status-error" => "Transfer request denied. This could be because you have insufficient funds or the transfer amount has exceeded our limit of &#8358;200,000.00"]
                    ];
           /**
