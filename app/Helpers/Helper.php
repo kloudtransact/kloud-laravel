@@ -1739,8 +1739,8 @@ function adminGetOrder($number)
               if($r != null)
                {
                	$status = "pending";
-                   if($data['id'] == "jl") $status = "approved";
-                   else if($data['id'] == "lj") $status = "rejected";
+                   if($data['ax'] == "jl") $status = "approved";
+                   else if($data['ax'] == "lj") $status = "rejected";
                	$r->update(['status' => $status]);
                    $ret = 'ok'; 
                }                          
