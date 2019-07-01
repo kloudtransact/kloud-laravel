@@ -82,5 +82,7 @@ Interface HelperContract
         public function approveWithdrawal($data);
         public function approveRating($data);
         public function isAdmin($user);
+        public function rateDeal($user, $data);
+        public function commentDeal($user, $data);
 }
  ?>
