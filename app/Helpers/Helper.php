@@ -1206,6 +1206,28 @@ function adminGetOrder($number)
                 return $ret;
            }		
            
+           function adminGetComment($id)
+           {
+           	$ret = [];
+               $c= Comments::where('id', $id)->first();
+ 
+              if($c != null)
+               {
+                   	$temp = [];
+                   	$temp['id'] = $c->id; 
+                       $deal = Deals::where('id',$c->deal_id)->first();
+                   	$temp['deal'] = ($deal == null) ? "Unknown" : $deal->name; 
+					$u = User::where('id',$c->user_id)->first();
+                   	$temp['user'] = ($u != null) ? $u->email : "Unknown"; 
+                       $temp['comment'] = $c->comment; 
+                       $temp['status'] = $c->status; 
+                       $temp['date'] = $c->created_at->format("jS F, Y"); 
+                        $ret = $temp;   
+               }                          
+                                                      
+                return $ret;
+           }		
+           
            function adminGetCoupons()
            {
            	$ret = [];
