@@ -1346,14 +1346,14 @@ function adminGetOrder($number)
            {
            	$ret = [];
            	$comments = Comments::where('deal_id',$deal['id'])
-                                 ->where('status',"approved")
+                                 ->where('status',"active")
 			                    ->orderBy('created_at', 'desc')->get(); 
                
                 if($comments !== null) 
                 {
                    foreach($comments as $c)
                    {
-                   	if($c->status =="approved")
+                   	if($c->status =="active")
                        {
                    	   $temp = [];
                       	$temp['id'] = $c->id; 
