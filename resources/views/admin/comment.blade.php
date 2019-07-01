@@ -26,7 +26,7 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Comment</label>
-                          <textarea class="form-control">{{$comment['comment']}}</textarea>
+                          <textarea class="form-control" name="comment">{{$comment['comment']}}</textarea>
                         </div>
                       </div>
                     </div>
@@ -40,9 +40,9 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Status</label>
-                          <select class="form-control">
+                          <select class="form-control" name="status">
                           	<?php
-                                $ar = ['active' => "Approved",'disabled' => "Disabled"];
+                                $ar = ['pending' => "Pending",'active' => "Approved",'disabled' => "Disabled"];
                               ?>
                           	<option value="none">Select status</option>
                               <?php
