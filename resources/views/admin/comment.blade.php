@@ -15,11 +15,12 @@
                 <div class="card-body">
                   <form action="{{url('cobra-comment')}}">
                   	{!! csrf_field() !!}
+                     <input type="hidden" name="xf" value="{{$comment['id']}}">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Deal</label>
-                          <a class="form-control" href="{{$du}}">{{$comment['deal']}}</a>
+                          <a class="form-control" href="#">{{$comment['deal']}}</a>
                         </div>
                       </div>
                       <div class="col-md-6">
