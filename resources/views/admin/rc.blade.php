@@ -68,7 +68,10 @@
                           {{$r['status']}}
                           </td>
                           <td>
-                           <a class="btn btn-{{$ss}}" href="{{$uu}}">$tt</a>
+						  {{$r['date']}}
+                          </td>
+                          <td>
+                           <a class="btn btn-{{$ss}}" href="{{$uu}}">{{$tt}}</a>
                           </td>
                         </tr>
 						@endforeach
