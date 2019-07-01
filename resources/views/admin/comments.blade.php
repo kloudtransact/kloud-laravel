@@ -36,6 +36,33 @@
                         </th>
                       </thead>
                       <tbody>
+                        @if($comments != null && count($comments) > 0)
+                        @foreach($comments as $c)
+				         <?php
+                          $uu = url('cobra-comment').'?id='.$c['id']; 
+                         ?>
+                        <tr>
+                          <td>
+						  {{$c['user']}}
+                          </td>
+                          <td>
+						  {{$c['deal']}}
+                          </td>
+                          <td>
+                            {{$c['comment']}}
+                          </td>
+                          <td class="text-primary">
+                          {{$c['status']}}
+                          </td>
+                          <td class="text-primary">
+                          {{$c['date']}}
+                          </td>
+                          <td>
+                           <a class="btn btn-success" href="{{$uu}}">View</a>
+                          </td>
+                        </tr>
+						@endforeach
+                        @endif	
                         <tr>
                           <td>
                             topewer

@@ -13,18 +13,19 @@
                   <p class="card-category">View or edit information about this comment.</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form action="{{url('cobra-comment')}}">
+                  	{!! csrf_field() !!}
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Deal</label>
-                          <a class="form-control" href="#">Samsung LED TV</a>
+                          <a class="form-control" href="{{$du}}">{{$comment['deal']}}</a>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Comment</label>
-                          <textarea class="form-control">Amazing product, I've been using it for 3 years now without problems</textarea>
+                          <textarea class="form-control">{{$comment['comment']}}</textarea>
                         </div>
                       </div>
                     </div>
@@ -32,22 +33,32 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">User</label>
-                          <a class="form-control" href="#">topewer</a>
+                          <a class="form-control" href="#">{{$comment['user']}}</a>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Status</label>
                           <select class="form-control">
+                          	<?php
+                                $ar = ['active' => "Approved",'disabled' => "Disabled"];
+                              ?>
                           	<option value="none">Select status</option>
-                              <option value="pending" selected="selected">Pending</option>
-                              <option value="approved">Approved</option>
-                              <option value="rejected">Rejected</option>
+                              <?php
+                                foreach($ar as $key => $value){ 
+                                	$snm = ($comment['status'] == $key) ? "selected='selected'" : "";
+                               ?>
+                              <option value="{{$key}}" {{$snm}}>{{$value}}</option>
+                              <?php
+                                }
+                               ?>
                           </select>
                         </div>
                       </div>
                     </div>   
-                    
+                    <?php
+                       $uu = url("cobra-delete-coupon")."?xf=".$coupon['id'];
+                     ?>
                     <button type="submit" class="btn btn-primary pull-right">Update Comment</button>
                     <div class="clearfix"></div>
                   </form>

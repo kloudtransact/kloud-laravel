@@ -41,6 +41,16 @@
 				         <?php
                           $approveURL = url('cobra-mr').'?ax=jl&id='.$r['id']; 
                           $rejectURL = url('cobra-mr').'?ax=lj&id='.$r['id']; 
+
+                          $uu = $approveURL; 
+                          $ss = "success";
+                          $tt = "Approve";
+                          
+                          if($r['status'] == "approved"){
+                           $uu = $rejectURL;
+                           $ss = "warning";
+                           $tt = "Reject";
+                         }
                          ?>
                         <tr>
                           <td>
@@ -58,8 +68,7 @@
                           {{$r['status']}}
                           </td>
                           <td>
-                           <a class="btn btn-warning" href="{{$rejectURL}}">Reject</a>
-                           <a class="btn btn-success" href="{{$approveURL}}">Approve</a>
+                           <a class="btn btn-{{$ss}}" href="{{$uu}}">$tt</a>
                           </td>
                         </tr>
 						@endforeach
@@ -86,9 +95,6 @@
                         </th>
                         <th>
                           Comment
-                        </th>
-                        <th>
-                          User
                         </th>
                         <th>
                           Status
