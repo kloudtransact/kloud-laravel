@@ -1284,6 +1284,7 @@ function adminGetOrder($number)
            {
            	$ret = 0;
            	$ratings = Ratings::where('deal_id',$deal['id'])
+                              ->where('status',"approved")
 			                  ->orderBy('created_at', 'desc')->get();
                
                 if($ratings !== null) 
@@ -1321,6 +1322,7 @@ function adminGetOrder($number)
            {
            	$ret = [];
            	$comments = Comments::where('deal_id',$deal['id'])
+                                 ->where('status',"approved")
 			                    ->orderBy('created_at', 'desc')->get(); 
                
                 if($comments !== null) 
