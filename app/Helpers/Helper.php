@@ -1360,6 +1360,7 @@ function adminGetOrder($number)
                           $user = User::where('id',$c->user_id)->first();
                       	$temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
                           $temp['comment'] = $c->comment; 
+                          $temp['date'] = $c->created_at->format("jS F, Y h:i A"); 
                           array_push($ret, $temp); 
                        }
                    }
