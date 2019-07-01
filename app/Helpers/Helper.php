@@ -1776,7 +1776,7 @@ function adminGetOrder($number)
            function commentDeal($user,$data)
            {
            	$ret = "error";
-               $d = Comments::where('id',$data['xf'])->first();            
+               $d = Deals::where('id',$data['xf'])->first();            
  
               if($d != null)
                {
