@@ -13,7 +13,7 @@
                   <p class="card-category">View or edit information about this comment.</p>
                 </div>
                 <div class="card-body">
-                  <form action="{{url('cobra-comment')}}">
+                  <form action="{{url('cobra-comment')}}" method="post">
                   	{!! csrf_field() !!}
                      <input type="hidden" name="xf" value="{{$comment['id']}}">
                     <div class="row">
