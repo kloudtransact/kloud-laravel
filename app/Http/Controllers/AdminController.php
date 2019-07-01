@@ -670,6 +670,43 @@ class AdminController extends Controller {
 		$c = $this->helpers->categories;
     	return view('admin.add-coupon',compact(['user','c']));
     }
+    
+    public function postAddCoupon(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'code' => 'required',
+                             'discount' => 'required|numeric',
+                             'status' => 'required|not_in:none',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	#$req["user_id"] = $user->id; 
+             $this->helpers->createCoupon($req);
+	        session()->flash("add-coupon-status","ok");
+			return redirect()->intended('cobra-coupons');
+         }        
+    }
 
 	/**
 	 * Show the application welcome screen to the user.
@@ -690,6 +727,7 @@ class AdminController extends Controller {
         	return redirect()->intended('login?return=dashboard');
         }
         
+        $req = $request->all();
 		$validator = Validator::make($req, [
                              'xf' => 'required|numeric'
          ]);
@@ -703,7 +741,7 @@ class AdminController extends Controller {
          else
          {             
 			 $c = $this->helpers->categories;
-		     $coupon = $this->helpers->adminGetCoupon($req['id']);
+		     $coupon = $this->helpers->adminGetCoupon($req['xf']);
          	return view('admin.coupon',compact(['user','c','coupon']));
          }        
     }	
@@ -797,14 +835,15 @@ class AdminController extends Controller {
         
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
-    	return view('admin.comments',compact(['user','c','signals']));
+		$comments = $this->helpers->adminGetComments();
+    	return view('admin.comments',compact(['user','c','comments','signals']));
     }
 	/**
 	 * Show the application welcome screen to the user.
 	 *
 	 * @return Response
 	 */
-	public function getComment()
+	public function getComment(Request $request)
     {
        $user = null;
 		
@@ -818,8 +857,65 @@ class AdminController extends Controller {
         	return redirect()->intended('login?return=dashboard');
         }
         
-		$c = $this->helpers->categories;
-    	return view('admin.comment',compact(['user','c']));
+        $req = $request->all();
+		$validator = Validator::make($req, [
+                             'xf' => 'required|numeric'
+         ]);
+         
+         if($validator->fails())
+         {
+             #$messages = $validator->messages();
+             return redirect()->intended('cobra-comments');
+         }
+         
+         else
+         {             
+			 $c = $this->helpers->categories;
+		     $comment = $this->helpers->adminGetComment($req['xf']);
+         	return view('admin.comment',compact(['user','c','comment']));
+         }      
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postComment(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'xf' => 'required',
+                             'comment' => 'required',
+                             'status' => 'required|not_in:none'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	#$req["user_id"] = $user->id; 
+             $ret = $this->helpers->updateComment($req);
+	        session()->flash("cobra-comment-status",$ret);
+			return redirect()->intended('cobra-comments');
+         }        
     }
     
     /**
@@ -922,8 +1018,8 @@ class AdminController extends Controller {
          else
          {
          	#$req["user_id"] = $user->id; 
-             $ret = $this->helpers->approveWithdrawal($req);
-	        session()->flash("cobra-approve-withdrawal-status",$ret);
+             $ret = $this->helpers->approveRating($req);
+	        session()->flash("cobra-approve-rating-status",$ret);
 			return redirect()->intended('cobra-withdrawals');
          }        
     }
