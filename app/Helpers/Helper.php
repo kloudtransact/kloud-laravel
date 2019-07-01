@@ -106,6 +106,8 @@ class Helper implements HelperContract
                      "reset-status" => "Password updated! You can now login.",
                      "add-deal-status" => "Deal added!",
                      "add-coupon-status" => "Coupon added!",
+                     "rate-deal-status" => "Thank you for your input!",
+                     "comment-deal-status" => "Thank you, your comment has been sent. ",
                      "remove-cart-status" => "Deal removed from cart.",
                      "kloudpay-withdraw-status" => "Withdrawal request has been submitted and is pending review",
                      "kloudpay-transfer-status" => "Transfer successful!",
@@ -1749,6 +1751,41 @@ function adminGetOrder($number)
            	$ret = false; 
                if($user->role === "admin" || $user->role === "su") $ret = true; 
            	return $ret;
+           }
+
+           function rateDeal($user,$data)
+           {
+           	$ret = "error";
+               $d = Deals::where('id',$data['xf'])->first();            
+ 
+              if($d != null)
+               {
+               	$data['status'] = "pending";
+                   $data['user_id'] = $user->id;
+                   $data['deal_id'] = $data['xf'];
+                   $data['stars'] = $data['rating'];
+                   $this->createRating($data); 
+                   $ret = 'ok'; 
+               }                          
+                                                      
+                return $ret;
+           }	
+           
+           function commentDeal($user,$data)
+           {
+           	$ret = "error";
+               $d = Comments::where('id',$data['xf'])->first();            
+ 
+              if($d != null)
+               {
+               	$data['status'] = "pending";
+                   $data['user_id'] = $user->id;
+                   $data['deal_id'] = $data['xf'];
+                   $this->createComment($data); 
+                   $ret = 'ok'; 
+               }                          
+                                                      
+                return $ret;
            }	
 }
 ?>
