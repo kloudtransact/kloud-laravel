@@ -858,7 +858,7 @@ class AdminController extends Controller {
         
         $req = $request->all();
 		$validator = Validator::make($req, [
-                             'xf' => 'required|numeric'
+                             'id' => 'required|numeric'
          ]);
          
          if($validator->fails())
@@ -870,7 +870,7 @@ class AdminController extends Controller {
          else
          {             
 			 $c = $this->helpers->categories;
-		     $comment = $this->helpers->adminGetComment($req['xf']);
+		     $comment = $this->helpers->adminGetComment($req['id']);
          	return view('admin.comment',compact(['user','c','comment']));
          }      
     }
