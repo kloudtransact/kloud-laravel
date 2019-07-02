@@ -1079,7 +1079,8 @@ $subject = $data['subject'];
           function adminGetDeal($sku)
            {
            	$ret = [];
-           	$d = Deals::where('sku',$sku)->first();
+           	$d = Deals::where('sku',$sku)
+                             ->orWhere('id',$sku)->first();
  
               if($d != null)
                {
@@ -1148,21 +1149,69 @@ function adminGetOrder($number)
            function adminGetAuctions()
            {
            	$ret = [];
-               #$transactions = Transactions::all();
-               $auctions = null; 
+               $auctions = Auctions::orderBy('created_at', 'desc')->get();
+               
               if($auctions != null)
                {
-               	foreach($transactions as $t)
+               	foreach($auctions as $a)
                    {
                    	$temp = [];
-                   	$temp['id'] = $t->id; 
-                       $deal = Deals::where('id',$t->deal_id)->first();
-                   	$temp['deal'] = ($deal == null) ? "" : $deal->name; 
-                       $temp['type'] = $t->type; 
-                       $temp['amount'] = $t->amount; 
-                       $temp['date'] = $t->created_at->format("jS F, Y"); 
+                   	$temp['id'] = $a->id; 
+                       $bids = $this->getBids($a->id);
+                   	$temp['deal'] = $this->adminGetDeal($a->deal_id);
+                       $temp['days'] = $a->days; 
+                       $temp['hours'] = $a->hours; 
+                       $temp['minutes'] = $a->minutes; 
+                       $temp['date'] = $a->created_at->format("jS F, Y h:i A"); 
                        array_push($ret, $temp); 
                    }
+               }                          
+                                                      
+                return $ret;
+           }	
+           
+           function adminGetAuction($id)
+           {
+           	$ret = [];
+               $a = Auctions::where('id', $id)->first();
+               
+              if($a != null)
+               {
+                   	$temp = [];
+                   	$temp['id'] = $a->id; 
+                       $bids = $this->getBids($a->id);
+                   	$temp['deal'] = $this->adminGetDeal($a->deal_id);
+                       $temp['days'] = $a->days; 
+                       $temp['hours'] = $a->hours; 
+                       $temp['minutes'] = $a->minutes; 
+                       $temp['date'] = $a->created_at->format("jS F, Y h:i A"); 
+                       $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }	
+           
+           function adminEndAuction($id)
+           {
+           	$ret = "error";
+               $a = Auctions::where('id', $id)->first();
+               
+              if($a != null)
+               {
+               	if($a->status == "live")
+                    {
+                    	#update bid status
+                       $bids = $this->getBids($a->id);
+                   	$a->update(['status' => 'ended','bids' => count($bids)]);
+                       
+                       #get highest bidder
+                   	$temp['deal'] = $this->getHighestBidder($a->id);
+                       
+                       #create order and notification for highest bidder
+                       
+                       $ret = "ok"; 
+                    }  
+                       
                }                          
                                                       
                 return $ret;
