@@ -426,7 +426,7 @@ class AdminController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getAuction()
+	public function getAuction(Request $request)
     {
        $user = null;
 		
@@ -440,9 +440,32 @@ class AdminController extends Controller {
         	return redirect()->intended('login?return=dashboard');
         }
         
-		$c = $this->helpers->categories;
-		$auction = null;
-    	return view('admin.auction',compact(['user','c','auctions']));
+		$req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'xf' => 'required',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back();
+             //dd($messages);
+         }
+         
+         else
+         {
+             $auction = $this->helpers->adminGetAuction($req['xf']);
+             if($auction == [])
+             {
+             	return redirect()->back();
+             }
+             else
+             {
+             	return view('admin.auction',compact(['user','auction']));
+             }        
+         }        
     }
     
     
@@ -538,6 +561,47 @@ class AdminController extends Controller {
          }        	
     }
     
+     /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getEndAuction(Request $request)
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'xf' => 'required',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back();
+             //dd($messages);
+         }
+         
+         else
+         {
+             #$req["uid"] = $user->id; 
+             $ret = $this->helpers->endAuction($req);
+	        session()->flash("cobra-end-auction-status",$ret);
+			return redirect()->intended('cobra-auctions');
+         }           	
+    }
 
 /**
 	 * Show the application welcome screen to the user.
