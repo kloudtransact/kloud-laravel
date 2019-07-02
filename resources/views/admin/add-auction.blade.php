@@ -20,19 +20,19 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Days</label>
-                          <input type="text" class="form-control" id="i-d" name="days">
+                          <input type="number" class="form-control" id="i-d" name="days" required>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Hours</label>
-                          <input type="text" class="form-control" id="i-h" name="hours">
+                          <input type="number" class="form-control" id="i-h" name="hours" required>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Minutes</label>
-                          <input type="text" class="form-control" id="i-m" name="minutes">
+                          <input type="number" class="form-control" id="i-m" name="minutes" required>
                         </div>
                       </div>
                     </div>    
@@ -40,7 +40,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <h3 class="form-control text-primary text-center">The auction will last for <span id="a-d">0</span> days, <span id="a-h">0</span> hours and <span id="a-m">0</span> minutes from now</h3>
+                          <h3 class="form-control mb-3 text-primary text-center">The auction will last for <span id="a-d">0</span> days, <span id="a-h">0</span> hours and <span id="a-m">0</span> minutes from now</h3>
                         </div>
                       </div>
                     </div>        
