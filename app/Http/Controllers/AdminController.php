@@ -488,7 +488,7 @@ class AdminController extends Controller {
              }
              else
              {
-             	return view('admin.add-auction',compact(['user','c','deal']));
+             	return view('admin.add-auction',compact(['user','deal']));
              }        
          }           	
     }
