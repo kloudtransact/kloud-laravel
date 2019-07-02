@@ -451,7 +451,7 @@ class AdminController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getAddAuction()
+	public function getAddAuction(Request $request)
     {
        $user = null;
 		
@@ -465,9 +465,77 @@ class AdminController extends Controller {
         	return redirect()->intended('login?return=dashboard');
         }
         
-		$c = $this->helpers->categories;
+		$req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'xf' => 'required',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back();
+             //dd($messages);
+         }
+         
+         else
+         {
+             $deal = $this->helpers->getDeal($req['xf']);
+             if($deal == [])
+             {
+             	return redirect()->back();
+             }
+             else
+             {
+             	return view('admin.add-auction',compact(['user','c','deal']));
+             }        
+         }           	
+    }
+    
+        /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function postAddAuction(Request $request)
+    {
+       $user = null;
 		
-    	return view('admin.add-auction',compact(['user','c']));
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'xf' => 'required',
+                             'days' => 'required',
+                             'hours' => 'required',
+                             'minutes' => 'required',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	$req['deal_id'] = $req['xf'];
+             $ret = $this->helpers->createAuction($req);
+	        session()->flash("create-auction-status",$ret);
+			return redirect()->intended('cobra-auctions');
+         }        	
     }
     
 
