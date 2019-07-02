@@ -719,7 +719,8 @@ $subject = $data['subject'];
            function getUser($email)
            {
            	$ret = [];
-               $u = User::where('email',$email)->first();
+               $u = User::where('email',$email)
+			            ->orWhere('email',$id)->first();
  
               if($u != null)
                {
@@ -1021,7 +1022,82 @@ $subject = $data['subject'];
                }                                 
                                                       
                 return $ret;
-           }		
+           }	
+		   
+		   function getBid($id)
+           {
+           	$ret = [];
+               $b = Bids::where('id',$id)->first();
+ 
+              if($b != null)
+               {
+               	$ret['id'] = $b->id; 
+                   $ret['auction'] = $this->adminGetAuction($b->auction_id); 
+                   $ret['user'] = $this->getUser($b->user_id); 
+                   $ret['amount'] = $b->amount; 
+                   $ret['date'] = $b->created_at->format("jS F, Y h:i A"); 
+               }                                 
+                                                      
+                return $ret;
+           }	
+		   
+		   function getBids($id)
+           {
+           	$ret = [];
+               $bids = Bids::where('auction_id',$id)->first()->get();
+ 
+              if($bids != null)
+               {
+				$ret['auction'] = $this->adminGetAuction($b->auction_id); 
+				$ret['bids'] = []; 
+				
+               	foreach($bids as $b)
+                   {
+                   	$temp = [];
+                   	$temp['user'] = $this->getUser($b->user_id); 
+                    $temp['amount'] = $b->amount; 
+                    $temp['date'] = $b->created_at->format("jS F, Y h:i A"); 
+                    array_push($ret['bids'], $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }
+		   
+		   function getHighestBidder($id)
+           {
+			 $ret = null;
+			 
+           	$hb = Bids::where('auction_id',$id)->max('amount');
+            $ret = Bids::where('auction_id',$id)
+			           ->where('amount',$hb)->first();
+			                         
+                                                      
+                return $ret;
+           }
+		   
+		   function getUserBids($user)
+           {
+           	$ret = [];
+               $bids = Bids::where('user_id',$user->id)->get();
+ 
+              if($bids != null)
+               {
+				
+				$ret['bids'] = []; 
+				
+               	foreach($bids as $b)
+                   {
+                   	$temp = [];
+					$temp['auction'] = $this->adminGetAuction($b->auction_id); 
+                   	$temp['amount'] = $b->amount; 
+                    $temp['date'] = $b->created_at->format("jS F, Y h:i A"); 
+                    array_push($ret, $temp); 
+                   }
+               }                          
+                                                      
+                return $ret;
+           }
 
           function adminGetUsers()
            {

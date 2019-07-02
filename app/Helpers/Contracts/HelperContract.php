@@ -49,7 +49,7 @@ Interface HelperContract
         public function getBid($id);     
         public function getBids($id);    
         public function getHighestBidder($id);    
-        public function getUserBids($user,$id);        
+        public function getUserBids($user);        
         public function adminGetTransactions();
         public function adminGetUsers();
         public function adminGetDeals();
