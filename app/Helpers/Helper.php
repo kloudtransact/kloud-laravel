@@ -1202,13 +1202,15 @@ function adminGetOrder($number)
                     {
                     	#update bid status
                        $bids = $this->getBids($a->id);
-                   	$a->update(['status' => 'ended','bids' => count($bids)]);
+                   	   $a->update(['status' => 'ended','bids' => count($bids)]);
                        
                        #get highest bidder
-                   	$temp['deal'] = $this->getHighestBidder($a->id);
+                     	$hb = $this->getHighestBidder($a->id);
+                    	$d = $this->adminGetDeal($a->deal_id);
                        
-                       #create order and notification for highest bidder
-                       
+                       #add to highest bidder cart
+                       $dt = ['user_id' => $hb->id,'sku' => $d->sku,'qty' => "1"];
+					   $this->addToCart($dt);
                        $ret = "ok"; 
                     }  
                        
