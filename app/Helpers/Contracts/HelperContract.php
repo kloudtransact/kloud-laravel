@@ -46,6 +46,10 @@ Interface HelperContract
         public function getTransactions($user);
         public function getAuctions($category,$q="");
         public function getAuction($dealID);        
+        public function getBid($id);     
+        public function getBids($id);    
+        public function getHighestBidder($id);    
+        public function getUserBids($user,$id);        
         public function adminGetTransactions();
         public function adminGetUsers();
         public function adminGetDeals();
@@ -53,6 +57,8 @@ Interface HelperContract
         public function adminGetOrders();
         public function adminGetOrder($number);
         public function adminGetAuctions();
+        public function adminGetAuction($id);
+        public function adminEndAuction($id);
         public function adminGetRatings();
         public function adminGetCoupons();
         public function adminGetCoupon($id);
