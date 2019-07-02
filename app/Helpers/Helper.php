@@ -18,6 +18,7 @@ use App\Deals;
 use App\DealData;
 use App\DealImages;
 use App\Auctions;
+use App\Bids;
 use App\Ratings;
 use App\Comments;
 use App\Coupons;
@@ -112,6 +113,7 @@ class Helper implements HelperContract
                      "kloudpay-withdraw-status" => "Withdrawal request has been submitted and is pending review",
                      "kloudpay-transfer-status" => "Transfer successful!",
                      "cobra-approve-withdrawal-status" => "Withdrawal request approved. Go to PayStack Dashboard to make the transfer",
+                     "cobra-auction-status" => "New auction created!",
                      ],
                      'errors'=> ["login-status-error" => "There was a problem signing in, please contact support.",
                      "cobra-user-status-error" => "There was an error updating info for this user. Please try again.",
@@ -119,6 +121,7 @@ class Helper implements HelperContract
                      "kloudpay-withdraw-status-error" => "Insufficient funds in KloudPay wallet",
                      "comment-deal-status-error" => "There was an error submitting your comment. Please try again. ",
                      "rate-deal-status-error" => "There was an error submitting your rating. Please try again. ",
+                     "cobra-auction-status-error" => "There was an error creating the auction. Please try again.",
                      "kloudpay-transfer-status-error" => "Transfer request denied. This could be because you have insufficient funds or the transfer amount has exceeded our limit of &#8358;200,000.00"]
                    ];
           /**
@@ -314,8 +317,17 @@ $subject = $data['subject'];
                                                       'days' => $data['days'], 
                                                       'hours' => $data['hours'],                                                    
                                                       'minutes' => $data['minutes'], 
-                                                      'status' => $data['status'], 
-                                                      'bids' => $data['bids'], 
+                                                      'status' => "live", 
+                                                      'bids' => "0", 
+                                                      ]);
+                                                      
+                return $ret;
+           }
+           function createBid($data)
+           {
+           	$ret = Bids::create(['deal_id' => $data['deal_id'],                                                                                                          
+                                                      'user_id' => $data['user_id'], 
+                                                      'amount' => $data['amount'],                                                    
                                                       ]);
                                                       
                 return $ret;
