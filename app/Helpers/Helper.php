@@ -1044,7 +1044,7 @@ $subject = $data['subject'];
 		   function getBids($id)
            {
            	$ret = [];
-               $bids = Bids::where('auction_id',$id)->first()->get();
+               $bids = Bids::where('auction_id',$id)->get();
  
               if($bids != null)
                {
