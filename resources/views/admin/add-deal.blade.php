@@ -13,12 +13,13 @@
                   <p class="card-category">Add a new deal to the system</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form action="{{url('cobra-add-deal')}}" method="post">
+                	{!!csrf_field()!!}
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Name</label>
-                          <input type="text" class="form-control" placeholder="e. g Samsung Galaxy S9 Edge">
+                          <input type="text" class="form-control" placeholder="e. g Samsung Galaxy S9 Edge" name="name" required>
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -32,26 +33,26 @@
                       <div class="col-md-7">
                         <div class="form-group">
                           <label class="bmd-label-floating">Category</label>                         
-                          <select class="form-control">
-                          	<option value="none">Select category</option>
-                              <option value="home-office">Home & Office</option>
-                              <option value="fashion">Fashion</option>
-                              <option value="Groceries">Groceries</option>
+                          <select class="form-control" name="category">
+                          	<option value="none">Select deal category</option>
+                                            @foreach($c as $key => $value)
+                                            <option value="{{$key}}">{{$value}}</option>
+                                            @endforeach
                           </select>
                         </div><br>
                         <div class="form-group">
                           <label class="bmd-label-floating">Description</label>
-                          <textarea class="form-control" placeholder="Enter description"></textarea>
+                          <textarea class="form-control" placeholder="Enter description" name="description" required></textarea>
                         </div>
                       </div>
                       <div class="col-md-5">
                         <div class="form-group">
                           <label class="bmd-label-floating">Price(&#8358;)</label>
-                          <input type="number" class="form-control" placeholder="e. g 45000">
+                          <input type="number" class="form-control" placeholder="e. g 45000" name="amount" required>
                         </div><br>
                         <div class="form-group">
                           <label class="bmd-label-floating">Images</label>
-                          <input type="text" class="form-control" value="image 1 URL, image 2 URL, etc">
+                          <input type="text" name="images"  class="form-control" value="Image URIs (http://website.com/my-image.png or images/my_image.png) separated by commas">
                         </div>
                       </div>
                     </div>   
@@ -59,7 +60,7 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Inventory status</label>
-                          <select class="form-control">
+                          <select class="form-control" name="in_stock">
                           	<option value="none">Select inventory status</option>
                               <option value="in-stock">In Stock</option>
                               <option value="new">New! </option>
@@ -68,7 +69,7 @@
                         </div>
                       </div>
                       <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group" name="status">
                           <label class="bmd-label-floating">Status</label>
                           <select class="form-control">
                           	<option value="none">Select status</option>

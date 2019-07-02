@@ -13,18 +13,19 @@
                   <p class="card-category">Add a new coupon to the system</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form method="post" action="{{url('cobra-add-coupon')}}">
+                  	{!! csrf_field() !!}
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Name</label>
-                          <input type="text" class="form-control">
+                          <label class="bmd-label-floating">Code</label>
+                          <input type="text" class="form-control" name="code">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Discount e.g 70%</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="discount">
                         </div>
                       </div>
                     </div>        
