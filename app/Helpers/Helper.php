@@ -1048,7 +1048,7 @@ $subject = $data['subject'];
  
               if($bids != null)
                {
-				$ret['auction'] = $this->adminGetAuction($b->auction_id); 
+				$ret['auction'] = $this->adminGetAuction($id); 
 				$ret['bids'] = []; 
 				
                	foreach($bids as $b)
