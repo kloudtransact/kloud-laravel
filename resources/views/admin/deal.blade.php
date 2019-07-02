@@ -126,7 +126,7 @@
                   <?php $auctionURL = url('cobra-add-auction').'?xf='.$deal['id']; ?>
                   <a href="{{$auctionURL}}" class="btn btn-primary btn-round">Add Auction</a>
                   
-                  <p class="card-description">
+                  <p class="card-description mt-5">
                     Removes this deal from the system. 
                   </p>
                   <?php $deleteURL = url('cobra-delete-deal').'?sku='.$deal['sku']; ?>

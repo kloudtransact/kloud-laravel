@@ -74,6 +74,31 @@
           }
 
         }
+        
+        /** Add Auction **/
+        $('#i-d').change(function(event) {
+            event.preventDefault();
+            let d = $(this).val();            
+            if(d == ""){d = 0; $(this).val("0"); }
+            updateAuctionTime($('#a-d'),d);
+          }
+        });
+        
+         $('#i-h').change(function(event) {
+            event.preventDefault();
+            let h = $(this).val();            
+            if(h == ""){h = 0; $(this).val("0"); }
+            updateAuctionTime($('#a-h'),h);
+          }
+        });
+        
+         $('#i-m').change(function(event) {
+            event.preventDefault();
+            let m = $(this).val();            
+            if(m == ""){m = 0; $(this).val("0"); }
+            updateAuctionTime($('#a-m'),m);
+          }
+        });
 
         $('.fixed-plugin a').click(function(event) {
           // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
@@ -223,6 +248,10 @@
         });
       });
     });
+    
+    function updateAuctionTime(el,v){
+    	el.html(v);
+    }
   </script>
   <script>
     $(document).ready(function() {

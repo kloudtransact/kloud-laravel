@@ -9,8 +9,8 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Add Coupon</h4>
-                  <p class="card-category">Add a new coupon to the system</p>
+                  <h4 class="card-title">Add Auction</h4>
+                  <p class="card-category">Creates a new auction listing</p>
                 </div>
                 <div class="card-body">
                   <form method="post" action="{{url('cobra-add-auction')}}">
@@ -20,19 +20,19 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Days</label>
-                          <input type="text" class="form-control" name="days">
+                          <input type="text" class="form-control" id="i-d" name="days">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Hours</label>
-                          <input type="text" class="form-control" name="hours">
+                          <input type="text" class="form-control" id="i-h" name="hours">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Minutes</label>
-                          <input type="text" class="form-control" name="minutes">
+                          <input type="text" class="form-control" id="i-m" name="minutes">
                         </div>
                       </div>
                     </div>    
@@ -45,7 +45,7 @@
                       </div>
                     </div>        
                     
-                    <button type="submit" class="btn btn-primary pull-right">Add Coupon</button>
+                    <button type="submit" class="btn btn-primary pull-right">Add Auction</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
