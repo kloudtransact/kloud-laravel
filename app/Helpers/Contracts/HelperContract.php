@@ -12,6 +12,7 @@ Interface HelperContract
         public function createDealData($data);
         public function createDealImage($data);
         public function createAuction($data);
+        public function createBid($data);
         public function createWallet($data);
         public function createTransaction($data);
         public function createOrder($data);
