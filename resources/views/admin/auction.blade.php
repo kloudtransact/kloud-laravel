@@ -47,11 +47,31 @@
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Category</label>
+                          <input type="text" class="form-control" disabled value="{{$a['category']}}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Total Bids</label>
+                          <input type="text" class="form-control" disabled value="{{count($bids)}}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Status</label>
+                          <input type="text" class="form-control" value="{{$a['status']}}" disabled>
+                        </div>
+                      </div>
+                    </div>
                     <div class="row">                      
                       <div class="col-md-12">
                       	<div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">All Bids | Total: {{count($bids)}}</h4>
+                  <h4 class="card-title ">All Bids </h4>
                   <p class="card-category"> View all bids on this auction </p>
                 </div>
                 <div class="card-body">

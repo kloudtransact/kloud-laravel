@@ -41,7 +41,7 @@
                                                   <td>{{$a['date']}}</td>
                                                   <td class="text-primary">{{$timeline}}</td>
                                                   <td>{{count($bids)}}</td>
-                                                  <td><span class="alert alert-success">{{$a['status']}}</span></td>
+                                                  <td><span class="text-primary">{{$a['status']}}</span></td>
                                                   <td>
                                                     <a class="btn btn-success" href="{{$uu}}">View</a>
                                                   </td>
