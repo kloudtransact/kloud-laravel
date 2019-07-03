@@ -597,7 +597,7 @@ class AdminController extends Controller {
          else
          {
              #$req["uid"] = $user->id; 
-             $ret = $this->helpers->endAuction($req);
+             $ret = $this->helpers->adminEndAuction($req);
 	        session()->flash("cobra-end-auction-status",$ret);
 			return redirect()->intended('cobra-auctions');
          }           	
