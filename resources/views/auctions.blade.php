@@ -65,7 +65,7 @@
                             </div>
                         </div>
                        </div>
-                        @endfor
+                        @endforeach
                   @else
                   <p class="text-primary">No auctions at the moment. Check back later? </p>
                   @endif
