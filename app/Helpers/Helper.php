@@ -1281,15 +1281,21 @@ function adminGetOrder($number)
                     	#update bid status
                        $bids = $this->getBids($a->id);
                    	   $a->update(['status' => 'ended','bids' => count($bids)]);
+                    
+                       #delete bids
+                       Bids::where('auction_id',$id)->delete();
                        
                        #get highest bidder
                      	$hb = $this->getHighestBidder($a->id);
                     	$d = $this->adminGetDeal($a->deal_id);
                        
-                       #add to highest bidder cart
-                       $dt = ['user_id' => $hb->id,'sku' => $d->sku,'qty' => "1"];
-					   $this->addToCart($dt);
-                       $ret = "ok"; 
+                       if($hb != null) 
+                       {
+                         #add to highest bidder cart
+                         $dt = ['user_id' => $hb->id,'sku' => $d->sku,'qty' => "1"];
+					     $this->addToCart($dt);
+                         $ret = "ok"; 
+                       }
                     }  
                        
                }                          
