@@ -1,3 +1,6 @@
+<?php
+$user = null;
+?>
 @extends("layout")
 
 @section('title',"Not Found")
