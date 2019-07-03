@@ -1233,11 +1233,12 @@ function adminGetOrder($number)
                    {
                    	$temp = [];
                    	$temp['id'] = $a->id; 
-                       $bids = $this->getBids($a->id);
+                       $temp['bids'] = $this->getBids($a->id);
                    	$temp['deal'] = $this->adminGetDeal($a->deal_id);
                        $temp['days'] = $a->days; 
                        $temp['hours'] = $a->hours; 
                        $temp['minutes'] = $a->minutes; 
+                       $temp['status'] = $a->status; 
                        $temp['date'] = $a->created_at->format("jS F, Y h:i A"); 
                        array_push($ret, $temp); 
                    }
@@ -1255,11 +1256,12 @@ function adminGetOrder($number)
                {
                    	$temp = [];
                    	$temp['id'] = $a->id; 
-                       $bids = $this->getBids($a->id);
+                       $temp['bids'] = $this->getBids($a->id);
                    	$temp['deal'] = $this->adminGetDeal($a->deal_id);
                        $temp['days'] = $a->days; 
                        $temp['hours'] = $a->hours; 
                        $temp['minutes'] = $a->minutes; 
+                       $temp['status'] = $a->status; 
                        $temp['date'] = $a->created_at->format("jS F, Y h:i A"); 
                        $ret = $temp; 
                }                          
