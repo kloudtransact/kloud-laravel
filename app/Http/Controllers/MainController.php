@@ -105,6 +105,39 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
+	public function getAuctions(Request $request)
+    {
+               $user = null;
+		
+		$cart = [];
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
+		}
+		
+		$req = $request->all();
+		$category = "";
+		$auctions = [];
+		if(isset($req['q']))
+		{
+			$auctions = $this->helpers->getAuctions($req['q']);
+			$category = $this->helpers->categories[$req['q']];
+		} 
+        else
+        {
+        	$auctions = $this->helpers->getAuctions();
+        }     
+		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
+		$mainClass = "amado_product_area section-padding-100 clearfix";
+    	return view('auctions',compact(['user','cart','auctions','category','c','signals','mainClass']));
+    }
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
 	public function getAuction(Request $request)
     {
                $user = null;
@@ -119,19 +152,21 @@ class MainController extends Controller {
 		$req = $request->all();
 		$category = "";
 		$auction = [];
-		if(isset($req['q']))
+		if(isset($req['xf']))
 		{
-			$auction = $this->helpers->getDeals("auction",$req['q']);
+			$auction = $this->helpers->getAuction($req['xf']);
 			$category = $this->helpers->categories[$req['q']];
+			
+			$c = $this->helpers->categories;
+		    $signals = $this->helpers->signals;
+		    $mainClass = "amado_product_area section-padding-100 clearfix";
+        	return view('auction',compact(['user','cart','auction','category','c','signals','mainClass']));
 		} 
         else
         {
-        	$auction = $this->helpers->getDeals("auction");
+        	return redirect()->intended('auctions');
         }     
-		$c = $this->helpers->categories;
-		$signals = $this->helpers->signals;
-		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('auction',compact(['user','cart','auction','category','c','signals','mainClass']));
+		
     }
 
 	/**
