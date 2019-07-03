@@ -114,6 +114,7 @@ class Helper implements HelperContract
                      "kloudpay-transfer-status" => "Transfer successful!",
                      "cobra-approve-withdrawal-status" => "Withdrawal request approved. Go to PayStack Dashboard to make the transfer",
                      "cobra-auction-status" => "New auction created!",
+                     "cobra-end-auction-status" => "Auction ended! Deal has been added to the highest bidder's cart",
                      ],
                      'errors'=> ["login-status-error" => "There was a problem signing in, please contact support.",
                      "cobra-user-status-error" => "There was an error updating info for this user. Please try again.",
@@ -122,6 +123,7 @@ class Helper implements HelperContract
                      "comment-deal-status-error" => "There was an error submitting your comment. Please try again. ",
                      "rate-deal-status-error" => "There was an error submitting your rating. Please try again. ",
                      "cobra-auction-status-error" => "There was an error creating the auction. Please try again.",
+                     "cobra-end-auction-status-error" => "There were no bidders for this auction.",
                      "kloudpay-transfer-status-error" => "Transfer request denied. This could be because you have insufficient funds or the transfer amount has exceeded our limit of &#8358;200,000.00"]
                    ];
           /**
