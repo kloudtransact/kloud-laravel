@@ -9,7 +9,7 @@
                 @include('deals-filter')
                 
                 <div class="row" id="auction-section">
-                 @if(count($auction) > 0)
+                 @if(count($auction)  < 1)
                   @for($i = 0; $i < 6; $i++)
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
