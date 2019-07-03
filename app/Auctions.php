@@ -13,7 +13,7 @@ class Auctions extends Model
      * @var array
      */
     protected $fillable = [
-        'deal_id', 'days', 'hours', 'minutes', 'status','bids',
+        'deal_id', 'category', 'days', 'hours', 'minutes', 'status','bids',
     ];
     
 }
