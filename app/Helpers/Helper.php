@@ -976,31 +976,32 @@ $subject = $data['subject'];
                 return $ret;
            }		
 
-           function getAuctions($category,$q="")
+           function getAuctions($category="")
            {
            	$ret = [];
                $auctions = null; 
-           	if($q == ""){
-				$auctions = Auctions::where('type',$category)
-			                         ->orderBy('created_at', 'desc')->get();
+           	if($category == ""){
+				$auctions = Auctions::orderBy('created_at', 'desc')->get();
 			}
             else{
-				$auctions = Auctions::where('type',$category)
-				                    ->where('category',$q)
+				$auctions = Auctions::where('category',$category)
 									->orderBy('created_at', 'desc')->get();
 			}         
- 
+               
               if($auctions != null)
                {
                	foreach($auctions as $a)
                    {
                    	$temp = [];
                    	$temp['id'] = $a->id; 
+                       $temp['bids'] = $this->getBids($a->id);
+                   	$temp['deal'] = $this->adminGetDeal($a->deal_id);
+                       $temp['category'] = $a->category; 
                        $temp['days'] = $a->days; 
                        $temp['hours'] = $a->hours; 
                        $temp['minutes'] = $a->minutes; 
                        $temp['status'] = $a->status; 
-                       $temp['bids'] = $a->bids; 
+                       $temp['date'] = $a->created_at->format("jS F, Y h:i A"); 
                        array_push($ret, $temp); 
                    }
                }                          
@@ -1011,17 +1012,22 @@ $subject = $data['subject'];
           function getAuction($dealID)
            {
            	$ret = [];
-               $auction = Auctions::where('deal_id',$dealID)->first();
- 
-              if($auction != null)
+               $a = Auctions::where('id', $dealID)->first();
+               
+              if($a != null)
                {
-               	$ret['id'] = $auction->id; 
-                   $ret['days'] = $auction->days; 
-                   $ret['hours'] = $auction->hours; 
-                   $ret['minutes'] = $auction->minutes; 
-                   $ret['status'] = $auction->status; 
-                   $ret['bids'] = $auction->bids; 
-               }                                 
+                   	$temp = [];
+                   	$temp['id'] = $a->id; 
+                       $temp['bids'] = $this->getBids($a->id);
+                   	$temp['deal'] = $this->adminGetDeal($a->deal_id);
+                       $temp['category'] = $a->category; 
+                       $temp['days'] = $a->days; 
+                       $temp['hours'] = $a->hours; 
+                       $temp['minutes'] = $a->minutes; 
+                       $temp['status'] = $a->status; 
+                       $temp['date'] = $a->created_at->format("jS F, Y h:i A"); 
+                       $ret = $temp; 
+               }                          
                                                       
                 return $ret;
            }	
@@ -1237,6 +1243,7 @@ function adminGetOrder($number)
                    	$temp['id'] = $a->id; 
                        $temp['bids'] = $this->getBids($a->id);
                    	$temp['deal'] = $this->adminGetDeal($a->deal_id);
+                       $temp['category'] = $a->category; 
                        $temp['days'] = $a->days; 
                        $temp['hours'] = $a->hours; 
                        $temp['minutes'] = $a->minutes; 
@@ -1260,6 +1267,7 @@ function adminGetOrder($number)
                    	$temp['id'] = $a->id; 
                        $temp['bids'] = $this->getBids($a->id);
                    	$temp['deal'] = $this->adminGetDeal($a->deal_id);
+                       $temp['category'] = $a->category; 
                        $temp['days'] = $a->days; 
                        $temp['hours'] = $a->hours; 
                        $temp['minutes'] = $a->minutes; 
