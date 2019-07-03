@@ -9,8 +9,8 @@
                 @include('deals-filter')
                 
                 <div class="row" id="auction-section">
-                 @if(count($auction)  < 1)
-                  @for($i = 0; $i < 6; $i++)
+                 @if(count($auctions)  < 1)
+                  @foreach($auctions as $a)
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                         <div class="single-product-wrapper">
@@ -72,16 +72,14 @@
                     </div>
                     
  
-                @if(count($auction) > 0)
+                @if(count($auctions) > 0)
                 <div class="row">
                     <div class="col-12">
                         <!-- Pagination -->
                         <nav aria-label="navigation">
                             <ul class="pagination justify-content-end mt-50">
-                                <li class="page-item active"><a class="page-link" href="#">01.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">02.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">03.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">04.</a></li>
+                                <li class="page-item"><a class="page-link" href="#" disabled>Previous</a></li>  
+                                <li class="page-item active"><a class="page-link" href="#">Next</a></li>  
                             </ul>
                         </nav>
                     </div>
