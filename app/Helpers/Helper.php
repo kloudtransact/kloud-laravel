@@ -1049,7 +1049,7 @@ $subject = $data['subject'];
               if($bids != null)
                {
 				#$ret['auction'] = $this->adminGetAuction($id); 
-				$ret['bids'] = []; 
+				#$ret['bids'] = []; 
 				
                	foreach($bids as $b)
                    {
@@ -1057,7 +1057,7 @@ $subject = $data['subject'];
                    	$temp['user'] = $this->getUser($b->user_id); 
                     $temp['amount'] = $b->amount; 
                     $temp['date'] = $b->created_at->format("jS F, Y h:i A"); 
-                    array_push($ret['bids'], $temp); 
+                    array_push($ret, $temp); 
                    }
                }                          
                                                       
@@ -1084,7 +1084,7 @@ $subject = $data['subject'];
               if($bids != null)
                {
 				
-				$ret['bids'] = []; 
+				#$ret['bids'] = []; 
 				
                	foreach($bids as $b)
                    {
