@@ -51,7 +51,7 @@
                       <div class="col-md-12">
                       	<div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">All Bids | Total: {{}}</h4>
+                  <h4 class="card-title ">All Bids | Total: {{count($bids)}}</h4>
                   <p class="card-category"> View all bids on this auction </p>
                 </div>
                 <div class="card-body">
@@ -101,7 +101,7 @@
                   <p class="card-description">
                     Stops this auction and adds this deal to the highest bidder's cart
                   </p>
-                  <a href="{{$au}}" class="btn btn-primary btn-round">View Invoice</a>
+                  <a href="{{$au}}" class="btn btn-primary btn-round">End Auction</a>
                 </div>
               </div>
             </div>
