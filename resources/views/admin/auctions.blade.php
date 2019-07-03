@@ -16,7 +16,6 @@
                   <div class="table-responsive">
                     <table class="table kloud-data-table">
                       <thead class=" text-primary">
-                        <th>User</th>
                                                 <th>Deal</th>
                                                 <th>Start Time</th>
                                                 <th>Duration</th>
@@ -42,7 +41,7 @@
                                                   <td>{{$a['date']}}</td>
                                                   <td class="text-primary">{{$timeline}}</td>
                                                   <td>{{count($bids)}}</td>
-                                                  <td><span class="alert alert-success">{{$timeline}}</span></td>
+                                                  <td><span class="alert alert-success">{{$a['status']}}</span></td>
                                                   <td>
                                                     <a class="btn btn-success" href="{{$uu}}">View</a>
                                                   </td>
