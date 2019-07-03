@@ -17,9 +17,11 @@ Route::get('/', 'MainController@getIndex');
 
 Route::get('about', 'MainController@getAbout');
 Route::get('bundle', 'MainController@getBundle');
-Route::get('auction', 'MainController@getAuction');
 Route::get('top-deals', 'MainController@getTopDeals');
 Route::get('deals', 'MainController@getDeals');
+
+Route::get('auctions', 'MainController@getAuctions');
+Route::get('auction', 'MainController@getAuction');
 
 Route::get('cart', 'MainController@getCart');
 Route::get('add-to-cart', 'MainController@getAddToCart');
