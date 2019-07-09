@@ -7,7 +7,25 @@
 <div class="container-fluid">
             <h2 class="category-header">Kloud Auctions{{$ct}}</h2>             
                 @include('deals-filter')
-                
+                <script>
+	let nq = new Date("July 12, 2019 12:00:00");
+    var cd = new Countdown({
+        cont: document.querySelector('.cdc'),
+        endDate: nq.getTime(),
+        outputTranslation: {
+            year: 'Years',
+            week: 'Weeks',
+            day: 'Days',
+            hour: 'Hours',
+            minute: 'Minutes',
+            second: 'Seconds',
+        },
+        endCallback: null,
+        //outputFormat: 'week|day|hour|minute|second',
+        outputFormat: 'day|hour|minute|second',
+    });
+    cd.start();
+</script>
                 <div class="row" id="auction-section">
                  @if(count($auctions)  > 0)
                   @foreach($auctions as $a)
@@ -19,8 +37,8 @@
                                    	<div class="clockdiv">
                                    	<div class="row">
                                    	<div class="col-6">
-					<div class="countdown d-inline">
-						<span class="deadline">Expiration time</span>
+					<div class="cdc">
+						
 					</div>
 				</div>
 				<div class="col-3"></div>
