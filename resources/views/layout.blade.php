@@ -26,7 +26,7 @@
     
     <!-- cd-->
     <script src="lib/cd/js/cd.js"></script>
-    <link href="lib/cd/css/style.css" media="all" rel="stylesheet" />
+    <!--  <link href="lib/cd/css/style.css" media="all" rel="stylesheet" /> -->
 </head>
 <body>
 
