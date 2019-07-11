@@ -35,19 +35,13 @@
                   @foreach($auctions as $a)
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            
+                        <div class="single-product-wrapper">                         
                             <!-- Start #clockdiv-->
-                                   	<div class="clockdiv">
-                                   	<div class="row">
-                                   	<div class="col-6">
-					<div class="cdc">
-						
-					</div>
-				</div>
-				<div class="col-3"></div>
-				<div class="col-3 d-inline">18 bids</div>
-				</div>
+                            <div class="row">
+                               <div class="col-6 cdc"></div>
+				               <div class="col-3"></div>
+				               <div class="col-3 d-inline">18 bids</div>
+				           </div>
 				</div>
 				<!-- End #clockdiv-->
 			
