@@ -2,6 +2,10 @@
 
 @section('title',"Kloud Auctions")
 
+@section('styles')
+<script src="lib/cd/cd.js" ></script>
+@stop
+
 @section('content')
 <?php $ct = (isset($category) && $category != null) ? " - ".$category : ""; ?>
 <div class="container-fluid">
@@ -108,6 +112,4 @@
 
 @section('scripts')
 <script src="lib/raf/requestAnimationFrame.js" ></script>
-<script src="js/countdown.js" ></script>
-<script src="js/countdown-init.js" ></script>
 @stop
