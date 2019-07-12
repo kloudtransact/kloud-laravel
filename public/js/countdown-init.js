@@ -18,10 +18,10 @@
 			digits = 20;
 
 		var yyyy = 2019,
-			MM = 3,
-			dd = 25,
-			HH = 17,
-			mm = 59,
+			MM = 7,
+			dd = 12,
+			HH = 12,
+			mm = 0,
 			ss = 0;
 
 		var start = new Date(yyyy, MM, dd, HH, mm, ss),

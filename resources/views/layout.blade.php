@@ -23,7 +23,10 @@
 	
 	 <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
-   
+    
+    <!-- cd-->
+    <script src="lib/cd/js/cd.js"></script>
+    <!--  <link href="lib/cd/css/style.css" media="all" rel="stylesheet" /> -->
 </head>
 <body>
 
