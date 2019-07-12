@@ -1,57 +1,25 @@
 @extends("layout")
 
-@section('title',"Kloud Auctions")
-
-@section('styles')
-<script src="lib/cd/cd.js" ></script>
-@stop
+@section('title',"Bundle Products")
 
 @section('content')
 <?php $ct = (isset($category) && $category != null) ? " - ".$category : ""; ?>
 <div class="container-fluid">
-            <h2 class="category-header">Kloud Auctions{{$ct}}</h2>             
+            <h2 class="category-header">Bundle Products{{$ct}}</h2>
                 @include('deals-filter')
-                <script>
-	let nq = new Date("July 12, 2019 12:00:00");
-    var cd = new Countdown({
-        cont: document.querySelector('.cdc'),
-        endDate: nq.getTime(),
-        outputTranslation: {
-            year: 'Years',
-            week: 'Weeks',
-            day: 'Days',
-            hour: 'Hours',
-            minute: 'Minutes',
-            second: 'Seconds',
-        },
-        endCallback: null,
-        //outputFormat: 'week|day|hour|minute|second',
-        outputFormat: 'day|hour|minute|second',
-    });
-    cd.start();
-</script>
-                <div class="row" id="auction-section">
-                 @if(count($auctions)  > 0)
-                  @foreach($auctions as $a)
+
+                <div class="row">
+                  @if(count($bundleProducts) > 0)
+                   @for($i = 0; $i < 6; $i++)
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">                         
-                            <!-- Start #clockdiv-->
-                            <div class="row">
-                               <div class="col-6 cdc"></div>
-				               <div class="col-3"></div>
-				               <div class="col-3 d-inline">18 bids</div>
-				           </div>
-				</div>
-				<!-- End #clockdiv-->
-			
-                                
+                        <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
                             	<center>
                                 <img src="img/product-img/product1.jpg" alt="">
                                 <!-- Hover Thumb --
-                                <img class="hover-img" src="img/product-img/product2.jpg" alt=""> -->    
+                                <img class="hover-img" src="img/product-img/product2.jpg" alt=""> -->
                                 </center>
                             </div>
 
@@ -80,30 +48,28 @@
                                 </div>
                             </div>
                         </div>
-                       </div>
-                        @endforeach
+                    </div>              
+                    @endfor
                   @else
-                  <p class="text-primary">No auctions at the moment. Check back later? </p>
+                  <p class="text-primary">No deals at the moment. Check back later? </p>
                   @endif
-                    </div>
-                    
- 
-                @if(count($auctions) > 0)
+                </div>
+
+                @if(count($bundleProducts) > 0)
                 <div class="row">
                     <div class="col-12">
                         <!-- Pagination -->
                         <nav aria-label="navigation">
                             <ul class="pagination justify-content-end mt-50">
-                                <li class="page-item"><a class="page-link" href="#" disabled>&lt;&lt;</a></li>  
-                                <li class="page-item active"><a class="page-link" href="#">&gt;&gt;</a></li>  
+                                <li class="page-item active"><a class="page-link" href="#">01.</a></li>
+                                <li class="page-item"><a class="page-link" href="#">02.</a></li>
+                                <li class="page-item"><a class="page-link" href="#">03.</a></li>
+                                <li class="page-item"><a class="page-link" href="#">04.</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
-                @endif
+               @endif
             </div>
-@stop
 
-@section('scripts')
-<script src="lib/raf/requestAnimationFrame.js" ></script>
 @stop

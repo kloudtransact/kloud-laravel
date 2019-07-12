@@ -2,46 +2,30 @@
 
 @section('title',"Kloud Auctions")
 
-@section('styles')
-<script src="lib/cd/cd.js" ></script>
-@stop
-
 @section('content')
 <?php $ct = (isset($category) && $category != null) ? " - ".$category : ""; ?>
 <div class="container-fluid">
             <h2 class="category-header">Kloud Auctions{{$ct}}</h2>             
                 @include('deals-filter')
-                <script>
-	let nq = new Date("July 12, 2019 12:00:00");
-    var cd = new Countdown({
-        cont: document.querySelector('.cdc'),
-        endDate: nq.getTime(),
-        outputTranslation: {
-            year: 'Years',
-            week: 'Weeks',
-            day: 'Days',
-            hour: 'Hours',
-            minute: 'Minutes',
-            second: 'Seconds',
-        },
-        endCallback: null,
-        //outputFormat: 'week|day|hour|minute|second',
-        outputFormat: 'day|hour|minute|second',
-    });
-    cd.start();
-</script>
+                
                 <div class="row" id="auction-section">
-                 @if(count($auctions)  > 0)
-                  @foreach($auctions as $a)
+                 @if(count($auction)  < 1)
+                  @for($i = 0; $i < 6; $i++)
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">                         
+                        <div class="single-product-wrapper">
+                            
                             <!-- Start #clockdiv-->
-                            <div class="row">
-                               <div class="col-6 cdc"></div>
-				               <div class="col-3"></div>
-				               <div class="col-3 d-inline">18 bids</div>
-				           </div>
+                                   	<div class="clockdiv">
+                                   	<div class="row">
+                                   	<div class="col-6">
+					<div class="countdown d-inline">
+						<span class="deadline">Expiration time</span>
+					</div>
+				</div>
+				<div class="col-3"></div>
+				<div class="col-3 d-inline">18 bids</div>
+				</div>
 				</div>
 				<!-- End #clockdiv-->
 			
@@ -81,21 +65,23 @@
                             </div>
                         </div>
                        </div>
-                        @endforeach
+                        @endfor
                   @else
                   <p class="text-primary">No auctions at the moment. Check back later? </p>
                   @endif
                     </div>
                     
  
-                @if(count($auctions) > 0)
+                @if(count($auction) > 0)
                 <div class="row">
                     <div class="col-12">
                         <!-- Pagination -->
                         <nav aria-label="navigation">
                             <ul class="pagination justify-content-end mt-50">
-                                <li class="page-item"><a class="page-link" href="#" disabled>&lt;&lt;</a></li>  
-                                <li class="page-item active"><a class="page-link" href="#">&gt;&gt;</a></li>  
+                                <li class="page-item active"><a class="page-link" href="#">01.</a></li>
+                                <li class="page-item"><a class="page-link" href="#">02.</a></li>
+                                <li class="page-item"><a class="page-link" href="#">03.</a></li>
+                                <li class="page-item"><a class="page-link" href="#">04.</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -106,4 +92,6 @@
 
 @section('scripts')
 <script src="lib/raf/requestAnimationFrame.js" ></script>
+<script src="js/countdown.js" ></script>
+<script src="js/countdown-init.js" ></script>
 @stop

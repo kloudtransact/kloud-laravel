@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comments extends Model
+class DealData extends Model
 {
 
     /**
@@ -13,7 +13,8 @@ class Comments extends Model
      * @var array
      */
     protected $fillable = [
-        'type', 'deal_id', 'user_id', 'comment', 'status'
+        'sku', 'description', 'amount', 'in_stock', 'min_bid'
     ];
     
+    #protected $table = 'deal_datas';
 }
