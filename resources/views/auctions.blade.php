@@ -2,10 +2,6 @@
 
 @section('title',"Kloud Auctions")
 
-@section('styles')
-<script src="lib/cd/cd.js" ></script>
-@stop
-
 @section('content')
 <?php $ct = (isset($category) && $category != null) ? " - ".$category : ""; ?>
 <div class="container-fluid">
