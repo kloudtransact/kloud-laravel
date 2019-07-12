@@ -11,7 +11,22 @@
 <div class="container-fluid">
             <h2 class="category-header">Kloud Auctions{{$ct}}</h2>             
                 @include('deals-filter')
-                <script>
+
+                <div class="row" id="auction-section">
+                 @if(count($auctions)  > 0)
+                  @foreach($auctions as $a)
+                    <!-- Single Product Area -->
+                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                        <div class="single-product-wrapper">                         
+                            <!-- Start #clockdiv-->
+                            <div class="row">
+                               <div class="col-6"><div class="cdc"></div></div>
+				               <div class="col-3"></div>
+				               <div class="col-3 d-inline">18 bids</div>
+				           </div>
+				</div>
+				<!-- End #clockdiv-->
+			                    <script>
 	let nq = new Date("July 12, 2019 12:00:00");
     var cd = new Countdown({
         cont: document.querySelector('.cdc'),
@@ -30,21 +45,6 @@
     });
     cd.start();
 </script>
-                <div class="row" id="auction-section">
-                 @if(count($auctions)  > 0)
-                  @foreach($auctions as $a)
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">                         
-                            <!-- Start #clockdiv-->
-                            <div class="row">
-                               <div class="col-6"><div class="cdc"></div></div>
-				               <div class="col-3"></div>
-				               <div class="col-3 d-inline">18 bids</div>
-				           </div>
-				</div>
-				<!-- End #clockdiv-->
-			
                                 
                             <!-- Product Image -->
                             <div class="product-img">
