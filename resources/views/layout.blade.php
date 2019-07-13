@@ -89,7 +89,8 @@
                      <li><a href="{{url('kloudpay')}}">KloudPay</a></li>
                      <li><a href="{{url('enterprise')}}">Enterprise</a></li>
                     @if($user != null) 
-                    <li><a href="{{url('dashboard')}}">Dashboard</a></li>                  
+                    <li><a href="{{url('dashboard')}}">Dashboard</a></li>
+                    <li><a href="{{url('my-deals')}}">My Deals</a></li>
                     <li><a href="{{url('transactions')}}">Transactions</a></li>
                     <li><a href="{{url('orders')}}">Orders</a></li>
                     <li><a href="{{url('logout')}}">Log out</a></li>
