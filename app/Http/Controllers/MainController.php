@@ -973,7 +973,7 @@ class MainController extends Controller {
         
 		
 		$deals = $this->helpers->getUserDeals($user);
-    	return view('add-deal',compact(['user','cart','c','signals']));
+    	return view('my-deals',compact(['user','deals','cart','c','signals']));
     }
     
         /**
