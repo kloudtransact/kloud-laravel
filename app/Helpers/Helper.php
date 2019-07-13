@@ -508,7 +508,50 @@ $subject = $data['subject'];
                }                                 
                                                       
                 return $ret;
-           }		   
+           }		 
+           
+           function getUserDeals($user)
+           {
+           	$ret = [];
+               $deals = Deals::where('user_id',$user->id)->get();
+ 
+              if($deals != null)
+               {
+               	foreach($deals as $d)
+                   {
+                   	$temp = [];
+                   	$temp['id'] = $d->id; 
+                       $temp['images'] = $this->getDealImages($d->sku);    
+                       $temp['data'] = $this->getDealData($d->sku);
+                   	$temp['name'] = $d->name; 
+                   	$temp['sku'] = $d->sku; 
+                       $u = User::where('id',$d->user_id)->first();
+                   	$temp['seller'] = ($u != null) ? $u->fname." ".$u->lname : "Uknown"; 
+                       $temp['seller-verified'] = ($u != null) ? $u->verified : "Uknown"; 
+                   	$temp['type'] = $d->type; 
+                   	$temp['category'] = $d->category; 
+                   	$temp['status'] = $d->status; 
+                   	$temp['rating'] = $d->rating;
+                       if($temp['type'] == "auction")
+                       {
+                       	$a = $this->getAuction($d->id);
+                           if(count($a) > 0)
+                           {                         	
+                       	   $offset = ['hours' => $a['hours'],
+                                             'minutes' => $a['minutes'], 
+                                             'days' => $a['days']
+                                            ];
+                       	   $did = $this->getDeadline($d->created_at,$offset);
+                              $temp['deadline'] = ($did == null) ? "" : $did->format("js F, Y h:i A");                          
+                           }
+                      }
+                       
+                       array_push($ret, $temp); 
+                   }
+               }                                 
+                                                      
+                return $ret;
+           }		
            
            function getDealData($sku)
            {
