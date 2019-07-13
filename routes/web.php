@@ -68,6 +68,7 @@ Route::post('withdraw', 'MainController@postKloudPayWithdraw');
 Route::get('orders', 'MainController@getOrders');
 Route::get('invoice', 'MainController@getInvoice');
 
+Route::get('my-deals', 'MainController@getMyDeals');
 Route::get('deal-new', 'MainController@getAddDeal');
 Route::post('deal-new', 'MainController@postAddDeal');
 
