@@ -227,6 +227,7 @@ $subject = $data['subject'];
                                                       'phone' => $data['phone'], 
                                                       'role' => $data['role'], 
                                                       'status' => $data['status'], 
+                                                      'verified' => 'no', 
                                                       'password' => bcrypt($data['pass']), 
                                                       ]);
                                                       
@@ -280,6 +281,7 @@ $subject = $data['subject'];
                
            	$ret = Deals::create(['name' => $data['name'],                                                                                                          
                                                       'sku' => $sku, 
+                                                      'user_id' => $data['user_id'],  
                                                       'type' => $type,  
                                                       'category' => $data['category'], 
                                                       'status' => "active", 
@@ -480,6 +482,9 @@ $subject = $data['subject'];
                        $temp['data'] = $this->getDealData($d->sku);
                    	$temp['name'] = $d->name; 
                    	$temp['sku'] = $d->sku; 
+                       $u = User::where('id',$d->user_id)->first();
+                   	$temp['seller'] = ($u != null) ? $u->fname." ".$u->lname : "Uknown"; 
+                       $temp['seller-verified'] = ($u != null) ? $u->verified : "Uknown"; 
                    	$temp['type'] = $d->type; 
                    	$temp['category'] = $d->category; 
                    	$temp['status'] = $d->status; 
@@ -642,6 +647,9 @@ $subject = $data['subject'];
                    $ret['data'] = $this->getDealData($d->sku);               
                	$ret['name'] = $d->name; 
                	$ret['sku'] = $d->sku; 
+                   $u = User::where('id',$d->user_id)->first();
+                   	$ret['seller'] = ($u != null) ? $u->fname." ".$u->lname : "Uknown"; 
+                       $ret['seller-verified'] = ($u != null) ? $u->verified : "Uknown"; 
                	$ret['type'] = $d->type; 
                	$ret['category'] = $d->category; 
                	$ret['status'] = $d->status; 
@@ -734,6 +742,7 @@ $subject = $data['subject'];
                        $temp['email'] = $u->email; 
                        $temp['role'] = $u->role; 
                        $temp['status'] = $u->status; 
+                       $temp['verified'] = $u->verified; 
                        $temp['id'] = $u->id; 
                        $temp['date'] = $u->created_at->format("jS F, Y"); 
                        $ret = $temp; 
@@ -757,6 +766,7 @@ $subject = $data['subject'];
                                               'phone' => $data['phone'],
                                               'role' => $data['role'],
                                               'status' => $data['status'],
+                                              'verified' => $data['verified'],
                                            ]);
                                            
                                            $ret = "ok";
@@ -1126,6 +1136,7 @@ $subject = $data['subject'];
                        $temp['email'] = $u->email; 
                        $temp['role'] = $u->role; 
                        $temp['status'] = $u->status; 
+                       $temp['verified'] = $u->verified; 
                        $temp['id'] = $u->id; 
                        $temp['date'] = $u->created_at->format("jS F, Y"); 
                        array_push($ret, $temp); 
