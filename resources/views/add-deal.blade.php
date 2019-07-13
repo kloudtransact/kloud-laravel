@@ -50,7 +50,7 @@
                                         </select>
                                     </div>
                                     <div class="col-6 mb-3">
-                                        <p class="form-control-plaintext"><i class="fa fa-briefcase"></i> KloudPay: &#8358;{{number_format($wallet['balance'],2)}}</p><br>
+                                        <p class="form-control-plaintext"><i class="fa fa-briefcase"></i> Status</p><br>
                                         <select class="form-control">
                           	            <option value="none">Select status</option>
                                           <option value="active">Active</option>
