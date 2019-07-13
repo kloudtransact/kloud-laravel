@@ -68,8 +68,8 @@ Route::post('withdraw', 'MainController@postKloudPayWithdraw');
 Route::get('orders', 'MainController@getOrders');
 Route::get('invoice', 'MainController@getInvoice');
 
-Route::get('add-deal', 'MainController@getAddDeal');
-Route::post('add-deal', 'MainController@postAddDeal');
+Route::get('deal-new', 'MainController@getAddDeal');
+Route::post('deal-new', 'MainController@postAddDeal');
 
 Route::get('add-auction', 'MainController@getAddAuction');
 Route::post('add-auction', 'MainController@postAddAuction');
