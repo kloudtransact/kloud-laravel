@@ -950,6 +950,75 @@ class MainController extends Controller {
         return view('dashboard',compact(['user','cart','transactions','signals']));
     }
     
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getAddDeal()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
+			$signals = $this->helpers->signals;
+			$c = $this->helpers->categories;
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		
+		#$deals = $this->helpers->adminGetDeals();
+    	return view('add-deal',compact(['user','cart','c','signals']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postAddDeal(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'name' => 'required',
+                             'type' => 'required',
+                             'category' => 'required',
+                             'description' => 'required',
+                             'amount' => 'required|numeric',
+                             'images' => 'required'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	$req["user_id"] = $user->id; 
+             $this->helpers->createDeal($req);
+	        session()->flash("add-deal-status","ok");
+			return redirect()->intended('my-deals');
+         }        
+    }
     
     /**
 	 * Show the application welcome screen to the user.
