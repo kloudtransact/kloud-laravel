@@ -955,6 +955,32 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
+	public function getMyDeals()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
+			$signals = $this->helpers->signals;
+			$c = $this->helpers->categories;
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		
+		$deals = $this->helpers->getUserDeals($user);
+    	return view('add-deal',compact(['user','cart','c','signals']));
+    }
+    
+        /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
 	public function getAddDeal()
     {
        $user = null;
