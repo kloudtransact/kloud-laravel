@@ -136,7 +136,7 @@
         <!-- Product Catagories Area 1 End -->
        <br>
        <div class="row wow tada">
-           <div class="col-12"><center><img src="img/8.jpg" class="img img-fluid"></center></div>
+           <div class="col-12"><marquee><img src="img/8.jpg" class="img img-fluid"></marquee></div>
        </div>
        <br>
 	   <h2 class="category-header wow fadeInUp">New Arrivals</h2>
@@ -199,7 +199,7 @@
         <!-- Product Catagories Area 2 End -->
 		<br>
        <div class="row wow tada">
-           <div class="col-12"><center><img src="img/9.jpg" class="img img-fluid"></center></div>
+           <div class="col-12"><marquee><img src="img/9.jpg" class="img img-fluid"></marquee></div>
        </div>
 	   <h2 class="category-header wow fadeInUp">Best Sellers</h2>
 		<!-- Product Catagories Area 5 Start -->
@@ -317,7 +317,7 @@
 		
 		<br>
        <div class="row wow tada">
-           <div class="col-12"><center><img src="img/10.jpg" class="img img-fluid"></center></div>
+           <div class="col-12"><marquee><img src="img/10.jpg" class="img img-fluid"></marquee></div>
        </div>
 	   <h2 class="category-header wow fadeInUp">Hot Categories</h2>
 		<!-- Product Catagories Area 6 Start -->
