@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/site.css"/>
+	<link rel="stylesheet" href="css/animate.css" type="text/css" media="all" /><!-- for wow animations -->
 	
     <!-- Start WOWSlider.com HEAD section -->
     <link rel="stylesheet" type="text/css" href="engine1/style.css"/>
@@ -210,7 +211,7 @@
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Licensed under CC BY 3.0. --
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Colorlib</a>
 -- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="{{url('/')}}">KloudTransact</a> - <a href="{{url('faq')}}">FAQ</a> | Site powered by <a href="#" target="_blank">Disenado NG</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="{{url('/')}}">KloudTransact</a> - <a href="{{url('faq')}}">FAQ</a> | Site powered by <a href="http://www.disenado.com.ng" target="_blank">Disenado NG</a>
 </p>
 
                     </div>
@@ -256,6 +257,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
     <script src="js/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="js/bootstrap.min.js"></script>
+	<!-- wow js -->
+	<script src="js/wow.js"></script>
+              <script>
+              new WOW().init();
+              </script>
     <!-- Plugins js -->
     <script src="js/plugins.js"></script>
     <!-- Active js -->

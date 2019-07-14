@@ -56,29 +56,29 @@
 <br>
 <!-- Start Up sells section -->
 <div class="container">
-   <div class="row">
+   <div class="row wow fadeInUp">
      <div class="col-4 col-xs-12">
          <a href="{{url('airtime')}}">
-           <img class="img img-responsive img-upsell" src="img/bills.png" alt="Pay Your Bills">
+           <img class="img img-fluid img-upsell" src="img/bills.png" alt="Pay Your Bills">
          </a>
       </div>
      <div class="col-4 col-xs-12">
          <a href="{{url('hotels')}}">
-           <img class="img img-responsive img-upsell" src="img/hotel.jpg" alt="Book Your Room Online">
+           <img class="img img-fluid img-upsell" src="img/hotel.jpg" alt="Book Your Room Online">
          </a>
       </div>
      <div class="col-4 col-xs-12">
          <a href="{{url('travelstart')}}">
-           <img class="img img-responsive img-upsell" src="img/travel.jpg" alt="Book Your Vacations">
+           <img class="img img-fluid img-upsell" src="img/travel.jpg" alt="Book Your Vacations">
          </a>
      </div>
    </div>
 </div>
 <!-- End Upsells section -->
 <br>
-        <h2 class="category-header">Hottest Deals</h2>
+        <h2 class="category-header wow fadeInUp">Hottest Deals</h2>
         <!-- Product Catagories Area 1 Start -->
-            <div class="row">
+            <div class="row wow fadeInUp">
             @if(isset($hd) && count($hd) > 0)
             <?php
               shuffle($hd);
@@ -135,11 +135,11 @@
             </div>
         <!-- Product Catagories Area 1 End -->
        <br>
-       <div class="row">
-           <div class="col-12"><center><img src="img/8.jpg" class="img img-responsive"></center></div>
+       <div class="row wow tada">
+           <div class="col-12"><center><img src="img/8.jpg" class="img img-fluid"></center></div>
        </div>
        <br>
-	   <h2 class="category-header">New Arrivals</h2>
+	   <h2 class="category-header wow fadeInUp">New Arrivals</h2>
 		<!-- Product Catagories Area 2 Start -->
             <div class="row">
             @if(isset($na) && count($na) > 0)
@@ -159,7 +159,7 @@
             ?>
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
+                        <div class="single-product-wrapper wow fadeInUp">
                             <!-- Product Image -->
                             <div class="product-img">
                             	<center>
@@ -198,10 +198,10 @@
             </div>
         <!-- Product Catagories Area 2 End -->
 		<br>
-       <div class="row">
-           <div class="col-12"><center><img src="img/9.jpg" class="img img-responsive"></center></div>
+       <div class="row wow tada">
+           <div class="col-12"><center><img src="img/9.jpg" class="img img-fluid"></center></div>
        </div>
-	   <h2 class="category-header">Best Sellers</h2>
+	   <h2 class="category-header wow fadeInUp">Best Sellers</h2>
 		<!-- Product Catagories Area 5 Start -->
             <div class="row">
             @if(isset($bs) && count($bs) > 0)
@@ -221,7 +221,7 @@
             ?>
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
+                        <div class="single-product-wrapper wow fadeInUp">
                             <!-- Product Image -->
                             <div class="product-img">
                             	<center>
@@ -260,10 +260,66 @@
             </div>
         <!-- Product Catagories Area 5 End -->
 		<br>
-       <div class="row">
-           <div class="col-12"><center><img src="img/10.jpg" class="img img-responsive"></center></div>
+		
+		<!-- Start Blogs section -->
+<div class="container">
+   <div class="row wow fadeInUp">
+     <div class="col-12 col-xs-12 m-l-5 m-t-50">
+	 <?php
+	   $blogs = [['img' => "img/8.jpg",'title' => "First Post",'brief' => "This is the first post on our blog!<a href='#'> Read more</a>"],
+	             ['img' => "img/9.jpg",'title' => "Second Post",'brief' => "This is the second post on our blog!<a href='#'> Read more</a>"],
+	             ['img' => "img/10.jpg",'title' => "Third Post",'brief' => "This is the third post on our blog!<a href='#'> Read more</a>"],
+	            ];
+	 ?>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+   <?php
+    for($i = 0; $i < count($blogs); $i++)
+	{
+		$class = ""; if($i == 0) $class = "active";
+	?>
+    <li data-target="#carouselExampleIndicators" data-slide-to="<?=$i?>" class="<?=$class?>"></li>
+    <?php
+	}
+	?>
+  </ol>
+  <div class="carousel-inner">
+     <?php
+    for($i = 0; $i < count($blogs); $i++)
+	{
+		$class = ""; if($i == 0) $class = "active";
+		$b = $blogs[$i];
+	?>
+    <div class="carousel-item <?=$class?>">
+      <img class="d-block w-100 blog-img" src="<?=$b['img']?>" alt="<?=$b['title']?>">
+	  <div class="carousel-caption d-none d-md-block">
+      <h5><?=$b['title']?></h5>
+      <p><?=$b['brief']?></p>
+	  </div>
+    </div>
+	<?php
+	}
+	?>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+</div>
+</div>
+<!-- End Blogs section -->
+		
+		<br>
+       <div class="row wow tada">
+           <div class="col-12"><center><img src="img/10.jpg" class="img img-fluid"></center></div>
        </div>
-	   <h2 class="category-header">Hot Categories</h2>
+	   <h2 class="category-header wow fadeInUp">Hot Categories</h2>
 		<!-- Product Catagories Area 6 Start -->
             <div class="row">
             @if(isset($hc) && count($hc) > 0)
@@ -283,7 +339,7 @@
             ?>
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
+                        <div class="single-product-wrapper wow fadeInUp">
                             <!-- Product Image -->
                             <div class="product-img">
                             	<center>
@@ -324,7 +380,7 @@
         <br>
         <!-- Start Guarantee section -->
 <div class="container">
-   <div class="row">
+   <div class="row wow fadeInUp">
      <div class="col-12 col-xs-12">
        <div class="card text-center" style="">
          <div class="card-body">         
