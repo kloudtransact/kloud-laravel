@@ -19,6 +19,7 @@ Interface HelperContract
         public function createOrderDetails($data);
         public function createRating($data);
         public function createComment($data);
+        public function createBlogPost($data);
         public function createCoupon($data);
         public function addSettings($data);
         public function createWithdrawal($data);
@@ -35,6 +36,7 @@ Interface HelperContract
         public function removeFromCart($user, $asf);
         public function getDeal($sku);
         public function updateDeal($data);
+        public function updateBlogPost($data);
         public function updateComment($data);
         public function updateCoupon($data);
         public function getUser($email);
@@ -50,7 +52,9 @@ Interface HelperContract
         public function getBid($id);     
         public function getBids($id);    
         public function getHighestBidder($id);    
-        public function getUserBids($user);        
+        public function getUserBids($user); 
+        public function getBlogPosts($category,$q="");		
+        public function getBlogPost($id);		
         public function adminGetTransactions();
         public function adminGetUsers();
         public function adminGetDeals();
@@ -93,5 +97,6 @@ Interface HelperContract
         public function isAdmin($user);
         public function rateDeal($user, $data);
         public function commentDeal($user, $data);
+		public function approveDeal($data);
 }
  ?>

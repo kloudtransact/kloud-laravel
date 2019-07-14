@@ -26,6 +26,7 @@ use App\Orders;
 use App\OrderDetails;
 use App\Settings;
 use App\Withdrawals;
+use App\BlogPosts;
 
 class Helper implements HelperContract
 {
@@ -394,6 +395,19 @@ $subject = $data['subject'];
                                                       
                 return $ret;
            }
+		   function createBlogPost($data)
+           {
+           	$ret = BlogPosts::create(['category' => $data['category'],                                                                                                          
+                                                      'type' => $data['type'], 
+                                                      'user_id' => $data['user_id'], 
+                                                      'title' => $data['title'],
+                                                      'content' => $data['content'],
+                                                      'likes' => $data['likes'],
+                                                      'status' => $data['status'],
+                                                      ]);
+                                                      
+                return $ret;
+           }
            
            function createCoupon($data)
            {
@@ -721,6 +735,28 @@ $subject = $data['subject'];
                             $dd->update(['description' => $data['description'],
                                               'amount' => $data['amount'],
                                               'in_stock' => $data['in_stock'],
+                                           ]);
+                                           
+                                           $ret = "ok";
+                        }                                    
+               }                                 
+                  return $ret;                               
+           }
+		   function updateBlogPost($data)
+           {  
+              $ret = 'error'; 
+         
+              if(isset($data['id']))
+               {
+               	$p = BlogPosts::where('id', $data['id'])->first();
+                   
+                        if($p != null)
+                        {
+                        	$p->update(['category' => $data['category'],
+                                              'type' => $data['type'], 
+                                                      'title' => $data['title'],
+                                                      'content' => $data['content'],
+                                                      'status' => $data['status'],
                                            ]);
                                            
                                            $ret = "ok";
@@ -1582,6 +1618,58 @@ function adminGetOrder($number)
                    }
                 }       
                 return $ret;
+           }
+		   
+		   function getBlogPosts($category,$q="")
+           {
+           	$ret = [];
+           	$posts = null; 
+           	if($q == "") $posts = BlogPosts::where('category',$category)->orderBy('created_at', 'desc')->get(); 
+               else $posts = Deals::where('category',$category)->where('title','ilike','%'.$q.'%')->orderBy('created_at', 'desc')->get(); 
+			                    
+               
+                if($posts !== null) 
+                {
+                   foreach($posts as $p)
+                   {
+                   	  if($p->status =="active")
+                       {
+                   	      $temp = [];
+                      	  $temp['id'] = $p->id; 
+                          $user = User::where('id',$p->user_id)->first();
+                      	  $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
+                          $temp['title'] = $p->title; 
+                          $temp['content'] = $p->content; 
+                          $temp['likes'] = $p->likes; 
+                          $temp['date'] = $p->created_at->format("jS F, Y h:i A"); 
+                          array_push($ret, $temp); 
+                       }
+                   }
+                }       
+                return $ret;
+           }
+		   
+		   function getBlogPost($id)
+           {
+           	$ret = [];
+           	$p = BlogPosts::where('category',$category)->orderBy('created_at', 'desc')->get(); 
+               
+                if($p !== null) 
+                {
+                   	  if($p->status =="active")
+                       {
+                   	      $temp = [];
+                      	  $temp['id'] = $p->id; 
+                          $user = User::where('id',$p->user_id)->first();
+                      	  $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
+                          $temp['title'] = $p->title; 
+                          $temp['content'] = $p->content; 
+                          $temp['likes'] = $p->likes; 
+                          $temp['date'] = $p->created_at->format("jS F, Y h:i A"); 
+                          $ret = $temp; 
+                       }
+                }       
+                return $ret;
            }	
 
            function getOrders($user)
@@ -2029,6 +2117,23 @@ function adminGetOrder($number)
                }                          
                                                       
                 return $ret;
-           }	
+           }
+
+           function approveDeal($data)
+           {
+           	$ret = "error";
+               $d = Deals::where('sku',$data['sku'])->first();            
+ 
+              if($d != null)
+               {
+               	$status = "pending";
+                   if($data['ax'] == "jl") $status = "approved";
+                   else if($data['ax'] == "lj") $status = "rejected";
+               	$d->update(['status' => $status]);
+                   $ret = 'ok'; 
+               }                          
+                                                      
+                return $ret;
+           }		   
 }
 ?>

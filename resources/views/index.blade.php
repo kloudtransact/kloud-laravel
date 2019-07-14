@@ -135,7 +135,7 @@
             </div>
         <!-- Product Catagories Area 1 End -->
        <br>
-       <div class="row wow tada">
+       <div class="row wow fadeInUp">
            <div class="col-12"><marquee><img src="img/8.jpg" class="img img-fluid"></marquee></div>
        </div>
        <br>
@@ -198,7 +198,7 @@
             </div>
         <!-- Product Catagories Area 2 End -->
 		<br>
-       <div class="row wow tada">
+       <div class="row wow fadeInUp">
            <div class="col-12"><marquee><img src="img/9.jpg" class="img img-fluid"></marquee></div>
        </div>
 	   <h2 class="category-header wow fadeInUp">Best Sellers</h2>
@@ -316,7 +316,7 @@
 <!-- End Blogs section -->
 		
 		<br>
-       <div class="row wow tada">
+       <div class="row wow fadeInUp">
            <div class="col-12"><marquee><img src="img/10.jpg" class="img img-fluid"></marquee></div>
        </div>
 	   <h2 class="category-header wow fadeInUp">Hot Categories</h2>
