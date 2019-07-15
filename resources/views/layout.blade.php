@@ -267,6 +267,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
     <!-- Active js -->
     <script src="js/active.js"></script>
 
+    <!-- Cloudinary js -->
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+    <script type="text/javascript">  
+var myWidget = cloudinary.createUploadWidget({
+  cloudName: 'kloudtransact', 
+  uploadPreset: 'gjbdj9bt'}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info); 
+    }
+  }
+)
+
+document.getElementById("blog-upload").addEventListener("click", function(){
+    myWidget.open();
+  }, false);
+</script>
+
     <script src="js/site.js" ></script>
 
     @yield("scripts")
