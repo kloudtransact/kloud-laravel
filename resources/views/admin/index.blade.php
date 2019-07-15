@@ -95,13 +95,13 @@ $totalUsers = $adminStats['totalUsers'];
                   <h2>Blog Posts</h2>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title"><a href="{{url('cobra-posts')}}">{{$totalPosts}} Posts</a></h4>
+                  <h4 class="card-title">{{$totalPosts}} Posts</h4>
                   <p class="card-category">
                     <span class="text-success"><i class="fa fa-long-arrow-up"></i> 35% </span> increase in post engagements.</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
+                    <i class="material-icons">access_time</i> <a href="{{url('cobra-posts')}}">View posts</a>
                   </div>
                 </div>
               </div>
