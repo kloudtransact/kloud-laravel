@@ -13,7 +13,7 @@ class BlogPosts extends Model
      * @var array
      */
     protected $fillable = [
-        'category', 'user_id', 'title', 'content', 'likes', 'status'
+        'category', 'user_id', 'flink', 'title', 'img', 'content', 'likes', 'status'
     ];
     
 }

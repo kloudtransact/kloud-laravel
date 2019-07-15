@@ -76,6 +76,9 @@ Route::get('add-auction', 'MainController@getAddAuction');
 Route::post('add-auction', 'MainController@postAddAuction');
 Route::get('end-auction', 'MainController@getEndAuction');
 
+Route::get('posts', 'MainController@getBlogPosts');
+Route::get('post', 'MainController@getBlogPost');
+
 Route::get('logout', 'LoginController@getLogout');
 
 /***** Admin routes *****/
@@ -94,6 +97,12 @@ Route::post('cobra-user', 'AdminController@postUser');
 
 Route::get('cobra-activate-user', 'AdminController@getActivateUser');
 Route::get('cobra-suspend-user', 'AdminController@getSuspendUser');
+
+Route::get('cobra-posts', 'AdminController@getBlogPosts');
+Route::get('cobra-post', 'AdminController@getBlogPost');
+Route::post('cobra-post', 'AdminController@postBlogPost');
+Route::get('cobra-add-post', 'AdminController@getAddBlogPost');
+Route::post('cobra-add-post', 'AdminController@postAddBlogPost');
 
 Route::get('cobra-deals', 'AdminController@getDeals');
 Route::get('cobra-deal', 'AdminController@getDeal');

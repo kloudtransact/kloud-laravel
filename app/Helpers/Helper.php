@@ -107,6 +107,8 @@ class Helper implements HelperContract
                      "cobra-forgot-password-status" => "A link to reset your password has been sent to your email.",
                      "reset-status" => "Password updated! You can now login.",
                      "add-deal-status" => "Deal added!",
+                     "add-post-status" => "New post added!",
+                     "update-post-status" => "Post updated!",
                      "add-coupon-status" => "Coupon added!",
                      "rate-deal-status" => "Thank you for your input!",
                      "comment-deal-status" => "Thank you, your comment has been sent. ",
@@ -119,6 +121,7 @@ class Helper implements HelperContract
                      ],
                      'errors'=> ["login-status-error" => "There was a problem signing in, please contact support.",
                      "cobra-user-status-error" => "There was an error updating info for this user. Please try again.",
+                     "cobra-post-status-error" => "There was an unknown error fetching that post.",
                      "cobra-deal-status-error" => "There was an error updating this deal. Please try again.",
                      "kloudpay-withdraw-status-error" => "Insufficient funds in KloudPay wallet",
                      "comment-deal-status-error" => "There was an error submitting your comment. Please try again. ",
@@ -400,7 +403,9 @@ $subject = $data['subject'];
            	$ret = BlogPosts::create(['category' => $data['category'],                                                                                                          
                                                       'type' => $data['type'], 
                                                       'user_id' => $data['user_id'], 
+                                                      'flink' => $data['flink'],
                                                       'title' => $data['title'],
+                                                      'img' => $data['img'],
                                                       'content' => $data['content'],
                                                       'likes' => $data['likes'],
                                                       'status' => $data['status'],
@@ -754,7 +759,9 @@ $subject = $data['subject'];
                         {
                         	$p->update(['category' => $data['category'],
                                               'type' => $data['type'], 
+                                                      'flink' => $data['flink'],
                                                       'title' => $data['title'],
+                                                      'img' => $data['img'],
                                                       'content' => $data['content'],
                                                       'status' => $data['status'],
                                            ]);
@@ -1524,6 +1531,7 @@ function adminGetOrder($number)
         function adminGetStats()
            {
            	$ret = ['totalUsers' => User::all()->count(),
+			             'totalPosts' => User::all()->count(),
                          'totalSales' => Orders::all()->sum('total'),
                          'totalDeals' => Deals::all()->count(),
                          'totalOrders' => Orders::all()->count(),
@@ -1624,8 +1632,15 @@ function adminGetOrder($number)
            {
            	$ret = [];
            	$posts = null; 
-           	if($q == "") $posts = BlogPosts::where('category',$category)->orderBy('created_at', 'desc')->get(); 
-               else $posts = Deals::where('category',$category)->where('title','ilike','%'.$q.'%')->orderBy('created_at', 'desc')->get(); 
+			if($category = "all"){
+				if($q == "") $posts = BlogPosts::orderBy('created_at', 'desc')->get(); 
+               else $posts = BlogPosts::where('title','ilike','%'.$q.'%')->orderBy('created_at', 'desc')->get(); 
+			}
+			else{
+				if($q == "") $posts = BlogPosts::where('category',$category)->orderBy('created_at', 'desc')->get(); 
+               else $posts = BlogPosts::where('category',$category)->where('title','ilike','%'.$q.'%')->orderBy('created_at', 'desc')->get(); 
+			}
+           	
 			                    
                
                 if($posts !== null) 
@@ -1638,9 +1653,12 @@ function adminGetOrder($number)
                       	  $temp['id'] = $p->id; 
                           $user = User::where('id',$p->user_id)->first();
                       	  $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
+                          $temp['flink'] = $p->flink; 
                           $temp['title'] = $p->title; 
+                          $temp['img'] = $p->img; 
                           $temp['content'] = $p->content; 
                           $temp['likes'] = $p->likes; 
+						   $temp['status'] = $p->status; 
                           $temp['date'] = $p->created_at->format("jS F, Y h:i A"); 
                           array_push($ret, $temp); 
                        }
@@ -1652,7 +1670,7 @@ function adminGetOrder($number)
 		   function getBlogPost($id)
            {
            	$ret = [];
-           	$p = BlogPosts::where('category',$category)->orderBy('created_at', 'desc')->get(); 
+           	$p = BlogPosts::where('flink',$id)->first(); 
                
                 if($p !== null) 
                 {
@@ -1662,9 +1680,12 @@ function adminGetOrder($number)
                       	  $temp['id'] = $p->id; 
                           $user = User::where('id',$p->user_id)->first();
                       	  $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
+                          $temp['flink'] = $p->flink; 
                           $temp['title'] = $p->title; 
+						  $temp['img'] = $p->img; 
                           $temp['content'] = $p->content; 
                           $temp['likes'] = $p->likes; 
+                          $temp['status'] = $p->status; 
                           $temp['date'] = $p->created_at->format("jS F, Y h:i A"); 
                           $ret = $temp; 
                        }

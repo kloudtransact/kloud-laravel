@@ -326,6 +326,191 @@ class AdminController extends Controller {
 			return redirect()->intended('cobra-deals');
          }        
     }
+	
+	   /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getAddBlogPost()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		#$deals = $this->helpers->adminGetDeals();
+    	return view('admin.add-post',compact(['user','c']));
+    }
+	
+	    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postAddBlogPost(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'category' => 'required',
+                             'content' => 'required',
+                             'flink' => 'required',
+                             'title' => 'required',
+                             'img' => 'required',
+                             'status' => 'required'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	$req["user_id"] = $user->id; 
+         	$req["likes"] = "0";  
+             $this->helpers->createBlogPost($req);
+	        session()->flash("add-post-status","ok");
+			return redirect()->intended('cobra-posts');
+         }        
+    }
+	
+	    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getBlogPosts()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$signals = $this->helpers->signals;
+		$posts = $this->helpers->getBlogPosts("all");
+    	return view('admin.posts',compact(['user','c','signals','posts']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getBlogPost(Request $request)
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$c = $this->helpers->categories;
+		$req = $request->all();
+           //dd($req);
+        $flink = (isset($req['u'])) ? $req['u'] : null; 
+        
+        if($flink == null) 
+        {
+        	session()->flash("cobra-post-status","error");
+            return redirect()->intended('cobra-posts');
+        }
+        else
+        {
+        	$post = $this->helpers->getBlogPost($flink);
+			
+			if($post == []){
+				session()->flash("cobra-post-status","error");
+                return redirect()->intended('cobra-posts');
+			}
+			else{
+    	      return view('admin.post',compact(['user','c','post']));
+			}
+        }
+		
+    }
+	
+		    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postBlogPost(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+            if(!$this->helpers->isAdmin($user)) return redirect()->intended('dashboard');		
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'xf' => 'required',
+                             'category' => 'required',
+                             'type' => 'required',
+                             'content' => 'required',
+                             'flink' => 'required',
+                             'title' => 'required',
+                             'status' => 'required'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	$req["id"] = $req["xf"]; 
+             $this->helpers->updateBlogPost($req);
+	        session()->flash("update-post-status","ok");
+			return redirect()->intended('cobra-posts');
+         }        
+    }
     
      /**
 	 * Show the application welcome screen to the user.

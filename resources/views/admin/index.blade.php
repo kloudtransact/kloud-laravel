@@ -6,6 +6,7 @@
 <?php
 $totalUsers = $adminStats['totalUsers'];
 		$totalSales= $adminStats['totalSales'];
+		$totalPosts = $adminStats['totalPosts'];
 		$totalWithdrawals = $adminStats['totalWithdrawals'];
 		$totalDeals = $adminStats['totalDeals'];
 		$totalUsersActive = $adminStats['totalUsersActive'];
@@ -91,12 +92,12 @@ $totalUsers = $adminStats['totalUsers'];
             <div class="col-md-4">
               <div class="card card-chart">
                 <div class="card-header card-header-success">
-                  <div class="ct-chart" id="dailySalesChart"></div>
+                  <h2>Blog Posts</h2>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">Weekly Sales</h4>
+                  <h4 class="card-title"><a href="{{url('cobra-posts')}}">{{$totalPosts}} Posts</a></h4>
                   <p class="card-category">
-                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 35% </span> increase in today sales.</p>
+                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 35% </span> increase in post engagements.</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
