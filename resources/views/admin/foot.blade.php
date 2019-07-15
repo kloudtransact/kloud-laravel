@@ -42,6 +42,23 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! 
   <script src="assets/demo/demo.js"></script> -->
   
+  <!-- Cloudinary js -->
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+    <script type="text/javascript">  
+var myWidget = cloudinary.createUploadWidget({
+  cloudName: 'kloudtransact', 
+  uploadPreset: 'gjbdj9bt'}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info); 
+    }
+  }
+)
+
+document.getElementById("blog-upload").addEventListener("click", function(){
+    myWidget.open();
+  }, false);
+</script>
+  
   <!-- Datatables JS -->
   <script src="lib/datatables/js/datatables.min.js"></script>
     <script src="lib/datatables/js/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>

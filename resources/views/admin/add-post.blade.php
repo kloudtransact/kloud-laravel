@@ -65,8 +65,8 @@
 					<div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Image URL e.g http://www.imagesite.com/image.png or images/image.png</label>
-                          <input type="text" class="form-control" name="img" placeholder="" required>
+                          <label class="bmd-label-floating">Upload Image</label>
+                          <button id="blog-upload" class="cloudinary-button">Upload</button>
                         </div>
                       </div>
                     </div> 
