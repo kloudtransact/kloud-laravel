@@ -19,14 +19,14 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Title</label>
-                          <input type="text" class="form-control" name="title" placeholder="Post title" required>
+                          <label class="bmd-label-floating">Post title</label>
+                          <input type="text" class="form-control" name="title" placeholder="" required>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Friendly URL</label>
-                          <input type="text" class="form-control" name="flink" placeholder="e.g my-post-title" required>
+                          <label class="bmd-label-floating">Friendly URL e.g my-post-title</label>
+                          <input type="text" class="form-control" name="flink" placeholder="" required>
                         </div>
                       </div>
                     </div>  
@@ -65,16 +65,16 @@
 					<div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Image URL</label>
-                          <input type="text" class="form-control" name="img" placeholder="e.g http://www.imagesite.com/image.png or images/image.png" required>
+                          <label class="bmd-label-floating">Image URL e.g http://www.imagesite.com/image.png or images/image.png</label>
+                          <input type="text" class="form-control" name="img" placeholder="" required>
                         </div>
                       </div>
                     </div> 
 					<div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Content</label>
-                          <textarea class="form-control" name="content" placeholder="Post content"></textarea>
+                          <label class="bmd-label-floating">Post content</label>
+                          <textarea class="form-control" name="content" placeholder=""></textarea>
                         </div>
                       </div>
                     </div>                       
