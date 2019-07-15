@@ -376,7 +376,6 @@ class AdminController extends Controller {
                              'content' => 'required',
                              'flink' => 'required',
                              'title' => 'required',
-                             'img' => 'required',
                              'status' => 'required'
          ]);
          
