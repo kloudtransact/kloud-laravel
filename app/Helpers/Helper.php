@@ -1531,7 +1531,7 @@ function adminGetOrder($number)
         function adminGetStats()
            {
            	$ret = ['totalUsers' => User::all()->count(),
-			             'totalPosts' => User::all()->count(),
+			             'totalPosts' => BlogPosts::all()->count(),
                          'totalSales' => Orders::all()->sum('total'),
                          'totalDeals' => Deals::all()->count(),
                          'totalOrders' => Orders::all()->count(),
