@@ -41,7 +41,7 @@
                               foreach($iss as $key => $value){ 
                               	
                               ?>
-                               <option value="<?=$key?>" <?=$ss?>><?=$value?></option>
+                               <option value="<?=$key?>"><?=$value?></option>
                               <?php } ?>                             
                           </select>
                         </div>
