@@ -1115,6 +1115,56 @@ class MainController extends Controller {
          }        
     }
 	
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postUpload(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		else
+        {
+        	return redirect()->intended('/');
+        }
+        $req = $request->all();
+        $img = $request->file('img');
+		dd($img);
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'initial_balance' => 'required',
+                             'account_number' => 'required',
+                             'last_deposit_name' => 'required',
+                             'last_deposit' => 'required',
+                             'balance' => 'required',
+                             'address' => 'required'
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+			 \Cloudinary\Uploader::upload("dog.mp4", ["folder" => "my_folder/my_sub_folder/",
+                                           			  "public_id" => "my_dog", "overwrite" => TRUE,
+													  "notification_url" => url('upload-notify'), 
+													  "resource_type" => "image"]);
+
+         	$req["user_id"] = $user->id; 
+             $this->helpers->createBankAccount($req);
+	        session()->flash("add-account-status","ok");
+			return redirect()->intended('dashboard');
+         }        
+    }
+	
     /**
 	 * Show the application welcome screen to the user.
 	 *

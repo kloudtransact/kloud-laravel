@@ -183,6 +183,7 @@ class LoginController extends Controller {
                              'phone' => 'required|numeric',
                              'fname' => 'required',
                              'lname' => 'required',
+                             'dcd' => 'required',
                              #'g-recaptcha-response' => 'required',
                            # 'terms' => 'accepted',
          ]);
@@ -199,6 +200,7 @@ class LoginController extends Controller {
          {
             $req['role'] = "user";    
             $req['status'] = "enabled";           
+            $req['verified'] =  ($req['dcd'] == "xaj") ? "user" : "vendor";           
             
                        #dd($req);            
 

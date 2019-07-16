@@ -96,6 +96,7 @@
                     <li><a href="{{url('orders')}}">Orders</a></li>
                     <li><a href="{{url('logout')}}">Log out</a></li>
                     @else
+                    <li><a href="{{url('merchants')}}">Merchants</a></li>
                     <li><a href="{{url('register')}}">Register</a></li>
                     <li><a href="{{url('login')}}">Log in</a></li>
                     @endif                  

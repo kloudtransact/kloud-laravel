@@ -231,7 +231,7 @@ $subject = $data['subject'];
                                                       'phone' => $data['phone'], 
                                                       'role' => $data['role'], 
                                                       'status' => $data['status'], 
-                                                      'verified' => 'no', 
+                                                      'verified' => $data['verified'], 
                                                       'password' => bcrypt($data['pass']), 
                                                       ]);
                                                       

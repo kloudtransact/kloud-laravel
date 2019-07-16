@@ -15,8 +15,9 @@
                         
                                    <form action="{{url('register')}}" method="post" class="text-white mb-50">
                                    	{!!csrf_field()!!}
+									<input type="hidden" name="dcd" value="xaj" required>
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-6 mb-3">                                       
                                         <input type="text" class="form-control" name="fname" value="" placeholder="First name" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
