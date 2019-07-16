@@ -45,6 +45,8 @@ Route::get('enterprise', 'MainController@getEnterprise');
 
 Route::get('login', 'LoginController@getLogin');
 Route::get('register', 'LoginController@getRegister');
+Route::get('mlogin', 'LoginController@getMerchantLogin');
+Route::get('mregister', 'LoginController@getMerchantRegister');
 Route::post('login', 'LoginController@postLogin');
 Route::post('register', 'LoginController@postRegister');
 Route::get('login', 'LoginController@getLogin');

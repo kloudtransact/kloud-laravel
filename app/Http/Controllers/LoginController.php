@@ -37,6 +37,23 @@ class LoginController extends Controller {
 		
     	return view('register',compact(['user']));
     }
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getMerchantRegister()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			return redirect()->intended('/');
+		}
+		
+    	return view('mregister',compact(['user']));
+    }
     
     /**
 	 * Show the application welcome screen to the user.
@@ -58,6 +75,26 @@ class LoginController extends Controller {
     	return view('login',compact(['user','return','signals']));
     }
 
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getMerchantLogin(Request $request)
+    {
+       $user = null;
+       $req = $request->all();
+       $return = isset($req['return']) ? $req['return'] : '/';
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			return redirect()->intended($return);
+		}
+		$signals = $this->helpers->signals;
+    	return view('mlogin',compact(['user','return','signals']));
+    }
+
 	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -70,7 +107,8 @@ class LoginController extends Controller {
         
         $validator = Validator::make($req, [
                              'pass' => 'required|min:6',
-                             'id' => 'required'
+                             'id' => 'required',
+							 'cdc' => 'required'
          ]);
          
          if($validator->fails())
@@ -91,6 +129,7 @@ class LoginController extends Controller {
             	//Login successful               
                $user = Auth::user();          
                 #dd($user); 
+				
                if($this->helpers->isAdmin($user)){return redirect()->intended('/');}
                else{return redirect()->intended($return);}
             }
