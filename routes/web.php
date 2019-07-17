@@ -42,6 +42,7 @@ Route::get('airtime', 'MainController@getAirtime');
 Route::get('hotels', 'MainController@getHotels');
 Route::get('travelstart', 'MainController@getTravelStart');
 Route::get('enterprise', 'MainController@getEnterprise');
+Route::get('merchants', 'MainController@getMerchants');
 
 Route::get('login', 'LoginController@getLogin');
 Route::get('register', 'LoginController@getRegister');
