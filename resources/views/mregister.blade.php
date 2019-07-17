@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="checkout_details_area mt-50 clearfix">
-                        	   <div class="card bg-dark text-white">
+                        	   <div class="card text-white">
                         	     <!--<img class="card-img" src="img/login.jpg" alt="KloudTransact - Create an account." style="height: 25% !important;">-->
                         	     <div class="card-img-overlayy">
                         	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Become a Merchant</h1>
@@ -39,7 +39,7 @@
                                         <input type="text" class="form-control" name="phone" value="{{$phone}}" placeholder="Phone number" required>
                                     </div>
 									<div class="col-md-12 mb-3">
-                                        <textarea class="form-control" name="description" value="" placeholder="Enter store description" required>
+                                        <textarea class="form-control" name="description" value="" placeholder="Enter store description" required></textarea>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <p class="form-control-plaintext mb-1">Friendly store URL. e.g for Tasha's Wears: tasha-wears</p><br>
