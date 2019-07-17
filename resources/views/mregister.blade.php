@@ -48,7 +48,7 @@
                                     </div>
 									<div class="col-md-6 mb-3">
                                         <p class="form-control-plaintext mb-1">Choose your store image/logo</p><br>
-                                       <button id="blog-upload" class="cloudinary-button">Upload</button>
+                                       <button id="store-upload" class="cloudinary-button">Upload</button>
                                     </div>
                                     @if($user != null && $user->verified !== "vendor")									
                                     <div class="col-md-6 mb-3">
