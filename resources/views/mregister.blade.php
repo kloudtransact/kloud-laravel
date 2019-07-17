@@ -5,11 +5,12 @@
 @section('content')
 <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 col-lg-8">
+                    <div class="col-12 col-lg-12">
                         <div class="checkout_details_area mt-50 clearfix">
                         	   <div class="card text-white">
                         	     <!--<img class="card-img" src="img/login.jpg" alt="KloudTransact - Create an account." style="height: 25% !important;">-->
-                        	     <div class="card-img-overlayy">
+                        	     <div class="card-img-overlayy ml-5">
+                        	     <div class="card-img-overlayy ml-5">
                         	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Become a Merchant</h1>
                         	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Creating your own store is super easy! Just fill in the details below and we are good to go</h3>
                         
