@@ -49,7 +49,7 @@ class LoginController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			return redirect()->intended('/');
+			if($user->verified == "vendor") return redirect()->intended('/');
 		}
 		
     	return view('mregister',compact(['user']));
