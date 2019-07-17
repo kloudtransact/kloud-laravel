@@ -241,7 +241,7 @@ class LoginController extends Controller {
          {
             $req['role'] = "user";    
             $req['status'] = "enabled";           
-            $req['verified'] =  ($req['dcd'] == "xaj") ? "user" : "vendor";           
+            $req['verified'] = "user";           
             
                        #dd($req);            
 
@@ -275,7 +275,6 @@ class LoginController extends Controller {
                              'lname' => 'required',
                              'flink' => 'required',
                              'description' => 'required',
-                             'flink' => 'required',
                              #'g-recaptcha-response' => 'required',
                            # 'terms' => 'accepted',
          ]);
@@ -292,24 +291,34 @@ class LoginController extends Controller {
          {
             $req['role'] = "user";    
             $req['status'] = "enabled";           
-            $req['verified'] =  ($req['dcd'] == "xaj") ? "user" : "vendor";           
+            $req['verified'] = "vendor";           
             
                        #dd($req);            
-
-            $user =  $this->helpers->createUser($req); 
-			$req['user_id'] = $user->id;
-            $shippingDetails =  $this->helpers->createShippingDetails($req); 
-            $wallet =  $this->helpers->createWallet($req); 
-            $bank =  $this->helpers->createBankAccount(['user_id' => $user->id,
+            $user = User::where('phone',$req['phone'])->first();
+            
+                //if user doesn't exist, create user first
+                if(is_null($user))
+                {
+                        $user =  $this->helpers->createUser($req); 
+                        $req['user_id'] = $user->id;
+                        $shippingDetails =  $this->helpers->createShippingDetails($req); 
+                       $wallet =  $this->helpers->createWallet($req); 
+                       $bank =  $this->helpers->createBankAccount(['user_id' => $user->id,
                                                        'bank' => '',
                                                       'acname' => '',                                                     
                                                       'acnum' => ''
                                                     ]); 
+                }
+            
+			    //create store
+			
+			   /** YOU ARE HERE **/
                                                     
-             //after creating the user, send back to the registration view with a success message
+             //after creating the store, send to the store view with a success message
              #$this->helpers->sendEmail($user->email,'Welcome To Disenado!',['name' => $user->fname, 'id' => $user->id],'emails.welcome','view');
-             session()->flash("signup-status", "success");
-             return redirect()->intended('/');
+             session()->flash("vendor-signup-status", "success");
+             $flink = "stores/"$req['flink'];
+             return redirect()->intended($flink);
           }
     }
 	
