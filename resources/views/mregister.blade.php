@@ -11,7 +11,6 @@
                         	   <div class="card text-white">
                         	     <!--<img class="card-img" src="img/login.jpg" alt="KloudTransact - Create an account." style="height: 25% !important;">-->
                         	     <div class="card-img-overlayy ml-5">
-                        	     <div class="card-img-overlayy ml-5">
                         	       <h2 class="card-title" style="color: #fbb710 !important; padding: 5px;">Become a Merchant</h2>
                         	       <h4 class="card-text" style="padding: 5px;">Creating your own store is super easy! Just fill in the details below and we are good to go.</h4>
                         
