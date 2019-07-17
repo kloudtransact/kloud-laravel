@@ -87,20 +87,20 @@
                     <li><a href="{{url('top-deals')}}">Top Deals</a></li>
                     <li><a href="{{url('auction')}}">Kloud Auctions</a></li>
                     <li><a href="{{url('bundle')}}">Bundle Products</a></li>
-                     <li><a href="{{url('kloudpay')}}">KloudPay</a></li>
-                     <li><a href="{{url('enterprise')}}">Enterprise</a></li>
+                    <li><a href="{{url('kloudpay')}}">KloudPay</a></li>
+                    <li><a href="{{url('enterprise')}}">Enterprise</a></li>
+                    <li><a href="{{url('merchants')}}">Merchants</a></li>					 
                     @if($user != null) 
 					@if($user->verified == "user")
                     <li><a href="{{url('dashboard')}}">Dashboard</a></li>
+                    <li><a href="{{url('my-deals')}}">My Deals</a></li>				
 				    @elseif($user->verified == "vendor")
                     <li><a href="{{url('store')}}">My Store</a></li>
 					@endif
-                    <li><a href="{{url('my-deals')}}">My Deals</a></li>
                     <li><a href="{{url('transactions')}}">Transactions</a></li>
                     <li><a href="{{url('orders')}}">Orders</a></li>
                     <li><a href="{{url('logout')}}">Log out</a></li>
                     @else
-                    <li><a href="{{url('merchants')}}">Merchants</a></li>
                     <li><a href="{{url('register')}}">Register</a></li>
                     <li><a href="{{url('login')}}">Log in</a></li>
                     @endif                  
