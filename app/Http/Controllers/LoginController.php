@@ -89,7 +89,7 @@ class LoginController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			return redirect()->intended($return);
+			//return redirect()->intended($return);
 		}
 		$signals = $this->helpers->signals;
     	return view('mlogin',compact(['user','return','signals']));
@@ -142,52 +142,7 @@ class LoginController extends Controller {
          }        
     }
 
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-    public function postMerchantLogin(Request $request)
-    {
-        $req = $request->all();
-        //dd($req);
-        
-        $validator = Validator::make($req, [
-                             'pass' => 'required|min:6',
-                             'id' => 'required',
-							 'cdc' => 'required'
-         ]);
-         
-         if($validator->fails())
-         {
-             $messages = $validator->messages();
-             return redirect()->back()->withInput()->with('errors',$messages);
-             //dd($messages);
-         }
-         
-         else
-         {
-         	$remember = true; 
-             $return = isset($req['return']) ? $req['return'] : '/';
-             
-         	//authenticate this login
-            if(Auth::attempt(['email' => $req['id'],'password' => $req['pass'],'status'=> "enabled"],$remember) || Auth::attempt(['phone' => $req['id'],'password' => $req['pass'],'status'=> "enabled"],$remember))
-            {
-            	//Login successful               
-               $user = Auth::user();          
-                #dd($user); 
-				
-               if($this->helpers->isAdmin($user)){return redirect()->intended('/');}
-               else{return redirect()->intended($return);}
-            }
-			
-			else
-			{
-				session()->flash("login-status","error");
-				return redirect()->intended('login');
-			}
-         }        
-    }
+
     
         /**
 	 * Show the application welcome screen to the user.
@@ -318,7 +273,9 @@ class LoginController extends Controller {
                              'phone' => 'required|numeric',
                              'fname' => 'required',
                              'lname' => 'required',
-                             'dcd' => 'required',
+                             'flink' => 'required',
+                             'description' => 'required',
+                             'flink' => 'required',
                              #'g-recaptcha-response' => 'required',
                            # 'terms' => 'accepted',
          ]);

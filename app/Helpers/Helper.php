@@ -423,6 +423,15 @@ $subject = $data['subject'];
                                                       
                 return $ret;
            }  
+		   function createStore($data)
+           {
+           	$ret = Stores::create(['code' => $data['code'],                                                                                                          
+                                                      'discount' => $data['discount'], 
+                                                      'status' => "pending"
+                                                      ]);
+                                                      
+                return $ret;
+           }  
            
            function addSettings($data)
            {

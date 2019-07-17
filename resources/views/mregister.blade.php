@@ -11,36 +11,52 @@
                         	     <!--<img class="card-img" src="img/login.jpg" alt="KloudTransact - Create an account." style="height: 25% !important;">-->
                         	     <div class="card-img-overlayy">
                         	       <h1 class="card-title" style="color: #fbb710 !important; padding: 5px;">Become a Merchant</h1>
-                        	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Create your own store and import your products easily!</h3>
+                        	       <h3 class="card-text" style="color: #fbb710 !important; padding: 5px;">Creating your own store is super easy! Just fill in the details below and we are good to go</h3>
                         
-                                   <form action="{{url('register')}}" method="post" class="text-white mb-50">
+                                   <form action="{{url('mregister')}}" method="post" class="text-white mb-50">
                                    	{!!csrf_field()!!}
 									<input type="hidden" name="dcd" value="jax" required>
                                 <div class="row">
+								<?php
+								 $fname = ""; $lname = ""; $email = "";
+								 $phone = "";
+								 
+								 if(isset($user) && $user !== null){
+									 $fname = $user->fname; $lname = $user->lname; $email = $user->email;
+								     $phone = $user->phone;
+								 }
+								?>
                                     <div class="col-md-6 mb-3">                                       
-                                        <input type="text" class="form-control" name="fname" value="" placeholder="First name" required>
+                                        <input type="text" class="form-control" name="fname" value="{{$fname}}" placeholder="First name" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" name="lname" value="" placeholder="Last name" required>
+                                        <input type="text" class="form-control" name="lname" value="{{$lname}}" placeholder="Last name" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input type="email" class="form-control" name="email" value="" placeholder="Valid email address" required>
+                                        <input type="email" class="form-control" name="email" value="{{$email}}" placeholder="Valid email address" required>
                                     </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" class="form-control" name="phone" value="{{$phone}}" placeholder="Phone number" required>
+                                    </div>
+									<div class="col-md-12 mb-3">
+                                        <textarea class="form-control" name="description" value="" placeholder="Enter store description" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <p class="form-control-plaintext mb-1">Friendly store URL. e.g for Tasha's Wears: tasha-wears</p><br>
+                                        <input type="text" class="form-control" name="flink" value="" placeholder="Friendly URL" required>
+                                    </div>
+									<div class="col-md-6 mb-3">
+                                        <p class="form-control-plaintext mb-1">Choose your store image/logo</p><br>
+                                       <button id="blog-upload" class="cloudinary-button">Upload</button>
+                                    </div>
+                                    @if($user != null && $user->verified !== "vendor")									
                                     <div class="col-md-6 mb-3">
                                         <input type="password" class="form-control" name="pass" value="" placeholder="Password" required>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <input type="password" class="form-control" name="pass_confirmation" value="" placeholder="Confirm password" required>
+									<div class="col-md-6 mb-3">
+                                        <input type="password" class="form-control" name="pass" value="" placeholder="Password" required>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" name="phone" value="" placeholder="Phone number" required>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <div class="custom-control custom-checkbox d-block mb-2">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck2" name="remember">
-                                            <label class="custom-control-label text-white" for="customCheck2">Send me useful bidding tips and other promotional offers</label>
-                                        </div>                                   
-                                    </div>
+									@endif									
                                     
                                     <div class="col-12">
                                         <button type="submit" class="amado-btn">Submit</button>                                                                           

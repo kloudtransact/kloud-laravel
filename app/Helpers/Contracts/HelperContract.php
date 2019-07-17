@@ -21,6 +21,7 @@ Interface HelperContract
         public function createComment($data);
         public function createBlogPost($data);
         public function createCoupon($data);
+        public function createStore($data);
         public function addSettings($data);
         public function createWithdrawal($data);
         public function generateSKU();

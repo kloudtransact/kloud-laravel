@@ -291,6 +291,11 @@ document.getElementById("blog-upload").addEventListener("click", function(){
 	createUploadWidget("kloudtran");
     myWidget.open();
   }, false);
+  
+  document.getElementById("store-upload").addEventListener("click", function(){
+	createUploadWidget("my_store_1");
+    myWidget.open();
+  }, false);
 </script>
 
     <script src="js/site.js" ></script>
