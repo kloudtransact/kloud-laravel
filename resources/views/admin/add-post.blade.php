@@ -3,6 +3,7 @@
 @section('title',"Add Post")
 
 @section('content')
+<script> let cbd = "blog";</script>
   <div class="content">
         <div class="container-fluid">
           <div class="row">
