@@ -296,8 +296,8 @@ document.getElementById("blog-upload").addEventListener("click", function(){
 
 if(cdb == "store"){
   document.getElementById("store-upload").addEventListener("click", function(){
-	createUploadWidget("my_store_1");
-    myWidget.open();
+	let storeWidget = createUploadWidget("my_store_1");
+    storeWidget.open();
   }, false);
 }
 </script>
