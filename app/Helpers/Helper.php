@@ -27,6 +27,7 @@ use App\OrderDetails;
 use App\Settings;
 use App\Withdrawals;
 use App\BlogPosts;
+use App\Stores;
 
 class Helper implements HelperContract
 {
