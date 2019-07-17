@@ -289,8 +289,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
 
 if(cdb == "blog"){
 document.getElementById("blog-upload").addEventListener("click", function(){
-	createUploadWidget("kloudtran");
-    myWidget.open();
+	let blogWidget = createUploadWidget("kloudtran");
+    blogWidget.open();
   }, false);
 }
 
