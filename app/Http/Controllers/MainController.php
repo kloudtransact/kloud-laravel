@@ -955,6 +955,25 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
+	public function getMerchants()
+    {
+		       $user = null;
+		
+		$cart = [];
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
+		}
+        return view('merchants',compact(['user','cart']));
+    }
+    
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
 	public function getMyDeals()
     {
        $user = null;
