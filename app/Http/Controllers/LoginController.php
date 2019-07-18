@@ -314,7 +314,7 @@ class LoginController extends Controller {
 			    //create store
 				$req['user_id'] = $user->id;
 				$req['img'] = $req["ird"];
-			    $this->createStore($req);
+			    $this->helpers->createStore($req);
 							  
              //after creating the store, send to the store view with a success message
              #$this->helpers->sendEmail($user->email,'Welcome To Disenado!',['name' => $user->fname, 'id' => $user->id],'emails.welcome','view');
