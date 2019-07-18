@@ -137,7 +137,11 @@
     <?php
 	  $mc = (isset($mainClass) && $mainClass != null) ? $mainClass : "products-catagories-area clearfix"; 
 	?>
-	<script>console.log("{{$mc}}")</script>
+	<script>
+	console.log("{{$mc}}");
+	let loadingg = document.getElementById("cloudinary-loading");
+		loadingg.style.display == "none";
+	</script>
 	    @yield("ShopSideBar")
     <div class='{{$mc}}'>
         <!--------- Cookie consent-------------->
@@ -276,27 +280,46 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
     <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
     <script type="text/javascript">  
     function createUploadWidget(dt){
+		loadingg.style.display == "inline";
+		loadingg.innerHTML == "Please wait..";
+		
     var myWidget = cloudinary.createUploadWidget({
         cloudName: 'kloudtransact', 
        uploadPreset: 'gjbdj9bt',
        publicId: dt}, (error, result) => { 
     if (!error && result && result.event === "success") { 
       console.log('Done! Here is the image info: ', result.info); 
+	 loadingg.innerHTML == "<span style='color: green;'>Image(s) uploaded.</span>";
     }
   });
   return myWidget; 
 }
 
+function getRandInt(a,b){
+	let min = Math.ceil(a);
+	let max = Math.floor(b);
+	return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function getIRD(sird){
+	let nd = new Date();
+	return sird + "_" + nd.getHours() + "_" + nd.getDay() + "_" + getRandInt(1,8253272) + "_kampl.jpg";
+}
+
 if(cdb == "blog"){
 document.getElementById("blog-upload").addEventListener("click", function(){
-	let blogWidget = createUploadWidget("kloudtran");
+	let bdd = getIRD("kloudblog");
+	let blogWidget = createUploadWidget(bdd);
+	document.getElementById("ird").value = bdd;
     blogWidget.open();
   }, false);
 }
 
 if(cdb == "store"){
   document.getElementById("store-upload").addEventListener("click", function(){
-	let storeWidget = createUploadWidget("my_store_1");
+	let sdd = getIRD("my_store");
+	let storeWidget = createUploadWidget(sdd);
+	document.getElementById("ird").value = sdd;
     storeWidget.open();
   }, false);
 }

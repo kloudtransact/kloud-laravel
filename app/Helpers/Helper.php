@@ -426,8 +426,10 @@ $subject = $data['subject'];
            }  
 		   function createStore($data)
            {
-           	$ret = Stores::create(['code' => $data['code'],                                                                                                          
-                                                      'discount' => $data['discount'], 
+           	$ret = Stores::create(['user_id' => $data['user_id'],                                                                                                          
+                                                      'flink' => $data['flink'], 
+                                                      'name' => $data['name'], 
+                                                      'img' => $data['img'], 
                                                       'status' => "pending"
                                                       ]);
                                                       

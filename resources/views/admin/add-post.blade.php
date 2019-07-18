@@ -16,7 +16,7 @@
                 <div class="card-body">
                   <form method="post" action="{{url('cobra-add-post')}}">
                   	{!! csrf_field() !!}
-					
+					<input type="hidden" name="ird" id="ird" value="" required>
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
