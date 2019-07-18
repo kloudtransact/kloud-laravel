@@ -317,7 +317,7 @@ class LoginController extends Controller {
              //after creating the store, send to the store view with a success message
              #$this->helpers->sendEmail($user->email,'Welcome To Disenado!',['name' => $user->fname, 'id' => $user->id],'emails.welcome','view');
              session()->flash("vendor-signup-status", "success");
-             $flink = "stores/"$req['flink'];
+             $flink = "stores/".$req['flink'];
              return redirect()->intended($flink);
           }
     }
