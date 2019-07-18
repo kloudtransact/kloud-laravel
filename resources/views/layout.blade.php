@@ -139,8 +139,6 @@
 	?>
 	<script>
 	console.log("{{$mc}}");
-	let loadingg = document.getElementById("cloudinary-loading");
-		loadingg.style.display == "none";
 	</script>
 	    @yield("ShopSideBar")
     <div class='{{$mc}}'>
@@ -279,6 +277,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
     <!-- Cloudinary js -->
     <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
     <script type="text/javascript">  
+		let loadingg = document.getElementById("cloudinary-loading");
+		loadingg.style.display == "none";
     function createUploadWidget(dt){
 		loadingg.style.display == "inline";
 		loadingg.innerHTML == "Please wait..";
