@@ -428,7 +428,7 @@ $subject = $data['subject'];
            {
            	$ret = Stores::create(['user_id' => $data['user_id'],                                                                                                          
                                                       'flink' => $data['flink'], 
-                                                      'name' => $data['name'], 
+                                                      'name' => $data['sname'], 
                                                       'img' => $data['img'], 
                                                       'status' => "pending"
                                                       ]);

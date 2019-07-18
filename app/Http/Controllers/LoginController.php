@@ -314,6 +314,7 @@ class LoginController extends Controller {
 			    //create store
 				$req['user_id'] = $user->id;
 				$req['img'] = $req["ird"];
+				$req['sname'] = $req["fname"]."'s Store";
 			    $this->helpers->createStore($req);
 							  
              //after creating the store, send to the store view with a success message
