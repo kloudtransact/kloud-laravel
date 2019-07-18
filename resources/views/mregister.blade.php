@@ -54,12 +54,12 @@ let cdb = "store";
                                        <button id="store-upload" class="cloudinary-button">Upload</button>
 									   <p id="cloudinary-loading" class="form-control-plaintext mb-1"></p><br>
                                     </div>
-                                    @if($user != null)									
+                                    @if($user == null)									
                                     <div class="col-md-6 mb-3 wow fadeInUp">
                                         <input type="password" class="form-control" name="pass" value="" placeholder="Password" required>
                                     </div>
 									<div class="col-md-6 mb-3 wow fadeInUp">
-                                        <input type="password" class="form-control" name="pass" value="" placeholder="Password" required>
+                                        <input type="password" class="form-control" name="pass_confirmation" value="" placeholder="Password" required>
                                     </div>
 									@endif									
                                     
