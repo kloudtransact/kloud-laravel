@@ -316,7 +316,8 @@ document.getElementById("blog-upload").addEventListener("click", function(){
 }
 
 if(cdb == "store"){
-  document.getElementById("store-upload").addEventListener("click", function(){
+  document.getElementById("store-upload").addEventListener("click", function(e){
+	 e.preventDefault();
 	let sdd = getIRD("my_store");
 	let storeWidget = createUploadWidget(sdd);
 	document.getElementById("ird").value = sdd;
