@@ -514,8 +514,8 @@ $subject = $data['subject'];
                    	$temp['name'] = $d->name; 
                    	$temp['sku'] = $d->sku; 
                        $u = User::where('id',$d->user_id)->first();
-                   	$temp['seller'] = ($u != null) ? $u->fname." ".$u->lname : "Uknown"; 
-                       $temp['seller-verified'] = ($u != null) ? $u->verified : "Uknown"; 
+                   	$temp['seller'] = ($u != null) ? $u->fname." ".$u->lname : "Unknown"; 
+                       $temp['seller-verified'] = ($u != null) ? $u->verified : "Unknown"; 
                    	$temp['type'] = $d->type; 
                    	$temp['category'] = $d->category; 
                    	$temp['status'] = $d->status; 
@@ -557,8 +557,8 @@ $subject = $data['subject'];
                    	$temp['name'] = $d->name; 
                    	$temp['sku'] = $d->sku; 
                        $u = User::where('id',$d->user_id)->first();
-                   	$temp['seller'] = ($u != null) ? $u->fname." ".$u->lname : "Uknown"; 
-                       $temp['seller-verified'] = ($u != null) ? $u->verified : "Uknown"; 
+                   	$temp['seller'] = ($u != null) ? $u->fname." ".$u->lname : "Unknown"; 
+                       $temp['seller-verified'] = ($u != null) ? $u->verified : "Unknown"; 
                    	$temp['type'] = $d->type; 
                    	$temp['category'] = $d->category; 
                    	$temp['status'] = $d->status; 
@@ -722,8 +722,8 @@ $subject = $data['subject'];
                	$ret['name'] = $d->name; 
                	$ret['sku'] = $d->sku; 
                    $u = User::where('id',$d->user_id)->first();
-                   	$ret['seller'] = ($u != null) ? $u->fname." ".$u->lname : "Uknown"; 
-                       $ret['seller-verified'] = ($u != null) ? $u->verified : "Uknown"; 
+                   	$ret['seller'] = ($u != null) ? $u->fname." ".$u->lname : "Unknown"; 
+                       $ret['seller-verified'] = ($u != null) ? $u->verified : "Unknown"; 
                	$ret['type'] = $d->type; 
                	$ret['category'] = $d->category; 
                	$ret['status'] = $d->status; 
@@ -1307,7 +1307,7 @@ $subject = $data['subject'];
                    	$temp['id'] = $o->id; 
                    	$temp['number'] = $o->number; 
                        $u = User::where('id',$o->user_id)->first();
-                   	$temp['email'] = ($u != null) ? $u->email : "Uknown"; 
+                   	$temp['email'] = ($u != null) ? $u->email : "Unknown"; 
                    	$temp['total'] = $o->total; 
                    	$temp['status'] = $o->status; 
                    	$temp['date'] = $o->created_at->format("jS F, Y"); 
@@ -1329,7 +1329,7 @@ function adminGetOrder($number)
                    	$temp['id'] = $order->id; 
                    	$temp['number'] = $order->number; 
                        $u = User::where('id',$order->user_id)->first();
-                   	$temp['email'] = ($u != null) ? $u->email : "Uknown"; 
+                   	$temp['email'] = ($u != null) ? $u->email : "Unknown"; 
                    	$temp['total'] = $order->total; 
                    	$temp['status'] = $order->status; 
 					$temp['date'] = $order->created_at->format("jS F, Y"); 
@@ -2167,6 +2167,7 @@ function adminGetOrder($number)
                }                          
                                                       
                 return $ret;
-           }		   
+           }	
+		   
 }
 ?>

@@ -281,7 +281,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
 		loadingg.style.display == "none";
     function createUploadWidget(dt){
 		loadingg.style.display == "inline";
-		loadingg.innerHTML == "Please wait..";
+		loadingg.innerHTML = "Please wait..";
 		
     var myWidget = cloudinary.createUploadWidget({
         cloudName: 'kloudtransact', 
@@ -289,7 +289,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a hr
        publicId: dt}, (error, result) => { 
     if (!error && result && result.event === "success") { 
       console.log('Done! Here is the image info: ', result.info); 
-	 loadingg.innerHTML == "<span style='color: green;'>Image(s) uploaded.</span>";
+	 loadingg.innerHTML = "<span style='color: green;'>Image(s) uploaded.</span>";
     }
   });
   return myWidget; 
@@ -303,7 +303,7 @@ function getRandInt(a,b){
 
 function getIRD(sird){
 	let nd = new Date();
-	return sird + "_" + nd.getHours() + "_" + nd.getDay() + "_" + getRandInt(1,8253272) + "_kampl.jpg";
+	return sird + "_" + nd.getHours() + "_" + nd.getDay() + "_" + getRandInt(1,8253272) + "_kampl";
 }
 
 if(cdb == "blog"){

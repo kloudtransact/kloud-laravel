@@ -1089,6 +1089,33 @@ class MainController extends Controller {
 		
         return view('transactions',compact(['user','cart','transactions']));
     }
+	
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getStore()
+    {
+		       $user = null;
+		       $deals = [];
+		       $cart = [];
+			   
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$deals = $this->helpers->getUserDeals($user);
+			$cart = $this->helpers->getCart($user);
+			$signals = $this->helpers->signals;
+		}
+		else
+        {
+        	return redirect()->intended('login?return=orders');
+        }
+		dd($deals);
+		
+        return view('store',compact(['user','cart','deals','signals']));
+    }
     
     
     /**

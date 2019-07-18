@@ -82,6 +82,9 @@ Route::get('end-auction', 'MainController@getEndAuction');
 Route::get('posts', 'MainController@getBlogPosts');
 Route::get('post', 'MainController@getBlogPost');
 
+Route::get('store', 'MainController@getStore');
+#Route::get('post', 'MainController@getBlogPost');
+
 Route::get('logout', 'LoginController@getLogout');
 
 /***** Admin routes *****/
