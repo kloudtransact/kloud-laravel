@@ -119,6 +119,7 @@ class Helper implements HelperContract
                      "cobra-approve-withdrawal-status" => "Withdrawal request approved. Go to PayStack Dashboard to make the transfer",
                      "cobra-auction-status" => "New auction created!",
                      "cobra-end-auction-status" => "Auction ended! Deal has been added to the highest bidder's cart",
+                     "vendor-signup-status" => "Your store has been created! Import your products and start selling :)",
                      ],
                      'errors'=> ["login-status-error" => "There was a problem signing in, please contact support.",
                      "cobra-user-status-error" => "There was an error updating info for this user. Please try again.",

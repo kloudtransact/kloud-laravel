@@ -1095,7 +1095,7 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getStore()
+	public function getStore($flink)
     {
 		       $user = null;
 		       $deals = [];
