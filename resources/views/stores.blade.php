@@ -44,7 +44,7 @@
                                 <!-- Ratings & Cart -->
                                 <div class="ratings-cart text-right">
                                     <div class="ratings">
-                                    	@for($s = 0; $s < $d['rating']; $s++)
+                                    	@for($s = 0; $s < $s['rating']; $s++)
                                           <i class="fa fa-star" aria-hidden="true"></i>
                                         @endfor
                                     </div>
