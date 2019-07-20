@@ -87,6 +87,7 @@
                     <li><a href="{{url('top-deals')}}">Top Deals</a></li>
                     <li><a href="{{url('auction')}}">Kloud Auctions</a></li>
                     <li><a href="{{url('bundle')}}">Bundle Products</a></li>
+                    <li><a href="{{url('stores')}}">Merchants</a></li>
                     <li><a href="{{url('kloudpay')}}">KloudPay</a></li>
                     <li><a href="{{url('enterprise')}}">Enterprise</a></li>
                     <li><a href="{{url('merchants')}}">Merchants</a></li>					 
