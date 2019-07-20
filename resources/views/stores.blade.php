@@ -58,7 +58,7 @@
                                              $uvfa = "fa-user-plus text-success";
                                           }
                                         ?>
-                                        <a href="#" data-toggle="tooltip" data-placement="left" title="{{$uv}}"><i class="fa {{$uvfa}}" aria-hidden="true"></i></a>
+                                        <a href="#" data-toggle="tooltip" data-placement="left" title="{{$uv}}"><i class="fa fa-2x {{$uvfa}}" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                   @endif
                 </div>
 
-                @if(count($stores) > 0)
+                @if(count($stores) > 10)
                 <div class="row">
                     <div class="col-12">
                         <!-- Pagination -->
