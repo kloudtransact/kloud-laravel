@@ -1131,7 +1131,7 @@ class MainController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			$deals = $this->helpers->getUserDeals($user);
+			$store = $this->helpers->getUserStore($user);
 			$cart = $this->helpers->getCart($user);
 			$signals = $this->helpers->signals;
 		}
@@ -1139,7 +1139,7 @@ class MainController extends Controller {
         {
         	return redirect()->intended('login?return=store');
         }
-		dd($deals);
+		dd($store);
 		
         return view('store',compact(['user','cart','deals','signals']));
     }

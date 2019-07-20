@@ -2168,7 +2168,55 @@ function adminGetOrder($number)
                }                          
                                                       
                 return $ret;
-           }	
+           }
+
+            function getStore($flink)
+           {
+           	$ret = [];
+               $s = Stores::where('flink', $flink)->first();     
+ 
+              if($s != null)
+               {
+                   	$temp = [];
+                   	$temp['id'] = $s->id; 
+                       $user = User::where('id',$s->user_id)->first();
+                       $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
+                       $temp['name'] = $s->name;                        
+                       $temp['deals'] = ($user == null) ? [] : $this->getUserDeals($user);                        
+                       $temp['flink'] = $s->flink;                        
+                       $temp['img'] = $s->img;                        
+                       $temp['status'] = $s->status; 
+                       $temp['date'] = $w->created_at->format("jS F, Y"); 
+                       $temp['last_updated'] = $w->updated_at->format("jS F, Y h:i A"); 
+                       $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }
+
+		   function getStore($flink)
+           {
+           	$ret = [];
+               $s = Stores::where('flink', $flink)->first();     
+ 
+              if($s != null)
+               {
+                   	$temp = [];
+                   	$temp['id'] = $s->id; 
+                       $user = User::where('id',$s->user_id)->first();
+                       $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
+                       $temp['name'] = $s->name;     
+                       $temp['deals'] = ($user == null) ? [] : $this->getUserDeals($user);      					   
+                       $temp['flink'] = $s->flink;                        
+                       $temp['img'] = $s->img;                        
+                       $temp['status'] = $s->status; 
+                       $temp['date'] = $w->created_at->format("jS F, Y"); 
+                       $temp['last_updated'] = $w->updated_at->format("jS F, Y h:i A"); 
+                       $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }		   
 		   
 }
 ?>

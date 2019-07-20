@@ -99,5 +99,7 @@ Interface HelperContract
         public function rateDeal($user, $data);
         public function commentDeal($user, $data);
 		public function approveDeal($data);
+		public function getStore($flink);
+		public function getUserStore($user);
 }
  ?>
