@@ -37,6 +37,23 @@ class LoginController extends Controller {
 		
     	return view('register',compact(['user']));
     }
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getMerchantRegister()
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			if($user->verified == "vendor") return redirect()->intended('/');
+		}
+		
+    	return view('mregister',compact(['user']));
+    }
     
     /**
 	 * Show the application welcome screen to the user.
@@ -56,6 +73,26 @@ class LoginController extends Controller {
 		}
 		$signals = $this->helpers->signals;
     	return view('login',compact(['user','return','signals']));
+    }
+
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getMerchantLogin(Request $request)
+    {
+       $user = null;
+       $req = $request->all();
+       $return = isset($req['return']) ? $req['return'] : '/';
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			//return redirect()->intended($return);
+		}
+		$signals = $this->helpers->signals;
+    	return view('mlogin',compact(['user','return','signals']));
     }
 
 	/**
@@ -91,6 +128,7 @@ class LoginController extends Controller {
             	//Login successful               
                $user = Auth::user();          
                 #dd($user); 
+				
                if($this->helpers->isAdmin($user)){return redirect()->intended('/');}
                else{return redirect()->intended($return);}
             }
@@ -102,6 +140,8 @@ class LoginController extends Controller {
 			}
          }        
     }
+
+
     
         /**
 	 * Show the application welcome screen to the user.
@@ -183,6 +223,7 @@ class LoginController extends Controller {
                              'phone' => 'required|numeric',
                              'fname' => 'required',
                              'lname' => 'required',
+                             'dcd' => 'required',
                              #'g-recaptcha-response' => 'required',
                            # 'terms' => 'accepted',
          ]);
@@ -199,6 +240,7 @@ class LoginController extends Controller {
          {
             $req['role'] = "user";    
             $req['status'] = "enabled";           
+            $req['verified'] = "user";           
             
                        #dd($req);            
 
@@ -216,6 +258,69 @@ class LoginController extends Controller {
              #$this->helpers->sendEmail($user->email,'Welcome To Disenado!',['name' => $user->fname, 'id' => $user->id],'emails.welcome','view');
              session()->flash("signup-status", "success");
              return redirect()->intended('/');
+          }
+    }
+
+    public function postMerchantRegister(Request $request)
+    {
+        $req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'pass' => 'required|confirmed',
+                             'email' => 'required|email',                            
+                             'phone' => 'required|numeric',
+                             'fname' => 'required',
+                             'lname' => 'required',
+                             'flink' => 'required',
+                             'description' => 'required',
+                             'ird' => 'required',
+                             #'g-recaptcha-response' => 'required',
+                           # 'terms' => 'accepted',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             //dd($messages);
+             
+             return redirect()->back()->withInput()->with('errors',$messages);
+         }
+         
+         else
+         {
+            $req['role'] = "user";    
+            $req['status'] = "enabled";           
+            $req['verified'] = "vendor";           
+            
+                       #dd($req);            
+            $user = User::where('phone',$req['phone'])->first();
+            
+                //if user doesn't exist, create user first
+                if(is_null($user))
+                {
+                        $user =  $this->helpers->createUser($req); 
+                        $req['user_id'] = $user->id;
+                        $shippingDetails =  $this->helpers->createShippingDetails($req); 
+                       $wallet =  $this->helpers->createWallet($req); 
+                       $bank =  $this->helpers->createBankAccount(['user_id' => $user->id,
+                                                       'bank' => '',
+                                                      'acname' => '',                                                     
+                                                      'acnum' => ''
+                                                    ]); 
+                }
+            
+			    //create store
+				$req['user_id'] = $user->id;
+				$req['img'] = $req["ird"];
+				$req['sname'] = $req["fname"]."'s Store";
+			    $this->helpers->createStore($req);
+							  
+             //after creating the store, send to the store view with a success message
+             #$this->helpers->sendEmail($user->email,'Welcome To Disenado!',['name' => $user->fname, 'id' => $user->id],'emails.welcome','view');
+             session()->flash("vendor-signup-status", "success");
+             $flink = "stores/".$req['flink'];
+             return redirect()->intended($flink);
           }
     }
 	
