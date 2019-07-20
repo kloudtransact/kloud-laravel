@@ -1110,7 +1110,7 @@ class MainController extends Controller {
 		}
 		
 		$stores = $this->helpers->getStores();
-        dd($stores);
+        #dd($stores);
 		return view('stores',compact(['user','cart','stores','signals']));
     }
 
