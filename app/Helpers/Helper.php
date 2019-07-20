@@ -429,7 +429,8 @@ $subject = $data['subject'];
            {
            	$ret = Stores::create(['user_id' => $data['user_id'],                                                                                                          
                                                       'flink' => $data['flink'], 
-                                                      'name' => $data['sname'], 
+                                                      'name' => $data['sname'],
+                                                      'rating' => 0,
                                                       'img' => $data['img'], 
                                                       'status' => "pending"
                                                       ]);
@@ -2181,7 +2182,8 @@ function adminGetOrder($number)
                    	$temp['id'] = $s->id; 
                        $user = User::where('id',$s->user_id)->first();
                        $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
-                       $temp['name'] = $s->name;                        
+                       $temp['name'] = $s->name;
+                       $temp['rating'] = $s->rating;
                        $temp['deals'] = ($user == null) ? [] : $this->getUserDeals($user);                        
                        $temp['flink'] = $s->flink;                        
                        $temp['img'] = $s->img;                        
@@ -2205,7 +2207,8 @@ function adminGetOrder($number)
                    	$temp['id'] = $s->id; 
                        $user = User::where('id',$s->user_id)->first();
                        $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
-                       $temp['name'] = $s->name;     
+                       $temp['name'] = $s->name;  
+                       $temp['rating'] = $s->rating;
                        $temp['deals'] = ($user == null) ? [] : $this->getUserDeals($user);      					   
                        $temp['flink'] = $s->flink;                        
                        $temp['img'] = $s->img;                        
@@ -2232,6 +2235,7 @@ function adminGetOrder($number)
                        $user = User::where('id',$s->user_id)->first();
                        $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
                        $temp['name'] = $s->name;     
+                       $temp['rating'] = $s->rating;     
                        $temp['deals'] = ($user == null) ? [] : $this->getUserDeals($user);      					   
                        $temp['flink'] = $s->flink;                        
                        $temp['img'] = $s->img;                        
