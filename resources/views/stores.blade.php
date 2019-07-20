@@ -27,7 +27,7 @@
                             	<center>
                                 <img src="{{$img}}" alt="">
                                 <!-- Hover Thumb --
-                                <img src="{{$images[1]['url']}}" alt=""> -->
+                                <img src="" alt=""> -->
                                 </center>
                             </div>
 
