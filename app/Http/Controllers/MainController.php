@@ -1104,13 +1104,40 @@ class MainController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);
+			$signals = $this->helpers->signals;
+		}
+		else
+        {
+        	return redirect()->intended('login?return=store');
+        }
+		
+		$store = $this->helpers->getStore($flink);
+        dd($store);
+		return view('store',compact(['user','cart','store','signals']));
+    }
+
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getMyStore()
+    {
+		       $user = null;
+		       $deals = [];
+		       $cart = [];
+			   
+		if(Auth::check())
+		{
+			$user = Auth::user();
 			$deals = $this->helpers->getUserDeals($user);
 			$cart = $this->helpers->getCart($user);
 			$signals = $this->helpers->signals;
 		}
 		else
         {
-        	return redirect()->intended('login?return=orders');
+        	return redirect()->intended('login?return=store');
         }
 		dd($deals);
 		

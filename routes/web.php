@@ -82,6 +82,7 @@ Route::get('end-auction', 'MainController@getEndAuction');
 Route::get('posts', 'MainController@getBlogPosts');
 Route::get('post', 'MainController@getBlogPost');
 
+Route::get('my-store', 'MainController@getMyStore');
 Route::get('stores/{flink}', 'MainController@getStore');
 #Route::get('post', 'MainController@getBlogPost');
 

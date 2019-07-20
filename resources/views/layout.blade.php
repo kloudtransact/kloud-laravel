@@ -95,7 +95,7 @@
                     <li><a href="{{url('dashboard')}}">Dashboard</a></li>
                     <li><a href="{{url('my-deals')}}">My Deals</a></li>				
 				    @elseif($user->verified == "vendor")
-                    <li><a href="{{url('store')}}">My Store</a></li>
+                    <li><a href="{{url('my-store')}}">My Store</a></li>
 					@endif
                     <li><a href="{{url('transactions')}}">Transactions</a></li>
                     <li><a href="{{url('orders')}}">Orders</a></li>
