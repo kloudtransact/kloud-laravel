@@ -957,7 +957,7 @@ $subject = $data['subject'];
            {
            	$ret = [];
                $transactions = Transactions::where('user_id',$user->id)
-			                               ->orderBy('created_at', 'desc')->get();;
+			                               ->orderBy('created_at', 'desc')->get();
  
               if($transactions != null)
                {
@@ -2186,18 +2186,18 @@ function adminGetOrder($number)
                        $temp['flink'] = $s->flink;                        
                        $temp['img'] = $s->img;                        
                        $temp['status'] = $s->status; 
-                       $temp['date'] = $w->created_at->format("jS F, Y"); 
-                       $temp['last_updated'] = $w->updated_at->format("jS F, Y h:i A"); 
+                       $temp['date'] = $s->created_at->format("jS F, Y"); 
+                       $temp['last_updated'] = $s->updated_at->format("jS F, Y h:i A"); 
                        $ret = $temp; 
                }                          
                                                       
                 return $ret;
            }
 
-		   function getStore($flink)
+		   function getUserStore($user)
            {
            	$ret = [];
-               $s = Stores::where('flink', $flink)->first();     
+               $s = Stores::where('user_id', $user->id)->first();     
  
               if($s != null)
                {
@@ -2210,9 +2210,36 @@ function adminGetOrder($number)
                        $temp['flink'] = $s->flink;                        
                        $temp['img'] = $s->img;                        
                        $temp['status'] = $s->status; 
-                       $temp['date'] = $w->created_at->format("jS F, Y"); 
-                       $temp['last_updated'] = $w->updated_at->format("jS F, Y h:i A"); 
+                       $temp['date'] = $s->created_at->format("jS F, Y"); 
+                       $temp['last_updated'] = $s->updated_at->format("jS F, Y h:i A"); 
                        $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }
+
+		   function getStores()
+           {
+           	$ret = [];
+               $stores = Stores::orderBy('created_at', 'desc')->get();     
+ 
+              if($stores != null)
+               {
+				  foreach($stores as $s)
+				   {
+                   	   $temp = [];
+                   	   $temp['id'] = $s->id; 
+                       $user = User::where('id',$s->user_id)->first();
+                       $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
+                       $temp['name'] = $s->name;     
+                       $temp['deals'] = ($user == null) ? [] : $this->getUserDeals($user);      					   
+                       $temp['flink'] = $s->flink;                        
+                       $temp['img'] = $s->img;                        
+                       $temp['status'] = $s->status; 
+                       $temp['date'] = $s->created_at->format("jS F, Y"); 
+                       $temp['last_updated'] = $s->updated_at->format("jS F, Y h:i A"); 
+                       array_push($ret,$temp);
+                   }					   
                }                          
                                                       
                 return $ret;

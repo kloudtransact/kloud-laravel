@@ -83,6 +83,7 @@ Route::get('posts', 'MainController@getBlogPosts');
 Route::get('post', 'MainController@getBlogPost');
 
 Route::get('my-store', 'MainController@getMyStore');
+Route::get('stores', 'MainController@getStores');
 Route::get('stores/{flink}', 'MainController@getStore');
 #Route::get('post', 'MainController@getBlogPost');
 
@@ -117,6 +118,9 @@ Route::post('cobra-deal', 'AdminController@postDeal');
 
 Route::get('cobra-add-deal', 'AdminController@getAddDeal');
 Route::post('cobra-add-deal', 'AdminController@postAddDeal');
+
+Route::get('cobra-stores', 'AdminController@getStores');
+Route::get('cobra-store', 'AdminController@getStore');
 
 Route::get('cobra-auctions', 'AdminController@getAuctions');
 Route::get('cobra-auction', 'AdminController@getAuction');

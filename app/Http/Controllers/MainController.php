@@ -656,13 +656,14 @@ class MainController extends Controller {
 		       $user = null;
 		       $wallet = [];
 		$cart = [];
+		$signals = $this->helpers->signals;
+				
 		if(Auth::check())
 		{
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
 			$wallet = $this->helpers->getWallet($user);
 			$transactions = $this->helpers->getTransactions($user);
-			$signals = $this->helpers->signals;
 		}
 		
 		else
@@ -827,12 +828,13 @@ class MainController extends Controller {
 		       $user = null;
 		       $orders = [];
 		       $cart = [];
+		$signals = $this->helpers->signals;
+					   
 		if(Auth::check())
 		{
 			$user = Auth::user();
 			$orders = $this->helpers->getOrders($user);
 			$cart = $this->helpers->getCart($user);
-			$signals = $this->helpers->signals;
 		}
 		else
         {
@@ -932,14 +934,14 @@ class MainController extends Controller {
 		       $user = null;
 		       $dashboard = [];
 		       $cart = [];
-		
+		$signals = $this->helpers->signals;
+				
 		if(Auth::check())
 		{
 			$user = Auth::user();
 			//$dashboard = $this->helpers->getDashboard($user);
 			$transactions = $this->helpers->getTransactions($user);
 			$cart = $this->helpers->getCart($user);
-			$signals = $this->helpers->signals;
 		}
 		else
         {
@@ -977,12 +979,12 @@ class MainController extends Controller {
 	public function getMyDeals()
     {
        $user = null;
+		$signals = $this->helpers->signals;
 		
 		if(Auth::check())
 		{
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
-			$signals = $this->helpers->signals;
 			$c = $this->helpers->categories;
 		}
 		else
@@ -1003,12 +1005,11 @@ class MainController extends Controller {
 	public function getAddDeal()
     {
        $user = null;
-		
+		$signals = $this->helpers->signals;
 		if(Auth::check())
 		{
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
-			$signals = $this->helpers->signals;
 			$c = $this->helpers->categories;
 		}
 		else
@@ -1095,6 +1096,29 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
+	public function getStores()
+    {
+		       $user = null;
+		       $deals = [];
+		       $cart = [];
+			   $signals = $this->helpers->signals;
+			   
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$cart = $this->helpers->getCart($user);		
+		}
+		
+		$stores = $this->helpers->getStores();
+        dd($stores);
+		return view('stores',compact(['user','cart','stores','signals']));
+    }
+
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
 	public function getStore($flink)
     {
 		       $user = null;
@@ -1104,14 +1128,10 @@ class MainController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			$cart = $this->helpers->getCart($user);
-			$signals = $this->helpers->signals;
+			$cart = $this->helpers->getCart($user);			
 		}
-		else
-        {
-        	return redirect()->intended('login?return=store');
-        }
 		
+		$signals = $this->helpers->signals;
 		$store = $this->helpers->getStore($flink);
         dd($store);
 		return view('store',compact(['user','cart','store','signals']));
@@ -1127,17 +1147,17 @@ class MainController extends Controller {
 		       $user = null;
 		       $deals = [];
 		       $cart = [];
+			   $signals = $this->helpers->signals;
 			   
 		if(Auth::check())
 		{
 			$user = Auth::user();
 			$store = $this->helpers->getUserStore($user);
-			$cart = $this->helpers->getCart($user);
-			$signals = $this->helpers->signals;
+			$cart = $this->helpers->getCart($user);			
 		}
 		else
         {
-        	return redirect()->intended('login?return=store');
+        	return redirect()->intended('stores');
         }
 		dd($store);
 		
