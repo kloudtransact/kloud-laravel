@@ -1134,7 +1134,7 @@ class MainController extends Controller {
 		$signals = $this->helpers->signals;
 		$store = $this->helpers->getStore($flink);
         #dd($store);
-        $title = (isset($store["name"])) : $store["name"] : "Store";
+        $title = (isset($store["name"])) ? $store["name"] : "Store";
         $mine = "no";
 		return view('store',compact(['user','cart','store','title','mine','signals']));
     }
@@ -1162,7 +1162,7 @@ class MainController extends Controller {
         	return redirect()->intended('stores');
         }
 		#dd($store);
-		$title = (isset($store["name"])) : $store["name"] : "Store";
+		$title = (isset($store["name"])) ? $store["name"] : "Store";
         $mine = "yes";
 		return view('store',compact(['user','cart','store','title','mine','signals']));
     }
