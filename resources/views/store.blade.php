@@ -1,4 +1,4 @@
-@extends("layout")
+@extends("asset_layout")
 
 @section('title',$title)
 
