@@ -3,7 +3,10 @@
 @section('title',"{{$title}}")
 
 @section('content')
-<?php $ct = (isset($category) && $category != null) ? " - ".$category : ""; ?>
+<?php 
+$ct = (isset($category) && $category != null) ? " - ".$category : ""; 
+$deals = (isset($store["deals"])) ? $store["deals"] : [];
+?>
 <div class="container-fluid">
             <h2 class="category-header">Welcome to {{$title}}</h2>
                 
