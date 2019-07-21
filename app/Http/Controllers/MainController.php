@@ -1133,7 +1133,14 @@ class MainController extends Controller {
 		
 		$signals = $this->helpers->signals;
 		$store = $this->helpers->getStore($flink);
-        #dd($store);
+        #dd($store);        
+        
+		if(count($store) < 1)
+        {
+        	return redirect()->intended('stores');
+        }
+        
+        
         $title = (isset($store["name"])) ? $store["name"] : "Store";
         $mine = "no";
 		return view('store',compact(['user','cart','store','title','mine','signals']));
