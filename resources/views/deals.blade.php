@@ -19,7 +19,7 @@
                          $cartURL = url("add-to-cart")."?sku=".$d['sku']."&qty=1";
                       ?>
                     <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                    <div class="col-12 col-sm-6 col-md-12 col-xl-6 wow fadeInUp">
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
