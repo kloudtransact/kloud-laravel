@@ -1,6 +1,6 @@
 @extends("layout")
 
-@section('title',"{{$title}}")
+@section('title',$title)
 
 @section('content')
 <?php 
