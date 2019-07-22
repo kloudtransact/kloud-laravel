@@ -13,7 +13,7 @@ $deals = (isset($store["deals"])) ? $store["deals"] : [];
 
                 <div class="row">
                 	@if($mine == "yes")
-                	<a href="{{url('manage-my-store)}}" class="amado-btn mb-3">Manage Store</a>
+                	<a href="{{url('manage-my-store')}}" class="amado-btn mb-3">Manage Store</a>
                     @endif
                   @if(count($deals) > 0)
                    @foreach($deals as $d)
