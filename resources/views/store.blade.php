@@ -8,10 +8,13 @@ $ct = (isset($category) && $category != null) ? " - ".$category : "";
 $deals = (isset($store["deals"])) ? $store["deals"] : [];
 ?>
 <div class="container-fluid">
-            <h2 class="category-header">Welcome to {{$title}}</h2>
+            <h2 class="category-header">{{$title}}</h2>
                 
 
                 <div class="row">
+                	@if($mine == "yes")
+                	<a href="{{url('manage-my-store)}}" class="amado-btn mb-3">Manage Store</a>
+                    @endif
                   @if(count($deals) > 0)
                    @foreach($deals as $d)
                       <?php
