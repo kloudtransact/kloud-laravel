@@ -980,6 +980,17 @@ $subject = $data['subject'];
                              $temp['badgeClass'] = 'badge-success'; 
                            break; 
                            
+                           case 'sold':
+                             $desc = explode(',',$t->description);   
+                             $qty = $desc[0];
+                             
+                             $d = Deals::where('id',$desc[1])->first();
+                             $dn = ($d != null) ? $d->name: 'Unknown'; #deal username
+                             $iu = url('invoice').'?on='.$desc[2]; #invoice url
+                             $temp['description'] = 'User purchased '.$qty.' pcs of '.$dn.', order number <a href="'.$iu.'" target="_blank">'.$desc[2].'</a>'; 
+                             $temp['badgeClass'] = 'badge-success'; 
+                           break; 
+                           
                            case 'refund':
                              $desc = explode(',',$t->description);   
                              $iu = url('invoice').'?on='.$desc[0]; #invoice url
@@ -1044,6 +1055,17 @@ $subject = $data['subject'];
                              $iu = url('invoice').'?on='.$desc[0]; #invoice url
                              $pm = ($desc[1] == 'wallet') ? 'KloudPay Wallet' : 'Credit/debit card'; #payment method 
                              $temp['description'] = 'Paid for order <a href="'.$iu.'" target="_blank">'.$desc[0].'</a> via '.$pm; 
+                             $temp['badgeClass'] = 'badge-success'; 
+                           break; 
+                           
+                           case 'sold':
+                             $desc = explode(',',$t->description);   
+                             $qty = $desc[0];
+                             
+                             $d = Deals::where('id',$desc[1])->first();
+                             $dn = ($d != null) ? $d->name: 'Unknown'; #deal username
+                             $iu = url('invoice').'?on='.$desc[2]; #invoice url
+                             $temp['description'] = 'User purchased '.$qty.' pcs of '.$dn.', order number <a href="'.$iu.'" target="_blank">'.$desc[2].'</a>'; 
                              $temp['badgeClass'] = 'badge-success'; 
                            break; 
                            
@@ -1746,7 +1768,14 @@ function adminGetOrder($number)
                    $dt['qty'] = $c['qty'];
                    
                    $od = $this->createOrderDetails($dt);
-                                     
+                   
+                   #create transaction for each deal
+                   $stt = [];
+                   $stt['type'] = "sold";
+                   $stt['description'] = $c['qty'].','.$c['deal']['id'].','.$order->id;                   
+                   $stt['user_id'] = $c['deal']['user_id'];
+                   $stt['amount'] = $c['deal']['data']['amount'];
+                   $this->createTransaction($stt);                 
                }
                }
                #add transaction 
