@@ -52,7 +52,7 @@
                                         <p class="form-control-plaintext mb-1">Choose your store image/logo</p><br>
                                        <button id="store-upload" class="cloudinary-button">Upload</button>
                                     </div>
-                                    @if($user != null && $user->verified !== "vendor")									
+                                    @if($user == null)									
                                     <div class="col-md-6 mb-3">
                                         <input type="password" class="form-control" name="pass" value="" placeholder="Password" required>
                                     </div>
