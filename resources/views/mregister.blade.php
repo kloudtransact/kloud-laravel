@@ -17,6 +17,7 @@
                                    <form action="{{url('mregister')}}" method="post" class="text-white mb-50">
                                    	{!!csrf_field()!!}
 									<input type="hidden" name="dcd" value="jax" required>
+									<input type="hidden" name="ird" id="ird" value="" required>
                                 <div class="row">
 								<?php
 								 $fname = ""; $lname = ""; $email = "";
