@@ -13,6 +13,7 @@
                    @foreach($stores as $s)
                       <?php
                          $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$s['img'];
+                         if($s['img'] == "none") $img = "https://via.placeholder.com/150";
                          $flink = $s['flink'];
                          $dn = $s['name'];
                          $deals = $s['deals'];

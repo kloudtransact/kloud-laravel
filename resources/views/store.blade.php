@@ -6,10 +6,17 @@
 <?php 
 $ct = (isset($category) && $category != null) ? " - ".$category : ""; 
 $deals = (isset($store["deals"])) ? $store["deals"] : [];
+
+$img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$store['img'];
+ if($store['img'] == "none") $img = "https://via.placeholder.com/150";
 ?>
 <div class="container-fluid">
             <h2 class="category-header">{{$title}}</h2>
-                
+               <center>
+                                <img src="{{$img}}" alt="">
+                                <!-- Hover Thumb --
+                                <img src="" alt=""> -->
+                                </center>
 
                 <div class="row">
                 	@if($mine == "yes")
