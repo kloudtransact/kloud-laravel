@@ -85,7 +85,10 @@ Route::get('post', 'MainController@getBlogPost');
 Route::get('my-store', 'MainController@getMyStore');
 Route::get('stores', 'MainController@getStores');
 Route::get('stores/{flink}', 'MainController@getStore');
-#Route::get('post', 'MainController@getBlogPost');
+Route::get('manage-my-store', 'MainController@getManageMyStore');
+Route::get('edit-store', 'MainController@getEditStore');
+Route::post('edit-store', 'MainController@postEditStore');
+Route::get('sales-history', 'MainController@getStoreSalesHistory');
 
 Route::get('logout', 'LoginController@getLogout');
 
