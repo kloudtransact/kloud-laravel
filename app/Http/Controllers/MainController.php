@@ -1180,6 +1180,101 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
+	public function getManageMyStore()
+    {
+		       $user = null;
+		       $deals = [];
+		       $store = [];
+		       $cart = [];
+			   $signals = $this->helpers->signals;
+			   
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$store = $this->helpers->getUserStore($user);
+			$cart = $this->helpers->getCart($user);			
+		}
+		
+		if(count($store) < 1)
+        {
+        	return redirect()->intended('stores');
+        }
+        
+		#dd($store);
+		$title = (isset($store["name"])) ? $store["name"] : "Store";
+        $mine = "yes";
+		return view('manage-store',compact(['user','cart','store','title','mine','signals']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getEditStore()
+    {
+		       $user = null;
+		       $store = [];
+		       $cart = [];
+			   $signals = $this->helpers->signals;
+			   
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$store = $this->helpers->getUserStore($user);
+			$cart = $this->helpers->getCart($user);			
+		}
+		
+		if(count($store) < 1)
+        {
+        	return redirect()->intended('stores');
+        }
+        
+		#dd($store);
+		$title = (isset($store["name"])) ? $store["name"] : "Store";
+        $mine = "yes";
+		return view('edit-store',compact(['user','cart','store','title','mine','signals']));
+    }
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getStoreSalesHistory()
+    {
+		       $user = null;
+		       $store = [];
+		       $cart = [];
+			   $signals = $this->helpers->signals;
+			   
+		if(Auth::check())
+		{
+			$user = Auth::user();
+			$store = $this->helpers->getUserStore($user);
+			$sales = $this->helpers->getTransactions($user);
+			$cart = $this->helpers->getCart($user);			
+		}
+		
+		if(count($store) < 1)
+        {
+        	return redirect()->intended('stores');
+        }
+        
+		#dd($store);
+		$title = (isset($store["name"])) ? $store["name"] : "Store";
+        $mine = "yes";
+		return view('sales-history',compact(['user','cart','store','title','mine','sales','signals']));
+    }
+    
+    
+    
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
     public function postAddAccount(Request $request)
     {
     	if(Auth::check())
