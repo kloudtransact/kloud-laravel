@@ -265,7 +265,12 @@ class LoginController extends Controller {
     {
         $req = $request->all();
         //dd($req);
-        
+        $user = User::where('phone',$req['phone'])->first();
+        if(!is_null($user))
+       {
+       	$req['pass'] = $user->password; 
+           $req['pass_confirmation'] = $user->password; 
+      }
         $validator = Validator::make($req, [
                              'pass' => 'required|confirmed',
                              'email' => 'required|email',                            
