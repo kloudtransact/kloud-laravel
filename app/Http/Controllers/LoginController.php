@@ -277,6 +277,7 @@ class LoginController extends Controller {
                              'phone' => 'required|numeric',
                              'fname' => 'required',
                              'lname' => 'required',
+                             'sname' => 'required',
                              'flink' => 'required',
                              'description' => 'required',
                              'ird' => 'required',
@@ -314,11 +315,17 @@ class LoginController extends Controller {
                                                       'acnum' => ''
                                                     ]); 
                 }
+                else
+               {
+               	$user->update(['verified' => "vendor"]);
+               }
             
-			    //create store
+			    //if store doesn't exist, create store
+			    $store = $this->helpers->getUserStore($user);
+			    if(count($store) > 0) return redirect()->intended('my-store');
 				$req['user_id'] = $user->id;
 				$req['img'] = $req["ird"];
-				$req['sname'] = $req["fname"]."'s Store";
+				#$req['sname'] = $req["fname"]."'s Store";
 			    $this->helpers->createStore($req);
 							  
              //after creating the store, send to the store view with a success message
