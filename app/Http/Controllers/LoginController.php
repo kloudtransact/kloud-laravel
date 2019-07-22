@@ -280,7 +280,7 @@ class LoginController extends Controller {
                              'sname' => 'required',
                              'flink' => 'required',
                              'description' => 'required',
-                             'ird' => 'required',
+                             #'ird' => 'required',
                              #'g-recaptcha-response' => 'required',
                            # 'terms' => 'accepted',
          ]);
@@ -324,7 +324,7 @@ class LoginController extends Controller {
 			    $store = $this->helpers->getUserStore($user);
 			    if(count($store) > 0) return redirect()->intended('my-store');
 				$req['user_id'] = $user->id;
-				$req['img'] = $req["ird"];
+				$req['img'] = (isset($req["ird"])) ? $req["ird"] : "none";
 				#$req['sname'] = $req["fname"]."'s Store";
 			    $this->helpers->createStore($req);
 							  
