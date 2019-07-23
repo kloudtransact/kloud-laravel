@@ -57,7 +57,7 @@
                                         <input type="password" class="form-control" name="pass" value="" placeholder="Password" required>
                                     </div>
 									<div class="col-md-6 mb-3">
-                                        <input type="password" class="form-control" name="pass" value="" placeholder="Password" required>
+                                        <input type="password" class="form-control" name="pass_confirmation" value="" placeholder="Confirm password" required>
                                     </div>
 									@endif									
                                     
